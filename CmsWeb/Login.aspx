@@ -42,13 +42,13 @@
                             <h3 class="panel-title">Please Sign In</h3>
                         </div>
                         <div class="panel-body">
-                            <form role="form">
+                            <%--<form role="form">--%>
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" placeholder="E-mail" name="email" type="email" autofocus></asp:TextBox>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                        <asp:TextBox runat="server" ID="txtPassword" class="form-control" placeholder="Password" name="password" type="password" value=""></asp:TextBox>
                                     </div>
                                     <div class="checkbox">
                                         <label>
@@ -57,9 +57,9 @@
                                         </label>
                                     </div>
                                     <!-- Change this to a button or input when using this as a form -->
-                                    <a href="Index.aspx" class="btn btn-lg btn-success btn-block">Login</a>
+                                    <asp:Button ID="btnLogin" runat="server" Text="Login" class="btn btn-lg btn-success btn-block" OnClick="btnLogin_Click" />
                                 </fieldset>
-                            </form>
+                            <%--</form>--%>
                         </div>
                     </div>
                 </div>

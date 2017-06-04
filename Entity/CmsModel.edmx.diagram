@@ -5,7 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="70c459a4dfa94a0a85e7a90e6ab47265" Name="Diagram1">
-        <EntityTypeShape EntityType="CmsModel.tb_news" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CmsModel.tb_basiccontent" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CmsModel.tb_contenttype" Width="1.5" PointX="6" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

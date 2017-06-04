@@ -25,6 +25,7 @@ namespace Entity
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tb_news> tb_news { get; set; }
+        public virtual DbSet<tb_basiccontent> tb_basiccontent { get; set; }
+        public virtual DbSet<tb_contenttype> tb_contenttype { get; set; }
     }
 }

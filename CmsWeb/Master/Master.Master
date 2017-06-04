@@ -386,12 +386,15 @@
         <!-- jQuery -->
         <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
 
+        <!-- DataTables -->
+        <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.min.js"></script>
+
         <!-- Bootstrap Core JavaScript -->
         <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
-        
+
         <!-- Custom Theme JavaScript -->
         <script src="/Scripts/bootstrap/dist/js/sb-admin-2.js"></script>
         <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder2">

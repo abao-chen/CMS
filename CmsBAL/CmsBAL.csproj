@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBal.cs" />
+    <Compile Include="BasicContentBal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +59,10 @@
     <ProjectReference Include="..\CmsUtils\CmsUtils.csproj">
       <Project>{c7355b99-f287-47f0-9a80-bc1284430d80}</Project>
       <Name>CmsUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\CmsEntity.csproj">
+      <Project>{1ebb8e27-e404-47f4-bc9e-44e0866eb77f}</Project>
+      <Name>CmsEntity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

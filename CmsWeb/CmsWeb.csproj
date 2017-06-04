@@ -66,8 +66,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="API\Content.aspx" />
     <Content Include="Blank.aspx" />
     <Content Include="Buttons.aspx" />
+    <Content Include="Content\ContentList.aspx" />
     <Content Include="Flot.aspx" />
     <Content Include="Forms.aspx" />
     <Content Include="Grid.aspx" />
@@ -262,6 +264,13 @@
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Content.aspx.cs">
+      <DependentUpon>Content.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\Content.aspx.designer.cs">
+      <DependentUpon>Content.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Blank.aspx.cs">
       <DependentUpon>Blank.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -275,6 +284,13 @@
     </Compile>
     <Compile Include="Buttons.aspx.designer.cs">
       <DependentUpon>Buttons.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\ContentList.aspx.cs">
+      <DependentUpon>ContentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\ContentList.aspx.designer.cs">
+      <DependentUpon>ContentList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Flot.aspx.cs">
       <DependentUpon>Flot.aspx</DependentUpon>
@@ -389,6 +405,10 @@
     <ProjectReference Include="..\CmsUtils\CmsUtils.csproj">
       <Project>{c7355b99-f287-47f0-9a80-bc1284430d80}</Project>
       <Name>CmsUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\CmsEntity.csproj">
+      <Project>{1ebb8e27-e404-47f4-bc9e-44e0866eb77f}</Project>
+      <Name>CmsEntity</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
