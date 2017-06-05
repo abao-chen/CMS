@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Entity;
+using MySql.Data.MySqlClient;
 
 namespace CmsDAL
 {
@@ -49,6 +51,11 @@ namespace CmsDAL
             return _ctx.Set<T>().Where(where).ToList();
         }
 
+        public List<T> SelectList()
+        {
+            return _ctx.Set<T>().ToList();
+        }
+
         public T SelectSingleById(Expression<Func<T, bool>> where)
         {
             return _ctx.Set<T>().FirstOrDefault(where);
@@ -62,6 +69,34 @@ namespace CmsDAL
         public int UpdateList(List<T> list)
         {
             return _ctx.SaveChanges();
+        }
+
+        public void GetPagerList(DataTablesResultModel<T> resultModel, SearchModel searchModel, string sql)
+        {
+            string baseSql = string.Empty;
+            string sqlWhere = string.Empty;
+            List<DbParameter> paramsList = new List<DbParameter>();
+            long limit = searchModel.Page * searchModel.Limit;
+
+            if (searchModel.ParamsDic != null)
+            {
+                foreach (string paramValue in searchModel.ParamsDic.Keys)
+                {
+                    sqlWhere = " " + paramValue + " =  @" + paramValue + " ";
+                    MySqlParameter mySqlParam = new MySqlParameter();
+                    mySqlParam.ParameterName = "@" + paramValue;
+                    mySqlParam.Value = searchModel.ParamsDic[paramValue];
+                    paramsList.Add(mySqlParam);
+                }
+            }
+            baseSql += sql + sqlWhere;
+
+            string countSql = "select count(*) from (" + baseSql + ") t ";
+            DbParameter[] parameters = paramsList.ToArray();
+            resultModel.total = _ctx.Database.SqlQuery<long>(countSql, parameters).FirstOrDefault();
+            string pageSql = " select * from ( " + baseSql + "  order by " + searchModel.OrderColunm + " " + (searchModel.OrderDir == "desc" ? "asc" : "desc") + " limit " + limit + ") t order BY " + searchModel.OrderColunm + " " + searchModel.OrderDir + " LIMIT " + (resultModel.total - limit > 0 ? searchModel.Limit : resultModel.total - (searchModel.Limit * (searchModel.Page - 1))) + " ";
+            
+            resultModel.data = _ctx.Database.SqlQuery<T>(pageSql, parameters).ToList();
         }
     }
 }

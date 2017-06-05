@@ -10,5 +10,11 @@ namespace CmsDAL
         public BasicContentDal(CmsEntities ctx) : base(ctx)
         {
         }
+
+        public void GetContentPageList(DataTablesResultModel<tb_basiccontent> resultModel, SearchModel searchModel)
+        {
+            string sql = "select * from tb_basiccontent";
+            base.GetPagerList(resultModel, searchModel, sql);
+        }
     }
 }
