@@ -8,6 +8,11 @@ namespace Entity
 {
     public class SearchModel
     {
+        public SearchModel()
+        {
+            ParamsDic = new Dictionary<string, string>();
+        }
+
         public string OrderColunm { get; set; }
         public string OrderDir { get; set; }
         public long Start { get; set; }

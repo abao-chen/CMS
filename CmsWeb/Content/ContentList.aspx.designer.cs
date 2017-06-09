@@ -13,30 +13,30 @@ namespace TestApplication.Content {
     public partial class ContentList {
         
         /// <summary>
-        /// txtTitle1 控件。
+        /// txtTitle 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTitle1;
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
         
         /// <summary>
-        /// txtTitle2 控件。
+        /// txtSubTitle 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTitle2;
+        protected global::System.Web.UI.WebControls.TextBox txtSubTitle;
         
         /// <summary>
-        /// txtTitle3 控件。
+        /// txtCreateTime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTitle3;
+        protected global::System.Web.UI.WebControls.TextBox txtCreateTime;
     }
 }

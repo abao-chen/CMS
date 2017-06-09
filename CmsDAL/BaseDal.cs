@@ -80,22 +80,47 @@ namespace CmsDAL
 
             if (searchModel.ParamsDic != null)
             {
+                string[] valueParams;
+                List<string> valueList = new List<string>();
                 foreach (string paramValue in searchModel.ParamsDic.Keys)
                 {
-                    sqlWhere = " " + paramValue + " =  @" + paramValue + " ";
-                    MySqlParameter mySqlParam = new MySqlParameter();
-                    mySqlParam.ParameterName = "@" + paramValue;
-                    mySqlParam.Value = searchModel.ParamsDic[paramValue];
-                    paramsList.Add(mySqlParam);
+                    //0:字段名称（包含表别名），1：运算操作符，2：参数值
+                    valueParams = paramValue.Split(new string[] { "|" }, StringSplitOptions.None);
+                    if (valueParams.Length == 3)
+                    {
+                        if (valueParams[1] == "LIKE")
+                        {
+                            sqlWhere += " AND " + valueParams[0] + " " + valueParams[1] + " @" + valueParams[0] + " ";
+                        }
+                        else
+                        {
+                            sqlWhere += " AND " + valueParams[0] + valueParams[1] + " @" + valueParams[0] + " ";
+                        }
+                        if (!valueList.Any(v => v.Equals(valueParams[0])))
+                        {//判断参数是否存在，如不存在添加，存在则不添加重复
+                            MySqlParameter mySqlParam = new MySqlParameter();
+                            mySqlParam.ParameterName = "@" + valueParams[0];
+                            if (valueParams[1] == "LIKE")
+                            {
+                                mySqlParam.Value = "%" + searchModel.ParamsDic[paramValue] + "%";
+                            }
+                            else
+                            {
+                                mySqlParam.Value = searchModel.ParamsDic[paramValue];
+                            }
+                            paramsList.Add(mySqlParam);
+                            valueList.Add(valueParams[0]);
+                        }
+                    }
                 }
             }
-            baseSql += sql + sqlWhere;
+            baseSql += "select * from (" + sql + ") t3 where 1=1 " + sqlWhere;
 
             string countSql = "select count(*) from (" + baseSql + ") t ";
             DbParameter[] parameters = paramsList.ToArray();
             resultModel.total = _ctx.Database.SqlQuery<long>(countSql, parameters).FirstOrDefault();
             string pageSql = " select * from ( " + baseSql + "  order by " + searchModel.OrderColunm + " " + (searchModel.OrderDir == "desc" ? "asc" : "desc") + " limit " + limit + ") t order BY " + searchModel.OrderColunm + " " + searchModel.OrderDir + " LIMIT " + (resultModel.total - limit > 0 ? searchModel.Limit : resultModel.total - (searchModel.Limit * (searchModel.Page - 1))) + " ";
-            
+
             resultModel.data = _ctx.Database.SqlQuery<T>(pageSql, parameters).ToList();
         }
     }

@@ -1,0 +1,8 @@
+﻿.searchPanel {
+    float: right;
+    margin-top: 25px;
+}
+
+    .searchPanel input {
+        float: right;
+    }

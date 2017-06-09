@@ -6,20 +6,33 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <div class="col-lg-1">title1:</div>
-                <div class="col-lg-3">
-                    <asp:TextBox runat="server" ID="txtTitle1" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-lg-1">title2:</div>
-                <div class="col-lg-3">
-                    <asp:TextBox runat="server" ID="txtTitle2" CssClass="form-control"></asp:TextBox>
-                </div>
-                <div class="col-lg-1">title3:</div>
-                <div class="col-lg-3">
-                    <asp:TextBox runat="server" ID="txtTitle3" CssClass="form-control"></asp:TextBox>
+                <div id="searchPanel" class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-4 form-group">
+                                    <label>内容标题:</label>
+                                    <asp:TextBox runat="server" ID="txtTitle" SearchAttr="ContentTitle|LIKE|ContentTitle" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-lg-4 form-group">
+                                    <label>内容子标题:</label>
+                                    <asp:TextBox runat="server" ID="txtSubTitle" SearchAttr="ContentSubTitle|LIKE|ContentSubTitle" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-lg-4 form-group">
+                                    <label>创建时间:</label>
+                                    <asp:TextBox runat="server" ID="txtCreateTime" SearchAttr="CreateTime|<=|CreateTime" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-lg-4 searchPanel">
+                                    <input type="button" id="btnClear" class="btn btn-default" value="Clear" />
+                                    <input type="button" id="btnSearch" class="btn btn-default" value="Search" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
@@ -29,18 +42,17 @@
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                                 <tr>
-                                    <th>ContentTitle</th>
-                                    <th>ContentSubTitle</th>
-                                    <th>CreateTime(s)</th>
+                                    <th>内容标题</th>
+                                    <th>内容子标题</th>
+                                    <th>创建时间</th>
+                                    <th>内容标题2</th>
+                                    <th>内容子标题2</th>
+                                    <th>创建时间2</th>
+                                    <th>内容标题3</th>
+                                    <th>内容子标题3</th>
+                                    <th>创建时间3</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>ContentTitle</th>
-                                    <th>ContentSubTitle</th>
-                                    <th>CreateTime(s)</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                     <!-- /.panel-body -->
@@ -53,30 +65,38 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <script type="text/javascript">
+        var tableObj;
         //初始化表格
-        $(document).ready(function () {
+        $(function () {
             var objData = { "method": "getlist", "id": "1", "where": "2" };
-            $('#dataTables-example').DataTable({
+            tableObj = $('#dataTables-example').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "searching": false,
                 "ordering": true,
                 "orderMulti": false,
                 "select": true,
+                "scrollX": false,
+                "aLengthMenu": [50, 100, 200],
+                "scrollY": "500px",
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "ID",
                 "order": [1, "desc"],
                 "ajax": function (data, callback, settings) {
-                    console.log(data);
                     //封装请求参数
                     var param = {};
                     param.limit = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
                     param.start = data.start;//开始的记录序号
                     param.page = (data.start / data.length) + 1;//当前页码
-                    console.log(parseInt(data.order[0].column));
                     param.orderColunm = data.columns[parseInt(data.order[0].column)].data;//排序列名
                     param.orderDir = data.order[0].dir;//排序方式DESC、ASC
+                    var $searchForm = $("#searchPanel input[type='text']");
+                    $searchForm.each(function (index, inputObj) {
+                        if ($(inputObj).attr("SearchAttr") && $(inputObj).val() != "") {
+                            param[$(inputObj).attr("SearchAttr")] = $(inputObj).val();
+                        }
+                    });
                     //ajax请求数据
                     $.ajax({
                         type: "POST",
@@ -98,8 +118,55 @@
                 "columns": [
                     { "data": "ContentTitle" },
                     { "data": "ContentSubTitle" },
-                    { "data": "CreateTime" }
+                    {
+                        "data": "CreateTime",
+                        "render": function (data, type, row, meta) {
+                            return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
+                        }
+                    },
+                    { "data": "ContentTitle" },
+                    { "data": "ContentSubTitle" },
+                    {
+                        "data": "CreateTime",
+                        "render": function (data, type, row, meta) {
+                            return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
+                        }
+                    },
+                    { "data": "ContentTitle" },
+                    { "data": "ContentSubTitle" },
+                    {
+                        "data": "CreateTime",
+                        "render": function (data, type, row, meta) {
+                            return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
+                        }
+                    }
                 ]
+            });
+        });
+
+        //重新加载数据
+        function reloadData(searchData) {
+            tableObj.ajax.reload(function (data) {
+            }, false);
+        };
+
+        $(function () {
+            $("#btnSearch").click(function () {
+                reloadData({ "where": "1", "keys": "2" });
+            });
+            $("#btnClear").click(function () { });
+        });
+
+        $(function () {
+            $("#<%=txtCreateTime.ClientID%>").datetimepicker({
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                minView: 2,
+                format: "yyyy/mm/dd"
             });
         });
     </script>

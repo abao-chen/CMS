@@ -79,7 +79,7 @@ namespace TestApplication.API
             {
                 if (!KeysWordList.Any(k => k.Equals(key)))
                 {
-                    paramsModel.ParamsDic.Add(key, formParams[key]);
+                    paramsModel.ParamsDic.Add(key, formParams[key].Trim());
                 }
             }
             return paramsModel;
