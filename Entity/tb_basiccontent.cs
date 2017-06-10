@@ -11,27 +11,90 @@ namespace Entity
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class tb_basiccontent
+
+    /// <summary>
+    /// tb_basiccontent
+    /// </summary>
+    public partial class tb_basiccontent : BaseEntity
     {
+
+        public virtual tb_contenttype tb_contenttype { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int ID { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<int> ContentType { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Source { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string ContentTitle { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string ContentSubTitle { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string CoverPictureUrl { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<System.DateTime> ValidStartTime { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<System.DateTime> ValidEndTime { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<int> OrderNO { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<int> PageViewQua { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<int> ForwardQua { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<int> PointQua { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<int> CommentQua { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string AttachmentUrl { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<int> IsDeleted { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<int> CreateUser { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<System.DateTime> CreateTime { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<int> UpdateUser { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Nullable<System.DateTime> UpdateTime { get; set; }
     }
 }

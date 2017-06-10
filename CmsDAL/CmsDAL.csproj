@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDal.cs" />
+    <Compile Include="BasicUserDal.cs" />
     <Compile Include="BasicContentDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

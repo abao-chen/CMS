@@ -6,3 +6,7 @@
     .searchPanel input {
         float: right;
     }
+
+#searchPanel .form-group {
+    margin-bottom: 0px;
+}

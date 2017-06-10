@@ -5,15 +5,15 @@ using Entity;
 
 namespace CmsDAL
 {
-    public class BasicContentDal : BaseDal<tb_basiccontent>
+    public class BasicUserDal : BaseDal<tb_basicuser>
     {
-        public BasicContentDal(CmsEntities ctx) : base(ctx)
+        public BasicUserDal(CmsEntities ctx) : base(ctx)
         {
         }
 
-        public void GetContentPageList(DataTablesResultModel<tb_basiccontent> resultModel, SearchModel searchModel)
+        public void GetContentPageList(DataTablesResultModel<tb_basicuser> resultModel, SearchModel searchModel)
         {
-            string sql = "select * from tb_basiccontent";
+            string sql = "select * from tb_basicuser";
             base.GetPagerList(resultModel, searchModel, sql);
         }
     }

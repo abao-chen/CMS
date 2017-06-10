@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace TestApplication.Content {
+namespace CmsWeb.Content {
     
     
     public partial class ContentList {

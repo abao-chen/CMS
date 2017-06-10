@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace TestApplication
+namespace CmsWeb
 {
     public partial class Icons : System.Web.UI.Page
     {

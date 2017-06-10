@@ -12,20 +12,36 @@ namespace Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class CmsEntities : DbContext
     {
         public CmsEntities()
             : base("name=CmsEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<tb_basicuser>()
+                .HasMany(u => u.Roles)
+                .WithMany(r => r.Users)
+                .Map(m =>
+                {
+                    m.MapLeftKey("userid");
+                    m.MapRightKey("roleid");
+                    m.ToTable("tb_userrole");
+                });
         }
-    
+
         public virtual DbSet<tb_basiccontent> tb_basiccontent { get; set; }
         public virtual DbSet<tb_contenttype> tb_contenttype { get; set; }
+        public virtual DbSet<tb_authority> tb_authority { get; set; }
+        public virtual DbSet<tb_basicuser> tb_basicuser { get; set; }
+        public virtual DbSet<tb_dictionary> tb_dictionary { get; set; }
+        public virtual DbSet<tb_dictype> tb_dictype { get; set; }
+        public virtual DbSet<tb_role> tb_role { get; set; }
+        public virtual DbSet<tb_roleauthority> tb_roleauthority { get; set; }
+        public virtual DbSet<tb_sysparams> tb_sysparams { get; set; }
+        public virtual DbSet<tb_userrole> tb_userrole { get; set; }
     }
 }

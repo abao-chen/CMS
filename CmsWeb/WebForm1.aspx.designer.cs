@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace TestApplication {
+namespace CmsWeb {
     
     
     public partial class WebForm1 {

@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestApplication</RootNamespace>
-    <AssemblyName>TestApplication</AssemblyName>
+    <RootNamespace>CmsWeb</RootNamespace>
+    <AssemblyName>CmsWeb</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -70,7 +70,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="API\Content.aspx" />
+    <Content Include="API\ContentApi.aspx" />
+    <Content Include="API\SystemApi.aspx" />
     <Content Include="Blank.aspx" />
     <Content Include="Buttons.aspx" />
     <Content Include="Content\ContentList.aspx" />
@@ -315,18 +316,29 @@
     <Content Include="Scripts\jquery\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\JSON2.js" />
+    <Content Include="System\UserList.aspx" />
     <Content Include="Tables.aspx" />
     <Content Include="Typography.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Content.aspx.cs">
-      <DependentUpon>Content.aspx</DependentUpon>
+    <Compile Include="API\APIBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\Content.aspx.designer.cs">
-      <DependentUpon>Content.aspx</DependentUpon>
+    <Compile Include="API\ContentApi.aspx.cs">
+      <DependentUpon>ContentApi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\ContentApi.aspx.designer.cs">
+      <DependentUpon>ContentApi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="API\SystemApi.aspx.cs">
+      <DependentUpon>SystemApi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\SystemApi.aspx.designer.cs">
+      <DependentUpon>SystemApi.aspx</DependentUpon>
     </Compile>
     <Compile Include="Blank.aspx.cs">
       <DependentUpon>Blank.aspx</DependentUpon>
@@ -423,6 +435,13 @@
       <DependentUpon>PanelsWells.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="System\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Tables.aspx.cs">
       <DependentUpon>Tables.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

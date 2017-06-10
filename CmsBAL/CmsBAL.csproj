@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBal.cs" />
+    <Compile Include="BasicUserBal.cs" />
     <Compile Include="BasicContentBal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="ContentList.aspx.cs" Inherits="TestApplication.Content.ContentList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="ContentList.aspx.cs" Inherits="CmsWeb.Content.ContentList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -7,20 +7,23 @@
         <div class="row">
             <div class="col-lg-12">
                 <div id="searchPanel" class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#searchPanel" href="#searchBody">检索区域</a>
+                    </div>
+                    <div id="searchBody" class="panel-body collapse in">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="col-lg-4 form-group">
                                     <label>内容标题:</label>
-                                    <asp:TextBox runat="server" ID="txtTitle" SearchAttr="ContentTitle|LIKE|ContentTitle" CssClass="form-control"></asp:TextBox>
+                                    <asp:textbox runat="server" id="txtTitle" searchattr="ContentTitle|LIKE|ContentTitle" cssclass="form-control"></asp:textbox>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <label>内容子标题:</label>
-                                    <asp:TextBox runat="server" ID="txtSubTitle" SearchAttr="ContentSubTitle|LIKE|ContentSubTitle" CssClass="form-control"></asp:TextBox>
+                                    <asp:textbox runat="server" id="txtSubTitle" searchattr="ContentSubTitle|LIKE|ContentSubTitle" cssclass="form-control"></asp:textbox>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <label>创建时间:</label>
-                                    <asp:TextBox runat="server" ID="txtCreateTime" SearchAttr="CreateTime|<=|CreateTime" CssClass="form-control"></asp:TextBox>
+                                    <asp:textbox runat="server" id="txtCreateTime" searchattr="CreateTime|<=|CreateTime" cssclass="form-control"></asp:textbox>
                                 </div>
                                 <div class="col-lg-4 searchPanel">
                                     <input type="button" id="btnClear" class="btn btn-default" value="Clear" />
@@ -97,10 +100,11 @@
                             param[$(inputObj).attr("SearchAttr")] = $(inputObj).val();
                         }
                     });
+                    param["method"] = "GetContentPageList";
                     //ajax请求数据
                     $.ajax({
                         type: "POST",
-                        url: "/API/Content.aspx",
+                        url: "/API/ContentApi.aspx",
                         cache: false,  //禁用缓存
                         data: param,  //传入组装的参数
                         dataType: "json",

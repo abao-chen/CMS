@@ -7,10 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace TestApplication.API {
+namespace CmsWeb.API {
     
     
-    public partial class Content {
+    public partial class SystemApi {
         
         /// <summary>
         /// form1 控件。

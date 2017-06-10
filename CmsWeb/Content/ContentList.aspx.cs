@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace TestApplication.Content
+namespace CmsWeb.Content
 {
     public partial class ContentList : System.Web.UI.Page
     {

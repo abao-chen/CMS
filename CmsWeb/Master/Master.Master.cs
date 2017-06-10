@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace TestApplication.Master
+namespace CmsWeb.Master
 {
     public partial class Master : System.Web.UI.MasterPage
     {

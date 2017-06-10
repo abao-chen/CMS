@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using CmsBAL;
 using Entity;
 
-namespace TestApplication
+namespace CmsWeb
 {
     public partial class Login : System.Web.UI.Page
     {

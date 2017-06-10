@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace TestApplication.Master {
+namespace CmsWeb.Master {
     
     
     public partial class Master {
