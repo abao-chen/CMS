@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CmsBAL
 {
-    public class BasicContentBal : BaseBal<TB_BasicContent>
+    public class DicTypeBal : BaseBal<TB_DicType>
     {
         
     }

@@ -9,16 +9,18 @@ namespace CmsUtils
 {
     public static class SecurityUtil
     {
+        private static Random random = new Random();
         /// <summary>
         /// MD5加密
         /// </summary>
         /// <param name="strText">需要加密的字符串</param>
         /// <returns>返回加密后的结果</returns>
-        public static string Md5Encrypt(string strText)
+        public static string Md5Encrypt64(string strText)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] result = md5.ComputeHash(Encoding.Default.GetBytes(strText));
-            return Encoding.Default.GetString(result);
+
+            byte[] result = md5.ComputeHash(Encoding.UTF8.GetBytes(strText));
+            return Convert.ToBase64String(result);
         }
 
         /// <summary>
@@ -52,11 +54,10 @@ namespace CmsUtils
                     break;
             }
 
-            StringBuilder newRandom = new StringBuilder(36);
-            Random rd = new Random();
+            StringBuilder newRandom = new StringBuilder();
             for (int i = 0; i < length; i++)
             {
-                newRandom.Append(ranList[rd.Next(36)]);
+                newRandom.Append(ranList[random.Next(ranList.Count)]);
             }
 
             return newRandom.ToString();

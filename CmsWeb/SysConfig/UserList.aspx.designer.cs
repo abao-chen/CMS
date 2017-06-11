@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.SystemApi {
+namespace CmsWeb.SysConfig {
     
     
     public partial class UserList {

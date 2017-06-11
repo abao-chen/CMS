@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>CMS</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="~/Scripts/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -43,22 +43,22 @@
                         </div>
                         <div class="panel-body">
                             <%--<form role="form">--%>
-                                <fieldset>
-                                    <div class="form-group">
-                                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" placeholder="E-mail" name="email" type="email" autofocus></asp:TextBox>
-                                    </div>
-                                    <div class="form-group">
-                                        <asp:TextBox runat="server" ID="txtPassword" class="form-control" placeholder="Password" name="password" type="password" value=""></asp:TextBox>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                       
-                                        </label>
-                                    </div>
-                                    <!-- Change this to a button or input when using this as a form -->
-                                    <asp:Button ID="btnLogin" runat="server" Text="Login" class="btn btn-lg btn-success btn-block" OnClick="btnLogin_Click" />
-                                </fieldset>
+                            <fieldset>
+                                <div class="form-group">
+                                    <asp:TextBox ID="txtAccount" runat="server" class="form-control" placeholder="用户账号" name="email" autofocus></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:TextBox runat="server" ID="txtPassword" class="form-control" placeholder="用户密码" name="password" type="password" value=""></asp:TextBox>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me" />Remember Me
+                                   
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <asp:Button ID="btnLogin" runat="server" Text="Login" class="btn btn-lg btn-success btn-block" OnClick="btnLogin_Click" />
+                            </fieldset>
                             <%--</form>--%>
                         </div>
                     </div>

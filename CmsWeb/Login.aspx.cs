@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CmsBAL;
-using Entity;
+using CmsEntity;
+using CmsWeb.SysConfig;
 
 namespace CmsWeb
 {
@@ -18,15 +19,16 @@ namespace CmsWeb
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            BasicContentBal baseBasicContentBal = new BasicContentBal();
-            tb_basiccontent entity = new tb_basiccontent
+            TB_BasicUser userInfo = new TB_BasicUser()
             {
-                ContentType = 1,
-                ContentTitle = "testTile",
-                Source = "无极网",
-                ContentSubTitle = "子标题"
+                UserAccount = txtAccount.Text.Trim(),
+                UserPassword = txtPassword.Text
             };
-            int count = baseBasicContentBal.Insert(entity);
+            bool result = new BasicUserBal().ValidateAccount(userInfo);
+            if (result)
+            {
+                Response.Redirect("~/SysConfig/UserList.aspx");
+            }
         }
     }
 }

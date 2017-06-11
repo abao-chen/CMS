@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="UserList.aspx.cs" Inherits="CmsWeb.SystemApi.UserList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="UserList.aspx.cs" Inherits="CmsWeb.SysConfig.UserList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -7,24 +7,27 @@
         <div class="row">
             <div class="col-lg-12">
                 <div id="searchPanel" class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#searchPanel" href="#searchBody" class="glyphicon glyphicon-menu-up">检索区域</a>
+                    </div>
+                    <div id="searchBody" class="panel-body collapse in">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="col-lg-4 form-group">
                                     <label>用户账号:</label>
-                                    <asp:textbox runat="server" id="txtUserAccount" searchattr="UserAccount|LIKE|UserAccount" cssclass="form-control"></asp:textbox>
+                                    <asp:TextBox runat="server" ID="txtUserAccount" searchattr="UserAccount|LIKE|UserAccount" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <label>用户名称:</label>
-                                    <asp:textbox runat="server" id="txtUserName" searchattr="UserName|LIKE|UserName" cssclass="form-control"></asp:textbox>
+                                    <asp:TextBox runat="server" ID="txtUserName" searchattr="UserName|LIKE|UserName" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <label>用户状态:</label>
-                                    <asp:dropdownlist runat="server" id="ddlUserStatus" searchattr="UserStatus|=|UserStatus"></asp:dropdownlist>
+                                    <asp:DropDownList runat="server" ID="ddlUserStatus" searchattr="UserStatus|=|UserStatus" CssClass="form-control"></asp:DropDownList>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <label>用户类型:</label>
-                                    <asp:dropdownlist runat="server" id="ddlUserType" searchattr="UserType|=|UserType"></asp:dropdownlist>
+                                    <asp:DropDownList runat="server" ID="ddlUserType" searchattr="UserType|=|UserType" CssClass="form-control"></asp:DropDownList>
                                 </div>
                                 <div class="col-lg-4 searchPanel">
                                     <input type="button" id="btnClear" class="btn btn-default" value="Clear" />
@@ -36,7 +39,12 @@
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-lg-12">
+                <a id="btnAdd" class="btn btn-default" href="/SysConfig/UserInfo.aspx">新增</a>
+                <input type="button" id="btnDelete" class="btn btn-default" value="删除" />
+            </div>
+        </div>
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
@@ -78,14 +86,16 @@
                 "orderMulti": false,
                 "select": true,
                 "scrollX": false,
+                "bLengthChange": false,   //去掉每页显示多少条数据方法
                 "aLengthMenu": [50, 100, 200],
                 "scrollY": "500px",
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "ID",
                 "order": [1, "desc"],
-                "ajax": function (data, callback, settings) {
+                "ajax": function (data, callback) {
                     var param = getSearchParams(data);
+                    param["method"] = "GetPagerList";
                     //ajax请求数据
                     $.ajax({
                         type: "POST",
@@ -94,22 +104,32 @@
                         data: param,  //传入组装的参数
                         dataType: "json",
                         success: function (result) {
-                            callback(setDataTablesPagerParas(result));
+                            callback(setDataTablesPagerParas(result, data));
                         }
                     });
                 },
                 "columns": [
                     { "data": "UserAccount" },
                     { "data": "UserName" },
-                    { "data": "RoleName" },
+                    { "data": "UserType" },
                     { "data": "UserStatus" },
+                    { "data": "UserType" },
                     {
                         "data": "LastLoginTime",
-                        "render": function (data, type, row, meta) {
-                            return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
+                        "render": function (data) {
+                            if (data != null) {
+                                return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
+                            } else {
+                                return "";
+                            }
                         }
                     },
-                    { "data": "UserType" }
+                    {
+                        "data": "CreateTime",
+                        "render": function (data) {
+                            return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
+                        }
+                    }
                 ]
             });
         });
@@ -130,3 +150,4 @@
 
     </script>
 </asp:Content>
+

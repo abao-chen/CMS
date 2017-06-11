@@ -7,8 +7,8 @@
     <ProjectGuid>{1EBB8E27-E404-47F4-BC9E-44E0866EB77F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Entity</RootNamespace>
-    <AssemblyName>Entity</AssemblyName>
+    <RootNamespace>CmsEntity</RootNamespace>
+    <AssemblyName>CmsEntity</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -80,34 +80,34 @@
     <Compile Include="DataTablesResultModel.cs" />
     <Compile Include="SearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tb_authority.cs">
+    <Compile Include="TB_Authority.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_basiccontent.cs">
+    <Compile Include="TB_BasicContent.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_basicuser.cs">
+    <Compile Include="TB_BasicUser.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_contenttype.cs">
+    <Compile Include="TB_ContentType.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_dictionary.cs">
+    <Compile Include="TB_Dictionary.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_dictype.cs">
+    <Compile Include="TB_DicType.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_role.cs">
+    <Compile Include="TB_Role.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_roleauthority.cs">
+    <Compile Include="TB_RoleAuthority.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_sysparams.cs">
+    <Compile Include="TB_SysParams.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_userrole.cs">
+    <Compile Include="TB_UserRole.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -136,6 +136,16 @@
       <DependentUpon>CmsModel.edmx</DependentUpon>
       <LastGenOutput>CmsModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CmsCommon\CmsCommon.csproj">
+      <Project>{69505100-56a0-4ef9-ad9c-f9c359b792ec}</Project>
+      <Name>CmsCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CmsUtils\CmsUtils.csproj">
+      <Project>{C7355B99-F287-47F0-9A80-BC1284430D80}</Project>
+      <Name>CmsUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

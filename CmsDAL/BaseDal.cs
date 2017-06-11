@@ -6,15 +6,15 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Entity;
+using CmsEntity;
 using MySql.Data.MySqlClient;
 
 namespace CmsDAL
 {
     public class BaseDal<T> where T : class
     {
-        private CmsEntities _ctx = null;
-        private DbSet _dbSet = null;
+        protected CmsEntities _ctx = null;
+        protected DbSet _dbSet = null;
 
         public BaseDal(CmsEntities ctx)
         {
@@ -34,29 +34,17 @@ namespace CmsDAL
             return _ctx.SaveChanges();
         }
 
-        public int DeleteSingle(T entity)
-        {
-            _dbSet.Remove(entity);
-            return _ctx.SaveChanges();
-        }
-
-        public int DeleteList(List<T> list)
-        {
-            _dbSet.RemoveRange(list);
-            return _ctx.SaveChanges();
-        }
-
         public List<T> SelectList(Expression<Func<T, bool>> where)
         {
             return _ctx.Set<T>().Where(where).ToList();
         }
 
-        public List<T> SelectList()
+        public List<T> SelectAllList()
         {
             return _ctx.Set<T>().ToList();
         }
 
-        public T SelectSingleById(Expression<Func<T, bool>> where)
+        public T SelectSingle(Expression<Func<T, bool>> where)
         {
             return _ctx.Set<T>().FirstOrDefault(where);
         }

@@ -7,51 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Entity
+namespace CmsEntity
 {
     using System;
     using System.Collections.Generic;
     
-    /// <summary>
-    /// tb_authority
-    /// </summary>
-    public partial class tb_authority : BaseEntity
+    public partial class TB_Authority
     {
-    	/// <summary>
-        /// 
-        /// </summary>
         public int ID { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> AuthorType { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> ParentID { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public string FullID { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> IsDeleted { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> CreateUser { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<System.DateTime> CreateTime { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> UpdateUser { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<System.DateTime> UpdateTime { get; set; }
     }
 }

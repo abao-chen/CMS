@@ -7,68 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Entity
+namespace CmsEntity
 {
     using System;
     using System.Collections.Generic;
-    
-    /// <summary>
-    /// tb_basicuser
-    /// </summary>
-    public partial class tb_basicuser : BaseEntity
+
+    public partial class TB_BasicUser : BaseEntity
     {
-        public virtual ICollection<tb_role> Roles { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string UserAccount { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public string UserPassword { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public string PasswordSalt { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public string UserName { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public Nullable<int> UserStatus { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public Nullable<System.DateTime> LastLoginTime { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
+        public TB_BasicUser() : base()
+        {
+
+        }
+
         public int ID { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public Nullable<int> UserType { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public Nullable<int> IsDeleted { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public Nullable<int> CreateUser { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public Nullable<System.DateTime> CreateTime { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public Nullable<int> UpdateUser { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
-        public Nullable<System.DateTime> UpdateTime { get; set; }
+        public string UserAccount { get; set; }
+        public string UserPassword { get; set; }
+        public string PasswordSalt { get; set; }
+        public string UserName { get; set; }
+        public string UserStatus { get; set; }
+        public Nullable<System.DateTime> LastLoginTime { get; set; }
+        public string UserType { get; set; }
     }
 }

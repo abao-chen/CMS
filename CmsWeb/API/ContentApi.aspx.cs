@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CmsBAL;
 using CmsCommon;
-using Entity;
+using CmsEntity;
 using Newtonsoft.Json;
 
 namespace CmsWeb.API
@@ -15,12 +15,12 @@ namespace CmsWeb.API
     public partial class ContentApi : APIBase
     {
 
-        public DataTablesResultModel<tb_basiccontent> GetContentPageList()
+        public DataTablesResultModel<TB_BasicContent> GetContentPageList()
         {
-            DataTablesResultModel<tb_basiccontent> resultModel = new DataTablesResultModel<tb_basiccontent>();
+            DataTablesResultModel<TB_BasicContent> resultModel = new DataTablesResultModel<TB_BasicContent>();
             SearchModel searchModel = GetSearchParams();
             BasicContentBal bcBal = new BasicContentBal();
-            string sql = @"select * from tb_basiccontent ";
+            string sql = @"select * from tb_basiccontent where isdeleted=1 ";
             bcBal.GetPagerList(resultModel, searchModel, sql);
             return resultModel;
         }

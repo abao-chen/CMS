@@ -7,51 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Entity
+namespace CmsEntity
 {
     using System;
     using System.Collections.Generic;
     
-    /// <summary>
-    /// tb_sysparams
-    /// </summary>
-    public partial class tb_sysparams
+    public partial class TB_SysParams
     {
-    	/// <summary>
-        /// 
-        /// </summary>
         public int ID { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public string ParamName { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public string ParamValue { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public string ParamDesc { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> IsDeleted { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> CreateUser { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<System.DateTime> CreateTime { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> UpdateUser { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<System.DateTime> UpdateTime { get; set; }
     }
 }

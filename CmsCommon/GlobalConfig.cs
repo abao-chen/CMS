@@ -19,5 +19,6 @@ namespace CmsCommon
         /// API 命名空间
         /// </summary>
         public static readonly string ApiNamespace = WebConfigurationManager.AppSettings["ApiNamespace"];
+
     }
 }

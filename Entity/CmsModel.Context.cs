@@ -7,41 +7,33 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Entity
+namespace CmsEntity
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class CmsEntities : DbContext
     {
         public CmsEntities()
             : base("name=CmsEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<tb_basicuser>()
-                .HasMany(u => u.Roles)
-                .WithMany(r => r.Users)
-                .Map(m =>
-                {
-                    m.MapLeftKey("userid");
-                    m.MapRightKey("roleid");
-                    m.ToTable("tb_userrole");
-                });
+            throw new UnintentionalCodeFirstException();
         }
-
-        public virtual DbSet<tb_basiccontent> tb_basiccontent { get; set; }
-        public virtual DbSet<tb_contenttype> tb_contenttype { get; set; }
-        public virtual DbSet<tb_authority> tb_authority { get; set; }
-        public virtual DbSet<tb_basicuser> tb_basicuser { get; set; }
-        public virtual DbSet<tb_dictionary> tb_dictionary { get; set; }
-        public virtual DbSet<tb_dictype> tb_dictype { get; set; }
-        public virtual DbSet<tb_role> tb_role { get; set; }
-        public virtual DbSet<tb_roleauthority> tb_roleauthority { get; set; }
-        public virtual DbSet<tb_sysparams> tb_sysparams { get; set; }
-        public virtual DbSet<tb_userrole> tb_userrole { get; set; }
+    
+        public virtual DbSet<TB_Authority> TB_Authority { get; set; }
+        public virtual DbSet<TB_BasicContent> TB_BasicContent { get; set; }
+        public virtual DbSet<TB_ContentType> TB_ContentType { get; set; }
+        public virtual DbSet<TB_Dictionary> TB_Dictionary { get; set; }
+        public virtual DbSet<TB_DicType> TB_DicType { get; set; }
+        public virtual DbSet<TB_Role> TB_Role { get; set; }
+        public virtual DbSet<TB_RoleAuthority> TB_RoleAuthority { get; set; }
+        public virtual DbSet<TB_SysParams> TB_SysParams { get; set; }
+        public virtual DbSet<TB_UserRole> TB_UserRole { get; set; }
+        public virtual DbSet<TB_BasicUser> TB_BasicUser { get; set; }
     }
 }

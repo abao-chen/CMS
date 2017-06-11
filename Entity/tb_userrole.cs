@@ -7,47 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Entity
+namespace CmsEntity
 {
     using System;
     using System.Collections.Generic;
     
-    /// <summary>
-    /// tb_userrole
-    /// </summary>
-    public partial class tb_userrole
+    public partial class TB_UserRole
     {
-    	/// <summary>
-        /// 
-        /// </summary>
         public int ID { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> UserID { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> RoleID { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> IsDeleted { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> CreateUser { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<System.DateTime> CreateTime { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<int> UpdateUser { get; set; }
-    	/// <summary>
-        /// 
-        /// </summary>
         public Nullable<System.DateTime> UpdateTime { get; set; }
     }
 }

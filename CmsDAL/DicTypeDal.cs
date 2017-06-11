@@ -5,9 +5,9 @@ using CmsEntity;
 
 namespace CmsDAL
 {
-    public class BasicContentDal : BaseDal<TB_BasicContent>
+    public class DicTypeDal : BaseDal<TB_DicType>
     {
-        public BasicContentDal(CmsEntities ctx) : base(ctx)
+        public DicTypeDal(CmsEntities ctx) : base(ctx)
         {
         }
     }

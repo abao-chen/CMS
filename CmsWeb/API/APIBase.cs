@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using CmsCommon;
-using Entity;
+using CmsEntity;
 using Newtonsoft.Json;
 
 namespace CmsWeb.API

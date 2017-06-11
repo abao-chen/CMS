@@ -18,7 +18,7 @@
 
     <!-- Bootstrap DataTables -->
     <link href="~/Scripts/bootstrap/vendor/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
-    
+
     <!-- Bootstrap datetimepicker -->
     <link href="~/Scripts/bootstrap/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
@@ -293,19 +293,31 @@
                                 <a href="/index.aspx"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Charts<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>系统配置<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="/flot.aspx">Flot Charts</a>
+                                        <a href="/SysConfig/UserList.aspx">用户列表</a>
                                     </li>
                                     <li>
-                                        <a href="/morris.aspx">Morris.js Charts</a>
+                                        <a href="/morris.aspx">角色列表</a>
+                                    </li>
+                                    <li>
+                                        <a href="/morris.aspx">权限配置</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="/tables.aspx"><i class="fa fa-table fa-fw"></i>Tables</a>
+                                <a href="#"><i class="fa fa-edit fa-fw"></i>内容管理<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="/Content/ContentList.aspx">内容列表</a>
+                                    </li>
+                                    <li>
+                                        <a href="/morris.aspx">内容类型</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
                             </li>
                             <li>
                                 <a href="/forms.aspx"><i class="fa fa-edit fa-fw"></i>Forms</a>
@@ -394,12 +406,12 @@
         <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.js"></script>
 
         <!-- DataTables -->
-        <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.min.js"></script>
-        <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.min.js"></script>
-        
+        <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.js"></script>
+        <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>
+
         <!-- datetimepicker -->
         <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 

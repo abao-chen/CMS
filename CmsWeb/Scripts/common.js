@@ -53,10 +53,10 @@ function getSearchParams(data) {
 
 /**
  * 设置datatables分页默认参数
- * @param {datatables默认参数} data 
+ * @param {默认参数} result,{}data 
  * @returns {} 
  */
-function setDataTablesPagerParas(data) {
+function setDataTablesPagerParas(result,data) {
     var returnData = {};
     returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
     returnData.recordsTotal = result.total;//返回数据全部记录

@@ -316,7 +316,8 @@
     <Content Include="Scripts\jquery\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\JSON2.js" />
-    <Content Include="System\UserList.aspx" />
+    <Content Include="SysConfig\UserInfo.aspx" />
+    <Content Include="SysConfig\UserList.aspx" />
     <Content Include="Tables.aspx" />
     <Content Include="Typography.aspx" />
     <Content Include="Web.config" />
@@ -435,11 +436,18 @@
       <DependentUpon>PanelsWells.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="System\UserList.aspx.cs">
+    <Compile Include="SysConfig\UserInfo.aspx.cs">
+      <DependentUpon>UserInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SysConfig\UserInfo.aspx.designer.cs">
+      <DependentUpon>UserInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SysConfig\UserList.aspx.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="System\UserList.aspx.designer.cs">
+    <Compile Include="SysConfig\UserList.aspx.designer.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tables.aspx.cs">

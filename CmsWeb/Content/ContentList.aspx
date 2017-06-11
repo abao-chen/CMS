@@ -80,6 +80,7 @@
                 "orderMulti": false,
                 "select": true,
                 "scrollX": false,
+                "bLengthChange": false,   //去掉每页显示多少条数据方法
                 "aLengthMenu": [50, 100, 200],
                 "scrollY": "500px",
                 "renderer": "bootstrap",
