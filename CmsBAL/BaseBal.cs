@@ -23,7 +23,6 @@ namespace CmsBAL
                 {
                     return SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO) as TB_BasicUser;
                 }
-                HttpContext.Current.Response.Redirect("~/login.aspx");
                 return null;
             }
         }

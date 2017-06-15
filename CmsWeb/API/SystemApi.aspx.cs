@@ -14,10 +14,17 @@ namespace CmsWeb.API
         public DataTablesResultModel<TB_BasicUser> GetPagerList()
         {
             DataTablesResultModel<TB_BasicUser> resultModel = new DataTablesResultModel<TB_BasicUser>();
-            SearchModel searchModel = GetSearchParams();
-            BasicUserBal userBal = new BasicUserBal();
+            SearchModel searchModel = GetPostParams();
             string sql = @"select * from tb_basicuser where isdeleted=0 ";
-            userBal.GetPagerList(resultModel, searchModel, sql);
+            new BasicUserBal().GetPagerList(resultModel, searchModel, sql);
+            return resultModel;
+        }
+
+        public DataTablesResultModel<TB_BasicUser> DeleteUser()
+        {
+            DataTablesResultModel<TB_BasicUser> resultModel = new DataTablesResultModel<TB_BasicUser>();
+            SearchModel searchModel = GetPostParams();
+            new BasicUserBal().DeleteUser(resultModel, searchModel);
             return resultModel;
         }
     }

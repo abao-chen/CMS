@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace CmsWeb.API
 {
-    public abstract class APIBase : Page
+    public abstract class APIBase : BasePage
     {
         private List<string> KeysWordList => new List<string>(new[] { "length", "limit", "start", "page", "orderColunm", "orderDir" });
 
@@ -35,17 +35,17 @@ namespace CmsWeb.API
 
 
         /// <summary>
-        /// 获取DataTables默认参数
+        /// 获取前台Ajax的Post参数
         /// </summary>
-        protected SearchModel GetSearchParams()
+        protected SearchModel GetPostParams()
         {
             NameValueCollection formParams = HttpContext.Current.Request.Form;
             SearchModel paramsModel = new SearchModel();
             paramsModel.OrderColunm = formParams["orderColunm"];
             paramsModel.OrderDir = formParams["orderDir"];
-            paramsModel.Start = long.Parse(formParams["start"]);
-            paramsModel.Limit = long.Parse(formParams["limit"]);
-            paramsModel.Page = long.Parse(formParams["page"]);
+            paramsModel.Start = formParams["start"] == null ? 0 : long.Parse(formParams["start"]);
+            paramsModel.Limit = formParams["limit"] == null ? 0 : long.Parse(formParams["limit"]);
+            paramsModel.Page = formParams["page"] == null ? 0 : long.Parse(formParams["page"]); 
             foreach (string key in formParams.AllKeys)
             {
                 if (!KeysWordList.Any(k => k.Equals(key)))

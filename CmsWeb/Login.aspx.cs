@@ -14,7 +14,6 @@ namespace CmsWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -27,6 +26,9 @@ namespace CmsWeb
             bool result = new BasicUserBal().ValidateAccount(userInfo);
             if (result)
             {
+                //记录最后一次登录时间
+                userInfo.LastLoginTime = DateTime.Now;
+                new BasicUserBal().UpdateSingle(userInfo);
                 Response.Redirect("~/SysConfig/UserList.aspx");
             }
         }

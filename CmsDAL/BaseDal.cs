@@ -51,11 +51,18 @@ namespace CmsDAL
 
         public int UpdateSingle(T entity)
         {
+            _ctx.Set<T>().Attach(entity);
+            _ctx.Entry(entity).State = EntityState.Modified;
             return _ctx.SaveChanges();
         }
 
         public int UpdateList(List<T> list)
         {
+            foreach (T entity in list)
+            {
+                _ctx.Set<T>().Attach(entity);
+                _ctx.Entry(entity).State = EntityState.Modified;
+            }
             return _ctx.SaveChanges();
         }
 

@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.SessionState;
 
 namespace CmsUtils
 {
     public static class SessionUtil
     {
+
         /// <summary>
         /// 设置Session
         /// </summary>
@@ -16,7 +18,7 @@ namespace CmsUtils
         /// <param name="value"></param>
         public static void SetSession(string key, object value)
         {
-            HttpContext.Current.Session[key] = value;
+            HttpContext.Current.Session.Add(key, value);
         }
 
         /// <summary>
@@ -26,7 +28,11 @@ namespace CmsUtils
         /// <returns></returns>
         public static object GetSession(string key)
         {
-            return HttpContext.Current.Session[key];
+            if (HttpContext.Current.Session != null)
+            {
+                return HttpContext.Current.Session[key];
+            }
+            return null;
         }
     }
 }

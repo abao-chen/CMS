@@ -15,15 +15,15 @@
                             <div class="col-lg-12">
                                 <div class="col-lg-4 form-group">
                                     <label>内容标题:</label>
-                                    <asp:textbox runat="server" id="txtTitle" searchattr="ContentTitle|LIKE|ContentTitle" cssclass="form-control"></asp:textbox>
+                                    <asp:TextBox runat="server" ID="txtTitle" searchattr="ContentTitle|LIKE|ContentTitle" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <label>内容子标题:</label>
-                                    <asp:textbox runat="server" id="txtSubTitle" searchattr="ContentSubTitle|LIKE|ContentSubTitle" cssclass="form-control"></asp:textbox>
+                                    <asp:TextBox runat="server" ID="txtSubTitle" searchattr="ContentSubTitle|LIKE|ContentSubTitle" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-4 form-group">
                                     <label>创建时间:</label>
-                                    <asp:textbox runat="server" id="txtCreateTime" searchattr="CreateTime|<=|CreateTime" cssclass="form-control"></asp:textbox>
+                                    <asp:TextBox runat="server" ID="txtCreateTime" searchattr="CreateTime|<=|CreateTime" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-4 searchPanel">
                                     <input type="button" id="btnClear" class="btn btn-default" value="Clear" />
@@ -45,6 +45,8 @@
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                                 <tr>
+                                    <th>
+                                        <input id="cbSelectAll" type="checkbox" title="全选/取消" /></th>
                                     <th>内容标题</th>
                                     <th>内容子标题</th>
                                     <th>创建时间</th>
@@ -79,10 +81,11 @@
                 "ordering": true,
                 "orderMulti": false,
                 "select": true,
-                "scrollX": false,
+                "scrollX": true,
+                //"fixedHeader": true,
                 "bLengthChange": false,   //去掉每页显示多少条数据方法
                 "aLengthMenu": [50, 100, 200],
-                "scrollY": "500px",
+                "scrollY": "600px",
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "ID",
@@ -121,6 +124,14 @@
                     });
                 },
                 "columns": [
+                    {
+                        "data": "ID",
+                        "orderable": false,
+                        "render": function (data, type, row, meta) {
+                            var result = "<input id=\"cb-" + data + "\" name=\"tbCheckbox\" type=\"checkbox\" title=\"全选/取消\" />";
+                            return result;
+                        }
+                    },
                     { "data": "ContentTitle" },
                     { "data": "ContentSubTitle" },
                     {
@@ -149,6 +160,11 @@
             });
         });
 
+        function getRowData(rowId) {
+            var rowObj = tableObj.row("#" + rowId);
+            return rowObj.data();
+        }
+
         //重新加载数据
         function reloadData(searchData) {
             tableObj.ajax.reload(function (data) {
@@ -162,6 +178,7 @@
             $("#btnClear").click(function () { });
         });
 
+        //初始化日期空间
         $(function () {
             $("#<%=txtCreateTime.ClientID%>").datetimepicker({
                 weekStart: 1,

@@ -56,7 +56,7 @@ function getSearchParams(data) {
  * @param {默认参数} result,{}data 
  * @returns {} 
  */
-function setDataTablesPagerParas(result,data) {
+function setDataTablesPagerParas(result, data) {
     var returnData = {};
     returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
     returnData.recordsTotal = result.total;//返回数据全部记录
@@ -64,3 +64,34 @@ function setDataTablesPagerParas(result,data) {
     returnData.data = result.data;//返回的数据列表
     return returnData;
 };
+
+/**
+ * datatables 全选功能,全选ID必须：cbSelectAll，列表中的选择框name必须：tbCheckbox
+ */
+$(function () {
+    $("#cbSelectAll").click(function () {
+        $("input[name='tbCheckbox']").each(function () {
+            if ($("#cbSelectAll").is(":checked")) {
+                $(this).attr("checked", true);
+            } else {
+                $(this).attr("checked", false);
+            }
+        });
+    });
+});
+
+/**
+ * 获取datatables选中行的ID
+ */
+function getSelectedRowIds() {;
+    var ids = "";
+    $("input[name='tbCheckbox']").each(function () {
+        if ($(this).is(":checked")) {
+            if (ids == "") {
+                ids += $(this).attr("id");
+            } else {
+                ids += "," + $(this).attr("id");
+            }
+        }
+    });
+}

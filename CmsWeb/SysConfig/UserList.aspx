@@ -8,7 +8,7 @@
             <div class="col-lg-12">
                 <div id="searchPanel" class="panel panel-default">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#searchPanel" href="#searchBody" class="glyphicon glyphicon-menu-up">检索区域</a>
+                        <a data-toggle="collapse" data-parent="#searchPanel" href="#searchBody">查询条件<span class="glyphicon glyphicon-menu-up"></span></a>
                     </div>
                     <div id="searchBody" class="panel-body collapse in">
                         <div class="row">
@@ -54,6 +54,9 @@
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
                             <thead>
                                 <tr>
+                                    <th>
+                                        <input id="cbSelectAll" type="checkbox" title="全选/取消" /></th>
+                                    <th>操作</th>
                                     <th>用户账号</th>
                                     <th>用户名称</th>
                                     <th>用户角色</th>
@@ -85,10 +88,10 @@
                 "ordering": true,
                 "orderMulti": false,
                 "select": true,
-                "scrollX": false,
+                "scrollX": true,
                 "bLengthChange": false,   //去掉每页显示多少条数据方法
                 "aLengthMenu": [50, 100, 200],
-                "scrollY": "500px",
+                //"scrollY": "500px",
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "ID",
@@ -109,6 +112,22 @@
                     });
                 },
                 "columns": [
+                    {
+                        "data": "ID",
+                        "orderable": false,
+                        "render": function (data, type, row, meta) {
+                            var result = "<input id=\"" + data + "\" name=\"tbCheckbox\" type=\"checkbox\" title=\"全选/取消\" />";
+                            return result;
+                        }
+                    },
+                    {
+                        "data": "ID",
+                        "orderable": false,
+                        "render": function (data, type, row, meta) {
+                            var result = "<a class=\"btn btn-primary btn-xs\" href=\"/SysConfig/UserInfo.aspx?Id=" + data + "\">编辑</a>　<a class=\"btn btn-danger btn-xs\" href=\"javascript:deleteRows('" + data + "');\">删除</a>　　";
+                            return result;
+                        }
+                    },
                     { "data": "UserAccount" },
                     { "data": "UserName" },
                     { "data": "UserType" },
@@ -147,7 +166,22 @@
             $("#btnClear").click(function () { });
         });
 
-
+        //删除行数据
+        function deleteRows(data) {
+            var param = {};
+            param["method"] = "DeleteUser";
+            param["Id"] = data;
+            $.ajax({
+                type: "POST",
+                url: "/API/SystemApi.aspx",
+                cache: false,  //禁用缓存
+                data: param,  //传入组装的参数
+                dataType: "json",
+                success: function () {
+                    reloadData();
+                }
+            });
+        }
     </script>
 </asp:Content>
 

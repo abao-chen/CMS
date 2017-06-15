@@ -14,20 +14,15 @@ namespace DataFactory
         {
             using (var ctx = new CmsEntities())
             {
-                List<TB_BasicUser> list = new List<TB_BasicUser>();
+                List<TB_BasicContent> list = new List<TB_BasicContent>();
                 for (int i = 0; i < 1024; i++)
                 {
-                    TB_BasicUser bcModel = new TB_BasicUser();
-                    bcModel.UserAccount = SecurityUtil.RandomCode(3, 6);
-                    bcModel.UserName = SecurityUtil.RandomCode(2, 4);
-                    bcModel.PasswordSalt = SecurityUtil.RandomCode(3, 10);
-                    bcModel.UserPassword = SecurityUtil.Md5Encrypt64("123456" + bcModel.PasswordSalt);
-                    bcModel.UserStatus = "1";
-                    bcModel.UserType = "1";
-                    bcModel.IsDeleted = 0;
+                    TB_BasicContent bcModel = new TB_BasicContent();
+                    bcModel.ContentTitle = "Title" + i;
+                    bcModel.ContentSubTitle = "SubTitle" + i;
                     list.Add(bcModel);
                 }
-                ctx.TB_BasicUser.AddRange(list);
+                ctx.TB_BasicContent.AddRange(list);
                 ctx.SaveChanges();
             }
         }

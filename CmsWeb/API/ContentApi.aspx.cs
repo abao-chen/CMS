@@ -18,9 +18,9 @@ namespace CmsWeb.API
         public DataTablesResultModel<TB_BasicContent> GetContentPageList()
         {
             DataTablesResultModel<TB_BasicContent> resultModel = new DataTablesResultModel<TB_BasicContent>();
-            SearchModel searchModel = GetSearchParams();
+            SearchModel searchModel = GetPostParams();
             BasicContentBal bcBal = new BasicContentBal();
-            string sql = @"select * from tb_basiccontent where isdeleted=1 ";
+            string sql = @"select * from tb_basiccontent where isdeleted=0 ";
             bcBal.GetPagerList(resultModel, searchModel, sql);
             return resultModel;
         }
