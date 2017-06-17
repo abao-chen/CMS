@@ -42,14 +42,45 @@ function getSearchParams(data) {
     param.page = (data.start / data.length) + 1;//当前页码
     param.orderColunm = data.columns[parseInt(data.order[0].column)].data;//排序列名
     param.orderDir = data.order[0].dir;//排序方式DESC、ASC
-    var $searchForm = $("#searchPanel input[type='text']");
-    $searchForm.each(function (index, inputObj) {
-        if ($(inputObj).attr("SearchAttr") && $(inputObj).val() != "") {
-            param[$(inputObj).attr("SearchAttr")] = $(inputObj).val();
+    var $formObj = $("#searchPanel .form-control");
+    $formObj.each(function (index, inputObj) {
+        if ($(this).attr("SearchAttr") && $(this).val() != "") {
+            switch ($(this)[0].tagName.toUpperCase()) {//表单元素类型
+                case "INPUT":
+                    param[$(inputObj).attr("SearchAttr")] = $(this).val();
+                    break;
+                case "SELECT":
+                    param[$(inputObj).attr("SearchAttr")] = $(this).val();
+                    break;
+                default:
+                    break;
+            }
         }
     });
     return param;
 };
+
+/**
+ * 清除检索条件
+ * @returns {} 
+ */
+function clearSearchForm() {
+    var $formObj = $("#searchPanel .form-control");
+    $formObj.each(function (index, inputObj) {
+        if ($(this).attr("SearchAttr") && $(this).val() != "") {
+            switch ($(this)[0].tagName.toUpperCase()) {//表单元素类型
+                case "INPUT":
+                    $(this).val("");
+                    break;
+                case "SELECT":
+                    $(this).val("");
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
+}
 
 /**
  * 设置datatables分页默认参数
@@ -93,5 +124,24 @@ function getSelectedRowIds() {;
                 ids += "," + $(this).attr("id");
             }
         }
+    });
+    return ids;
+}
+
+/**
+ * 初始化日期控件
+ * @param {} inputId 
+ * @returns {} 
+ */
+function initDateControl(inputId) {
+    $("#" + inputId).datetimepicker({
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        minView: 2,
+        format: "yyyy/mm/dd"
     });
 }

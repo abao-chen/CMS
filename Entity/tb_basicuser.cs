@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CmsEntity
 {
     using System;
@@ -27,5 +29,6 @@ namespace CmsEntity
         public string UserStatus { get; set; }
         public Nullable<System.DateTime> LastLoginTime { get; set; }
         public string UserType { get; set; }
+
     }
 }

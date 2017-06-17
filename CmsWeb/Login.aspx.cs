@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CmsBAL;
+using CmsCommon;
 using CmsEntity;
 using CmsWeb.SysConfig;
 
@@ -12,6 +13,14 @@ namespace CmsWeb
 {
     public partial class Login : System.Web.UI.Page
     {
+        private string DefaultUrl
+        {
+            get
+            {
+                return string.IsNullOrEmpty(Request.QueryString[Constants.REQUEST_PREURL]) ? GlobalConfig.DefaultUrl : Request.QueryString["preUrl"];
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -29,7 +38,8 @@ namespace CmsWeb
                 //记录最后一次登录时间
                 userInfo.LastLoginTime = DateTime.Now;
                 new BasicUserBal().UpdateSingle(userInfo);
-                Response.Redirect("~/SysConfig/UserList.aspx");
+
+                Response.Redirect(DefaultUrl);
             }
         }
     }

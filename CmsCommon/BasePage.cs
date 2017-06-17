@@ -11,23 +11,13 @@ namespace CmsCommon
 {
     public class BasePage : System.Web.UI.Page, IRequiresSessionState
     {
-        public BasePage()
-        {
-
-        }
-
-
         protected override void OnInit(EventArgs e)
         {
             if (SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO) == null)
             {
-                HttpContext.Current.Response.Redirect("~/login.aspx");
+                string url = string.IsNullOrEmpty(HttpContext.Current.Request.RawUrl) ? "~/login.aspx" : "~/login.aspx?" + Constants.REQUEST_PREURL + "=" + HttpUtility.UrlDecode(HttpContext.Current.Request.RawUrl);
+                HttpContext.Current.Response.Redirect(url);
             }
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

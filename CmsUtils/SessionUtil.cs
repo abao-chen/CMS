@@ -28,11 +28,42 @@ namespace CmsUtils
         /// <returns></returns>
         public static object GetSession(string key)
         {
-            if (HttpContext.Current.Session != null)
+            if (HttpContext.Current != null && HttpContext.Current.Session != null)
             {
                 return HttpContext.Current.Session[key];
             }
             return null;
         }
+
+        /// <summary>
+        /// 删除Session
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static void RemoveSession(string key)
+        {
+            if (HttpContext.Current != null 
+                && HttpContext.Current.Session != null 
+                && HttpContext.Current.Session[key] != null)
+            {
+                HttpContext.Current.Session.Remove(key);
+            }
+        }
+
+        /// <summary>
+        /// 清除所有Session
+        /// </summary>
+        /// <returns></returns>
+        public static void ClearAllSession()
+        {
+            if (HttpContext.Current != null
+                && HttpContext.Current.Session != null)
+            {
+                HttpContext.Current.Session.Abandon();
+                HttpContext.Current.Session.RemoveAll();
+            }
+        }
+
+
     }
 }

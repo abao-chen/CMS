@@ -266,7 +266,8 @@
                             <li><a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/login.aspx"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                            <li>
+                                <asp:LinkButton ID="lkLogout" runat="server" OnClick="lkLogout_OnClick"><i class="fa fa-sign-out fa-fw"></i>注销</asp:LinkButton>
                             </li>
                         </ul>
                         <!-- /.dropdown-user -->
@@ -414,6 +415,7 @@
 
         <!-- datetimepicker -->
         <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>

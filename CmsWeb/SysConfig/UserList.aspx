@@ -14,24 +14,39 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="col-lg-4 form-group">
-                                    <label>用户账号:</label>
+                                    <label>用户账号</label>
                                     <asp:TextBox runat="server" ID="txtUserAccount" searchattr="UserAccount|LIKE|UserAccount" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-4 form-group">
-                                    <label>用户名称:</label>
+                                    <label>用户名称</label>
                                     <asp:TextBox runat="server" ID="txtUserName" searchattr="UserName|LIKE|UserName" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-4 form-group">
-                                    <label>用户状态:</label>
+                                    <label>用户状态</label>
                                     <asp:DropDownList runat="server" ID="ddlUserStatus" searchattr="UserStatus|=|UserStatus" CssClass="form-control"></asp:DropDownList>
                                 </div>
                                 <div class="col-lg-4 form-group">
-                                    <label>用户类型:</label>
+                                    <label>用户类型</label>
                                     <asp:DropDownList runat="server" ID="ddlUserType" searchattr="UserType|=|UserType" CssClass="form-control"></asp:DropDownList>
                                 </div>
+                                <div class="col-lg-4 form-group">
+                                    <label>创建日期</label>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="col-lg-6">
+                                                <div class="input-group">
+                                                    <asp:TextBox runat="server" ID="txtCreateTimeBegin" searchattr="CreateTime|>=|CreateTimeBegin" ReadOnly="True" CssClass="form-control"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <asp:TextBox runat="server" ID="txtCreateTimeEnd" searchattr="CreateTime|<=|CreateTimeEnd" ReadOnly="True" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-lg-4 searchPanel">
-                                    <input type="button" id="btnClear" class="btn btn-default" value="Clear" />
-                                    <input type="button" id="btnSearch" class="btn btn-default" value="Search" />
+                                    <input type="button" id="btnClear" class="btn btn-default" value="重置" />
+                                    <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
                                 </div>
                             </div>
                         </div>
@@ -39,10 +54,11 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="padding-bottom: 5px;">
             <div class="col-lg-12">
-                <a id="btnAdd" class="btn btn-default" href="/SysConfig/UserInfo.aspx">新增</a>
-                <input type="button" id="btnDelete" class="btn btn-default" value="删除" />
+                <a id="btnAdd" class="btn btn-info" href="/SysConfig/UserInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
+                <a id="btnDelete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>删除</a>
+                <a runat="server" class="btn btn-info" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
             </div>
         </div>
         <!-- /.row -->
@@ -51,7 +67,7 @@
                 <div class="panel panel-default">
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+                        <table width="100%" class="table table-striped table-bordered table-hover table-condensed" id="dataTables">
                             <thead>
                                 <tr>
                                     <th>
@@ -91,11 +107,11 @@
                 "scrollX": true,
                 "bLengthChange": false,   //去掉每页显示多少条数据方法
                 "aLengthMenu": [50, 100, 200],
-                //"scrollY": "500px",
+                "scrollY": "500px",
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "ID",
-                "order": [1, "desc"],
+                "order": [2, "desc"],
                 "ajax": function (data, callback) {
                     var param = getSearchParams(data);
                     param["method"] = "GetPagerList";
@@ -124,15 +140,16 @@
                         "data": "ID",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
-                            var result = "<a class=\"btn btn-primary btn-xs\" href=\"/SysConfig/UserInfo.aspx?Id=" + data + "\">编辑</a>　<a class=\"btn btn-danger btn-xs\" href=\"javascript:deleteRows('" + data + "');\">删除</a>　　";
+                            //var result = "<a href=\"/SysConfig/UserInfo.aspx?Id=" + row.ID + "\">编辑</a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + row.ID + "');\">删除</a>";
+                            var result = "<a href=\"/SysConfig/UserInfo.aspx?Id=" + row.ID + "\"><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + row.ID + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
                     },
                     { "data": "UserAccount" },
                     { "data": "UserName" },
                     { "data": "UserType" },
-                    { "data": "UserStatus" },
-                    { "data": "UserType" },
+                    { "data": "UserStatusName" },
+                    { "data": "UserTypeName" },
                     {
                         "data": "LastLoginTime",
                         "render": function (data) {
@@ -153,18 +170,30 @@
             });
         });
 
+        $(function () {
+            //检索
+            $("#btnSearch").click(function () {
+                reloadData();
+            });
+            //清除检索条件
+            $("#btnClear").click(function () {
+                clearSearchForm();
+            });
+            //删除选中
+            $("#btnDelete").click(function () {
+                var ids = getSelectedRowIds();
+                deleteRows(ids);
+            });
+
+            initDateControl("<%=txtCreateTimeBegin.ClientID%>");
+            initDateControl("<%=txtCreateTimeEnd.ClientID%>");
+        });
+
         //重新加载数据
         function reloadData() {
             tableObj.ajax.reload(null
                 , false);
         };
-
-        $(function () {
-            $("#btnSearch").click(function () {
-                reloadData();
-            });
-            $("#btnClear").click(function () { });
-        });
 
         //删除行数据
         function deleteRows(data) {

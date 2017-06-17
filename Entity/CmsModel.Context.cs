@@ -12,19 +12,27 @@ namespace CmsEntity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class CmsEntities : DbContext
     {
         public CmsEntities()
             : base("name=CmsEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            //modelBuilder.Entity<TB_BasicUser>()
+            //    .HasMany(u => u.RoleList)
+            //    .WithMany(r => r.UserList)
+            //    .Map(m =>
+            //    {
+            //        m.MapLeftKey("UserID");
+            //        m.MapRightKey("RoleID");
+            //        m.ToTable("TB_UserRole");
+            //    });
         }
-    
+
         public virtual DbSet<TB_Authority> TB_Authority { get; set; }
         public virtual DbSet<TB_BasicContent> TB_BasicContent { get; set; }
         public virtual DbSet<TB_ContentType> TB_ContentType { get; set; }

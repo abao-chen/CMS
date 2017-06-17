@@ -20,5 +20,9 @@ namespace CmsCommon
         /// </summary>
         public static readonly string ApiNamespace = WebConfigurationManager.AppSettings["ApiNamespace"];
 
+        /// <summary>
+        /// 登录默认页面
+        /// </summary>
+        public static readonly string DefaultUrl = WebConfigurationManager.AppSettings["DefaultUrl"];
     }
 }

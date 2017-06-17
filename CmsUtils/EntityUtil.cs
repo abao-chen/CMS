@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +14,7 @@ namespace CmsUtils
         /// <param name="target">目标对象</param>
         /// <param name="ignorePoperties"></param>
         /// <returns></returns>
-        public static void Copy<T>(T source, T target, params string[] ignorePoperties)
+        public static void CopyTo<T>(this T source, T target, params string[] ignorePoperties)
         {
             List<string> ignoreP = new List<string>();
             if (ignorePoperties != null && ignorePoperties.Length > 0)
@@ -39,6 +41,31 @@ namespace CmsUtils
                     }
                 }
             }
+        }
+
+        public static List<T> ToList<T>(this DataTable dt)
+        {
+            // 定义集合    
+            List<T> list = new List<T>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                T entity = Activator.CreateInstance<T>(); ;
+                // 获得此模型的公共属性      
+                PropertyInfo[] propertys = entity.GetType().GetProperties();
+                foreach (PropertyInfo pi in propertys)
+                {
+                    if (dt.Columns.Contains(pi.Name) && pi.CanWrite)
+                    {// 检查DataTable是否包含此列和属性是否有Setter
+                        object value = dr[pi.Name];
+                        if (value != DBNull.Value)
+                        {
+                            pi.SetValue(entity, value, null);
+                        }
+                    }
+                }
+                list.Add(entity);
+            }
+            return list;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using CmsEntity;
+using CmsUtils;
 using MySql.Data.MySqlClient;
 
 namespace CmsDAL
@@ -66,6 +68,12 @@ namespace CmsDAL
             return _ctx.SaveChanges();
         }
 
+        /// <summary>
+        /// 获取分页数据
+        /// </summary>
+        /// <param name="resultModel"></param>
+        /// <param name="searchModel"></param>
+        /// <param name="sql"></param>
         public void GetPagerList(DataTablesResultModel<T> resultModel, SearchModel searchModel, string sql)
         {
             string baseSql = string.Empty;
@@ -73,6 +81,46 @@ namespace CmsDAL
             List<DbParameter> paramsList = new List<DbParameter>();
             long limit = searchModel.Page * searchModel.Limit;
 
+            sqlWhere = BuildWhereBySearchModel(searchModel, paramsList);
+            baseSql += "select * from (" + sql + ") t3 where 1=1 " + sqlWhere;
+
+            string countSql = "select count(*) from (" + baseSql + ") t ";
+            DbParameter[] parameters = paramsList.ToArray();
+            resultModel.total = _ctx.Database.SqlQuery<long>(countSql, parameters).FirstOrDefault();
+            string pageSql = " select * from ( " + baseSql + "  order by " + searchModel.OrderColunm + " " + (searchModel.OrderDir == "desc" ? "asc" : "desc") + " limit " + limit + ") t order BY " + searchModel.OrderColunm + " " + searchModel.OrderDir + " LIMIT " + (resultModel.total - limit > 0 ? searchModel.Limit : resultModel.total - (searchModel.Limit * (searchModel.Page - 1))) + " ";
+            DataTable dt = _ctx.Database.SqlQueryForDataTatable(pageSql, parameters);
+            if (dt != null)
+            {
+                resultModel.data = dt.ToList<T>();
+            }
+        }
+
+        /// <summary>
+        /// 获取分页数据
+        /// </summary>
+        /// <param name="resultModel"></param>
+        /// <param name="searchModel"></param>
+        /// <param name="sql"></param>
+        public DataTable GetDataTable(SearchModel searchModel, string sql)
+        {
+            string executeSql = string.Empty;
+            List<DbParameter> paramsList = new List<DbParameter>();
+            string sqlWhere = BuildWhereBySearchModel(searchModel, paramsList);
+            executeSql += "select * from (" + sql + ") t3 where 1=1 " + sqlWhere;
+            DbParameter[] parameters = paramsList.ToArray();
+            DataTable dt = _ctx.Database.SqlQueryForDataTatable(executeSql, parameters);
+            return dt;
+        }
+
+        /// <summary>
+        /// 构建检索SQL的条件
+        /// </summary>
+        /// <param name="searchModel">检索model</param>
+        /// <param name="paramsList">SQL参数</param>
+        /// <returns>返回拼接的SQL条件</returns>
+        private static string BuildWhereBySearchModel(SearchModel searchModel, List<DbParameter> paramsList)
+        {
+            string sqlWhere = string.Empty;
             if (searchModel.ParamsDic != null)
             {
                 string[] valueParams;
@@ -92,7 +140,8 @@ namespace CmsDAL
                             sqlWhere += " AND " + valueParams[0] + valueParams[1] + " @" + valueParams[0] + " ";
                         }
                         if (!valueList.Any(v => v.Equals(valueParams[0])))
-                        {//判断参数是否存在，如不存在添加，存在则不添加重复
+                        {
+                            //判断参数是否存在，如不存在添加，存在则不添加重复
                             MySqlParameter mySqlParam = new MySqlParameter();
                             mySqlParam.ParameterName = "@" + valueParams[0];
                             if (valueParams[1] == "LIKE")
@@ -109,14 +158,7 @@ namespace CmsDAL
                     }
                 }
             }
-            baseSql += "select * from (" + sql + ") t3 where 1=1 " + sqlWhere;
-
-            string countSql = "select count(*) from (" + baseSql + ") t ";
-            DbParameter[] parameters = paramsList.ToArray();
-            resultModel.total = _ctx.Database.SqlQuery<long>(countSql, parameters).FirstOrDefault();
-            string pageSql = " select * from ( " + baseSql + "  order by " + searchModel.OrderColunm + " " + (searchModel.OrderDir == "desc" ? "asc" : "desc") + " limit " + limit + ") t order BY " + searchModel.OrderColunm + " " + searchModel.OrderDir + " LIMIT " + (resultModel.total - limit > 0 ? searchModel.Limit : resultModel.total - (searchModel.Limit * (searchModel.Page - 1))) + " ";
-
-            resultModel.data = _ctx.Database.SqlQuery<T>(pageSql, parameters).ToList();
+            return sqlWhere;
         }
     }
 }

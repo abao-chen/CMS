@@ -1,10 +1,11 @@
-﻿.searchPanel {
+﻿#searchPanel .searchPanel {
     float: right;
     margin-top: 25px;
 }
 
-    .searchPanel input {
+    #searchPanel .searchPanel input {
         float: right;
+        margin-left: 20px;
     }
 
 #searchPanel .form-group {

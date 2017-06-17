@@ -42,7 +42,7 @@
                 <div class="panel panel-default">
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <table width="100%" class="table table-striped table-bordered table-hover table-condensed" id="dataTables-example">
                             <thead>
                                 <tr>
                                     <th>
@@ -160,36 +160,25 @@
             });
         });
 
-        function getRowData(rowId) {
-            var rowObj = tableObj.row("#" + rowId);
-            return rowObj.data();
-        }
-
-        //重新加载数据
-        function reloadData(searchData) {
-            tableObj.ajax.reload(function (data) {
-            }, false);
-        };
-
         $(function () {
+            //检索
             $("#btnSearch").click(function () {
                 reloadData({ "where": "1", "keys": "2" });
             });
-            $("#btnClear").click(function () { });
+
+            //清除检索条件
+            $("#btnClear").click(function () {
+                clearSearchForm();
+            });
+
+            //初始化日期控件
+            initDateControl("<%=txtCreateTime.ClientID%>");
         });
 
-        //初始化日期空间
-        $(function () {
-            $("#<%=txtCreateTime.ClientID%>").datetimepicker({
-                weekStart: 1,
-                todayBtn: 1,
-                autoclose: 1,
-                todayHighlight: 1,
-                startView: 2,
-                forceParse: 0,
-                minView: 2,
-                format: "yyyy/mm/dd"
-            });
-        });
+        //重新加载数据
+        function reloadData() {
+            tableObj.ajax.reload(function () {
+            }, false);
+        };
     </script>
 </asp:Content>

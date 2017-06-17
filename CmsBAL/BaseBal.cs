@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,11 +90,31 @@ namespace CmsBAL
             }
         }
 
+        /// <summary>
+        /// 获取分页数据
+        /// </summary>
+        /// <param name="resultModel"></param>
+        /// <param name="searchModel"></param>
+        /// <param name="sql"></param>
         public void GetPagerList(DataTablesResultModel<T> resultModel, SearchModel searchModel, string sql)
         {
             using (var ctx = new CmsEntities())
             {
                 new BaseDal<T>(ctx).GetPagerList(resultModel, searchModel, sql);
+            }
+        }
+
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="searchModel"></param>
+        /// <param name="sql"></param>
+        /// <returns>返回结果DataTable</returns>
+        public DataTable GetDataTable(SearchModel searchModel, string sql)
+        {
+            using (var ctx = new CmsEntities())
+            {
+               return new BaseDal<T>(ctx).GetDataTable(searchModel, sql);
             }
         }
     }
