@@ -100,6 +100,13 @@
     <Compile Include="TB_DicType.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TB_Organization.cs" />
+    <Compile Include="TB_Position.cs" />
+    <Compile Include="TB_PositionCity.cs" />
+    <Compile Include="TB_PositionCounty.cs" />
+    <Compile Include="TB_PositionProvice.cs" />
+    <Compile Include="TB_PositionTown.cs" />
+    <Compile Include="TB_PositionVillage.cs" />
     <Compile Include="TB_Role.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
@@ -110,6 +117,7 @@
     <Compile Include="TB_SysParams.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TB_UserOrganization.cs" />
     <Compile Include="TB_UserRole.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>

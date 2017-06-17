@@ -74,19 +74,19 @@ namespace CmsUtils
         /// <summary>
         /// 写文件
         /// </summary>
-        /// <param name="Path">文件路径</param>
+        /// <param name="outPath">文件路径</param>
         /// <param name="content">文件内容</param>
-        public static void WriteFile(string Path, string content)
+        public static void WriteFile(string outPath, string content)
         {
 
-            if (!System.IO.File.Exists(System.Web.HttpContext.Current.Server.MapPath(Path)))
+            if (System.IO.File.Exists(outPath))
             {
-                //Directory.CreateDirectory(Path);
-                System.IO.FileStream f = System.IO.File.Create(System.Web.HttpContext.Current.Server.MapPath(Path));
-                f.Close();
-                f.Dispose();
+                File.Delete(outPath);
             }
-            System.IO.StreamWriter f2 = new System.IO.StreamWriter(System.Web.HttpContext.Current.Server.MapPath(Path), true, System.Text.Encoding.UTF8);
+            System.IO.FileStream f = System.IO.File.Create(outPath);
+            f.Close();
+            f.Dispose();
+            System.IO.StreamWriter f2 = new System.IO.StreamWriter(outPath, true, Encoding.UTF8);
             f2.WriteLine(content);
             f2.Close();
             f2.Dispose();
@@ -108,21 +108,20 @@ namespace CmsUtils
         /// <summary>
         /// 读文件
         /// </summary>
-        /// <param name="Path">文件路径</param>
+        /// <param name="filePath">文件路径</param>
         /// <returns></returns>
-        public static string ReadFile(string Path)
+        public static string ReadFile(string filePath)
         {
             string s = "";
-            if (!System.IO.File.Exists(System.Web.HttpContext.Current.Server.MapPath(Path)))
+            if (!System.IO.File.Exists(filePath))
                 s = "此文件不存在，或路径不存在";
             else
             {
-                StreamReader f2 = new StreamReader(System.Web.HttpContext.Current.Server.MapPath(Path), System.Text.Encoding.Default);
+                StreamReader f2 = new StreamReader(filePath, System.Text.Encoding.UTF8);
                 s = f2.ReadToEnd();
                 f2.Close();
                 f2.Dispose();
             }
-
             return s;
         }
 
@@ -145,9 +144,9 @@ namespace CmsUtils
         /// </summary>
         /// <param name="Path">文件路径</param>
         /// <param name="content">内容</param>
-        public static void AppendFile(string Path, string content)
+        public static void AppendFile(string filePath, string content)
         {
-            StreamWriter sw = File.AppendText(System.Web.HttpContext.Current.Server.MapPath(Path));
+            StreamWriter sw = File.AppendText(filePath);
             sw.Write(content);
             sw.Flush();
             sw.Close();

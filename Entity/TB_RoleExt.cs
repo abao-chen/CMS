@@ -8,6 +8,7 @@ namespace CmsEntity
 {
     public partial class TB_Role
     {
+        
         public List<TB_BasicUser> UserList { get; set; }
     }
 }

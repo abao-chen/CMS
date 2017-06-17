@@ -107,7 +107,7 @@
                 "scrollX": true,
                 "bLengthChange": false,   //去掉每页显示多少条数据方法
                 "aLengthMenu": [50, 100, 200],
-                "scrollY": "500px",
+                //"scrollY": "500px",
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "ID",
@@ -140,8 +140,7 @@
                         "data": "ID",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
-                            //var result = "<a href=\"/SysConfig/UserInfo.aspx?Id=" + row.ID + "\">编辑</a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + row.ID + "');\">删除</a>";
-                            var result = "<a href=\"/SysConfig/UserInfo.aspx?Id=" + row.ID + "\"><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + row.ID + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
+                            var result = "<a href=\"/SysConfig/UserInfo.aspx?Id=" + row.ID + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + row.ID + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
                     },
@@ -182,7 +181,11 @@
             //删除选中
             $("#btnDelete").click(function () {
                 var ids = getSelectedRowIds();
-                deleteRows(ids);
+                if (ids != "") {
+                    deleteRows(ids);
+                } else {
+                    toastr.warning("请选择你要删除的数据！");
+                }
             });
 
             initDateControl("<%=txtCreateTimeBegin.ClientID%>");
@@ -197,17 +200,26 @@
 
         //删除行数据
         function deleteRows(data) {
-            var param = {};
-            param["method"] = "DeleteUser";
-            param["Id"] = data;
-            $.ajax({
-                type: "POST",
-                url: "/API/SystemApi.aspx",
-                cache: false,  //禁用缓存
-                data: param,  //传入组装的参数
-                dataType: "json",
-                success: function () {
-                    reloadData();
+            bootbox.confirm({
+                size: "small",
+                message: "确认要删除选中数据吗？",
+                callback: function (result) {
+                    if (result) {
+                        var param = {};
+                        param["method"] = "DeleteUser";
+                        param["Id"] = data;
+                        $.ajax({
+                            type: "POST",
+                            url: "/API/SystemApi.aspx",
+                            cache: false,  //禁用缓存
+                            data: param,  //传入组装的参数
+                            dataType: "json",
+                            success: function () {
+                                toastr.success("删除成功！");
+                                reloadData();
+                            }
+                        });
+                    }
                 }
             });
         }

@@ -42,12 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorityDal.cs" />
     <Compile Include="BaseDal.cs" />
+    <Compile Include="ContentTypeDal.cs" />
     <Compile Include="DictionaryDal.cs" />
     <Compile Include="DicTypeDal.cs" />
     <Compile Include="BasicUserDal.cs" />
     <Compile Include="BasicContentDal.cs" />
+    <Compile Include="OrganizationDal.cs" />
+    <Compile Include="PositionCityDal.cs" />
+    <Compile Include="PositionCountyDal.cs" />
+    <Compile Include="PositionDal.cs" />
+    <Compile Include="PositionProviceDal.cs" />
+    <Compile Include="PositionTownDal.cs" />
+    <Compile Include="PositionVillageDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleAuthorityDal.cs" />
+    <Compile Include="RoleDal.cs" />
+    <Compile Include="SysParamsDal.cs" />
+    <Compile Include="UserOrganizationDal.cs" />
+    <Compile Include="UserRoleDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CmsUtils\CmsUtils.csproj">

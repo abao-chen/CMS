@@ -22,6 +22,11 @@
     <!-- Bootstrap datetimepicker -->
     <link href="~/Scripts/bootstrap/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
+    <!-- toastr -->
+    <link href="~/Scripts/bootstrap/vendor/toastr/css/toastr.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap/vendor/toastr/css/toastr.less" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap/vendor/toastr/css/toastr.scss" rel="stylesheet" />
+
     <!-- MetisMenu CSS -->
     <link href="~/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
 
@@ -417,6 +422,12 @@
         <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
         <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
+        <!-- bootbox -->
+        <script src="/Scripts/bootstrap/vendor/bootstrap-bootbox/bootbox.js"></script>
+
+        <!-- toastr -->
+        <script src="/Scripts/bootstrap/vendor/toastr/js/toastr.min.js"></script>
+
         <!-- Metis Menu Plugin JavaScript -->
         <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
 
@@ -425,6 +436,25 @@
 
         <!-- Custom Common JavaScript -->
         <script src="/Scripts/common.js"></script>
+
+        <!--toastr 初始化-->
+        <script type="text/javascript">
+            toastr.options = {
+                closeButton: true,
+                debug: true,
+                progressBar: true,
+                positionClass: "toast-top-center",
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "3000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn"
+                //hideMethod: "fadeOut"
+            };
+        </script>
         <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder2">
         </asp:ContentPlaceHolder>
     </form>

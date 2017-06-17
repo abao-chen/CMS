@@ -44,12 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorityBal.cs" />
     <Compile Include="BaseBal.cs" />
-    <Compile Include="BasicUserExtBal.cs" />
+    <Compile Include="BasicUserBal.cs" />
+    <Compile Include="ContentTypeBal.cs" />
     <Compile Include="DictionaryBal.cs" />
     <Compile Include="DicTypeBal.cs" />
     <Compile Include="BasicContentBal.cs" />
+    <Compile Include="OrganizationBal.cs" />
+    <Compile Include="PositionBal.cs" />
+    <Compile Include="PositionCityBal.cs" />
+    <Compile Include="PositionCountyBal.cs" />
+    <Compile Include="PositionProviceBal.cs" />
+    <Compile Include="PositionTownBal.cs" />
+    <Compile Include="PositionVillageBal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleAuthorityBal.cs" />
+    <Compile Include="RoleBal.cs" />
+    <Compile Include="SysParamsBal.cs" />
+    <Compile Include="UserOrganizationBal.cs" />
+    <Compile Include="UserRoleBal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CmsCommon\CmsCommon.csproj">
