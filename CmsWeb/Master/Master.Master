@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Bootstrap Admin Master</title>
+    <title>CMS Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="~/Scripts/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -21,6 +21,10 @@
 
     <!-- Bootstrap datetimepicker -->
     <link href="~/Scripts/bootstrap/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <!-- bootstrapValidator -->
+
+    <link href="~/Scripts/bootstrap/vendor/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" />
 
     <!-- toastr -->
     <link href="~/Scripts/bootstrap/vendor/toastr/css/toastr.min.css" rel="stylesheet" />
@@ -50,7 +54,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form" runat="server">
         <div id="wrapper">
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -412,7 +416,7 @@
         <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.js"></script>
+        <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- DataTables -->
         <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.js"></script>
@@ -421,6 +425,10 @@
         <!-- datetimepicker -->
         <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
         <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+        <!-- bootstrapValidator -->
+        <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
+        <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/language/zh_CN.js"></script>
 
         <!-- bootbox -->
         <script src="/Scripts/bootstrap/vendor/bootstrap-bootbox/bootbox.js"></script>
@@ -451,8 +459,8 @@
                 extendedTimeOut: "1000",
                 showEasing: "swing",
                 hideEasing: "linear",
-                showMethod: "fadeIn"
-                //hideMethod: "fadeOut"
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
             };
         </script>
         <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder2">

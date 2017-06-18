@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-lg-12" style="text-align: center;">
                                 <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnSave_OnClick" />
-                                <asp:Button ID="btnCancel" runat="server" Text="取消" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnCancel_OnClick" />
+                                <a class="btn btn-default" href="~/SysConfig/UserList.aspx" style="margin: 0 auto;">取消</a>
                             </div>
                         </div>
                     </div>
@@ -60,4 +60,62 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            $('#form').bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    <%=txtName.UniqueID%>: {
+                        validators: {
+                            notEmpty: {}
+                        }
+                    },
+                    <%=txtAccount.UniqueID%>: {
+                        validators: {
+                            notEmpty: {}
+                        }
+                    },
+                    <%=ddlStatus.UniqueID%>: {
+                        validators: {
+                            notEmpty: {}
+                        }
+                    },
+                    <%=ddlType.UniqueID%>: {
+                        validators: {
+                            notEmpty: {}
+                        }
+                    },
+                    <%=txtPassword.UniqueID%>: {
+                        validators: {
+                            enabled:false,
+                            notEmpty: {}
+                        }
+                    }
+                }
+            }).on('success.form.bv', function (e) {
+                console.log("表单验证通过");
+                // Prevent form submission
+                //e.preventDefault();
+
+                // Get the form instance
+                //var $form = $(e.target);
+
+                // Get the BootstrapValidator instance
+                //var bv = $form.data('bootstrapValidator');
+            }).on('error.form.bv', function (e) {
+                console.log("表单验证不通过");
+                //阻止表单提交
+                //e.preventDefault();
+            }).on('error.field.bv', function(e, data) {
+                console.log('error.field.bv -->', data);
+            }).on('success.field.bv', function(e, data) {
+                console.log('success.field.bv -->', data);
+            });
+        });
+    </script>
 </asp:Content>

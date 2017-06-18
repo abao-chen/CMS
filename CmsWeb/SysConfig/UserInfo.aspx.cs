@@ -89,10 +89,6 @@ namespace CmsWeb
 
             Response.Redirect("~/SysConfig/UserList.aspx");
         }
-
-        protected void btnCancel_OnClick(object sender, EventArgs e)
-        {
-            Response.Redirect("~/SysConfig/UserList.aspx");
-        }
+        
     }
 }

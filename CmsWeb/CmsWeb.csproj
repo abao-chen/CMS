@@ -72,20 +72,10 @@
   <ItemGroup>
     <Content Include="API\ContentApi.aspx" />
     <Content Include="API\SystemApi.aspx" />
-    <Content Include="Blank.aspx" />
-    <Content Include="Buttons.aspx" />
     <Content Include="Content\ContentList.aspx" />
     <Content Include="Css\common.css" />
-    <Content Include="Flot.aspx" />
-    <Content Include="Forms.aspx" />
-    <Content Include="Grid.aspx" />
-    <Content Include="Icons.aspx" />
-    <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="Morris.aspx" />
-    <Content Include="Notifications.aspx" />
     <Content Include="packages.config" />
-    <Content Include="PanelsWells.aspx" />
     <Content Include="Scripts\bootstrap\vendor\bootstrap-bootbox\bootbox.js" />
     <Content Include="Scripts\bootstrap\vendor\bootstrap-bootbox\bootbox.min.js" />
     <Content Include="Scripts\bootstrap\data\flot-data.js" />
@@ -97,20 +87,93 @@
     <Content Include="Scripts\bootstrap\js\html5shiv.js" />
     <Content Include="Scripts\bootstrap\js\respond.min.js" />
     <Content Include="Scripts\bootstrap\js\sb-admin-2.js" />
-    <Content Include="pages\blank.html" />
-    <Content Include="pages\buttons.html" />
-    <Content Include="pages\flot.html" />
-    <Content Include="pages\forms.html" />
-    <Content Include="pages\grid.html" />
-    <Content Include="pages\icons.html" />
-    <Content Include="pages\index.html" />
-    <Content Include="pages\login.html" />
-    <Content Include="pages\morris.html" />
-    <Content Include="pages\notifications.html" />
-    <Content Include="pages\panels-wells.html" />
-    <Content Include="pages\tables.html" />
-    <Content Include="pages\typography.html" />
     <Content Include="Scripts\bootstrap\vendor\bootstrap-social\bootstrap-social.css" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\css\bootstrapValidator.css" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\bootstrapValidator.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\ar_MA.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\be_FR.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\be_NL.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\bg_BG.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\cs_CZ.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\da_DK.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\de_DE.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\en_US.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\es_CL.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\es_ES.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\fa_IR.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\fr_FR.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\gr_EL.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\he_IL.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\hu_HU.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\id_ID.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\it_IT.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\ja_JP.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\nl_NL.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\no_NO.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\pl_PL.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\pt_BR.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\pt_PT.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\ro_RO.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\ru_RU.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\sq_AL.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\sr_RS.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\sv_SE.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\th_TH.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\tr_TR.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\ua_UA.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\vi_VN.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\zh_CN.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\language\zh_TW.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\base64.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\between.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\blank.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\callback.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\choice.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\color.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\creditCard.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\cusip.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\cvv.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\date.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\different.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\digits.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\ean.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\emailAddress.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\file.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\greaterThan.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\grid.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\hex.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\hexColor.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\iban.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\id.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\identical.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\imei.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\imo.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\integer.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\ip.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\isbn.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\isin.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\ismn.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\issn.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\lessThan.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\mac.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\meid.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\notEmpty.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\numeric.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\phone.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\regexp.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\remote.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\rtn.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\sedol.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\siren.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\siret.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\step.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\stringCase.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\stringLength.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\uri.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\uuid.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\vat.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\vin.js" />
+    <Content Include="Scripts\bootstrap\vendor\bootstrap-validator\js\validator\zipCode.js" />
     <Content Include="Scripts\bootstrap\vendor\bootstrap\css\bootstrap.css" />
     <Content Include="Scripts\bootstrap\vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="Scripts\bootstrap\vendor\bootstrap\js\bootstrap.js" />
@@ -307,6 +370,7 @@
     <Content Include="Scripts\bootstrap\vendor\datetimepicker\less\datetimepicker.less" />
     <Content Include="Scripts\bootstrap\vendor\toastr\css\toastr.less" />
     <Content Include="Scripts\bootstrap\vendor\toastr\css\toastr.scss" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -315,7 +379,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
     <None Include="Scripts\jquery\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery\jquery-3.1.1.min.js" />
@@ -326,10 +389,7 @@
     <Content Include="Scripts\bootstrap\vendor\toastr\js\toastr.min.js" />
     <Content Include="SysConfig\UserInfo.aspx" />
     <Content Include="SysConfig\UserList.aspx" />
-    <Content Include="Tables.aspx" />
-    <Content Include="Typography.aspx" />
     <Content Include="Web.config" />
-    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\APIBase.cs">
@@ -349,64 +409,12 @@
     <Compile Include="API\SystemApi.aspx.designer.cs">
       <DependentUpon>SystemApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Blank.aspx.cs">
-      <DependentUpon>Blank.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Blank.aspx.designer.cs">
-      <DependentUpon>Blank.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Buttons.aspx.cs">
-      <DependentUpon>Buttons.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Buttons.aspx.designer.cs">
-      <DependentUpon>Buttons.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Content\ContentList.aspx.cs">
       <DependentUpon>ContentList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Content\ContentList.aspx.designer.cs">
       <DependentUpon>ContentList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Flot.aspx.cs">
-      <DependentUpon>Flot.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Flot.aspx.designer.cs">
-      <DependentUpon>Flot.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms.aspx.cs">
-      <DependentUpon>Forms.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms.aspx.designer.cs">
-      <DependentUpon>Forms.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Grid.aspx.cs">
-      <DependentUpon>Grid.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Grid.aspx.designer.cs">
-      <DependentUpon>Grid.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Icons.aspx.cs">
-      <DependentUpon>Icons.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Icons.aspx.designer.cs">
-      <DependentUpon>Icons.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -421,27 +429,6 @@
     </Compile>
     <Compile Include="Master\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Morris.aspx.cs">
-      <DependentUpon>Morris.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Morris.aspx.designer.cs">
-      <DependentUpon>Morris.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Notifications.aspx.cs">
-      <DependentUpon>Notifications.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Notifications.aspx.designer.cs">
-      <DependentUpon>Notifications.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PanelsWells.aspx.cs">
-      <DependentUpon>PanelsWells.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PanelsWells.aspx.designer.cs">
-      <DependentUpon>PanelsWells.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysConfig\UserInfo.aspx.cs">
@@ -458,20 +445,6 @@
     <Compile Include="SysConfig\UserList.aspx.designer.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tables.aspx.cs">
-      <DependentUpon>Tables.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Tables.aspx.designer.cs">
-      <DependentUpon>Tables.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Typography.aspx.cs">
-      <DependentUpon>Typography.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Typography.aspx.designer.cs">
-      <DependentUpon>Typography.aspx</DependentUpon>
-    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -482,7 +455,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CmsBAL\CmsBAL.csproj">
