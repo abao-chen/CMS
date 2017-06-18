@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.SysConfig {
+namespace CmsWeb {
     
     
     public partial class UserList {

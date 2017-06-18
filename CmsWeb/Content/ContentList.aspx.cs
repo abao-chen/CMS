@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CmsCommon;
 
-namespace CmsWeb.Content
+namespace CmsWeb
 {
     public partial class ContentList : BasePage
     {

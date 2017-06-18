@@ -74,13 +74,7 @@
     <Content Include="API\SystemApi.aspx" />
     <Content Include="Blank.aspx" />
     <Content Include="Buttons.aspx" />
-    <Content Include="Content\bootstrap\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap\bootstrap.css" />
-    <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\ContentList.aspx" />
-    <Content Include="Content\toastr.css" />
-    <Content Include="Content\toastr.min.css" />
     <Content Include="Css\common.css" />
     <Content Include="Flot.aspx" />
     <Content Include="Forms.aspx" />
@@ -311,12 +305,6 @@
     <Content Include="Scripts\bootstrap\vendor\font-awesome\scss\_variables.scss" />
     <Content Include="Master\Master.Master" />
     <Content Include="Scripts\bootstrap\vendor\datetimepicker\less\datetimepicker.less" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\toastr.scss" />
-    <Content Include="Content\toastr.less" />
     <Content Include="Scripts\bootstrap\vendor\toastr\css\toastr.less" />
     <Content Include="Scripts\bootstrap\vendor\toastr\css\toastr.scss" />
     <None Include="Web.Debug.config">

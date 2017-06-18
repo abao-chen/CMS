@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.Content {
+namespace CmsWeb {
     
     
     public partial class ContentList {

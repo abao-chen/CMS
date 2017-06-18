@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using CmsBAL;
 using CmsCommon;
 using CmsEntity;
-using CmsWeb.SysConfig;
 
 namespace CmsWeb
 {

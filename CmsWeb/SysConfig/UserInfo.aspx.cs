@@ -9,7 +9,7 @@ using CmsCommon;
 using CmsEntity;
 using CmsUtils;
 
-namespace CmsWeb.SysConfig
+namespace CmsWeb
 {
     public partial class UserInfo : BasePage
     {
