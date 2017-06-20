@@ -105,6 +105,79 @@
           <Property Name="UpdateUser" Type="int" />
           <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="TB_Organization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="FullID" Type="varchar" MaxLength="500" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="TB_Position">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProvinceId" Type="ubigint" Nullable="false" />
+          <Property Name="ProvinceName" Type="char" MaxLength="64" Nullable="false" />
+          <Property Name="CityID" Type="ubigint" Nullable="false" />
+          <Property Name="CityName" Type="char" MaxLength="64" Nullable="false" />
+          <Property Name="CountyID" Type="ubigint" Nullable="false" />
+          <Property Name="CountyName" Type="char" MaxLength="64" Nullable="false" />
+          <Property Name="TownID" Type="ubigint" Nullable="false" />
+          <Property Name="TownName" Type="char" MaxLength="64" Nullable="false" />
+          <Property Name="VillageID" Type="ubigint" Nullable="false" />
+          <Property Name="VillageName" Type="char" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_PositionCity">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="province_id" Type="uint" Nullable="false" />
+          <Property Name="city_id" Type="ubigint" Nullable="false" />
+          <Property Name="city_name" Type="char" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_PositionCounty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityID" Type="ubigint" Nullable="false" />
+          <Property Name="CountyID" Type="ubigint" Nullable="false" />
+          <Property Name="CountyName" Type="char" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_PositionProvice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProviceID" Type="uint" Nullable="false" />
+          <Property Name="ProviceName" Type="char" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_PositionTown">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountyID" Type="ubigint" Nullable="false" />
+          <Property Name="TownID" Type="ubigint" Nullable="false" />
+          <Property Name="TownName" Type="char" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_PositionVillage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TownID" Type="ubigint" Nullable="false" />
+          <Property Name="VillageID" Type="ubigint" Nullable="false" />
+          <Property Name="VillageName" Type="char" MaxLength="64" Nullable="false" />
+        </EntityType>
         <EntityType Name="TB_Role">
           <Key>
             <PropertyRef Name="ID" />
@@ -145,6 +218,19 @@
           <Property Name="UpdateUser" Type="int" />
           <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="TB_UserOrganization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="OrganizationID" Type="int" />
+          <Property Name="IsDeleted" Type="uint" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="TB_UserRole">
           <Key>
             <PropertyRef Name="ID" />
@@ -165,9 +251,17 @@
           <EntitySet Name="TB_ContentType" EntityType="Self.TB_ContentType" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_Dictionary" EntityType="Self.TB_Dictionary" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_DicType" EntityType="Self.TB_DicType" Schema="cms" store:Type="Tables" />
+          <EntitySet Name="TB_Organization" EntityType="Self.TB_Organization" Schema="cms" store:Type="Tables" />
+          <EntitySet Name="TB_Position" EntityType="Self.TB_Position" Schema="cms" store:Type="Tables" />
+          <EntitySet Name="TB_PositionCity" EntityType="Self.TB_PositionCity" Schema="cms" store:Type="Tables" />
+          <EntitySet Name="TB_PositionCounty" EntityType="Self.TB_PositionCounty" Schema="cms" store:Type="Tables" />
+          <EntitySet Name="TB_PositionProvice" EntityType="Self.TB_PositionProvice" Schema="cms" store:Type="Tables" />
+          <EntitySet Name="TB_PositionTown" EntityType="Self.TB_PositionTown" Schema="cms" store:Type="Tables" />
+          <EntitySet Name="TB_PositionVillage" EntityType="Self.TB_PositionVillage" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_Role" EntityType="Self.TB_Role" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_RoleAuthority" EntityType="Self.TB_RoleAuthority" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_SysParams" EntityType="Self.TB_SysParams" Schema="cms" store:Type="Tables" />
+          <EntitySet Name="TB_UserOrganization" EntityType="Self.TB_UserOrganization" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_UserRole" EntityType="Self.TB_UserRole" Schema="cms" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -320,6 +414,14 @@
           <EntitySet Name="TB_SysParams" EntityType="Self.TB_SysParams" />
           <EntitySet Name="TB_UserRole" EntityType="Self.TB_UserRole" />
           <EntitySet Name="TB_BasicUser" EntityType="CmsModel.TB_BasicUser" />
+          <EntitySet Name="TB_Organization" EntityType="CmsModel.TB_Organization" />
+          <EntitySet Name="TB_Position" EntityType="CmsModel.TB_Position" />
+          <EntitySet Name="TB_PositionCity" EntityType="CmsModel.TB_PositionCity" />
+          <EntitySet Name="TB_PositionCounty" EntityType="CmsModel.TB_PositionCounty" />
+          <EntitySet Name="TB_PositionProvice" EntityType="CmsModel.TB_PositionProvice" />
+          <EntitySet Name="TB_PositionTown" EntityType="CmsModel.TB_PositionTown" />
+          <EntitySet Name="TB_PositionVillage" EntityType="CmsModel.TB_PositionVillage" />
+          <EntitySet Name="TB_UserOrganization" EntityType="CmsModel.TB_UserOrganization" />
         </EntityContainer>
         <EntityType Name="TB_BasicUser">
           <Key>
@@ -334,6 +436,92 @@
           <Property Name="LastLoginTime" Type="DateTime" />
           <Property Name="UserType" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="TB_Organization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="FullID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="TB_Position">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinceId" Type="Decimal" Nullable="false" />
+          <Property Name="ProvinceName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CityID" Type="Decimal" Nullable="false" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CountyID" Type="Decimal" Nullable="false" />
+          <Property Name="CountyName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="TownID" Type="Decimal" Nullable="false" />
+          <Property Name="TownName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="VillageID" Type="Decimal" Nullable="false" />
+          <Property Name="VillageName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_PositionCity">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="province_id" Type="Int64" Nullable="false" />
+          <Property Name="city_id" Type="Decimal" Nullable="false" />
+          <Property Name="city_name" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_PositionCounty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityID" Type="Decimal" Nullable="false" />
+          <Property Name="CountyID" Type="Decimal" Nullable="false" />
+          <Property Name="CountyName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_PositionProvice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProviceID" Type="Int64" Nullable="false" />
+          <Property Name="ProviceName" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_PositionTown">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountyID" Type="Decimal" Nullable="false" />
+          <Property Name="TownID" Type="Decimal" Nullable="false" />
+          <Property Name="TownName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_PositionVillage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TownID" Type="Decimal" Nullable="false" />
+          <Property Name="VillageID" Type="Decimal" Nullable="false" />
+          <Property Name="VillageName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_UserOrganization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="OrganizationID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int64" />
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UpdateUser" Type="Int32" />
@@ -504,6 +692,100 @@
                 <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="UserAccount" ColumnName="UserAccount" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Organization">
+            <EntityTypeMapping TypeName="CmsModel.TB_Organization">
+              <MappingFragment StoreEntitySet="TB_Organization">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="FullID" ColumnName="FullID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Position">
+            <EntityTypeMapping TypeName="CmsModel.TB_Position">
+              <MappingFragment StoreEntitySet="TB_Position">
+                <ScalarProperty Name="VillageName" ColumnName="VillageName" />
+                <ScalarProperty Name="VillageID" ColumnName="VillageID" />
+                <ScalarProperty Name="TownName" ColumnName="TownName" />
+                <ScalarProperty Name="TownID" ColumnName="TownID" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PositionCity">
+            <EntityTypeMapping TypeName="CmsModel.TB_PositionCity">
+              <MappingFragment StoreEntitySet="TB_PositionCity">
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="province_id" ColumnName="province_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PositionCounty">
+            <EntityTypeMapping TypeName="CmsModel.TB_PositionCounty">
+              <MappingFragment StoreEntitySet="TB_PositionCounty">
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PositionProvice">
+            <EntityTypeMapping TypeName="CmsModel.TB_PositionProvice">
+              <MappingFragment StoreEntitySet="TB_PositionProvice">
+                <ScalarProperty Name="ProviceName" ColumnName="ProviceName" />
+                <ScalarProperty Name="ProviceID" ColumnName="ProviceID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PositionTown">
+            <EntityTypeMapping TypeName="CmsModel.TB_PositionTown">
+              <MappingFragment StoreEntitySet="TB_PositionTown">
+                <ScalarProperty Name="TownName" ColumnName="TownName" />
+                <ScalarProperty Name="TownID" ColumnName="TownID" />
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PositionVillage">
+            <EntityTypeMapping TypeName="CmsModel.TB_PositionVillage">
+              <MappingFragment StoreEntitySet="TB_PositionVillage">
+                <ScalarProperty Name="VillageName" ColumnName="VillageName" />
+                <ScalarProperty Name="VillageID" ColumnName="VillageID" />
+                <ScalarProperty Name="TownID" ColumnName="TownID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_UserOrganization">
+            <EntityTypeMapping TypeName="CmsModel.TB_UserOrganization">
+              <MappingFragment StoreEntitySet="TB_UserOrganization">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

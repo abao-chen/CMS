@@ -206,7 +206,7 @@
                 callback: function (result) {
                     if (result) {
                         var param = {};
-                        param["method"] = "DeleteUser";
+                        param["method"] = "DeleteByIds";
                         param["Id"] = data;
                         $.ajax({
                             type: "POST",

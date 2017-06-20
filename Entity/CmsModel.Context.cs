@@ -12,27 +12,19 @@ namespace CmsEntity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class CmsEntities : DbContext
     {
         public CmsEntities()
             : base("name=CmsEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<TB_BasicUser>()
-            //    .HasMany(u => u.RoleList)
-            //    .WithMany(r => r.UserList)
-            //    .Map(m =>
-            //    {
-            //        m.MapLeftKey("UserID");
-            //        m.MapRightKey("RoleID");
-            //        m.ToTable("TB_UserRole");
-            //    });
+            throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<TB_Authority> TB_Authority { get; set; }
         public virtual DbSet<TB_BasicContent> TB_BasicContent { get; set; }
         public virtual DbSet<TB_ContentType> TB_ContentType { get; set; }
@@ -43,5 +35,13 @@ namespace CmsEntity
         public virtual DbSet<TB_SysParams> TB_SysParams { get; set; }
         public virtual DbSet<TB_UserRole> TB_UserRole { get; set; }
         public virtual DbSet<TB_BasicUser> TB_BasicUser { get; set; }
+        public virtual DbSet<TB_Organization> TB_Organization { get; set; }
+        public virtual DbSet<TB_Position> TB_Position { get; set; }
+        public virtual DbSet<TB_PositionCity> TB_PositionCity { get; set; }
+        public virtual DbSet<TB_PositionCounty> TB_PositionCounty { get; set; }
+        public virtual DbSet<TB_PositionProvice> TB_PositionProvice { get; set; }
+        public virtual DbSet<TB_PositionTown> TB_PositionTown { get; set; }
+        public virtual DbSet<TB_PositionVillage> TB_PositionVillage { get; set; }
+        public virtual DbSet<TB_UserOrganization> TB_UserOrganization { get; set; }
     }
 }

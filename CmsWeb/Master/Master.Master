@@ -445,24 +445,6 @@
         <!-- Custom Common JavaScript -->
         <script src="/Scripts/common.js"></script>
 
-        <!--toastr 初始化-->
-        <script type="text/javascript">
-            toastr.options = {
-                closeButton: true,
-                debug: true,
-                progressBar: true,
-                positionClass: "toast-top-center",
-                onclick: null,
-                showDuration: "300",
-                hideDuration: "1000",
-                timeOut: "3000",
-                extendedTimeOut: "1000",
-                showEasing: "swing",
-                hideEasing: "linear",
-                showMethod: "fadeIn",
-                hideMethod: "fadeOut"
-            };
-        </script>
         <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder2">
         </asp:ContentPlaceHolder>
     </form>

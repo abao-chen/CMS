@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmsDAL", "CmsDAL\CmsDAL.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataFactory", "DataFactory\DataFactory.csproj", "{77F52C92-D9FF-4281-9CA0-1ABE7196B4EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmsGenerator", "CmsGenerator\CmsGenerator.csproj", "{5643B422-4F45-4361-9022-89BBDB9B9AFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{77F52C92-D9FF-4281-9CA0-1ABE7196B4EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77F52C92-D9FF-4281-9CA0-1ABE7196B4EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77F52C92-D9FF-4281-9CA0-1ABE7196B4EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5643B422-4F45-4361-9022-89BBDB9B9AFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5643B422-4F45-4361-9022-89BBDB9B9AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5643B422-4F45-4361-9022-89BBDB9B9AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5643B422-4F45-4361-9022-89BBDB9B9AFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

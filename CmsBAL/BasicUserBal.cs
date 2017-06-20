@@ -39,7 +39,7 @@ namespace CmsBAL
         /// </summary>
         /// <param name="resultModel"></param>
         /// <param name="searchModel"></param>
-        public void DeleteUser(DataTablesResultModel<TB_BasicUser> resultModel, SearchModel searchModel)
+        public void DeleteByIds(DataTablesResultModel<TB_BasicUser> resultModel, SearchModel searchModel)
         {
 
             List<TB_BasicUser> userList = new List<TB_BasicUser>();

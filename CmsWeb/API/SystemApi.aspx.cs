@@ -41,7 +41,7 @@ namespace CmsWeb.API
         {
             DataTablesResultModel<TB_BasicUser> resultModel = new DataTablesResultModel<TB_BasicUser>();
             SearchModel searchModel = GetPostParams();
-            new BasicUserBal().DeleteUser(resultModel, searchModel);
+            new BasicUserBal().DeleteByIds(resultModel, searchModel);
             return resultModel;
         }
     }

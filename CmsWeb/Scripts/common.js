@@ -145,3 +145,22 @@ function initDateControl(inputId) {
         format: "yyyy/mm/dd"
     });
 }
+
+/**
+ * toastr 初始化
+ */
+toastr.options = {
+    closeButton: true,
+    debug: true,
+    progressBar: true,
+    positionClass: "toast-top-center",
+    onclick: null,
+    showDuration: "300",
+    hideDuration: "1000",
+    timeOut: "3000",
+    extendedTimeOut: "1000",
+    showEasing: "swing",
+    hideEasing: "linear",
+    showMethod: "fadeIn",
+    hideMethod: "fadeOut"
+};
