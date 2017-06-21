@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web.UI.WebControls;
 
 namespace CmsUtils
@@ -20,7 +16,7 @@ namespace CmsUtils
     }
 
     /// <summary>
-    /// DropDownList数据源实体
+    ///     DropDownList数据源实体
     /// </summary>
     public class ItemList
     {
@@ -30,8 +26,8 @@ namespace CmsUtils
 
         public ItemList(string text, string value)
         {
-            this.Text = text;
-            this.Value = value;
+            Text = text;
+            Value = value;
         }
 
         public string Text { get; set; }

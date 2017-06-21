@@ -1,63 +1,67 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+锘縰sing System;
 using System.Web.UI.WebControls;
-using System.IO;
 
 namespace CmsUtils
 {
     /// <summary>
-    /// The class to be used to convert object.
+    ///     The class to be used to convert object.
     /// </summary>
     public class ConvertUtil
     {
-
         /// <summary>
-        /// Last day
+        ///     Last day
         /// </summary>
         private const string ONE_DAY = "001";
+
         /// <summary>
-        /// Three days ago
+        ///     Three days ago
         /// </summary>
         private const string THREE_DAYS = "002";
+
         /// <summary>
-        /// one week ago
+        ///     one week ago
         /// </summary>
         private const string ONE_WEEK = "003";
+
         /// <summary>
-        /// one month ago
+        ///     one month ago
         /// </summary>
         private const string ONE_MONTH = "004";
+
         /// <summary>
-        /// three months ago
+        ///     three months ago
         /// </summary>
         private const string THREE_MONTHS = "005";
+
         /// <summary>
-        ///  negative one
+        ///     negative one
         /// </summary>
         private const int NEGATIVE_ONE = -1;
+
         /// <summary>
-        /// negative three
+        ///     negative three
         /// </summary>
         private const int NEGATIVE_THREE = -3;
+
         /// <summary>
-        /// negative seven
+        ///     negative seven
         /// </summary>
         private const int NEGATIVE_SEVEN = -7;
+
         /// <summary>
-        /// date format
+        ///     date format
         /// </summary>
         private const string DATE_FORMAT = "yyyy/MM/dd";
 
         /// <summary>
-        /// The method to be used to convert the ID to startdate  
+        ///     The method to be used to convert the ID to startdate
         /// </summary>
         /// <param name="lsSelectedID">StartDateID</param>
         /// <returns>Start date, format : yyyy/Mm/dd</returns>
         public static string ConvertToStartDate(string lsSelectedID)
         {
             // initial the startdate
-            string lsStartDate = DateTime.Today.ToString(DATE_FORMAT);
+            var lsStartDate = DateTime.Today.ToString(DATE_FORMAT);
             switch (lsSelectedID)
             {
                 // one day ago
@@ -88,7 +92,7 @@ namespace CmsUtils
         }
 
         /// <summary>
-        /// The method to be used to convert the ID to startdate  
+        ///     The method to be used to convert the ID to startdate
         /// </summary>
         /// <param name="lsSelectedID">StartDateID</param>
         /// <param name="lsDateFormat">Date format</param>
@@ -96,7 +100,7 @@ namespace CmsUtils
         public static string ConvertToStartDate(string lsSelectedID, string lsDateFormat)
         {
             // initial the startdate
-            string lsStartDate = DateTime.Today.ToString(lsDateFormat);
+            var lsStartDate = DateTime.Today.ToString(lsDateFormat);
             switch (lsSelectedID)
             {
                 // one day ago
@@ -127,18 +131,18 @@ namespace CmsUtils
         }
 
         /// <summary>
-        /// Convert image to blob
+        ///     Convert image to blob
         /// </summary>
         /// <param name="lfuFile">fileupload control</param>
         /// <returns>blob object</returns>
         public static object ConvertImageToBlob(FileUpload lfuFile)
         {
             // create variable, record length of the file.
-            int lnFileLen = lfuFile.PostedFile.ContentLength;
+            var lnFileLen = lfuFile.PostedFile.ContentLength;
             // save bytes.
-            byte[] lbInput = new byte[lnFileLen];
+            var lbInput = new byte[lnFileLen];
             // get upload file. 
-            Stream lImageStream = lfuFile.PostedFile.InputStream;
+            var lImageStream = lfuFile.PostedFile.InputStream;
             // read file to bytes.
             lImageStream.Read(lbInput, 0, lnFileLen);
 
@@ -146,53 +150,43 @@ namespace CmsUtils
         }
 
         /// <summary>
-        /// Get Absoluteness url
+        ///     Get Absoluteness url
         /// </summary>
         /// <param name="lsURL"></param>
         /// <returns></returns>
         public static string ConvertAbsolutenessURL(object loURL)
         {
-            string lsAbltURL = string.Empty;
+            var lsAbltURL = string.Empty;
             if (loURL != null)
-            {
-                //如果地址以“http://”或“https://”开头
-                if (loURL.ToString().ToLower().StartsWith("http://") || loURL.ToString().ToLower().StartsWith("https://"))
-                {
-                    //直接赋字段里的值
+                if (loURL.ToString().ToLower().StartsWith("http://") ||
+                    loURL.ToString().ToLower().StartsWith("https://"))
                     lsAbltURL = loURL.ToString().Trim();
-                }
-                //如果地址不以“http://”或“https://”开头，也不为空
+                //濡傛灉鍦板潃涓嶄互鈥渉ttp://鈥濇垨鈥渉ttps://鈥濆紑澶达紝涔熶笉涓虹┖
                 else if (!string.IsNullOrEmpty(loURL.ToString()))
-                {
-                    //赋“http://”加上字段里的值
                     lsAbltURL = "http://" + loURL.ToString().Trim();
-                }
-            }
             return lsAbltURL;
         }
-        
+
         /// <summary>
-        /// Init link
+        ///     Init link
         /// </summary>
         /// <returns></returns>
         public static string InitLink(string lsJobIntro)
         {
             //Get html code
-            string lsHTMLCode = TransferHTMLCode(lsJobIntro);
+            var lsHTMLCode = TransferHTMLCode(lsJobIntro);
             //tag and link content
-            string lsTagAndContent = string.Empty;
+            var lsTagAndContent = string.Empty;
             //just link content
-            string lsContent = string.Empty;
+            var lsContent = string.Empty;
             //last link string
-            string lsLink = string.Empty;
+            var lsLink = string.Empty;
             //get the index of "[link]"
-            int lnStartIndex = lsHTMLCode.IndexOf("[link]", 0);
+            var lnStartIndex = lsHTMLCode.IndexOf("[link]", 0);
             //get the index of "[/link]"
-            int lnEndIndex = 0;
+            var lnEndIndex = 0;
             if (lnStartIndex != -1)
-            {
                 lnEndIndex = lsHTMLCode.IndexOf("[/link]", lnStartIndex);
-            }
             while (lnStartIndex != -1 && lnEndIndex != -1)
             {
                 //tag and link content
@@ -201,23 +195,21 @@ namespace CmsUtils
                 lsContent = lsHTMLCode.Substring(lnStartIndex + 6, lnEndIndex - lnStartIndex - 6);
                 //last link string
                 lsLink = "<a href=\"" + ConvertAbsolutenessURL(lsContent) + "\" target= \"_blank\">"
-                        + lsContent + "</a>";
+                         + lsContent + "</a>";
                 //Replace the input link string to html link
                 lsHTMLCode = lsHTMLCode.Substring(0, lnStartIndex) + lsLink
-                           + lsHTMLCode.Substring(lnEndIndex + 7);
+                             + lsHTMLCode.Substring(lnEndIndex + 7);
                 //get the next index of "[link]"
                 lnStartIndex = lsHTMLCode.IndexOf("[link]", lnStartIndex + lsLink.Length);
                 //get the next index of "[/link]"
                 if (lnStartIndex != -1)
-                {
                     lnEndIndex = lsHTMLCode.IndexOf("[/link]", lnStartIndex);
-                }
             }
             return lsHTMLCode;
         }
 
         /// <summary>
-        /// Transfer Html Code
+        ///     Transfer Html Code
         /// </summary>
         /// <param name="lsCode"></param>
         /// <returns></returns>
@@ -228,16 +220,13 @@ namespace CmsUtils
                 if (lsCode != null)
                 {
                     lsCode = lsCode.Replace(" ", "&nbsp;&nbsp;");
-                    lsCode = lsCode.Replace("　", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                    lsCode = lsCode.Replace("銆�", "&nbsp;&nbsp;&nbsp;&nbsp;");
                     lsCode = lsCode.Replace("\r\n", "<br>");
                     return lsCode;
                 }
-                else
-                {
-                    return string.Empty;
-                }
+                return string.Empty;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

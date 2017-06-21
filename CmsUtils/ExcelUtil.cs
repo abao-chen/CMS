@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -16,35 +15,33 @@ namespace CmsUtils
             try
             {
                 //根据路径通过已存在的excel来创建HSSFWorkbook，即整个excel文档
-                FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
                 IWorkbook workbook = new HSSFWorkbook(fs);
                 //获取excel的第一个sheet
-                ISheet sheet = workbook.GetSheetAt(0);
-                DataTable table = new DataTable();
+                var sheet = workbook.GetSheetAt(0);
+                var table = new DataTable();
                 //获取sheet的首行
-                IRow headerRow = sheet.GetRow(0);
+                var headerRow = sheet.GetRow(0);
 
                 //一行最后一个方格的编号 即总的列数
                 int cellCount = headerRow.LastCellNum;
 
                 for (int i = headerRow.FirstCellNum; i < cellCount; i++)
                 {
-                    DataColumn column = new DataColumn(headerRow.GetCell(i).StringCellValue);
+                    var column = new DataColumn(headerRow.GetCell(i).StringCellValue);
                     table.Columns.Add(column);
                 }
                 //最后一列的标号  即总的行数
-                int rowCount = sheet.LastRowNum;
+                var rowCount = sheet.LastRowNum;
 
-                for (int i = (sheet.FirstRowNum + 1); i <= sheet.LastRowNum; i++)
+                for (var i = sheet.FirstRowNum + 1; i <= sheet.LastRowNum; i++)
                 {
-                    IRow row = sheet.GetRow(i);
-                    DataRow dataRow = table.NewRow();
+                    var row = sheet.GetRow(i);
+                    var dataRow = table.NewRow();
 
                     for (int j = row.FirstCellNum; j < cellCount; j++)
-                    {
                         if (row.GetCell(j) != null)
                             dataRow[j] = row.GetCell(j).ToString();
-                    }
 
                     table.Rows.Add(dataRow);
                 }
@@ -60,7 +57,7 @@ namespace CmsUtils
         }
 
         /// <summary>
-        /// 写Excel文件
+        ///     写Excel文件
         /// </summary>
         /// <param name="dt">数据源</param>
         /// <param name="filePath">文件夹路径</param>
@@ -71,13 +68,11 @@ namespace CmsUtils
         {
             long fileLength = 0;
             if (!Directory.Exists(filePath))
-            {
                 Directory.CreateDirectory(filePath);
-            }
-            string fullPath = filePath + "/" + fileName;
-            HSSFWorkbook workbook = new HSSFWorkbook();
-            FileStream filestream = new FileStream(fullPath, FileMode.Create);
-            ISheet sheet = workbook.CreateSheet(fileName);
+            var fullPath = filePath + "/" + fileName;
+            var workbook = new HSSFWorkbook();
+            var filestream = new FileStream(fullPath, FileMode.Create);
+            var sheet = workbook.CreateSheet(fileName);
             if (dt == null)
             {
                 workbook.Close();
@@ -90,18 +85,17 @@ namespace CmsUtils
             {
                 #region 创建表头
 
-                IRow headRow = sheet.CreateRow(0);
-                int columnIndex = 0;
+                var headRow = sheet.CreateRow(0);
+                var columnIndex = 0;
                 foreach (DataColumn dc in dt.Columns)
-                {
                     if (ignoreColumns != null)
                     {
                         if (!ignoreColumns.Contains(dc.ColumnName))
                         {
-                            ICell cell = headRow.CreateCell(columnIndex);
+                            var cell = headRow.CreateCell(columnIndex);
                             cell.SetCellValue(dc.ColumnName);
 
-                            ICellStyle cellStyle = workbook.CreateCellStyle();
+                            var cellStyle = workbook.CreateCellStyle();
                             cellStyle.BorderTop = BorderStyle.Thin;
                             cellStyle.BorderRight = BorderStyle.Thin;
                             cellStyle.BorderBottom = BorderStyle.Thin;
@@ -113,10 +107,10 @@ namespace CmsUtils
                     }
                     else
                     {
-                        ICell cell = headRow.CreateCell(columnIndex);
+                        var cell = headRow.CreateCell(columnIndex);
                         cell.SetCellValue(dc.ColumnName);
 
-                        ICellStyle cellStyle = workbook.CreateCellStyle();
+                        var cellStyle = workbook.CreateCellStyle();
                         cellStyle.BorderTop = BorderStyle.Thin;
                         cellStyle.BorderRight = BorderStyle.Thin;
                         cellStyle.BorderBottom = BorderStyle.Thin;
@@ -125,20 +119,18 @@ namespace CmsUtils
 
                         columnIndex++;
                     }
-                }
 
                 #endregion
 
                 #region 写数据内容
 
-                int dtCount = dt.Rows.Count;
+                var dtCount = dt.Rows.Count;
                 columnIndex = 0;
-                string cellValue = string.Empty;
-                for (int rowIndex = 1; rowIndex <= dtCount; rowIndex++)
+                var cellValue = string.Empty;
+                for (var rowIndex = 1; rowIndex <= dtCount; rowIndex++)
                 {
-                    IRow row = sheet.CreateRow(rowIndex);
-                    for (int colIndex = 0; colIndex < dt.Columns.Count; colIndex++)
-                    {
+                    var row = sheet.CreateRow(rowIndex);
+                    for (var colIndex = 0; colIndex < dt.Columns.Count; colIndex++)
                         if (ignoreColumns != null)
                         {
                             if (!ignoreColumns.Contains(dt.Columns[colIndex].ColumnName))
@@ -152,7 +144,6 @@ namespace CmsUtils
                             SetCell(dt, rowIndex, colIndex, row, columnIndex, sheet, workbook);
                             columnIndex++;
                         }
-                    }
                     rowIndex++;
                 }
 
@@ -175,7 +166,7 @@ namespace CmsUtils
         }
 
         /// <summary>
-        /// 设置单元格的内容和格式
+        ///     设置单元格的内容和格式
         /// </summary>
         /// <param name="dt">数据源</param>
         /// <param name="rowIndex">行索引</param>
@@ -183,15 +174,16 @@ namespace CmsUtils
         /// <param name="row">行对象</param>
         /// <param name="columnIndex"></param>
         /// <param name="sheet">sheet对象</param>
-        private static void SetCell(DataTable dt, int rowIndex, int colIndex, IRow row, int columnIndex, ISheet sheet, IWorkbook workbook)
+        private static void SetCell(DataTable dt, int rowIndex, int colIndex, IRow row, int columnIndex, ISheet sheet,
+            IWorkbook workbook)
         {
-            string cellValue = dt.Rows[rowIndex - 1][colIndex] == null
+            var cellValue = dt.Rows[rowIndex - 1][colIndex] == null
                 ? string.Empty
                 : dt.Rows[rowIndex - 1][colIndex].ToString();
-            ICell cell = row.CreateCell(columnIndex);
+            var cell = row.CreateCell(columnIndex);
             cell.SetCellValue(cellValue);
 
-            ICellStyle cellStyle = workbook.CreateCellStyle();
+            var cellStyle = workbook.CreateCellStyle();
             cellStyle.BorderTop = BorderStyle.Thin;
             cellStyle.BorderRight = BorderStyle.Thin;
             cellStyle.BorderBottom = BorderStyle.Thin;
@@ -200,15 +192,13 @@ namespace CmsUtils
 
             #region 设置列宽高度自适应
 
-            int columnWidth = sheet.GetColumnWidth(columnIndex) / 256; //获取当前列宽度  
-            int valuelength = Encoding.UTF8.GetBytes(cellValue).Length; //获取当前单元格的内容宽度  
+            var columnWidth = sheet.GetColumnWidth(columnIndex) / 256; //获取当前列宽度  
+            var valuelength = Encoding.UTF8.GetBytes(cellValue).Length; //获取当前单元格的内容宽度  
             if (columnWidth < valuelength + 1)
-            {
                 columnWidth = valuelength + 1;
-            } //若当前单元格内容宽度大于列宽，则调整列宽为当前单元格宽度，后面的+1是我人为的将宽度增加一个字符  
             sheet.SetColumnWidth(columnIndex, columnWidth * 256);
 
-            int length = Encoding.UTF8.GetBytes(cellValue).Length;
+            var length = Encoding.UTF8.GetBytes(cellValue).Length;
             row.HeightInPoints = 20 * (length / 60 + 1);
 
             #endregion

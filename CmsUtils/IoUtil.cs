@@ -1,54 +1,14 @@
 ﻿using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using System.Text;
 using System.IO;
+using System.Text;
 
 namespace CmsUtils
 {
     /// <summary>
-    /// FileObj 的摘要说明
+    ///     FileObj 的摘要说明
     /// </summary>
     public class IoUtil
     {
-        #region 构造函数
-
-        private bool _alreadyDispose = false;
-
-        public IoUtil()
-        {
-            //
-            // TODO: 在此处添加构造函数逻辑
-            //
-        }
-
-        ~IoUtil()
-        {
-            Dispose();
-            ;
-        }
-
-        protected virtual void Dispose(bool isDisposing)
-        {
-            if (_alreadyDispose) return;
-            //if (isDisposing)
-            //{
-            //    if (xml != null)
-            //    {
-            //        xml = null;
-            //    }
-            //}
-            _alreadyDispose = true;
-        }
-
-        #endregion
-
         #region IDisposable 成员
 
         public void Dispose()
@@ -72,21 +32,18 @@ namespace CmsUtils
         *****************************************/
 
         /// <summary>
-        /// 写文件
+        ///     写文件
         /// </summary>
         /// <param name="outPath">文件路径</param>
         /// <param name="content">文件内容</param>
         public static void WriteFile(string outPath, string content)
         {
-
-            if (System.IO.File.Exists(outPath))
-            {
+            if (File.Exists(outPath))
                 File.Delete(outPath);
-            }
-            System.IO.FileStream f = System.IO.File.Create(outPath);
+            var f = File.Create(outPath);
             f.Close();
             f.Dispose();
-            System.IO.StreamWriter f2 = new System.IO.StreamWriter(outPath, true, Encoding.UTF8);
+            var f2 = new StreamWriter(outPath, true, Encoding.UTF8);
             f2.WriteLine(content);
             f2.Close();
             f2.Dispose();
@@ -106,18 +63,20 @@ namespace CmsUtils
         *****************************************/
 
         /// <summary>
-        /// 读文件
+        ///     读文件
         /// </summary>
         /// <param name="filePath">文件路径</param>
         /// <returns></returns>
         public static string ReadFile(string filePath)
         {
-            string s = "";
-            if (!System.IO.File.Exists(filePath))
+            var s = "";
+            if (!File.Exists(filePath))
+            {
                 s = "此文件不存在，或路径不存在";
+            }
             else
             {
-                StreamReader f2 = new StreamReader(filePath, System.Text.Encoding.UTF8);
+                var f2 = new StreamReader(filePath, Encoding.UTF8);
                 s = f2.ReadToEnd();
                 f2.Close();
                 f2.Dispose();
@@ -140,13 +99,13 @@ namespace CmsUtils
         *****************************************/
 
         /// <summary>
-        /// 追加文件
+        ///     追加文件
         /// </summary>
         /// <param name="Path">文件路径</param>
         /// <param name="content">内容</param>
         public static void AppendFile(string filePath, string content)
         {
-            StreamWriter sw = File.AppendText(filePath);
+            var sw = File.AppendText(filePath);
             sw.Write(content);
             sw.Flush();
             sw.Close();
@@ -155,7 +114,29 @@ namespace CmsUtils
 
         #endregion
 
+        #region 构造函数
+
+        private bool _alreadyDispose;
+
+        ~IoUtil()
+        {
+            Dispose();
+            ;
+        }
+
+        protected virtual void Dispose(bool isDisposing)
+        {
+            if (_alreadyDispose) return;
+            //if (isDisposing)
+            //{
+            //    if (xml != null)
+            //    {
+            //        xml = null;
+            //    }
+            //}
+            _alreadyDispose = true;
+        }
+
+        #endregion
     }
 }
-
-
