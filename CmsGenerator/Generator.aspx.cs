@@ -17,71 +17,90 @@ namespace CmsGenerator
 
         #region 模板文件路径
 
-        private static string BalFilePath
+        private string BalFilePath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\Bal.cs"; }
+            get { return Request.MapPath("~/Template/Bal.cs"); }
         }
-        private static string DalFilePath
+        private string DalFilePath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\Dal.cs"; }
+            get { return Request.MapPath("~/Template/Dal.cs"); }
         }
-        private static string EntityFilePath
+        private string EntityFilePath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\Entity.cs"; }
-        }
-
-        private static string InfoFilePath
-        {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\Info.aspx"; }
+            get { return Request.MapPath("~/Template/Entity.cs"); }
         }
 
-        private static string InfoCsFilePath
+        private string InfoFilePath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\Info.aspx.cs"; }
+            get { return Request.MapPath("~/Template/Info.aspx"); }
         }
 
-        private static string InfoDesignerFilePath
+        private string InfoCsFilePath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\Info.aspx.Designer.cs"; }
+            get { return Request.MapPath("~/Template/Info.aspx.cs"); }
         }
 
-        private static string ListFilePath
+        private string InfoDesignerFilePath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\List.aspx"; }
+            get { return Request.MapPath("~/Template/Info.aspx.Designer.cs"); }
         }
 
-        private static string ListCsFilePath
+        private string ListFilePath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\List.aspx.cs"; }
+            get { return Request.MapPath("~/Template/List.aspx"); }
         }
 
-        private static string ListDesignerFilePath
+        private string ListCsFilePath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\List.aspx.Designer.cs"; }
+            get { return Request.MapPath("~/Template/List.aspx.cs"); }
+        }
+
+        private string ListDesignerFilePath
+        {
+            get { return Request.MapPath("~/Template/List.aspx.Designer.cs"); }
+        }
+
+        private string ApiFilePath
+        {
+            get { return Request.MapPath("~/Template/Api.aspx"); }
+        }
+
+        private string ApiCsFilePath
+        {
+            get { return Request.MapPath("~/Template/Api.aspx.cs"); }
+        }
+
+        private string ApiDesignerFilePath
+        {
+            get { return Request.MapPath("~/Template/Api.aspx.Designer.cs"); }
         }
 
         #endregion
 
         #region 文件输出路径
 
-        private static string EntityOutputPath
+        private string EntityOutputPath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\Entity\\"; }
+            get { return Request.MapPath("~/Template/Entity/"); }
         }
-        private static string DalOutputPath
+        private string DalOutputPath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\DAL\\"; }
+            get { return Request.MapPath("~/Template/DAL/"); }
         }
-        private static string BalOutputPath
+        private string BalOutputPath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\BAL\\"; }
+            get { return Request.MapPath("~/Template/BAL/"); }
         }
-        private static string ViewOutputPath
+        private string ViewOutputPath
         {
-            get { return "D:\\My Doc\\Project\\CMS\\Document\\Template\\cs\\View\\"; }
+            get { return Request.MapPath("~/Template/View/"); }
+        }
+        private string ApiOutputPath
+        {
+            get { return Request.MapPath("~/Template/Api/"); }
         }
 
-        public static List<string> CommAtt1
+        public List<string> CommAtt1
         {
             get
             {
@@ -97,7 +116,7 @@ namespace CmsGenerator
 
         #endregion
 
-        private static List<string> CommAtt = new List<string>(new string[] { "IsDeleted", "CreateUser", "CreateTime", "UpdateUser", "UpdateTime" });
+        private List<string> CommAtt = new List<string>(new string[] { "IsDeleted", "CreateUser", "CreateTime", "UpdateUser", "UpdateTime" });
 
         private DataTable dicTypeDt = null;
 
@@ -152,26 +171,26 @@ namespace CmsGenerator
                     className = table.TABLE_NAME.Remove(0, 3);
                     cnFileName = table.TABLE_COMMENT.Replace("表", "");
                     //生成BAL
-                    string balContent = IoUtil.ReadFile(string.Format(BalFilePath, string.Empty))
+                    string balContent = FileUtil.ReadFile(string.Format(BalFilePath, string.Empty))
                         .Replace("#ClassName#", className)
                         .Replace("#TableName#", table.TABLE_NAME)
                         .Replace("#CnFileName#", cnFileName)
                         .Replace("#Date#", date);
 
-                    IoUtil.WriteFile(BalOutputPath + className + "Bal.cs", balContent);
+                    FileUtil.WriteFile(BalOutputPath + className + "Bal.cs", balContent);
 
                     //生成DAL
-                    string dalContent = IoUtil.ReadFile(string.Format(DalFilePath, string.Empty))
+                    string dalContent = FileUtil.ReadFile(string.Format(DalFilePath, string.Empty))
                         .Replace("#ClassName#", className)
                         .Replace("#TableName#", table.TABLE_NAME)
                         .Replace("#CnFileName#", cnFileName)
                         .Replace("#Date#", date);
 
-                    IoUtil.WriteFile(DalOutputPath + className + "Dal.cs", dalContent);
+                    FileUtil.WriteFile(DalOutputPath + className + "Dal.cs", dalContent);
 
                     //生成Entity
                     List<ColumnEntity> colList = ctx.Database.SqlQueryForDataTatable(string.Format(colSql, table.TABLE_NAME)).ToList<ColumnEntity>();
-                    string entityContent = IoUtil.ReadFile(string.Format(EntityFilePath, string.Empty))
+                    string entityContent = FileUtil.ReadFile(string.Format(EntityFilePath, string.Empty))
                         .Replace("#TableName#", table.TABLE_NAME)
                         .Replace("#CnFileName#", cnFileName)
                         .Replace("#Date#", date);
@@ -197,7 +216,7 @@ namespace CmsGenerator
                                     dataType = "TimeSpan{0}";
                                     break;
                                 case "bigint":
-                                    dataType = "long{0}";
+                                    dataType = "decimal{0}";
                                     break;
                                 case "double":
                                     dataType = "double{0}";
@@ -220,9 +239,112 @@ namespace CmsGenerator
                             attrSb.AppendLine("        public " + dataType + " " + col.COLUMN_NAME + " { get; set; }");
                         }
                     }
-                    IoUtil.WriteFile(EntityOutputPath + table.TABLE_NAME + ".cs", entityContent.Replace("#Column#", attrSb.ToString()));
+                    FileUtil.WriteFile(EntityOutputPath + table.TABLE_NAME + ".cs", entityContent.Replace("#Column#", attrSb.ToString()));
                 }
             }
+        }
+
+        /// <summary>
+        /// 生成页面文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnGeneratorView_OnClick(object sender, EventArgs e)
+        {
+            #region 生成List文件
+            //
+            using (var ctx = new CmsEntities())
+            {
+                //查询所有表信息
+                string tbSql =
+                    @"select TABLE_NAME,TABLE_COMMENT from information_schema.`TABLES` WHERE TABLE_SCHEMA = '{0}'";
+                //查询表中的所有字段
+                string colSql =
+                    @"select COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,IS_NULLABLE from information_schema.columns WHERE TABLE_NAME='{0}'";
+                string cnFileName = string.Empty;
+                string className = string.Empty;
+                string date = DateTime.Now.ToString("yyyy/MM/dd");
+                List<TableEntity> tbList = ctx.Database.SqlQueryForDataTatable(string.Format(tbSql, "cms"))
+                    .ToList<TableEntity>();
+                foreach (TableEntity table in tbList)
+                {
+                    if (this.hidTablesName.Value.Split(new string[] { "," }, StringSplitOptions.None)
+                        .Contains(table.TABLE_NAME))
+                    {
+                        className = table.TABLE_NAME.Remove(0, 3);
+                        cnFileName = table.TABLE_COMMENT.Replace("表", "");
+
+                        //List.aspx.designer.cs
+                        string listDesignerContent = FileUtil.ReadFile(ListDesignerFilePath)
+                            .Replace("#ClassName#", className);
+                        FileUtil.WriteFile(ViewOutputPath + className + "List.aspx.designer.cs", listDesignerContent);
+
+                        //List.aspx.cs
+                        string listCsContent = FileUtil.ReadFile(ListCsFilePath)
+                            .Replace("#ClassName#", className)
+                            .Replace("#TableName# ", table.TABLE_NAME)
+                            .Replace("#CnFileName#", cnFileName)
+                            .Replace("#Date#", date);
+                        FileUtil.WriteFile(ViewOutputPath + className + "List.aspx.cs", listCsContent);
+
+                        //Api.aspx.designer.cs
+                        string ApiDesignerContent = FileUtil.ReadFile(ApiDesignerFilePath).Replace("#ClassName#", className);
+                        FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx.designer.cs", ApiDesignerContent);
+
+                        //Api.aspx.cs
+                        string ApiCsContent = FileUtil.ReadFile(ApiCsFilePath)
+                            .Replace("#ClassName#", className)
+                            .Replace("#TableName#", table.TABLE_NAME)
+                            .Replace("#CnFileName#", cnFileName)
+                            .Replace("#Date#", date);
+                        FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx.cs", ApiCsContent);
+
+                        //Api.aspx
+                        string ApiContent = FileUtil.ReadFile(ApiFilePath).Replace("#ClassName#", className);
+                        FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx", ApiContent);
+
+                        //List.aspx
+                        string listContent = FileUtil.ReadFile(ListFilePath)
+                            .Replace("#ClassName#", className)
+                            .Replace("#TableName# ", table.TABLE_NAME)
+                            .Replace("#AjaxName#", className); //Ajax文件名
+                        StringBuilder searchBuilder = new StringBuilder();
+                        StringBuilder listHeadBuilder = new StringBuilder();
+                        StringBuilder colConfigBuilder = new StringBuilder();
+                        List<ColumnEntity> colList = ctx.Database
+                            .SqlQueryForDataTatable(string.Format(colSql, table.TABLE_NAME)).ToList<ColumnEntity>();
+                        foreach (ColumnEntity colEntity in colList)
+                        {
+                            if (!CommAtt.Contains(colEntity.COLUMN_NAME) && colEntity.COLUMN_NAME != "ID")
+                            {
+                                string searchCols = "<div class=\"col-lg-4 form-group\">\r\n";
+                                searchCols += "                                <asp:#ControlType# runat=\"server\" ID=\"#ControlAlisa##ColName#\" searchattr=\"#ColName#|=|#ColName#\" CssClass=\"form-control\" placeholder=\"#ColCnName#\"></asp:#ControlType#>\r\n";
+                                searchCols += "                            </div> ";
+                                searchCols = searchCols.Replace("#ControlType#", "TextBox")
+                                    .Replace("#ControlAlisa#", "txt")
+                                    .Replace("#ColName#", colEntity.COLUMN_NAME)
+                                    .Replace("#ColCnName#", colEntity.COLUMN_COMMENT);
+                                searchBuilder.AppendLine(searchCols);
+
+                                listHeadBuilder.AppendLine("<th>" + colEntity.COLUMN_COMMENT + "</th>");
+
+                                colConfigBuilder.AppendLine("                    { \"data\": \"" + colEntity.COLUMN_NAME + "\" },");
+                            }
+                        }
+
+                        listContent = listContent.Replace("#SearchCols#", searchBuilder.ToString())
+                            .Replace("#ListHead#", listHeadBuilder.ToString()) //datatables头部
+                            .Replace("#ColConfig#", colConfigBuilder.ToString());//datatables列配置
+                        FileUtil.WriteFile(ViewOutputPath + className + "List.aspx", listContent);
+                    }
+                }
+            }
+
+            #endregion
+
+            #region 生成Info文件
+
+            #endregion
         }
 
         /// <summary>
@@ -303,5 +425,6 @@ namespace CmsGenerator
                 }
             }
         }
+
     }
 }

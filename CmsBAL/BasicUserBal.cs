@@ -39,7 +39,7 @@ namespace CmsBAL
         /// </summary>
         /// <param name="resultModel"></param>
         /// <param name="searchModel"></param>
-        public void DeleteByIds(DataTablesResultModel<TB_BasicUser> resultModel, SearchModel searchModel)
+        public void DeleteByIds(AjaxResultModel resultModel, AjaxModel searchModel)
         {
 
             List<TB_BasicUser> userList = new List<TB_BasicUser>();

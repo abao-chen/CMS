@@ -12,7 +12,7 @@ namespace CmsUtils
         /// <param name="data">数据</param>
         public static string ToString(this object data)
         {
-            return data == null ? string.Empty : data.ToString().Trim();
+            return data?.ToString().Trim() ?? string.Empty;
         }
 
         #endregion

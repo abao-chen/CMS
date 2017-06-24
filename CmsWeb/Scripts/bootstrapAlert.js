@@ -1,5 +1,5 @@
 (function ($) {
-    window.Ewin = function () {
+    window.bootAlert = function () {
         var html = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">' +
            '<div class="modal-dialog modal-sm">' +
             '<div class="modal-content">' +

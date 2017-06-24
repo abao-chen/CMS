@@ -9,8 +9,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Button ID="btnGeneratorView" runat="server" Text="生成页面" />
-        <input id="btnTest" type="button" value="Test" />
+        <asp:Button ID="btnGeneratorView" runat="server" Text="生成页面" OnClick="btnGeneratorView_OnClick" />
+        <asp:HiddenField ID="hidTablesName" runat="server" />
         <asp:Button ID="btnGeneratorBDE" runat="server" Text="生成三层" OnClick="btnGeneratorBDE_OnClick" />
         <asp:CheckBoxList ID="cbTables" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" RepeatLayout="Flow" OnSelectedIndexChanged="cbTables_SelectedIndexChanged"></asp:CheckBoxList>
         <table>
@@ -21,7 +21,7 @@
                             <table id="<%#Eval("TABLE_NAME") %>" name="parentTable">
                                 <thead>
                                     <tr>
-                                        <td><%#Eval("TABLE_NAME") %>(<%#Eval("TABLE_COMMENT") %>)</td>
+                                        <td><%#Eval("TABLE_NAME") %>(<%#Eval("TABLE_COMMENT") %>)文件夹名称：<input type="text" value="" /></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -79,13 +79,19 @@
         <script src="Script/JSON2.js"></script>
         <script type="text/javascript">
             $(function () {
-                $("#btnTest").click(function () {
+                $("#<%=btnGeneratorView.ClientID%>").click(function () {
                     var tableObjArray = [];
                     var parentTable = $("table[name='parentTable']");
+                    var tablesName;
                     $(parentTable).each(function () {
                         var tableObj = {};
                         tableObj["columns"] = [];
                         tableObj["tableName"] = $(this).attr("id");
+                        if (tablesName) {
+                            tablesName += "," + $(this).attr("id") + "";
+                        } else {
+                            tablesName = "" + $(this).attr("id") + "";
+                        }
                         $("#" + tableObj["tableName"] + " tr").each(function () {
                             if ($(this).attr("id")) {
                                 var colObj = {};
@@ -105,7 +111,8 @@
                         });
                         tableObjArray.push(tableObj);
                     });
-                    console.log(tableObjArray);
+
+                    $("#<%=hidTablesName.ClientID%>").val(tablesName);
                 });
             })
         </script>

@@ -14,54 +14,24 @@ namespace DataFactory
     {
         static void Main(string[] args)
         {
-            
+            CreateData();
         }
 
-        /// <summary>
-        /// 生成View页面文件
-        /// </summary>
-        private void CreateView()
-        {
-            string tablename = "TB_BasicUser";
-            using (var ctx = new CmsEntities())
-            {
-                
-            }
-        }
-
-        /// <summary>
-        /// 生成三层文件
-        /// </summary>
-        private void CreateBDE()
-        {
-            
-        }
-
-        private void TestMethod()
+        private static void CreateData()
         {
             using (var ctx = new CmsEntities())
             {
-                //List<TB_BasicUser> list = new List<TB_BasicUser>();
-                //for (int i = 0; i < 1024; i++)
-                //{
-                //    TB_BasicContent bcModel = new TB_BasicContent();
-                //    bcModel.ContentTitle = "Title" + i;
-                //    bcModel.ContentSubTitle = "SubTitle" + i;
-                //    list.Add(bcModel);
-                //}
-                //ctx.TB_BasicContent.AddRange(list);
-                //ctx.SaveChanges();
-                string sql = @"SELECT
-	                            u.*, d1.DicName UserStatusName
-                            FROM
-	                            TB_BasicUser u
-                            LEFT JOIN TB_Dictionary d1 ON d1.IsDeleted = 0
-                            AND d1.DicTypeCode = 'U02000'
-                            AND d1.DicCode = u.UserStatus
-                            WHERE
-	                            u.IsDeleted = 0";
-
-                List<TB_BasicUser> list = ctx.Database.SqlQueryForDataTatable(sql).ToList<TB_BasicUser>();
+                List<TB_SysParams> list = new List<TB_SysParams>();
+                for (int i = 0; i < 100; i++)
+                {
+                    TB_SysParams bcModel = new TB_SysParams();
+                    bcModel.ParamName = "Name" + i;
+                    bcModel.ParamValue = "Value" + i;
+                    bcModel.ParamDesc = "Desc" + i;
+                    list.Add(bcModel);
+                }
+                ctx.TB_SysParams.AddRange(list);
+                ctx.SaveChanges();
             }
         }
     }

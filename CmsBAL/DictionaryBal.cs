@@ -16,5 +16,10 @@ namespace CmsBAL
             }
 
         }
+
+        public void DeleteByIds(AjaxResultModel resultModel, AjaxModel searchModel)
+        {
+
+        }
     }
 }

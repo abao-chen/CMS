@@ -26,9 +26,14 @@ namespace CmsUtils
             return false;
         }
 
-        public static void DownLoadold(string FileName, string name)
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        /// <param name="fileName">文件全路径，包含文件名</param>
+        /// <param name="name">下载文件默认名</param>
+        public static void DownLoadFile(string fileName, string name)
         {
-            var destFileName = FileName;
+            var destFileName = fileName;
             if (File.Exists(destFileName))
             {
                 var fi = new FileInfo(destFileName);
@@ -45,9 +50,13 @@ namespace CmsUtils
             }
         }
 
-        public static void DownLoad(string FileName)
+        /// <summary>
+        /// 以文件流的方式下载文件
+        /// </summary>
+        /// <param name="fileName">文件全路径，包含文件名</param>
+        public static void DownLoadFileStream(string fileName)
         {
-            var filePath = MapPathFile(FileName);
+            var filePath = MapPathFile(fileName);
             long chunkSize = 204800; //指定块大小 
             var buffer = new byte[chunkSize]; //建立一个200K的缓冲区 
             long dataToRead = 0; //已读的字节数   
@@ -89,6 +98,15 @@ namespace CmsUtils
             }
         }
 
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        /// <param name="_Request"></param>
+        /// <param name="_Response"></param>
+        /// <param name="_fileName"></param>
+        /// <param name="_fullPath"></param>
+        /// <param name="_speed"></param>
+        /// <returns></returns>
         public static bool ResponseFile(HttpRequest _Request, HttpResponse _Response, string _fileName,
             string _fullPath, long _speed)
         {

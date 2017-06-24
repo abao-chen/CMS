@@ -96,7 +96,7 @@ namespace CmsBAL
         /// <param name="resultModel"></param>
         /// <param name="searchModel"></param>
         /// <param name="sql"></param>
-        public void GetPagerList(DataTablesResultModel<T> resultModel, SearchModel searchModel, string sql)
+        public void GetPagerList(AjaxResultModel resultModel, AjaxModel searchModel, string sql)
         {
             using (var ctx = new CmsEntities())
             {
@@ -110,7 +110,7 @@ namespace CmsBAL
         /// <param name="searchModel"></param>
         /// <param name="sql"></param>
         /// <returns>返回结果DataTable</returns>
-        public DataTable GetDataTable(SearchModel searchModel, string sql)
+        public DataTable GetDataTable(AjaxModel searchModel, string sql)
         {
             using (var ctx = new CmsEntities())
             {

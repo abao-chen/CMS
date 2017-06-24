@@ -11,22 +11,30 @@ namespace CmsUtils
         /// <summary>
         ///     邮件服务器地址
         /// </summary>
-        public string MailServer { get; set; }
+        private string _mailServer { get; set; }
 
         /// <summary>
         ///     用户名
         /// </summary>
-        public string MailUserName { get; set; }
+        private string _mailUserName { get; set; }
 
         /// <summary>
         ///     密码
         /// </summary>
-        public string MailPassword { get; set; }
+        private string _mailPassword { get; set; }
 
         /// <summary>
         ///     名称
         /// </summary>
-        public string MailName { get; set; }
+        private string _mailName { get; set; }
+
+        public MailHelper(string mailServer, string mailUserName, string mailPassword, string mailName)
+        {
+            this._mailServer = mailServer;
+            this._mailName = mailName;
+            this._mailUserName = mailUserName;
+            this._mailPassword = mailPassword;
+        }
 
         /// <summary>
         ///     同步发送邮件
@@ -46,7 +54,7 @@ namespace CmsUtils
                 var message = new MailMessage();
                 // 接收人邮箱地址
                 message.To.Add(new MailAddress(to));
-                message.From = new MailAddress(MailUserName, MailName);
+                message.From = new MailAddress(_mailUserName, _mailName);
                 message.BodyEncoding = Encoding.GetEncoding(encoding);
                 message.Body = body;
                 //GB2312
@@ -54,8 +62,8 @@ namespace CmsUtils
                 message.Subject = subject;
                 message.IsBodyHtml = isBodyHtml;
 
-                var smtpclient = new SmtpClient(MailServer, 25);
-                smtpclient.Credentials = new NetworkCredential(MailUserName, MailPassword);
+                var smtpclient = new SmtpClient(_mailServer, 25);
+                smtpclient.Credentials = new NetworkCredential(_mailUserName, _mailPassword);
                 //SSL连接
                 smtpclient.EnableSsl = enableSsl;
                 smtpclient.Send(message);
@@ -83,17 +91,17 @@ namespace CmsUtils
                 {
                     SmtpClient smtp = new SmtpClient();
                     //邮箱的smtp地址
-                    smtp.Host = MailServer;
+                    smtp.Host = _mailServer;
                     //端口号
                     smtp.Port = port;
                     //构建发件人的身份凭据类
-                    smtp.Credentials = new NetworkCredential(MailUserName, MailPassword);
+                    smtp.Credentials = new NetworkCredential(_mailUserName, _mailPassword);
                     //构建消息类
                     MailMessage objMailMessage = new MailMessage();
                     //设置优先级
                     objMailMessage.Priority = MailPriority.High;
                     //消息发送人
-                    objMailMessage.From = new MailAddress(MailUserName, MailName, System.Text.Encoding.UTF8);
+                    objMailMessage.From = new MailAddress(_mailUserName, _mailName, System.Text.Encoding.UTF8);
                     //收件人
                     objMailMessage.To.Add(to);
                     //标题

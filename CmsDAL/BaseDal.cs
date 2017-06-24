@@ -74,7 +74,7 @@ namespace CmsDAL
         /// <param name="resultModel"></param>
         /// <param name="searchModel"></param>
         /// <param name="sql"></param>
-        public void GetPagerList(DataTablesResultModel<T> resultModel, SearchModel searchModel, string sql)
+        public void GetPagerList(AjaxResultModel resultModel, AjaxModel searchModel, string sql)
         {
             string baseSql = string.Empty;
             string sqlWhere = string.Empty;
@@ -101,7 +101,7 @@ namespace CmsDAL
         /// <param name="resultModel"></param>
         /// <param name="searchModel"></param>
         /// <param name="sql"></param>
-        public DataTable GetDataTable(SearchModel searchModel, string sql)
+        public DataTable GetDataTable(AjaxModel searchModel, string sql)
         {
             string executeSql = string.Empty;
             List<DbParameter> paramsList = new List<DbParameter>();
@@ -118,7 +118,7 @@ namespace CmsDAL
         /// <param name="searchModel">检索model</param>
         /// <param name="paramsList">SQL参数</param>
         /// <returns>返回拼接的SQL条件</returns>
-        private static string BuildWhereBySearchModel(SearchModel searchModel, List<DbParameter> paramsList)
+        private static string BuildWhereBySearchModel(AjaxModel searchModel, List<DbParameter> paramsList)
         {
             string sqlWhere = string.Empty;
             if (searchModel.ParamsDic != null)

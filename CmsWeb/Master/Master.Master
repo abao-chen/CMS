@@ -288,31 +288,23 @@
                 <div class="navbar-default sidebar" role="navigation">
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
-                            <li class="sidebar-search">
-                                <div class="input-group custom-search-form">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                                <!-- /input-group -->
-                            </li>
                             <li>
-                                <a href="/index.aspx"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                                <a href="/Index.aspx"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>系统配置<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="/SysConfig/UserList.aspx">用户列表</a>
+                                        <a href="/SysManage/UserList.aspx">用户列表</a>
                                     </li>
                                     <li>
-                                        <a href="/morris.aspx">角色列表</a>
+                                        <a href="/SysManage/RoleList.aspx">角色列表</a>
                                     </li>
                                     <li>
-                                        <a href="/morris.aspx">权限配置</a>
+                                        <a href="/SysManage/DictionaryList.aspx">字典数据</a>
+                                    </li>
+                                    <li>
+                                        <a href="/SysManage/SysParamsList.aspx">系统参数</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -321,7 +313,7 @@
                                 <a href="#"><i class="fa fa-edit fa-fw"></i>内容管理<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="/Content/ContentList.aspx">内容列表</a>
+                                        <a href="/ContentManage/ContentList.aspx">内容列表</a>
                                     </li>
                                     <li>
                                         <a href="/morris.aspx">内容类型</a>
@@ -406,47 +398,47 @@
             </nav>
 
             <!-- Page Content -->
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <div id="page-wrapper">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+                <!-- /#page-wrapper -->
+            </div>
+            <!-- /#wrapper -->
+
+            <!-- jQuery -->
+            <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+            <!-- DataTables -->
+            <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.js"></script>
+            <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>
+
+            <!-- datetimepicker -->
+            <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+            <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+            <!-- bootstrapValidator -->
+            <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
+            <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/language/zh_CN.js"></script>
+
+            <!-- toastr -->
+            <script src="/Scripts/bootstrap/vendor/toastr/js/toastr.min.js"></script>
+
+            <!-- Metis Menu Plugin JavaScript -->
+            <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+
+            <!-- Custom Theme JavaScript -->
+            <script src="/Scripts/bootstrap/dist/js/sb-admin-2.js"></script>
+
+            <!-- Custom Common JavaScript -->
+            <script src="/Scripts/bootstrapAlert.js"></script>
+            <script src="/Scripts/JSON2.js"></script>
+            <script src="/Scripts/common.js"></script>
+
+            <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder2">
             </asp:ContentPlaceHolder>
-            <!-- /#page-wrapper -->
-        </div>
-        <!-- /#wrapper -->
-
-        <!-- jQuery -->
-        <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-        <!-- DataTables -->
-        <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.js"></script>
-        <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>
-
-        <!-- datetimepicker -->
-        <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-        <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
-
-        <!-- bootstrapValidator -->
-        <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
-        <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/language/zh_CN.js"></script>
-
-        <!-- bootbox -->
-        <script src="/Scripts/bootstrap/vendor/bootstrap-bootbox/bootbox.js"></script>
-
-        <!-- toastr -->
-        <script src="/Scripts/bootstrap/vendor/toastr/js/toastr.min.js"></script>
-
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
-
-        <!-- Custom Theme JavaScript -->
-        <script src="/Scripts/bootstrap/dist/js/sb-admin-2.js"></script>
-
-        <!-- Custom Common JavaScript -->
-        <script src="/Scripts/common.js"></script>
-
-        <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder2">
-        </asp:ContentPlaceHolder>
     </form>
 </body>
 </html>

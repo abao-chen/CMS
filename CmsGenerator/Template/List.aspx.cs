@@ -1,4 +1,13 @@
-﻿using System;
+﻿//------------------------------------------------------------------------------
+// 
+// 制作人：ChenSheng  
+// 制作日期：#Date#
+// 文件说明：#CnFileName#列表页面
+// 
+// 
+//------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,7 +21,7 @@ using CmsUtils;
 
 namespace CmsWeb
 {
-    public partial class UserList : BasePage
+    public partial class #ClassName#List : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -48,15 +57,8 @@ namespace CmsWeb
             DataTable dt = new #ClassName#Bal().GetDataTable(searchModel, sql);
             string filePath = Server.MapPath("~/Temp/" + DateTime.Now.ToString("yyyyMMdd"));
             string fileName = "#ClassName#List_" + DateTime.Now.ToString("yyyyMMdd") + ".xls";
-            long fileLength = ExcelUtil.WriteExcel(dt, filePath, fileName);
-            if (fileLength > 0)
-            {
-                Response.WriteFile(filePath + "/" + fileName);
-                Response.ContentType = "application/x-xls";
-                Response.Charset = "UTF-8";
-                Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
-                Response.End();
-            }
+            ExcelUtil.WriteExcel(dt, filePath, fileName);
+            FileDownHelper.DownLoadFile(filePath + "/" + fileName, fileName);
         }
     }
 }

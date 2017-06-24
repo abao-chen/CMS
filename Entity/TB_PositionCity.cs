@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/18
+// 制作日期：2017/06/23
 // 文件说明：县级市数据库实体类
 // 
 // 
@@ -19,19 +19,19 @@ namespace CmsEntity
         /// <summary>
         /// 
         /// </summary>
-        public int id { get; set; }
+        public int ID { get; set; }
         /// <summary>
         /// 地级市id
         /// </summary>
-        public int province_id { get; set; }
+        public decimal ProvinceId { get; set; }
         /// <summary>
         /// 县级市id
         /// </summary>
-        public long city_id { get; set; }
+        public decimal CityId { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string city_name { get; set; }
+        public string CityName { get; set; }
 
     }
 }

@@ -11,7 +11,7 @@ namespace CmsUtils
     /// </summary>
     public class DESEncrypt
     {
-        private static readonly string DESKey = "nfine_desencrypt_2016";
+        private static readonly string DESKey = "cms*Encrypt@2017";
 
         #region ========加密========
 
@@ -28,14 +28,14 @@ namespace CmsUtils
         /// <summary>
         ///     加密数据
         /// </summary>
-        /// <param name="Text"></param>
+        /// <param name="text"></param>
         /// <param name="sKey"></param>
         /// <returns></returns>
-        public static string Encrypt(string Text, string sKey)
+        public static string Encrypt(string text, string sKey)
         {
             var des = new DESCryptoServiceProvider();
             byte[] inputByteArray;
-            inputByteArray = Encoding.Default.GetBytes(Text);
+            inputByteArray = Encoding.Default.GetBytes(text);
             des.Key = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5")
                 .Substring(0, 8));
             des.IV = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5")
@@ -57,32 +57,32 @@ namespace CmsUtils
         /// <summary>
         ///     解密
         /// </summary>
-        /// <param name="Text"></param>
+        /// <param name="text"></param>
         /// <returns></returns>
-        public static string Decrypt(string Text)
+        public static string Decrypt(string text)
         {
-            if (!string.IsNullOrEmpty(Text))
-                return Decrypt(Text, DESKey);
+            if (!string.IsNullOrEmpty(text))
+                return Decrypt(text, DESKey);
             return "";
         }
 
         /// <summary>
         ///     解密数据
         /// </summary>
-        /// <param name="Text"></param>
+        /// <param name="text"></param>
         /// <param name="sKey"></param>
         /// <returns></returns>
-        public static string Decrypt(string Text, string sKey)
+        public static string Decrypt(string text, string sKey)
         {
             var des = new DESCryptoServiceProvider();
             int len;
-            len = Text.Length / 2;
+            len = text.Length / 2;
             var inputByteArray = new byte[len];
             int x, i;
             for (x = 0; x < len; x++)
             {
-                i = Convert.ToInt32(Text.Substring(x * 2, 2), 16);
-                inputByteArray[x] = (byte) i;
+                i = Convert.ToInt32(text.Substring(x * 2, 2), 16);
+                inputByteArray[x] = (byte)i;
             }
             des.Key = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5")
                 .Substring(0, 8));

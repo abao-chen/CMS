@@ -1,0 +1,57 @@
+﻿//------------------------------------------------------------------------------
+// 
+// 制作人：ChenSheng  
+// 制作日期：2017/06/24
+// 文件说明：用户基础业务逻辑类
+// 
+// 
+//------------------------------------------------------------------------------
+
+using CmsEntity;
+using System;
+using CmsDAL;
+using System.Collections.Generic;
+using CmsCommon;
+using CmsUtils;
+
+namespace CmsBAL
+{
+
+    public class BasicUserBal : BaseBal<TB_BasicUser>
+    {
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="resultModel"></param>
+        /// <param name="searchModel"></param>
+    public void DeleteByIds(AjaxResultModel resultModel, SearchModel searchModel)
+    {
+
+        List<TB_BasicUser> list = new List<TB_BasicUser>();
+        using (var ctx = new CmsEntities())
+        {
+            BasicUserDal dal = new BasicUserDal(ctx);
+            string[] ids = searchModel.ParamsDic["Id"].Split(new string[] { "," }, StringSplitOptions.None);
+            int id = 0;
+            foreach (string i in ids)
+            {
+                if (int.TryParse(i, out id))
+                {
+                    TB_BasicUser entity = dal.SelectSingle(u => u.ID.Equals(id));
+                    if (entity != null)
+                    {
+                        entity.IsDeleted = 1;
+                        list.Add(entity);
+                    }
+                }
+
+            }
+            int result = dal.UpdateList(list);
+            if (result > 0)
+            {
+                resultModel.result = 1;
+            }
+        }
+    }
+}
+}

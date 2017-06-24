@@ -164,3 +164,78 @@ toastr.options = {
     showMethod: "fadeIn",
     hideMethod: "fadeOut"
 };
+
+/**
+ * 初始化查询条件的折叠样式
+ */
+$(function () {
+    if ($("#searchBody")) {
+        $("#searchBody").on("hidden.bs.collapse", function () {
+            $(".glyphicon.glyphicon-menu-up").removeClass("glyphicon-menu-up").addClass("glyphicon-menu-down");
+        }).on("shown.bs.collapse", function () {
+            $(".glyphicon.glyphicon-menu-down").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-up");
+        });
+    }
+});
+
+/**
+ * 关闭模态窗口
+ * @returns {} 
+ */
+function closeModal() {
+    if ($(".modal")) {
+        $($(".modal")).modal("hide");
+    }
+}
+
+/**
+ * 获取form提交数据
+ * @param {form ID} formId 
+ * @returns {} 
+ */
+function getFormPostData(formId) {
+    var formArray = $("#" + formId).serializeArray();
+    var postData = {};
+    var contrlName;
+    for (var i = 0; i < formArray.length; i++) {
+        if (formArray[i].value != "") {
+            if (formArray[i].name.split("$").length == 3) {
+                contrlName = formArray[i].name.split("$")[2];
+            } else {
+                contrlName = formArray[i].name;
+            }
+            postData[contrlName] = formArray[i].value;
+        }
+    }
+    return postData;
+}
+
+/**
+ * 打开Tab
+ * @param {} tabId 
+ * @param {} tabName 
+ * @param {} url 
+ * @returns {} 
+ */
+function openTab(tabId, tabName, url) {
+    //是否已经打开Tab
+    var isOpen = false;
+    $("#myTab a[role='tab']").each(function () {
+        if ($(this).attr("href") == ("#" + tabId)) {
+            isOpen = true;
+        }
+    });
+    if (!isOpen) {//不存在已经打开的Tab
+        $("#myTab").append('<li role="presentation" class=""><a href="#' +
+            tabId + '" role="tab" data-toggle="tab" aria-controls="' +
+            tabId + '" >' + tabName + '</a></li>');
+        //'<iframe  role="tabpanel" class="tab-pane" width="100%" height="100%" src="' + url + '" frameborder="0" id="' + tabId + '" seamless></iframe>';
+        //$("#myTabContent").append('<div role="tabpanel" class="tab-pane" id="' + tabId + '"></div>');
+        $("#myTabContent").append('<iframe role="tabpanel" class="tab-pane" width="100%" height="500px" src="' + url + '" frameborder="0" id="' + tabId + '" seamless></iframe>');
+        $("#" + tabId).load(function () {
+            var mainheight = $(this).contents().find("body").height() + 30;
+            $(this).height(mainheight);
+        });
+    }
+    $("#myTab a[href='#" + tabId + "]'").tab("show");
+};
