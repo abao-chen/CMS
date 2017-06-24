@@ -17,6 +17,7 @@ using System.Web.UI.WebControls;
 using CmsBAL;
 using CmsCommon;
 using CmsEntity;
+using CmsUtils;
 
 namespace CmsWeb.API
 {
@@ -33,6 +34,30 @@ namespace CmsWeb.API
 				            WHERE
 					            isdeleted = 0 ";
             new DicTypeBal().GetPagerList(resultModel, searchModel, sql);
+            return resultModel;
+        }
+
+        /// <summary>
+        /// 获取树数据源
+        /// </summary>
+        /// <returns></returns>
+        public AjaxResultModel GetTreeList()
+        {
+            AjaxResultModel resultModel = new AjaxResultModel();
+            AjaxModel searchModel = GetPostParams();
+            string sql = @"SELECT
+					            *,0 pId
+				            FROM
+					            TB_DicType 
+				            WHERE
+					            isdeleted = 0 ";
+            TB_DicType rootNode = new TB_DicType();
+            rootNode.ID = 0;
+            rootNode.pId = -1;
+            rootNode.DicTypeName = "字典类型";
+            List<TB_DicType> list = new DicTypeBal().GetDataTable(searchModel, sql).ToList<TB_DicType>();
+            list.Insert(0, rootNode);
+            resultModel.data = list;
             return resultModel;
         }
 

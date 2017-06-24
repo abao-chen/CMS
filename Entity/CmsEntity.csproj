@@ -79,6 +79,8 @@
     <Compile Include="CustomModel\ColunmModel.cs" />
     <Compile Include="CustomModel\AjaxResultModel.cs" />
     <Compile Include="CustomModel\SearchModel.cs" />
+    <Compile Include="CustomModel\TreeModel.cs" />
+    <Compile Include="ExtModel\TB_DicTypeExt.cs" />
     <Compile Include="IBaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper.cs" />

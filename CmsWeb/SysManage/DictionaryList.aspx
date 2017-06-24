@@ -1,12 +1,32 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="DictionaryList.aspx.cs" Inherits="CmsWeb.DictionaryList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <%--<link href="/Scripts/bootstrap/vendor/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />--%>
+    <%--<link href="../Scripts/bootstrap/vendor/zTree/css/metroStyle/metroStyle.css" rel="stylesheet" />--%>
+    <link href="../Scripts/bootstrap/vendor/zTree/css/zTreeStyle/metro.css" rel="stylesheet" />
+    <style type="text/css">
+        .ztree li span.button.switch.level0 {
+            visibility: hidden;
+            width: 1px;
+        }
+
+        .ztree li ul.level0 {
+            padding: 0;
+            background: none;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
-        <div class="col-lg-3">
+    <div id="searchPanel" style="display: none;">
+        <div class="col-lg-4 form-group">
+            <asp:TextBox runat="server" ID="txtDicTypeCode" searchattr="DicTypeCode|=|DicTypeCode" CssClass="form-control" placeholder="字典类型" ClientIDMode="Static"></asp:TextBox>
         </div>
-        <div class="col-lg-9">
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <ul id="dicTree" class="ztree"></ul>
+        </div>
+        <div class="col-lg-10">
             <div class="row" style="padding-bottom: 5px; padding-top: 5px;">
                 <div class="col-lg-12">
                     <a id="btnAdd" class="btn btn-info" href="/SysManage/DictionaryInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
@@ -46,6 +66,11 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <%--<script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.all.min.js"></script>--%>
+    <script src="../Scripts/bootstrap/vendor/zTree/js/jquery.ztree.core.js"></script>
+    <%-- <script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.excheck.min.js"></script>
+    <script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.exedit.min.js"></script>
+    <script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.exhide.min.js"></script>--%>
     <script type="text/javascript">
         var tableObj;
         //初始化表格
@@ -140,6 +165,55 @@
                 }
             });
         });
+
+        //初始化树控件
+        $(function () {
+            var param = {};
+            param["method"] = "GetTreeList";
+            $.ajax({
+                type: "POST",
+                url: "/API/DicTypeApi.aspx",
+                cache: false, //禁用缓存
+                data: param, //传入组装的参数
+                dataType: "json",
+                success: function (result) {
+                    if (result.result == 1) { //请求成功
+                        console.log(result.data);
+                        var treeObj = $.fn.zTree.init($("#dicTree"),
+                            {
+                                data: {
+                                    simpleData: {
+                                        enable: true,
+                                        idKey: "ID",
+                                        pidKey: "pId"
+                                    },
+                                    key: {
+                                        name: "DicTypeName"
+                                    }
+                                },
+                                callback: {
+                                    onClick: onClickNode
+                                }
+
+                            }, result.data);
+                        treeObj.expandAll(true);
+                    } else if (result.result == 2) { //请求失败
+                        toastr.error(result.message);
+                    } else if (result.result == 3) { //登录超时
+                        bootAlert.alert(result.message).on(function () {
+                            location.href = "/Login.aspx";
+                        });
+                    } else { //其他异常情况
+                        toastr.error(result.message);
+                    }
+                }
+            });
+        });
+
+        function onClickNode(event, treeId, treeNode, clickFlag) {
+            $("#txtDicTypeCode").val(treeNode.DicTypeCode);
+            reloadData();
+        }
 
         //重新加载数据
         function reloadData() {
