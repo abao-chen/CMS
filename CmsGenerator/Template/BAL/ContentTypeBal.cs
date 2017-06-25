@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/24
+// 制作日期：2017/06/25
 // 文件说明：内容类型业务逻辑类
 // 
 // 
@@ -24,7 +24,7 @@ namespace CmsBAL
         /// </summary>
         /// <param name="resultModel"></param>
         /// <param name="searchModel"></param>
-    public void DeleteByIds(AjaxResultModel resultModel, SearchModel searchModel)
+    public void DeleteByIds(AjaxResultModel resultModel, AjaxModel searchModel)
     {
 
         List<TB_ContentType> list = new List<TB_ContentType>();

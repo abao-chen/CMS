@@ -11,8 +11,11 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AuthorType" Type="int" />
+          <Property Name="AuthorName" Type="varchar" MaxLength="500" />
+          <Property Name="AuthorFlag" Type="varchar" MaxLength="500" />
           <Property Name="ParentID" Type="int" />
           <Property Name="FullID" Type="varchar" MaxLength="500" />
+          <Property Name="PageUrl" Type="varchar" MaxLength="500" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
           <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
@@ -301,6 +304,9 @@
           <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UpdateUser" Type="Int32" />
           <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AuthorFlag" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TB_BasicContent">
           <Key>
@@ -536,6 +542,9 @@
           <EntitySetMapping Name="TB_Authority">
             <EntityTypeMapping TypeName="CmsModel.TB_Authority">
               <MappingFragment StoreEntitySet="TB_Authority">
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="AuthorFlag" ColumnName="AuthorFlag" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
                 <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
                 <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />

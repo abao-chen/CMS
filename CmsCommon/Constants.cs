@@ -86,5 +86,10 @@ namespace CmsCommon
         public const string USER_STATUS_FROZEN = "U00202";
 
         #endregion
+
+        /// <summary>
+        /// 是否使用
+        /// </summary>
+        public const int IS_USING_Y = 1;
     }
 }

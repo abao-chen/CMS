@@ -2,19 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%--<link href="/Scripts/bootstrap/vendor/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />--%>
-    <%--<link href="../Scripts/bootstrap/vendor/zTree/css/metroStyle/metroStyle.css" rel="stylesheet" />--%>
-    <link href="../Scripts/bootstrap/vendor/zTree/css/zTreeStyle/metro.css" rel="stylesheet" />
-    <style type="text/css">
-        .ztree li span.button.switch.level0 {
-            visibility: hidden;
-            width: 1px;
-        }
-
-        .ztree li ul.level0 {
-            padding: 0;
-            background: none;
-        }
-    </style>
+    <link href="/Scripts/bootstrap/vendor/zTree/css/metroStyle/metroStyle.css" rel="stylesheet" />
+    <%--<link href="../Scripts/bootstrap/vendor/zTree/css/bootStrapStyle/metro.css" rel="stylesheet" />--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="searchPanel" style="display: none;">
@@ -29,9 +18,9 @@
         <div class="col-lg-10">
             <div class="row" style="padding-bottom: 5px; padding-top: 5px;">
                 <div class="col-lg-12">
-                    <a id="btnAdd" class="btn btn-info" href="/SysManage/DictionaryInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
+                    <a id="btnAdd" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>新增</a>
                     <a id="btnDelete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>删除</a>
-                    <a runat="server" class="btn btn-info" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
+                    <a runat="server" class="btn btn-primary" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
                 </div>
             </div>
             <!-- /.row -->
@@ -118,6 +107,7 @@
                 "columns": [
                     {
                         "data": "ID",
+                        "width": "4%",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
                             var result = "<input id=\"" +
@@ -128,20 +118,29 @@
                     },
                     {
                         "data": "ID",
+                        "width": "8%",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
-                            var result = "<a href=\"/SysManage/DictionaryInfo.aspx?Id=" +
-                                data +
-                                "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" +
-                                data +
-                                "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
+                            var result = "<a href=\"javascript:update(" + data +
+                                ")\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" +
+                                data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
                     },
-                    { "data": "DicTypeCode" },
+                    { "data": "DicTypeName" },
                     { "data": "DicName" },
                     { "data": "DicCode" },
-                    { "data": "IsUsing" },
+                    {
+                        "data": "IsUsing",
+                        "orderable": false,
+                        "render": function (data, type, row, meta) {
+                            if (data == 1) {
+                                return "是";
+                            } else {
+                                return "否";
+                            }
+                        }
+                    }
                 ]
             });
         });
@@ -178,9 +177,15 @@
                 dataType: "json",
                 success: function (result) {
                     if (result.result == 1) { //请求成功
-                        console.log(result.data);
                         var treeObj = $.fn.zTree.init($("#dicTree"),
                             {
+                                edit: {
+                                    enable: true,
+                                    showRemoveBtn: true,
+                                    showRenameBtn: true,
+                                    removeTitle: "删除",
+                                    renameTitle: "编辑"
+                                },
                                 data: {
                                     simpleData: {
                                         enable: true,
@@ -192,7 +197,8 @@
                                     }
                                 },
                                 callback: {
-                                    onClick: onClickNode
+                                    onClick: onClickNode,
+                                    onRename: editNode
                                 }
 
                             }, result.data);
@@ -210,9 +216,33 @@
             });
         });
 
+        //点击字典类型筛选列表
         function onClickNode(event, treeId, treeNode, clickFlag) {
             $("#txtDicTypeCode").val(treeNode.DicTypeCode);
             reloadData();
+        }
+
+        //编辑字典类型
+        function editNode(event, treeId, treeNode, isCancel) {
+            console.log(treeNode);
+            bootAlert.confirm().on(function (isOk) {
+                if (isOk) {
+                    var param = {};
+                    param["method"] = "DeleteDicType";
+                    param["ID"] = treeNode.ID;
+                    $.ajax({
+                        type: "POST",
+                        url: "/API/DictionaryApi.aspx",
+                        cache: false, //禁用缓存
+                        data: param, //传入组装的参数
+                        dataType: "json",
+                        success: function () {
+                            toastr.success("删除成功！");
+                            reloadData();
+                        }
+                    });
+                }
+            });
         }
 
         //重新加载数据
@@ -222,27 +252,43 @@
 
         //删除行数据
         function deleteRows(data) {
-            bootbox.confirm({
-                size: "small",
-                message: "确认要删除选中数据吗？",
-                callback: function (result) {
-                    if (result) {
-                        var param = {};
-                        param["method"] = "DeleteByIds";
-                        param["Id"] = data;
-                        $.ajax({
-                            type: "POST",
-                            url: "/API/DictionaryApi.aspx",
-                            cache: false, //禁用缓存
-                            data: param, //传入组装的参数
-                            dataType: "json",
-                            success: function () {
-                                toastr.success("删除成功！");
-                                reloadData();
-                            }
-                        });
-                    }
+            bootAlert.confirm({
+                message: "确认要删除选中数据吗？"
+            }).on(function (result) {
+                if (result) {
+                    var param = {};
+                    param["method"] = "DeleteByIds";
+                    param["Id"] = data;
+                    $.ajax({
+                        type: "POST",
+                        url: "/API/DictionaryApi.aspx",
+                        cache: false, //禁用缓存
+                        data: param, //传入组装的参数
+                        dataType: "json",
+                        success: function () {
+                            toastr.success("删除成功！");
+                            reloadData();
+                        }
+                    });
                 }
+            });
+        }
+
+        //添加
+        $("#btnAdd").click(function () {
+            bootAlert.dialog({
+                "title": "添加字典",
+                "height": 355,
+                "url": "/SysManage/DictionaryInfo.aspx"
+            });
+        });
+
+        //更新
+        function update(id) {
+            bootAlert.dialog({
+                "title": "编辑字典",
+                "height": 355,
+                "url": "/SysManage/DictionaryInfo.aspx?ID=" + id
             });
         }
     </script>

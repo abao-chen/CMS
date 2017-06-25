@@ -25,8 +25,8 @@
              '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>' +
              '<h4 class="modal-title" id="modalLabel">[Title]</h4>' +
             '</div>' +
-            '<div class="modal-body">' +
-            '</div>' +
+            '<div class="modal-body"><iframe style="border:0;width:100%;height:[Height]px;" scrolling="no">' +
+            '<iframe></div>' +
             '</div>' +
            '</div>' +
            '</div>';
@@ -38,7 +38,7 @@
         var init = function (options) {
             options = $.extend({}, {
                 title: "操作提示",
-                message: "提示内容",
+                message: "确认要删除选中数据吗？",
                 btnok: "确定",
                 btncl: "取消",
                 width: 200,
@@ -129,12 +129,14 @@
                 var content = dialogdHtml.replace(reg, function (node, key) {
                     return {
                         Id: modalId,
-                        Title: options.title
+                        Title: options.title,
+                        Height: options.height
                     }[key];
                 });
                 $('body').append(content);
                 var target = $('#' + modalId);
-                target.find('.modal-body').load(options.url);
+                //target.find('.modal-body iframe').load(options.url);
+                target.find('.modal-body iframe').attr("src", options.url);
                 if (options.onReady())
                     options.onReady.call(target);
                 target.modal();

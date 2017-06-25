@@ -11,7 +11,22 @@ namespace CmsUtils
             control.DataValueField = "Value";
             control.DataSource = dataSource;
             control.DataBind();
-            control.Items.Insert(0, new ListItem("请选择", string.Empty));
+            if (isAddBlank)
+            {
+                control.Items.Insert(0, new ListItem("请选择", string.Empty));
+            }
+        }
+
+        public static void BindDropDownList<T>(DropDownList control, List<T> dataSource,string textField, string valueField, bool isAddBlank)
+        {
+            control.DataTextField = textField;
+            control.DataValueField = valueField;
+            control.DataSource = dataSource;
+            control.DataBind();
+            if (isAddBlank)
+            {
+                control.Items.Insert(0, new ListItem("请选择", string.Empty));
+            }
         }
     }
 

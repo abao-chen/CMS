@@ -45,27 +45,6 @@ namespace CmsWeb.API
             return resultModel;
         }
 
-        public AjaxResultModel Save()
-        {
-            AjaxResultModel resultModel = new AjaxResultModel();
-            AjaxModel searchModel = GetPostParams();
-            if (!searchModel.ParamsDic.ContainsKey("ID") || string.IsNullOrEmpty(searchModel.ParamsDic["ID"]))
-            {//新增
-                TB_SysParams sysModel = new TB_SysParams();
-                searchModel.ParamsDic.ConvertToEntity(sysModel);
-                new SysParamsBal().InsertSingle(sysModel);
-            }
-            else
-            {//更新
-                int iId;
-                int.TryParse(searchModel.ParamsDic["ID"], out iId);
-                TB_SysParams sysModel = new SysParamsBal().SelectSingleById(s => s.ID.Equals(iId));
-                searchModel.ParamsDic.ConvertToEntity(sysModel);
-                new SysParamsBal().UpdateSingle(sysModel);
-            }
-            return resultModel;
-        }
-
         /// <summary>
         /// 验证参数名称是否重复
         /// </summary>
@@ -74,12 +53,14 @@ namespace CmsWeb.API
             Dictionary<string, bool> result = new Dictionary<string, bool>();
             AjaxModel searchModel = GetPostParams();
             TB_SysParams sysModel = new TB_SysParams();
-            searchModel.ParamsDic.ConvertToEntity(sysModel);
+            Dictionary<string, string> postParams = new Dictionary<string, string>();
+            GetValidateParams(searchModel, postParams);
+            postParams.ConvertToEntity(sysModel);
             TB_SysParams validModel;
-            if (searchModel.ParamsDic.ContainsKey("ID"))
+            if (postParams.ContainsKey("ID"))
             {//编辑
                 int id;
-                int.TryParse(searchModel.ParamsDic["ID"], out id);
+                int.TryParse(postParams["ID"], out id);
                 validModel = new SysParamsBal().SelectSingleById(s => !s.ID.Equals(id) && s.ParamName.Equals(sysModel.ParamName));
             }
             else

@@ -57,7 +57,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <asp:Button ID="btnLogin" runat="server" Text="Login" class="btn btn-lg btn-success btn-block" OnClick="btnLogin_Click" />
+                                <asp:Button ID="btnLogin" runat="server" Text="Login" class="btn btn-lg btn-success btn-block" data-loading-text="登陆中..." OnClick="btnLogin_Click" />
                             </fieldset>
                             <%--</form>--%>
                         </div>

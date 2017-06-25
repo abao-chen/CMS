@@ -211,6 +211,21 @@ function getFormPostData(formId) {
 }
 
 /**
+ * 获取URL参数值
+ * @param {参数名} name 
+ * @returns {} 
+ */
+function getUrlParams(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    } else {
+        return null;
+    }
+}
+
+/**
  * 打开Tab
  * @param {} tabId 
  * @param {} tabName 

@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/24
+// 制作日期：2017/06/25
 // 文件说明：省市县镇村数据列表页面
 // 
 // 
@@ -47,7 +47,7 @@ namespace CmsWeb
         protected void btnExport_OnClick(object sender, EventArgs e)
         {
 
-            SearchModel searchModel = new SearchModel();
+            AjaxModel searchModel = new AjaxModel();
             string sql = @"SELECT
 					            *
 				            FROM
@@ -57,15 +57,8 @@ namespace CmsWeb
             DataTable dt = new PositionBal().GetDataTable(searchModel, sql);
             string filePath = Server.MapPath("~/Temp/" + DateTime.Now.ToString("yyyyMMdd"));
             string fileName = "PositionList_" + DateTime.Now.ToString("yyyyMMdd") + ".xls";
-            long fileLength = ExcelUtil.WriteExcel(dt, filePath, fileName);
-            if (fileLength > 0)
-            {
-                Response.WriteFile(filePath + "/" + fileName);
-                Response.ContentType = "application/x-xls";
-                Response.Charset = "UTF-8";
-                Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
-                Response.End();
-            }
+            ExcelUtil.WriteExcel(dt, filePath, fileName);
+            FileDownHelper.DownLoadFile(filePath + "/" + fileName, fileName);
         }
     }
 }

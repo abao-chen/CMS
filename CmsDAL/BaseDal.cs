@@ -88,11 +88,11 @@ namespace CmsDAL
             DbParameter[] parameters = paramsList.ToArray();
             resultModel.total = _ctx.Database.SqlQuery<long>(countSql, parameters).FirstOrDefault();
             string pageSql = " select * from ( " + baseSql + "  order by " + searchModel.OrderColunm + " " + (searchModel.OrderDir == "desc" ? "asc" : "desc") + " limit " + limit + ") t order BY " + searchModel.OrderColunm + " " + searchModel.OrderDir + " LIMIT " + (resultModel.total - limit > 0 ? searchModel.Limit : resultModel.total - (searchModel.Limit * (searchModel.Page - 1))) + " ";
-            DataTable dt = _ctx.Database.SqlQueryForDataTatable(pageSql, parameters);
-            if (dt != null)
-            {
-                resultModel.data = dt.ToList<T>();
-            }
+            resultModel.data = _ctx.Database.SqlQueryForDataTatable(pageSql, parameters);
+            //if (dt != null)
+            //{
+            //    resultModel.data = dt.ToList<T>();
+            //}
         }
 
         /// <summary>

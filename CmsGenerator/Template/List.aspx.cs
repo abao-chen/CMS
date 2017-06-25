@@ -47,7 +47,7 @@ namespace CmsWeb
         protected void btnExport_OnClick(object sender, EventArgs e)
         {
 
-            SearchModel searchModel = new SearchModel();
+            AjaxModel searchModel = new AjaxModel();
             string sql = @"SELECT
 					            *
 				            FROM

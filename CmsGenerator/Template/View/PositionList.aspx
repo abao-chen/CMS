@@ -7,43 +7,48 @@
         <div class="col-lg-12">
             <div id="searchPanel" class="panel panel-default">
                 <div class="panel-heading">
-                    <a data-toggle="collapse" data-parent="#searchPanel" href="#searchBody">查询条件<span class="glyphicon glyphicon-menu-up"></span></a>
+                    查询条件
+                    <div class="pull-right">
+                        <a data-toggle="collapse" data-parent="#searchPanel" href="#searchBody">
+                            <span class="glyphicon glyphicon-menu-up"></span>
+                        </a>
+                    </div>
                 </div>
                 <div id="searchBody" class="panel-body collapse in">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtProvinceId" searchattr="ProvinceId|=|ProvinceId" CssClass="form-control" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtProvinceId" searchattr="ProvinceId|LIKE|ProvinceId" CssClass="form-control" placeholder=""></asp:TextBox>
                             </div> 
 <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtProvinceName" searchattr="ProvinceName|=|ProvinceName" CssClass="form-control" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtProvinceName" searchattr="ProvinceName|LIKE|ProvinceName" CssClass="form-control" placeholder=""></asp:TextBox>
                             </div> 
 <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtCityID" searchattr="CityID|=|CityID" CssClass="form-control" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtCityID" searchattr="CityID|LIKE|CityID" CssClass="form-control" placeholder=""></asp:TextBox>
                             </div> 
 <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtCityName" searchattr="CityName|=|CityName" CssClass="form-control" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtCityName" searchattr="CityName|LIKE|CityName" CssClass="form-control" placeholder=""></asp:TextBox>
                             </div> 
 <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtCountyID" searchattr="CountyID|=|CountyID" CssClass="form-control" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtCountyID" searchattr="CountyID|LIKE|CountyID" CssClass="form-control" placeholder=""></asp:TextBox>
                             </div> 
 <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtCountyName" searchattr="CountyName|=|CountyName" CssClass="form-control" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtCountyName" searchattr="CountyName|LIKE|CountyName" CssClass="form-control" placeholder=""></asp:TextBox>
                             </div> 
 <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtTownID" searchattr="TownID|=|TownID" CssClass="form-control" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtTownID" searchattr="TownID|LIKE|TownID" CssClass="form-control" placeholder=""></asp:TextBox>
                             </div> 
 <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtTownName" searchattr="TownName|=|TownName" CssClass="form-control" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtTownName" searchattr="TownName|LIKE|TownName" CssClass="form-control" placeholder=""></asp:TextBox>
                             </div> 
 <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtVillageID" searchattr="VillageID|=|VillageID" CssClass="form-control" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtVillageID" searchattr="VillageID|LIKE|VillageID" CssClass="form-control" placeholder=""></asp:TextBox>
                             </div> 
 <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtVillageName" searchattr="VillageName|=|VillageName" CssClass="form-control" placeholder=""></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtVillageName" searchattr="VillageName|LIKE|VillageName" CssClass="form-control" placeholder=""></asp:TextBox>
                             </div> 
 
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 form-group pull-right">
                                     <div class="pull-right">
                                         <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
                                         <input type="button" id="btnClear" class="btn btn-default" value="重置" />
@@ -59,7 +64,7 @@
         <div class="col-lg-12">
             <a id="btnAdd" class="btn btn-info" href="/#Folder#/PositionInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
             <a id="btnDelete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>删除</a>
-            <a runat="server" class="btn btn-info" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
+            <a runat="server" class="btn btn-primary" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
         </div>
     </div>
     <!-- /.row -->
@@ -74,16 +79,16 @@
                                 <th>
                                     <input id="cbSelectAll" type="checkbox" title="全选/取消" /></th>
                                 <th>操作</th>
-                                <th>ProvinceId</th>
-<th>ProvinceName</th>
-<th>CityID</th>
-<th>CityName</th>
-<th>CountyID</th>
-<th>CountyName</th>
-<th>TownID</th>
-<th>TownName</th>
-<th>VillageID</th>
-<th>VillageName</th>
+                                <th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
 
                             </tr>
                         </thead>
@@ -144,6 +149,7 @@
                 "columns": [
                     {
                         "data": "ID",
+                        "width": "4%",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
                             var result = "<input id=\"" + data + "\" name=\"tbCheckbox\" type=\"checkbox\" title=\"全选/取消\" />";
@@ -152,6 +158,7 @@
                     },
                     {
                         "data": "ID",
+                        "width": "8%",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
                             var result = "<a href=\"/#Folder#/PositionInfo.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
@@ -201,26 +208,34 @@
 
         //删除行数据
         function deleteRows(data) {
-            bootbox.confirm({
-                size: "small",
-                message: "确认要删除选中数据吗？",
-                callback: function (result) {
-                    if (result) {
-                        var param = {};
-                        param["method"] = "DeleteByIds";
-                        param["Id"] = data;
-                        $.ajax({
-                            type: "POST",
-                            url: "/API/PositionApi.aspx",
-                            cache: false,  //禁用缓存
-                            data: param,  //传入组装的参数
-                            dataType: "json",
-                            success: function () {
+            bootAlert.confirm({
+                message: "确认要删除选中数据吗？"
+            }).on(function(result) {
+                if (result) {
+                    var param = {};
+                    param["method"] = "DeleteByIds";
+                    param["Id"] = data;
+                    $.ajax({
+                        type: "POST",
+                        url: "/API/PositionApi.aspx",
+                        cache: false, //禁用缓存
+                        data: param, //传入组装的参数
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.result == 1) { //请求成功
                                 toastr.success("删除成功！");
                                 reloadData();
+                            } else if (data.result == 2) { //请求失败
+                                toastr.error(data.message);
+                            } else if (data.result == 3) { //登录超时
+                                bootAlert.alert(data.message).on(function () {
+                                    location.href = "/Login.aspx";
+                                });
+                            } else { //其他异常情况
+                                toastr.error(data.message);
                             }
-                        });
-                    }
+                        }
+                    });
                 }
             });
         }

@@ -25,7 +25,7 @@ namespace CmsWeb.API
         public AjaxResultModel GetPagerList()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
-            SearchModel searchModel = GetPostParams();
+            AjaxModel searchModel = GetPostParams();
             string sql = @"SELECT
 					            *
 				            FROM
@@ -39,7 +39,7 @@ namespace CmsWeb.API
         public AjaxResultModel DeleteByIds()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
-            SearchModel searchModel = GetPostParams();
+            AjaxModel searchModel = GetPostParams();
             new #ClassName#Bal().DeleteByIds(resultModel, searchModel);
             return resultModel;
         }

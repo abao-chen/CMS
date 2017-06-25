@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             #SearchCols#
-                                <div class="col-lg-4 pull-right">
+                                <div class="col-lg-4 form-group pull-right">
                                     <div class="pull-right">
                                         <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
                                         <input type="button" id="btnClear" class="btn btn-default" value="重置" />
@@ -32,9 +32,9 @@
     </div>
     <div class="row" style="padding-bottom: 5px;">
         <div class="col-lg-12">
-            <a id="btnAdd" class="btn btn-info" href="/#Folder#/#ClassName#Info.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
+            <a id="btnAdd" class="btn btn-info" href="/SysManage/#ClassName#Info.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
             <a id="btnDelete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>删除</a>
-            <a runat="server" class="btn btn-info" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
+            <a runat="server" class="btn btn-primary" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
         </div>
     </div>
     <!-- /.row -->
@@ -80,7 +80,7 @@
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "#KeyId#",
-                "order": [2, "desc"],
+                "order": [0, "desc"],
                 "ajax": function (data, callback) {
                     var param = getSearchParams(data);
                     param["method"] = "GetPagerList";
@@ -121,7 +121,7 @@
                         "width": "8%",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
-                            var result = "<a href=\"/#Folder#/#ClassName#Info.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
+                            var result = "<a href=\"/SysManage/#ClassName#Info.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
                     },

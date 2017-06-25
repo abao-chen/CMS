@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/24
+// 制作日期：2017/06/25
 // 文件说明：省市县镇村数据Ajax请求页
 // 
 // 
@@ -25,7 +25,7 @@ namespace CmsWeb.API
         public AjaxResultModel GetPagerList()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
-            SearchModel searchModel = GetPostParams();
+            AjaxModel searchModel = GetPostParams();
             string sql = @"SELECT
 					            *
 				            FROM
@@ -39,7 +39,7 @@ namespace CmsWeb.API
         public AjaxResultModel DeleteByIds()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
-            SearchModel searchModel = GetPostParams();
+            AjaxModel searchModel = GetPostParams();
             new PositionBal().DeleteByIds(resultModel, searchModel);
             return resultModel;
         }

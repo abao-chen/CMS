@@ -6,11 +6,13 @@
     <div class="row">
         <div class="col-lg-12">
             <div id="searchPanel" class="panel panel-default">
-                查询条件
-                <div class="pull-right">
-                    <a data-toggle="collapse" data-parent="#searchPanel" href="#searchBody">
-                        <span class="glyphicon glyphicon-menu-up"></span>
-                    </a>
+                <div class="panel-heading">
+                    查询条件
+                    <div class="pull-right">
+                        <a data-toggle="collapse" data-parent="#searchPanel" href="#searchBody">
+                            <span class="glyphicon glyphicon-menu-up"></span>
+                        </a>
+                    </div>
                 </div>
                 <div id="searchBody" class="panel-body collapse in">
                     <div class="row">
@@ -18,14 +20,10 @@
                             <div class="col-lg-4 form-group">
                                 <asp:TextBox runat="server" ID="txtRoleName" searchattr="RoleName|=|RoleName" CssClass="form-control" placeholder="角色名称"></asp:TextBox>
                             </div>
-                            <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtIsUsing" searchattr="IsUsing|=|IsUsing" CssClass="form-control" placeholder="是否启用"></asp:TextBox>
-                            </div>
-
                             <div class="col-lg-4 pull-right">
                                 <div class="pull-right">
-                                    <input type="button" id="btnSearch" class="btn btn-default" value="查询"/>
-                                    <input type="button" id="btnClear" class="btn btn-default" value="重置"/>
+                                    <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
+                                    <input type="button" id="btnClear" class="btn btn-default" value="重置" />
                                 </div>
                             </div>
                         </div>
@@ -49,15 +47,15 @@
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover table-condensed" id="dataTables">
                         <thead>
-                        <tr>
-                            <th>
-                                <input id="cbSelectAll" type="checkbox" title="全选/取消"/>
-                            </th>
-                            <th>操作</th>
-                            <th>RoleName</th>
-                            <th>IsUsing</th>
+                            <tr>
+                                <th>
+                                    <input id="cbSelectAll" type="checkbox" title="全选/取消" />
+                                </th>
+                                <th>操作</th>
+                                <th>角色名称</th>
+                                <th>是否启用</th>
 
-                        </tr>
+                            </tr>
                         </thead>
                     </table>
                 </div>
@@ -72,7 +70,7 @@
     <script type="text/javascript">
         var tableObj;
         //初始化表格
-        $(function() {
+        $(function () {
             tableObj = $('#dataTables').DataTable({
                 "processing": true,
                 "serverSide": true,
@@ -88,7 +86,7 @@
                 "pagingType": "full_numbers",
                 "rowId": "#KeyId#",
                 "order": [2, "desc"],
-                "ajax": function(data, callback) {
+                "ajax": function (data, callback) {
                     var param = getSearchParams(data);
                     param["method"] = "GetPagerList";
                     //ajax请求数据
@@ -98,13 +96,13 @@
                         cache: false, //禁用缓存
                         data: param, //传入组装的参数
                         dataType: "json",
-                        success: function(result) {
+                        success: function (result) {
                             if (result.result == 1) { //请求成功
                                 callback(setDataTablesPagerParas(result, data));
                             } else if (result.result == 2) { //请求失败
                                 toastr.error(result.message);
                             } else if (result.result == 3) { //登录超时
-                                bootAlert.alert(result.message).on(function() {
+                                bootAlert.alert(result.message).on(function () {
                                     location.href = "/Login.aspx";
                                 });
                             } else { //其他异常情况
@@ -116,8 +114,9 @@
                 "columns": [
                     {
                         "data": "ID",
+                        "width":"4%",
                         "orderable": false,
-                        "render": function(data, type, row, meta) {
+                        "render": function (data, type, row, meta) {
                             var result = "<input id=\"" +
                                 data +
                                 "\" name=\"tbCheckbox\" type=\"checkbox\" title=\"全选/取消\" />";
@@ -126,8 +125,9 @@
                     },
                     {
                         "data": "ID",
+                        "width": "8%",
                         "orderable": false,
-                        "render": function(data, type, row, meta) {
+                        "render": function (data, type, row, meta) {
                             var result = "<a href=\"/SysManage/RoleInfo.aspx?Id=" +
                                 data +
                                 "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" +
@@ -137,22 +137,32 @@
                         }
                     },
                     { "data": "RoleName" },
-                    { "data": "IsUsing" },
+                    {
+                        "data": "IsUsing",
+                        "orderable": false,
+                        "render": function (data, type, row, meta) {
+                            if (data == 1) {
+                                return "是";
+                            } else {
+                                return "否";
+                            }
+                        }
+                    }
                 ]
             });
         });
 
-        $(function() {
+        $(function () {
             //检索
-            $("#btnSearch").click(function() {
+            $("#btnSearch").click(function () {
                 reloadData();
             });
             //清除检索条件
-            $("#btnClear").click(function() {
+            $("#btnClear").click(function () {
                 clearSearchForm();
             });
             //删除选中
-            $("#btnDelete").click(function() {
+            $("#btnDelete").click(function () {
                 var ids = getSelectedRowIds();
                 if (ids != "") {
                     deleteRows(ids);
@@ -172,7 +182,7 @@
             bootbox.confirm({
                 size: "small",
                 message: "确认要删除选中数据吗？",
-                callback: function(result) {
+                callback: function (result) {
                     if (result) {
                         var param = {};
                         param["method"] = "DeleteByIds";
@@ -183,7 +193,7 @@
                             cache: false, //禁用缓存
                             data: param, //传入组装的参数
                             dataType: "json",
-                            success: function() {
+                            success: function () {
                                 toastr.success("删除成功！");
                                 reloadData();
                             }

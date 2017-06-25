@@ -11,7 +11,7 @@ using CmsUtils;
 
 namespace CmsWeb
 {
-    public partial class UserInfo : BasePage
+    public partial class #ClassName#Info : BasePage
     {
         /// <summary>
         /// 用户ID
@@ -44,14 +44,7 @@ namespace CmsWeb
         /// </summary>
         private void InitData()
         {
-            TB_BasicUser userInfo = new BasicUserBal().SelectSingleById(u => u.ID.Equals(Id));
-            txtAccount.Text = userInfo.UserAccount;
-            txtName.Text = userInfo.UserName;
-            txtPassword.Enabled = false;
-            txtPassword.Text = userInfo.UserPassword;
-            lbLastLoginTime.Text = userInfo.LastLoginTime == null ? string.Empty : Convert.ToDateTime(userInfo.LastLoginTime).ToString("yyyy/mm/dd hh:mm:ss");
-            ddlStatus.SelectedValue = userInfo.UserStatus;
-            ddlType.SelectedValue = userInfo.UserType;
+            #TableName#  entity = new #ClassName#Bal().SelectSingleById(u => u.ID.Equals(Id));
         }
 
         /// <summary>
@@ -59,35 +52,27 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            ControlUtil.BindDropDownList(this.ddlStatus, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERSTATUS), true);
-            ControlUtil.BindDropDownList(this.ddlType, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERTYPE), true);
+            //ControlUtil.BindDropDownList(this.ddlStatus, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERSTATUS), true);
+            //ControlUtil.BindDropDownList(this.ddlType, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERTYPE), true);
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            TB_BasicUser userInfo;
+            #TableName#  entity;
             if (Id != 0)
             {
-                userInfo = new BasicUserBal().SelectSingleById(u => u.ID.Equals(Id));
-                userInfo.UserAccount = txtAccount.Text;
-                userInfo.UserName = txtName.Text;
-                userInfo.UserStatus = ddlStatus.SelectedValue;
-                userInfo.UserType = ddlType.SelectedValue;
-                new BasicUserBal().UpdateSingle(userInfo);
+                entity = new #ClassName#Bal().SelectSingleById(u => u.ID.Equals(Id));
+               
+                new #ClassName#Bal().UpdateSingle(entity);
             }
             else
             {
-                userInfo = new TB_BasicUser();
-                userInfo.UserAccount = txtAccount.Text;
-                userInfo.UserName = txtName.Text;
-                userInfo.PasswordSalt = SecurityUtil.RandomCode(Constants.RANDOM_MODEL_MIXED, 10);
-                userInfo.UserPassword = SecurityUtil.Md5Encrypt64(txtPassword.Text + userInfo.PasswordSalt);
-                userInfo.UserStatus = ddlStatus.SelectedValue;
-                userInfo.UserType = ddlType.SelectedValue;
-                new BasicUserBal().InsertSingle(userInfo);
+                entity = new #TableName#();
+               
+                new #ClassName#Bal().InsertSingle(entity);
             }
 
-            Response.Redirect("~/SysConfig/UserList.aspx");
+            Response.Redirect("~/SysConfig/#ClassName#List.aspx");
         }
         
     }

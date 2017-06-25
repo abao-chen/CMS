@@ -68,5 +68,27 @@ namespace CmsWeb.API
                 Response.End();
             }
         }
+
+
+        /// <summary>
+        /// 获取验证的参数
+        /// </summary>
+        /// <param name="searchModel"></param>
+        /// <param name="postParams"></param>
+        protected static void GetValidateParams(AjaxModel searchModel, Dictionary<string, string> postParams)
+        {
+            foreach (string key in searchModel.ParamsDic.Keys)
+            {
+                string[] keys = key.Split(new string[] { "$" }, StringSplitOptions.None);
+                if (keys.Length == 3)
+                {
+                    postParams.Add(keys[2].Replace("txt", string.Empty), searchModel.ParamsDic[key]);
+                }
+                else
+                {
+                    postParams.Add(key, searchModel.ParamsDic[key]);
+                }
+            }
+        }
     }
 }

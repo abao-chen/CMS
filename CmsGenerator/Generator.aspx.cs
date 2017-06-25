@@ -268,8 +268,8 @@ namespace CmsGenerator
                     .ToList<TableEntity>();
                 foreach (TableEntity table in tbList)
                 {
-                    if (this.hidTablesName.Value.Split(new string[] { "," }, StringSplitOptions.None)
-                        .Contains(table.TABLE_NAME))
+                    if (this.hidTablesName.Value.ToLower().Split(new string[] { "," }, StringSplitOptions.None)
+                        .Contains(table.TABLE_NAME.ToLower()))
                     {
                         className = table.TABLE_NAME.Remove(0, 3);
                         cnFileName = table.TABLE_COMMENT.Replace("表", "");
@@ -303,6 +303,19 @@ namespace CmsGenerator
                         string ApiContent = FileUtil.ReadFile(ApiFilePath).Replace("#ClassName#", className);
                         FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx", ApiContent);
 
+
+                        //infoContent.aspx.designer.cs
+                        string infoDesignerContent = FileUtil.ReadFile(InfoDesignerFilePath).Replace("#ClassName#", className);
+                        FileUtil.WriteFile(ViewOutputPath + className + "Info.aspx.designer.cs", infoDesignerContent);
+
+                        //infoContent.aspx.cs
+                        string infoCsContent = FileUtil.ReadFile(InfoCsFilePath)
+                            .Replace("#ClassName#", className)
+                            .Replace("#TableName#", table.TABLE_NAME)
+                            .Replace("#CnFileName#", cnFileName)
+                            .Replace("#Date#", date);
+                        FileUtil.WriteFile(ViewOutputPath + className + "Info.aspx.cs", infoCsContent);
+                        
                         //List.aspx
                         string listContent = FileUtil.ReadFile(ListFilePath)
                             .Replace("#ClassName#", className)
@@ -311,6 +324,7 @@ namespace CmsGenerator
                         StringBuilder searchBuilder = new StringBuilder();
                         StringBuilder listHeadBuilder = new StringBuilder();
                         StringBuilder colConfigBuilder = new StringBuilder();
+                        StringBuilder editFormBuilder = new StringBuilder();
                         List<ColumnEntity> colList = ctx.Database
                             .SqlQueryForDataTatable(string.Format(colSql, table.TABLE_NAME)).ToList<ColumnEntity>();
                         foreach (ColumnEntity colEntity in colList)
@@ -318,13 +332,24 @@ namespace CmsGenerator
                             if (!CommAtt.Contains(colEntity.COLUMN_NAME) && colEntity.COLUMN_NAME != "ID")
                             {
                                 string searchCols = "<div class=\"col-lg-4 form-group\">\r\n";
-                                searchCols += "                                <asp:#ControlType# runat=\"server\" ID=\"#ControlAlisa##ColName#\" searchattr=\"#ColName#|=|#ColName#\" CssClass=\"form-control\" placeholder=\"#ColCnName#\"></asp:#ControlType#>\r\n";
+                                searchCols += "                                <asp:#ControlType# runat=\"server\" ID=\"#ControlAlisa##ColName#\" searchattr=\"#ColName#|LIKE|#ColName#\" CssClass=\"form-control\" placeholder=\"#ColCnName#\"></asp:#ControlType#>\r\n";
                                 searchCols += "                            </div> ";
                                 searchCols = searchCols.Replace("#ControlType#", "TextBox")
                                     .Replace("#ControlAlisa#", "txt")
                                     .Replace("#ColName#", colEntity.COLUMN_NAME)
                                     .Replace("#ColCnName#", colEntity.COLUMN_COMMENT);
                                 searchBuilder.AppendLine(searchCols);
+
+                                string editCols = "<div class=\"col-lg-6\">\r\n";
+                                editCols += "             <div class=\"form-group\">\r\n";
+                                editCols += "    <label>#ColCnName#：</label>\r\n";
+                                editCols += "<asp:TextBox ID =\"txt#ColName#\" runat=\"server\" CssClass=\"form-control\"></asp:TextBox>\r\n";
+                                editCols += "</div>\r\n";
+                                editCols += "</div> ";
+
+                                editCols = editCols.Replace("#ColName#", colEntity.COLUMN_NAME)
+                                    .Replace("#ColCnName#", colEntity.COLUMN_COMMENT);
+                                editFormBuilder.AppendLine(editCols);
 
                                 listHeadBuilder.AppendLine("<th>" + colEntity.COLUMN_COMMENT + "</th>");
 
@@ -336,6 +361,13 @@ namespace CmsGenerator
                             .Replace("#ListHead#", listHeadBuilder.ToString()) //datatables头部
                             .Replace("#ColConfig#", colConfigBuilder.ToString());//datatables列配置
                         FileUtil.WriteFile(ViewOutputPath + className + "List.aspx", listContent);
+
+                        //infoContent.aspx
+                        string infoContent = FileUtil.ReadFile(InfoFilePath)
+                            .Replace("#EditForm#", editFormBuilder.ToString())
+                            .Replace("#ClassName#", className)
+                            .Replace("#CnFileName#", cnFileName);
+                        FileUtil.WriteFile(ViewOutputPath + className + "Info.aspx", infoContent);
                     }
                 }
             }

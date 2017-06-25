@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/24
+// 制作日期：2017/06/25
 // 文件说明：省市县镇村数据Ajax请求页
 // 
 // 
@@ -31,7 +31,7 @@ namespace CmsWeb.API
 				            FROM
 					            TB_Position 
 				            WHERE
-					            isdeleted = 0 ";
+					            1 = 1 ";
             new PositionBal().GetPagerList(resultModel, searchModel, sql);
             return resultModel;
         }

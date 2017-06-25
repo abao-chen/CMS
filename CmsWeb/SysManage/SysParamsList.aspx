@@ -81,7 +81,7 @@
                 "scrollX": true,
                 "bLengthChange": false, //去掉每页显示多少条数据方法
                 "aLengthMenu": [50, 100, 200],
-                "scrollY": "290px",
+                "scrollY": "270px",
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "#KeyId#",
@@ -138,7 +138,7 @@
                     },
                     { "data": "ParamName" },
                     { "data": "ParamValue" },
-                    { "data": "ParamDesc" },
+                    { "data": "ParamDesc" }
                 ]
             });
         });
@@ -156,6 +156,7 @@
             $("#btnAdd").click(function () {
                 bootAlert.dialog({
                     "title": "添加系统参数",
+                    "height": 355,
                     "url": "/SysManage/SysParamsInfo.aspx"
                 });
             });
@@ -174,12 +175,14 @@
         function update(id) {
             bootAlert.dialog({
                 "title": "编辑系统参数",
+                "height": 355,
                 "url": "/SysManage/SysParamsInfo.aspx?ID=" + id
             });
         }
 
         //重新加载数据
         function reloadData() {
+            console.log("reloadData");
             tableObj.ajax.reload(null, false);
         };
 
