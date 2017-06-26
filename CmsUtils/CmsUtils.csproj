@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Log\Log.cs" />
     <Compile Include="Security\Cache.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Configs\Configs.cs" />
@@ -85,7 +86,6 @@
     <Compile Include="File\FileUtil.cs" />
     <Compile Include="File\GZip.cs" />
     <Compile Include="Convert\Json.cs" />
-    <Compile Include="Log\Log.cs" />
     <Compile Include="Log\LogFactory.cs" />
     <Compile Include="Mail\MailHelper.cs" />
     <Compile Include="Net\HttpMethods.cs" />

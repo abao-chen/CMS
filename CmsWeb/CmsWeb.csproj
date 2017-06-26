@@ -85,6 +85,7 @@
     <Content Include="API\SysParamsApi.aspx" />
     <Content Include="API\UserApi.aspx" />
     <None Include="Config\DataBaseConfig.config" />
+    <Content Include="Config\log4net.config" />
     <None Include="Config\SystemConfig.config" />
     <Content Include="ContentManage\ContentList.aspx" />
     <Content Include="Css\common.css" />

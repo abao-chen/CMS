@@ -17,11 +17,13 @@ namespace CmsDAL
     {
         protected CmsEntities _ctx = null;
         protected DbSet _dbSet = null;
+        protected Log Logger;
 
         public BaseDal(CmsEntities ctx)
         {
             _ctx = ctx;
             _dbSet = _ctx.Set<T>();
+            Logger = LogFactory.GetLogger(this.GetType());
         }
 
         public int InsertSingle(T entity)

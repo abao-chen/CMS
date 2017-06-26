@@ -16,11 +16,6 @@ namespace CmsUtils
             logger.Debug(message);
         }
 
-        public void Error(object message)
-        {
-            logger.Error(message);
-        }
-
         public void Info(object message)
         {
             logger.Info(message);
@@ -29,6 +24,11 @@ namespace CmsUtils
         public void Warn(object message)
         {
             logger.Warn(message);
+        }
+
+        public void Error(object message)
+        {
+            logger.Error(message);
         }
     }
 }

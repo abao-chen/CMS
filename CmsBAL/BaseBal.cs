@@ -28,10 +28,11 @@ namespace CmsBAL
             }
         }
 
+        protected Log Logger;
+
         public BaseBal()
         {
-
-            
+            Logger = LogFactory.GetLogger(this.GetType());
         }
 
         public int InsertSingle(T entity)
@@ -114,7 +115,7 @@ namespace CmsBAL
         {
             using (var ctx = new CmsEntities())
             {
-               return new BaseDal<T>(ctx).GetDataTable(searchModel, sql);
+                return new BaseDal<T>(ctx).GetDataTable(searchModel, sql);
             }
         }
     }

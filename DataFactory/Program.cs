@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -10,11 +11,18 @@ using CmsEntity;
 
 namespace DataFactory
 {
-    class Program
+    
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            CreateData();
+            //CreateData();
+            Log log = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            log.Debug("debug");
+            log.Info("info");
+            log.Warn("warning");
+            log.Error("error");
+            Console.Read();
         }
 
         private static void CreateData()

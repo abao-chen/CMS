@@ -1,0 +1,4 @@
+记录时间：2017-06-26 23:51:54,674 线程ID:[8] 日志级别：INFO  处理类：CmsBAL.BasicUserBal 日志描述：Run ValidateAccount
+记录时间：2017-06-26 23:51:54,711 线程ID:[8] 日志级别：DEBUG 处理类：CmsBAL.BasicUserBal 日志描述：Run ValidateAccount
+记录时间：2017-06-26 23:51:54,712 线程ID:[8] 日志级别：WARN  处理类：CmsBAL.BasicUserBal 日志描述：Run ValidateAccount
+记录时间：2017-06-26 23:51:54,713 线程ID:[8] 日志级别：ERROR 处理类：CmsBAL.BasicUserBal 日志描述：Run ValidateAccount

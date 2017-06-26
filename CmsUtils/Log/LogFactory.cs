@@ -6,11 +6,11 @@ using log4net.Config;
 
 namespace CmsUtils
 {
-    public class LogFactory
+    public static class LogFactory
     {
         static LogFactory()
         {
-            var configFile = new FileInfo(HttpContext.Current.Server.MapPath("/Configs/log4net.config"));
+            var configFile = new FileInfo(HttpContext.Current.Server.MapPath("~/Config/log4net.config"));
             XmlConfigurator.Configure(configFile);
         }
 
