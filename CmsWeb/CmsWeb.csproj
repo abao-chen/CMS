@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="API\AuthorityApi.aspx" />
+    <Content Include="API\BasicContentApi.aspx" />
     <Content Include="API\ContentApi.aspx" />
     <Content Include="API\DictionaryApi.aspx" />
     <Content Include="API\DicTypeApi.aspx" />
@@ -87,6 +88,8 @@
     <None Include="Config\DataBaseConfig.config" />
     <Content Include="Config\log4net.config" />
     <None Include="Config\SystemConfig.config" />
+    <Content Include="ContentManage\BasicContentInfo.aspx" />
+    <Content Include="ContentManage\BasicContentList.aspx" />
     <Content Include="ContentManage\ContentList.aspx" />
     <Content Include="Css\common.css" />
     <Content Include="Index.aspx" />
@@ -479,6 +482,13 @@
     <Compile Include="API\AuthorityApi.aspx.designer.cs">
       <DependentUpon>AuthorityApi.aspx</DependentUpon>
     </Compile>
+    <Compile Include="API\BasicContentApi.aspx.cs">
+      <DependentUpon>BasicContentApi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\BasicContentApi.aspx.designer.cs">
+      <DependentUpon>BasicContentApi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="API\ContentApi.aspx.cs">
       <DependentUpon>ContentApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -569,6 +579,20 @@
     </Compile>
     <Compile Include="API\UserApi.aspx.designer.cs">
       <DependentUpon>UserApi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentManage\BasicContentInfo.aspx.cs">
+      <DependentUpon>BasicContentInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentManage\BasicContentInfo.aspx.designer.cs">
+      <DependentUpon>BasicContentInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentManage\BasicContentList.aspx.cs">
+      <DependentUpon>BasicContentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentManage\BasicContentList.aspx.designer.cs">
+      <DependentUpon>BasicContentList.aspx</DependentUpon>
     </Compile>
     <Compile Include="ContentManage\ContentList.aspx.cs">
       <DependentUpon>ContentList.aspx</DependentUpon>

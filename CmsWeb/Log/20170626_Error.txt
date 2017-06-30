@@ -1,1 +1,0 @@
-记录时间：2017-06-26 23:51:54,713 线程ID:[8] 日志级别：ERROR 处理类：CmsBAL.BasicUserBal 日志描述：Run ValidateAccount

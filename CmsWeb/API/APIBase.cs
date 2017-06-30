@@ -48,7 +48,7 @@ namespace CmsWeb.API
             paramsModel.Page = formParams["page"] == null ? 0 : long.Parse(formParams["page"]);
             foreach (string key in formParams.AllKeys)
             {
-                if (!KeysWordList.Any(k => k.Equals(key)))
+                if (!KeysWordList.Any(k => k.Equals(key)) && !string.IsNullOrEmpty(formParams[key].Trim()))
                 {
                     paramsModel.ParamsDic.Add(key, formParams[key].Trim());
                 }

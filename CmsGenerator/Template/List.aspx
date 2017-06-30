@@ -32,7 +32,7 @@
     </div>
     <div class="row" style="padding-bottom: 5px;">
         <div class="col-lg-12">
-            <a id="btnAdd" class="btn btn-info" href="/SysManage/#ClassName#Info.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
+            <a id="btnAdd" class="btn btn-info" href="/#FolderName#/#ClassName#Info.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
             <a id="btnDelete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>删除</a>
             <a runat="server" class="btn btn-primary" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
         </div>
@@ -79,7 +79,7 @@
                 //"scrollY": "500px",
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
-                "rowId": "#KeyId#",
+                "rowId": "ID",
                 "order": [0, "desc"],
                 "ajax": function (data, callback) {
                     var param = getSearchParams(data);
@@ -121,7 +121,7 @@
                         "width": "8%",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
-                            var result = "<a href=\"/SysManage/#ClassName#Info.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
+                            var result = "<a href=\"/#FolderName#/#ClassName#Info.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
                     },

@@ -62,17 +62,17 @@ namespace CmsWeb
             if (Id != 0)
             {
                 entity = new #ClassName#Bal().SelectSingleById(u => u.ID.Equals(Id));
-               
+                #SaveData#
                 new #ClassName#Bal().UpdateSingle(entity);
             }
             else
             {
                 entity = new #TableName#();
-               
+                #SaveData#
                 new #ClassName#Bal().InsertSingle(entity);
             }
 
-            Response.Redirect("~/SysConfig/#ClassName#List.aspx");
+            Response.Redirect("~/#FolderName#/#ClassName#List.aspx");
         }
         
     }

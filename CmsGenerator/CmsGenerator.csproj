@@ -89,6 +89,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\ColumnEntity.cs" />
+    <Compile Include="Entity\GeneraColunm.cs" />
+    <Compile Include="Entity\GeneraEntity.cs" />
     <Compile Include="Generator.aspx.cs">
       <DependentUpon>Generator.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

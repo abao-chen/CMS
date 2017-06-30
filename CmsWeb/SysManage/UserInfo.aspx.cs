@@ -90,7 +90,7 @@ namespace CmsWeb
                 new BasicUserBal().InsertSingle(userInfo);
             }
 
-            Response.Redirect("~/SysConfig/UserList.aspx");
+            Response.Redirect("~/SysManage/UserList.aspx");
         }
     }
 }

@@ -9,10 +9,16 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Button ID="btnGeneratorView" runat="server" Text="生成页面" OnClick="btnGeneratorView_OnClick" />
-        <asp:HiddenField ID="hidTablesName" runat="server" />
-        <asp:Button ID="btnGeneratorBDE" runat="server" Text="生成三层" OnClick="btnGeneratorBDE_OnClick" />
-        <asp:CheckBoxList ID="cbTables" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" RepeatLayout="Flow" OnSelectedIndexChanged="cbTables_SelectedIndexChanged"></asp:CheckBoxList>
+        <div>
+            <asp:Button ID="btnGeneratorView" runat="server" Text="生成页面" OnClick="btnGeneratorView_OnClick" />
+            <asp:Button ID="btnTest" runat="server" Text="Test" OnClientClick="createFormJsonData();" OnClick="btnTest_OnClick" />
+            <asp:HiddenField ID="hidTablesName" runat="server" />
+            <asp:HiddenField ID="hidFormData" runat="server" />
+            <asp:Button ID="btnGeneratorBDE" runat="server" Text="生成三层" OnClick="btnGeneratorBDE_OnClick" />
+        </div>
+        <div>
+            <asp:CheckBoxList ID="cbTables" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" RepeatLayout="Flow" OnSelectedIndexChanged="cbTables_SelectedIndexChanged"></asp:CheckBoxList>
+        </div>
         <table>
             <asp:Repeater ID="rpTables" runat="server" OnItemDataBound="rpTables_ItemDataBound">
                 <ItemTemplate>
@@ -21,7 +27,7 @@
                             <table id="<%#Eval("TABLE_NAME") %>" name="parentTable">
                                 <thead>
                                     <tr>
-                                        <td><%#Eval("TABLE_NAME") %>(<%#Eval("TABLE_COMMENT") %>)文件夹名称：<input type="text" value="" /></td>
+                                        <td colspan="8"><%#Eval("TABLE_NAME") %><input type="text" name="tableComment" value="<%#Eval("TABLE_COMMENT") %>" />文件夹名称：<input type="text" name="folderName" value="" /></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,41 +86,67 @@
         <script type="text/javascript">
             $(function () {
                 $("#<%=btnGeneratorView.ClientID%>").click(function () {
-                    var tableObjArray = [];
-                    var parentTable = $("table[name='parentTable']");
-                    var tablesName;
-                    $(parentTable).each(function () {
-                        var tableObj = {};
-                        tableObj["columns"] = [];
-                        tableObj["tableName"] = $(this).attr("id");
-                        if (tablesName) {
-                            tablesName += "," + $(this).attr("id") + "";
-                        } else {
-                            tablesName = "" + $(this).attr("id") + "";
-                        }
-                        $("#" + tableObj["tableName"] + " tr").each(function () {
-                            if ($(this).attr("id")) {
-                                var colObj = {};
-                                colObj["colCode"] = $(this).attr("id");
-                                $("#" + $(this).attr("id") + " input,select").each(function () {
-                                    var colName = $(this).attr("name");
-                                    if ($(this)[0].type == "text" || $(this)[0].type == "select-one") {
-                                        colObj[colName] = $(this).val();
-                                    } else if ($(this)[0].type == "checkbox") {
-                                        if ($(this).is(":checked")) {
+                    createFormJsonData();
+                });
+            });
+
+
+
+            function createFormJsonData() {
+                var tableObjArray = [];
+                var parentTable = $("table[name='parentTable']");
+                var tablesName;
+                $(parentTable).each(function () {
+                    var _thisTb = this;
+                    var tableObj = {};
+                    tableObj["columns"] = [];
+                    tableObj["tableName"] = $(_thisTb).attr("id");
+                    tableObj["folderName"] = $("input[name='folderName']", _thisTb).val();
+                    tableObj["tableComment"] = $("input[name='tableComment']", _thisTb).val();
+                    if (tablesName) {
+                        tablesName += "," + $(_thisTb).attr("id") + "";
+                    } else {
+                        tablesName = "" + $(_thisTb).attr("id") + "";
+                    }
+                    $("#" + tableObj["tableName"] + " tr").each(function () {
+                        var _thisCol = this;
+                        var colId = $(_thisCol).attr("id");
+                        if (colId) {
+                            var colObj = {};
+                            colObj["colCode"] = $(_thisCol).attr("id");
+                            $($("#" + colId + " input," + "#" + colId + " select")).each(function () {
+                                var colName;
+                                var colNameArray = $(this).attr("name").split("$");
+                                if (colNameArray.length > 0) {
+                                    colName = colNameArray[colNameArray.length - 1];
+                                } else {
+                                    colName = $(this).attr("name");
+                                }
+                                var ctrlType = $(this)[0].type;
+                                if (ctrlType == "text" || ctrlType == "select-one") {
+                                    colObj[colName] = $(this).val();
+                                } else if (ctrlType == "checkbox") {
+                                    if ($(this).is(":checked")) {
+                                        if ($(this).attr("name") == "validate") {
+                                            if (colObj[colName]) {
+                                                colObj[colName] += "," + $(this).val();
+                                            } else {
+                                                colObj[colName] = $(this).val();
+                                            }
+                                        } else {
                                             colObj[colName] = $(this).val();
                                         }
                                     }
-                                });
-                                tableObj.columns.push(colObj);
-                            }
-                        });
-                        tableObjArray.push(tableObj);
+                                }
+                            });
+                            tableObj.columns.push(colObj);
+                        }
                     });
-
-                    $("#<%=hidTablesName.ClientID%>").val(tablesName);
+                    tableObjArray.push(tableObj);
                 });
-            })
+                $("#<%=hidFormData.ClientID%>").val(JSON.stringify(tableObjArray));
+                $("#<%=hidTablesName.ClientID%>").val(tablesName);
+            }
         </script>
     </form>
 </body>

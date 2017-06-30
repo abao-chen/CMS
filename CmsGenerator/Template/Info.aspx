@@ -14,7 +14,7 @@
                         #EditForm#
                         <div class="col-lg-12" style="text-align: center;">
                             <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnSave_OnClick" />
-                            <a class="btn btn-default" href="/SysManage/#ClassName#List.aspx" style="margin: 0 auto;">取消</a>
+                            <a class="btn btn-default" href="/#FolderName#/#ClassName#List.aspx" style="margin: 0 auto;">取消</a>
                         </div>
                     </div>
                 </div>
@@ -34,32 +34,7 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    <%=txtName.UniqueID%>: {
-                        validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    <%=txtAccount.UniqueID%>: {
-                        validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    <%=ddlStatus.UniqueID%>: {
-                        validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    <%=ddlType.UniqueID%>: {
-                        validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    <%=txtPassword.UniqueID%>: {
-                        validators: {
-                            enabled:false,
-                            notEmpty: {}
-                        }
-                    }
+                    #ValidateFileds#
                 }
             });
         });

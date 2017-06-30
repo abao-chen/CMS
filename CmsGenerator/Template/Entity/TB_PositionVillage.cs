@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/25
+// 制作日期：2017/06/28
 // 文件说明：省市县镇村数据实体类
 // 
 // 
@@ -23,11 +23,11 @@ namespace CmsEntity
         /// <summary>
         /// 镇id
         /// </summary>
-        public decimal TownID { get; set; }
+        public string TownID { get; set; }
         /// <summary>
         /// 村id--唯一
         /// </summary>
-        public decimal VillageID { get; set; }
+        public string VillageID { get; set; }
         /// <summary>
         /// 村名称
         /// </summary>

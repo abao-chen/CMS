@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/25
+// 制作日期：2017/06/28
 // 文件说明：省份数据库实体类
 // 
 // 
@@ -23,7 +23,7 @@ namespace CmsEntity
         /// <summary>
         /// 省份id、省份编号
         /// </summary>
-        public decimal ProviceID { get; set; }
+        public string ProviceID { get; set; }
         /// <summary>
         /// 省份名称
         /// </summary>

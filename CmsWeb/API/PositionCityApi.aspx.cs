@@ -31,7 +31,7 @@ namespace CmsWeb.API
 				            FROM
 					            TB_PositionCity 
 				            WHERE
-					            isdeleted = 0 ";
+					            1 = 1 ";
             new PositionCityBal().GetPagerList(resultModel, searchModel, sql);
             return resultModel;
         }

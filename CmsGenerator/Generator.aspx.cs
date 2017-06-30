@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CmsEntity;
+using CmsGenerator.Entity;
 using CmsUtils;
 
 namespace CmsGenerator
@@ -21,10 +22,12 @@ namespace CmsGenerator
         {
             get { return Request.MapPath("~/Template/Bal.cs"); }
         }
+
         private string DalFilePath
         {
             get { return Request.MapPath("~/Template/Dal.cs"); }
         }
+
         private string EntityFilePath
         {
             get { return Request.MapPath("~/Template/Entity.cs"); }
@@ -83,18 +86,22 @@ namespace CmsGenerator
         {
             get { return Request.MapPath("~/Template/Entity/"); }
         }
+
         private string DalOutputPath
         {
             get { return Request.MapPath("~/Template/DAL/"); }
         }
+
         private string BalOutputPath
         {
             get { return Request.MapPath("~/Template/BAL/"); }
         }
+
         private string ViewOutputPath
         {
             get { return Request.MapPath("~/Template/View/"); }
         }
+
         private string ApiOutputPath
         {
             get { return Request.MapPath("~/Template/Api/"); }
@@ -102,21 +109,16 @@ namespace CmsGenerator
 
         public List<string> CommAtt1
         {
-            get
-            {
-                return CommAtt;
-            }
+            get { return CommAtt; }
 
-            set
-            {
-                CommAtt = value;
-            }
+            set { CommAtt = value; }
         }
 
 
         #endregion
 
-        private List<string> CommAtt = new List<string>(new string[] { "IsDeleted", "CreateUser", "CreateTime", "UpdateUser", "UpdateTime" });
+        private List<string> CommAtt = new List<string>(new string[]
+            {"IsDeleted", "CreateUser", "CreateTime", "UpdateUser", "UpdateTime"});
 
         private DataTable dicTypeDt = null;
 
@@ -128,7 +130,8 @@ namespace CmsGenerator
             }
             using (var ctx = new CmsEntities())
             {
-                dicTypeDt = ctx.Database.SqlQueryForDataTatable("Select DicTypeCode,DicTypeName from tb_dicType where isdeleted=0 and isusing=1");
+                dicTypeDt = ctx.Database.SqlQueryForDataTatable(
+                    "Select DicTypeCode,DicTypeName from tb_dicType where isdeleted=0 and isusing=1");
             }
         }
 
@@ -140,7 +143,8 @@ namespace CmsGenerator
             using (var ctx = new CmsEntities())
             {
                 //查询所有表信息
-                string tbSql = @"select TABLE_NAME,TABLE_COMMENT from information_schema.`TABLES` WHERE TABLE_SCHEMA='{0}'";
+                string tbSql =
+                    @"select TABLE_NAME,TABLE_COMMENT from information_schema.`TABLES` WHERE TABLE_SCHEMA='{0}'";
                 DataTable tbDt = ctx.Database.SqlQueryForDataTatable(string.Format(tbSql, "cms"));
                 cbTables.DataSource = tbDt;
                 cbTables.DataTextField = "TABLE_NAME";
@@ -159,13 +163,16 @@ namespace CmsGenerator
             using (var ctx = new CmsEntities())
             {
                 //查询所有表信息
-                string tbSql = @"select TABLE_NAME,TABLE_COMMENT from information_schema.`TABLES` WHERE TABLE_SCHEMA='{0}'";
+                string tbSql =
+                    @"select TABLE_NAME,TABLE_COMMENT from information_schema.`TABLES` WHERE TABLE_SCHEMA='{0}'";
                 //查询表中的所有字段
-                string colSql = @"select COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,IS_NULLABLE from information_schema.columns WHERE TABLE_NAME='{0}'";
+                string colSql =
+                    @"select COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,IS_NULLABLE from information_schema.columns WHERE TABLE_NAME='{0}'";
                 string cnFileName = string.Empty;
                 string className = string.Empty;
                 string date = DateTime.Now.ToString("yyyy/MM/dd");
-                List<TableEntity> tbList = ctx.Database.SqlQueryForDataTatable(string.Format(tbSql, "cms")).ToList<TableEntity>();
+                List<TableEntity> tbList = ctx.Database.SqlQueryForDataTatable(string.Format(tbSql, "cms"))
+                    .ToList<TableEntity>();
                 foreach (TableEntity table in tbList)
                 {
                     className = table.TABLE_NAME.Remove(0, 3);
@@ -189,7 +196,8 @@ namespace CmsGenerator
                     FileUtil.WriteFile(DalOutputPath + className + "Dal.cs", dalContent);
 
                     //生成Entity
-                    List<ColumnEntity> colList = ctx.Database.SqlQueryForDataTatable(string.Format(colSql, table.TABLE_NAME)).ToList<ColumnEntity>();
+                    List<ColumnEntity> colList = ctx.Database
+                        .SqlQueryForDataTatable(string.Format(colSql, table.TABLE_NAME)).ToList<ColumnEntity>();
                     string entityContent = FileUtil.ReadFile(string.Format(EntityFilePath, string.Empty))
                         .Replace("#TableName#", table.TABLE_NAME)
                         .Replace("#CnFileName#", cnFileName)
@@ -199,7 +207,8 @@ namespace CmsGenerator
                     {
                         string dataType = string.Empty;
                         if (!CommAtt1.Contains(col.COLUMN_NAME))
-                        {//通用字段过滤
+                        {
+                            //通用字段过滤
                             col.COLUMN_COMMENT = Regex.Replace(col.COLUMN_COMMENT, "\\r\\n", "");
                             attrSb.AppendLine("        /// <summary>");
                             attrSb.AppendLine("        /// " + col.COLUMN_COMMENT);
@@ -239,7 +248,8 @@ namespace CmsGenerator
                             attrSb.AppendLine("        public " + dataType + " " + col.COLUMN_NAME + " { get; set; }");
                         }
                     }
-                    FileUtil.WriteFile(EntityOutputPath + table.TABLE_NAME + ".cs", entityContent.Replace("#Column#", attrSb.ToString()));
+                    FileUtil.WriteFile(EntityOutputPath + table.TABLE_NAME + ".cs",
+                        entityContent.Replace("#Column#", attrSb.ToString()));
                 }
             }
         }
@@ -251,132 +261,21 @@ namespace CmsGenerator
         /// <param name="e"></param>
         protected void btnGeneratorView_OnClick(object sender, EventArgs e)
         {
-            #region 生成List文件
-            //
-            using (var ctx = new CmsEntities())
+            string formDataStr = hidFormData.Value;
+            List<GeneraEntity> list = formDataStr.ToObject<List<GeneraEntity>>();
+            string date = DateTime.Now.ToString("yyyy/MM/dd");
+            foreach (GeneraEntity entity in list)
             {
-                //查询所有表信息
-                string tbSql =
-                    @"select TABLE_NAME,TABLE_COMMENT from information_schema.`TABLES` WHERE TABLE_SCHEMA = '{0}'";
-                //查询表中的所有字段
-                string colSql =
-                    @"select COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,IS_NULLABLE from information_schema.columns WHERE TABLE_NAME='{0}'";
-                string cnFileName = string.Empty;
-                string className = string.Empty;
-                string date = DateTime.Now.ToString("yyyy/MM/dd");
-                List<TableEntity> tbList = ctx.Database.SqlQueryForDataTatable(string.Format(tbSql, "cms"))
-                    .ToList<TableEntity>();
-                foreach (TableEntity table in tbList)
-                {
-                    if (this.hidTablesName.Value.ToLower().Split(new string[] { "," }, StringSplitOptions.None)
-                        .Contains(table.TABLE_NAME.ToLower()))
-                    {
-                        className = table.TABLE_NAME.Remove(0, 3);
-                        cnFileName = table.TABLE_COMMENT.Replace("表", "");
+                string className = entity.tableName.Replace("TB_", string.Empty);
+                string cnFileName = entity.tableComment.Replace("表", string.Empty);
 
-                        //List.aspx.designer.cs
-                        string listDesignerContent = FileUtil.ReadFile(ListDesignerFilePath)
-                            .Replace("#ClassName#", className);
-                        FileUtil.WriteFile(ViewOutputPath + className + "List.aspx.designer.cs", listDesignerContent);
-
-                        //List.aspx.cs
-                        string listCsContent = FileUtil.ReadFile(ListCsFilePath)
-                            .Replace("#ClassName#", className)
-                            .Replace("#TableName# ", table.TABLE_NAME)
-                            .Replace("#CnFileName#", cnFileName)
-                            .Replace("#Date#", date);
-                        FileUtil.WriteFile(ViewOutputPath + className + "List.aspx.cs", listCsContent);
-
-                        //Api.aspx.designer.cs
-                        string ApiDesignerContent = FileUtil.ReadFile(ApiDesignerFilePath).Replace("#ClassName#", className);
-                        FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx.designer.cs", ApiDesignerContent);
-
-                        //Api.aspx.cs
-                        string ApiCsContent = FileUtil.ReadFile(ApiCsFilePath)
-                            .Replace("#ClassName#", className)
-                            .Replace("#TableName#", table.TABLE_NAME)
-                            .Replace("#CnFileName#", cnFileName)
-                            .Replace("#Date#", date);
-                        FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx.cs", ApiCsContent);
-
-                        //Api.aspx
-                        string ApiContent = FileUtil.ReadFile(ApiFilePath).Replace("#ClassName#", className);
-                        FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx", ApiContent);
-
-
-                        //infoContent.aspx.designer.cs
-                        string infoDesignerContent = FileUtil.ReadFile(InfoDesignerFilePath).Replace("#ClassName#", className);
-                        FileUtil.WriteFile(ViewOutputPath + className + "Info.aspx.designer.cs", infoDesignerContent);
-
-                        //infoContent.aspx.cs
-                        string infoCsContent = FileUtil.ReadFile(InfoCsFilePath)
-                            .Replace("#ClassName#", className)
-                            .Replace("#TableName#", table.TABLE_NAME)
-                            .Replace("#CnFileName#", cnFileName)
-                            .Replace("#Date#", date);
-                        FileUtil.WriteFile(ViewOutputPath + className + "Info.aspx.cs", infoCsContent);
-                        
-                        //List.aspx
-                        string listContent = FileUtil.ReadFile(ListFilePath)
-                            .Replace("#ClassName#", className)
-                            .Replace("#TableName# ", table.TABLE_NAME)
-                            .Replace("#AjaxName#", className); //Ajax文件名
-                        StringBuilder searchBuilder = new StringBuilder();
-                        StringBuilder listHeadBuilder = new StringBuilder();
-                        StringBuilder colConfigBuilder = new StringBuilder();
-                        StringBuilder editFormBuilder = new StringBuilder();
-                        List<ColumnEntity> colList = ctx.Database
-                            .SqlQueryForDataTatable(string.Format(colSql, table.TABLE_NAME)).ToList<ColumnEntity>();
-                        foreach (ColumnEntity colEntity in colList)
-                        {
-                            if (!CommAtt.Contains(colEntity.COLUMN_NAME) && colEntity.COLUMN_NAME != "ID")
-                            {
-                                string searchCols = "<div class=\"col-lg-4 form-group\">\r\n";
-                                searchCols += "                                <asp:#ControlType# runat=\"server\" ID=\"#ControlAlisa##ColName#\" searchattr=\"#ColName#|LIKE|#ColName#\" CssClass=\"form-control\" placeholder=\"#ColCnName#\"></asp:#ControlType#>\r\n";
-                                searchCols += "                            </div> ";
-                                searchCols = searchCols.Replace("#ControlType#", "TextBox")
-                                    .Replace("#ControlAlisa#", "txt")
-                                    .Replace("#ColName#", colEntity.COLUMN_NAME)
-                                    .Replace("#ColCnName#", colEntity.COLUMN_COMMENT);
-                                searchBuilder.AppendLine(searchCols);
-
-                                string editCols = "<div class=\"col-lg-6\">\r\n";
-                                editCols += "             <div class=\"form-group\">\r\n";
-                                editCols += "    <label>#ColCnName#：</label>\r\n";
-                                editCols += "<asp:TextBox ID =\"txt#ColName#\" runat=\"server\" CssClass=\"form-control\"></asp:TextBox>\r\n";
-                                editCols += "</div>\r\n";
-                                editCols += "</div> ";
-
-                                editCols = editCols.Replace("#ColName#", colEntity.COLUMN_NAME)
-                                    .Replace("#ColCnName#", colEntity.COLUMN_COMMENT);
-                                editFormBuilder.AppendLine(editCols);
-
-                                listHeadBuilder.AppendLine("<th>" + colEntity.COLUMN_COMMENT + "</th>");
-
-                                colConfigBuilder.AppendLine("                    { \"data\": \"" + colEntity.COLUMN_NAME + "\" },");
-                            }
-                        }
-
-                        listContent = listContent.Replace("#SearchCols#", searchBuilder.ToString())
-                            .Replace("#ListHead#", listHeadBuilder.ToString()) //datatables头部
-                            .Replace("#ColConfig#", colConfigBuilder.ToString());//datatables列配置
-                        FileUtil.WriteFile(ViewOutputPath + className + "List.aspx", listContent);
-
-                        //infoContent.aspx
-                        string infoContent = FileUtil.ReadFile(InfoFilePath)
-                            .Replace("#EditForm#", editFormBuilder.ToString())
-                            .Replace("#ClassName#", className)
-                            .Replace("#CnFileName#", cnFileName);
-                        FileUtil.WriteFile(ViewOutputPath + className + "Info.aspx", infoContent);
-                    }
-                }
+                //生成Api文件
+                CreateApiFile(className, entity, cnFileName, date); CreateApiFile(className, entity, cnFileName, date);
+                //生成List文件
+                CreateListFile(className, entity, cnFileName, date);
+                //生成Info文件
+                CreateInfoFile(entity, className, cnFileName, date);
             }
-
-            #endregion
-
-            #region 生成Info文件
-
-            #endregion
         }
 
         /// <summary>
@@ -405,7 +304,9 @@ namespace CmsGenerator
             {
                 using (var ctx = new CmsEntities())
                 {
-                    string tbSql = @"select TABLE_NAME,TABLE_COMMENT from information_schema.`TABLES` WHERE TABLE_NAME IN (" + tablesWhere + ")";
+                    string tbSql =
+                        @"select TABLE_NAME,TABLE_COMMENT from information_schema.`TABLES` WHERE binary TABLE_NAME IN (" +
+                        tablesWhere + ")";
                     DataTable tbDt = ctx.Database.SqlQueryForDataTatable(tbSql);
                     rpTables.DataSource = tbDt;
                     rpTables.DataBind();
@@ -449,13 +350,223 @@ namespace CmsGenerator
                     string tbName = rowv["TABLE_NAME"].ToString();
                     using (var ctx = new CmsEntities())
                     {
-                        string sql = @"select COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,IS_NULLABLE from information_schema.columns WHERE TABLE_NAME='" + tbName + "'";
+                        string sql =
+                            @"select COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,IS_NULLABLE from information_schema.columns WHERE TABLE_NAME='" +
+                            tbName + "'";
                         DataTable colDt = ctx.Database.SqlQueryForDataTatable(sql);
                         rpCols.DataSource = colDt;
                         rpCols.DataBind();
                     }
                 }
             }
+        }
+
+        protected void btnTest_OnClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// 创建编辑页面
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <param name="className">类名</param>
+        /// <param name="cnFileName">文件名</param>
+        /// <param name="date">日期</param>
+        private void CreateInfoFile(GeneraEntity entity, string className, string cnFileName,
+            string date)
+        {
+            StringBuilder editFormBuilder = new StringBuilder();
+            StringBuilder validatorBuilder = new StringBuilder();
+            //初始化数据
+            StringBuilder initDataBuilder = new StringBuilder();
+            //保存数据
+            StringBuilder saveBuilder = new StringBuilder();
+            foreach (GeneraColunm colEntity in entity.columns)
+            {
+                if (colEntity.isEdit == 1)
+                {//是否可编辑
+                    string controlAlisa;
+                    string controlType;
+                    string editCols = "<div class=\"col-lg-6\">\r\n";
+                    editCols += "             <div class=\"form-group\">\r\n";
+                    editCols += "    <label>#ColCnName#：</label>\r\n";
+                    editCols +=
+                        "<asp:#ControlType# ID =\"#ControlAlisa##ColName#\" runat=\"server\" CssClass=\"form-control\"></asp:#ControlType#>\r\n";
+                    switch (colEntity.controlType)
+                    {
+                        case 2://下拉框
+                            controlAlisa = "ddl";
+                            controlType = "DropDownList";
+                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
+                            saveBuilder.AppendLine("entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;");
+                            break;
+                        default://文本框
+                            controlAlisa = "txt";
+                            controlType = "TextBox";
+                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.Text = entity.#ColName#.ToString();");
+                            saveBuilder.AppendLine("entity.#ColName# = #ControlAlisa##ColName#.Text;");
+                            break;
+                    }
+                    editCols += "</div>\r\n";
+                    editCols += "</div> ";
+                    editCols = editCols.Replace("#ColName#", colEntity.colCode)
+                                        .Replace("#ColCnName#", colEntity.colComment)
+                                        .Replace("#ControlType#", controlType)
+                                        .Replace("#ControlAlisa#", controlAlisa);
+                    editFormBuilder.AppendLine(editCols);
+
+
+                    //表单校验
+                    string validateFileds = @"                    <%=#ControlAlisa##ColName#.UniqueID%>: {
+                        validators: {
+                            #Validators#
+                        }
+                    },";
+                    if (!colEntity.validate.IsEmpty())
+                    {
+                        string validators = string.Empty;
+                        string[] validates = colEntity.validate.Split(new[] { "," }, StringSplitOptions.None);
+                        foreach (string v in validates)
+                        {
+                            switch (v)
+                            {
+                                case "1"://不能为空
+                                    validators += "                            notEmpty: {},";
+                                    break;
+                                case "2"://数字
+                                    validators += "                            digits: {},";
+                                    break;
+                                default://more
+                                    break;
+                            }
+                        }
+                        validateFileds = validateFileds.Replace("#ControlAlisa#", controlAlisa)
+                            .Replace("#ColName#", colEntity.colCode)
+                            .Replace("#Validators#", validators);
+                        validatorBuilder.AppendLine(validateFileds);
+                    }
+                }
+            }
+
+            //infoContent.aspx
+            string infoContent = FileUtil.ReadFile(InfoFilePath)
+                .Replace("#EditForm#", editFormBuilder.ToString())
+                .Replace("#ValidateFileds#", validatorBuilder.ToString())
+                .Replace("#ClassName#", className)
+                .Replace("#CnFileName#", cnFileName)
+                .Replace("#FolderName#", entity.folderName);
+            FileUtil.WriteFile(ViewOutputPath + className + "Info.aspx", infoContent);
+
+            //infoContent.aspx.cs
+            string infoCsContent = FileUtil.ReadFile(InfoCsFilePath)
+                .Replace("#ClassName#", className)
+                .Replace("#TableName#", entity.tableName)
+                .Replace("#CnFileName#", cnFileName)
+                .Replace("#Date#", date)
+                .Replace("#FolderName#", entity.folderName)
+                .Replace("#SaveData#", saveBuilder.ToString());
+            FileUtil.WriteFile(ViewOutputPath + className + "Info.aspx.cs", infoCsContent);
+
+            //infoContent.aspx.designer.cs
+            string infoDesignerContent = FileUtil.ReadFile(InfoDesignerFilePath)
+                .Replace("#ClassName#", className);
+            FileUtil.WriteFile(ViewOutputPath + className + "Info.aspx.designer.cs", infoDesignerContent);
+        }
+
+        /// <summary>
+        /// 生成List文件
+        /// </summary>
+        /// <param name="className">类名</param>
+        /// <param name="entity">实体</param>
+        /// <param name="cnFileName">文件名</param>
+        /// <param name="date">日期</param>
+        private void CreateListFile(string className, GeneraEntity entity, string cnFileName, string date)
+        {
+            StringBuilder searchBuilder = new StringBuilder();
+            StringBuilder listHeadBuilder = new StringBuilder();
+            StringBuilder colConfigBuilder = new StringBuilder();
+
+            //List.aspx
+            string listContent = FileUtil.ReadFile(ListFilePath)
+                .Replace("#ClassName#", className)
+                .Replace("#TableName# ", entity.tableName)
+                .Replace("#AjaxName#", className)
+                .Replace("#FolderName#", entity.folderName); //Ajax文件名
+            foreach (GeneraColunm colEntity in entity.columns)
+            {
+                //搜索条件
+                if (colEntity.isSelect == 1)
+                {
+                    string searchCols = "<div class=\"col-lg-4 form-group\">\r\n";
+                    searchCols +=
+                        "                                <asp:#ControlType# runat=\"server\" ID=\"#ControlAlisa##ColName#\" searchattr=\"#ColName#|LIKE|#ColName#\" CssClass=\"form-control\" placeholder=\"#ColCnName#\"></asp:#ControlType#>\r\n";
+                    searchCols += "                            </div> ";
+                    switch (colEntity.controlType)
+                    {
+                        case 2:
+                            searchCols = searchCols.Replace("#ControlType#", "DropDownList").Replace("#ControlAlisa#", "ddl");
+                            break;
+                        default:
+                            searchCols = searchCols.Replace("#ControlType#", "TextBox").Replace("#ControlAlisa#", "txt");
+                            break;
+                    }
+                    searchCols = searchCols.Replace("#ColName#", colEntity.colCode)
+                        .Replace("#ColCnName#", colEntity.colComment);
+                    searchBuilder.AppendLine(searchCols);
+                }
+
+                //表头级datatables列配置
+                if (colEntity.isShowList == 1)
+                {
+                    listHeadBuilder.AppendLine("<th>" + colEntity.colComment + "</th>");
+                    colConfigBuilder.AppendLine("                    { \"data\": \"" + colEntity.colCode + "\" },");
+                }
+            }
+            listContent = listContent.Replace("#SearchCols#", searchBuilder.ToString())
+                .Replace("#ListHead#", listHeadBuilder.ToString()) //datatables头部
+                .Replace("#ColConfig#", colConfigBuilder.ToString()); //datatables列配置
+            FileUtil.WriteFile(ViewOutputPath + className + "List.aspx", listContent);
+
+            //List.aspx.designer.cs
+            string listDesignerContent = FileUtil.ReadFile(ListDesignerFilePath)
+                .Replace("#ClassName#", className);
+            FileUtil.WriteFile(ViewOutputPath + className + "List.aspx.designer.cs", listDesignerContent);
+
+            //List.aspx.cs
+            string listCsContent = FileUtil.ReadFile(ListCsFilePath)
+                .Replace("#ClassName#", className)
+                .Replace("#TableName# ", entity.tableName)
+                .Replace("#CnFileName#", cnFileName)
+                .Replace("#Date#", date);
+            FileUtil.WriteFile(ViewOutputPath + className + "List.aspx.cs", listCsContent);
+        }
+
+        /// <summary>
+        /// 生成Api文件
+        /// </summary>
+        /// <param name="className">类名</param>
+        /// <param name="entity">生成实体</param>
+        /// <param name="cnFileName">文件名</param>
+        /// <param name="date">日期</param>
+        private void CreateApiFile(string className, GeneraEntity entity, string cnFileName, string date)
+        {
+            //Api.aspx.cs
+            string ApiCsContent = FileUtil.ReadFile(ApiCsFilePath)
+                .Replace("#ClassName#", className)
+                .Replace("#TableName#", entity.tableName)
+                .Replace("#CnFileName#", cnFileName)
+                .Replace("#Date#", date);
+            FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx.cs", ApiCsContent);
+
+            //Api.aspx
+            string ApiContent = FileUtil.ReadFile(ApiFilePath).Replace("#ClassName#", className);
+            FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx", ApiContent);
+
+            //Api.aspx.designer.cs
+            string ApiDesignerContent = FileUtil.ReadFile(ApiDesignerFilePath)
+                .Replace("#ClassName#", className);
+            FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx.designer.cs", ApiDesignerContent);
         }
 
     }
