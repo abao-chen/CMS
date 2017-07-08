@@ -1,8 +1,8 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/28
-// 文件说明：基础内容列表页面
+// 制作日期：2017/07/08
+// 文件说明：内容类型列表页面
 // 
 // 
 //------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ using CmsUtils;
 
 namespace CmsWeb
 {
-    public partial class BasicContentList : BasePage
+    public partial class ContentTypeList : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,12 +51,12 @@ namespace CmsWeb
             string sql = @"SELECT
 					            *
 				            FROM
-					            TB_BasicContent
+					            TB_ContentType
 				            WHERE
 					            isdeleted = 0 ";
-            DataTable dt = new BasicContentBal().GetDataTable(searchModel, sql);
+            DataTable dt = new ContentTypeBal().GetDataTable(searchModel, sql);
             string filePath = Server.MapPath("~/Temp/" + DateTime.Now.ToString("yyyyMMdd"));
-            string fileName = "BasicContentList_" + DateTime.Now.ToString("yyyyMMdd") + ".xls";
+            string fileName = "ContentTypeList_" + DateTime.Now.ToString("yyyyMMdd") + ".xls";
             ExcelUtil.WriteExcel(dt, filePath, fileName);
             FileDownHelper.DownLoadFile(filePath + "/" + fileName, fileName);
         }

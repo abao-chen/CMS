@@ -21,7 +21,7 @@ using CmsUtils;
 
 namespace CmsWeb.API
 {
-    public partial class SysParamsApi : APIBase
+    public partial class SysParamsApi : BaseApi
     {
         public AjaxResultModel GetPagerList()
         {

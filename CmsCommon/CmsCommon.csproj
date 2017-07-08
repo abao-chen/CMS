@@ -56,6 +56,10 @@
       <Project>{c7355b99-f287-47f0-9a80-bc1284430d80}</Project>
       <Name>CmsUtils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Entity\CmsEntity.csproj">
+      <Project>{1ebb8e27-e404-47f4-bc9e-44e0866eb77f}</Project>
+      <Name>CmsEntity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

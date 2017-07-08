@@ -1,9 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="DictionaryList.aspx.cs" Inherits="CmsWeb.DictionaryList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <%--<link href="/Scripts/bootstrap/vendor/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />--%>
     <link href="/Scripts/bootstrap/vendor/zTree/css/metroStyle/metroStyle.css" rel="stylesheet" />
-    <%--<link href="../Scripts/bootstrap/vendor/zTree/css/bootStrapStyle/metro.css" rel="stylesheet" />--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="searchPanel" style="display: none;">
@@ -55,11 +53,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <%--<script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.all.min.js"></script>--%>
-    <script src="../Scripts/bootstrap/vendor/zTree/js/jquery.ztree.core.js"></script>
-    <%-- <script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.excheck.min.js"></script>
-    <script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.exedit.min.js"></script>
-    <script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.exhide.min.js"></script>--%>
+    <script src="../Scripts/bootstrap/vendor/zTree/js/jquery.ztree.all.js"></script>
     <script type="text/javascript">
         var tableObj;
         //初始化表格

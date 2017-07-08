@@ -80,6 +80,7 @@
     <Compile Include="CustomModel\AjaxResultModel.cs" />
     <Compile Include="CustomModel\SearchModel.cs" />
     <Compile Include="CustomModel\TreeModel.cs" />
+    <Compile Include="ExtModel\TB_AuthorityExt.cs" />
     <Compile Include="ExtModel\TB_DicTypeExt.cs" />
     <Compile Include="IBaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,10 +169,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CmsCommon\CmsCommon.csproj">
-      <Project>{69505100-56a0-4ef9-ad9c-f9c359b792ec}</Project>
-      <Name>CmsCommon</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CmsUtils\CmsUtils.csproj">
       <Project>{C7355B99-F287-47F0-9A80-BC1284430D80}</Project>
       <Name>CmsUtils</Name>

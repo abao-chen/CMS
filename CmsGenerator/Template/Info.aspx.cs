@@ -45,6 +45,7 @@ namespace CmsWeb
         private void InitData()
         {
             #TableName#  entity = new #ClassName#Bal().SelectSingleById(u => u.ID.Equals(Id));
+            #InitData#
         }
 
         /// <summary>
@@ -62,13 +63,18 @@ namespace CmsWeb
             if (Id != 0)
             {
                 entity = new #ClassName#Bal().SelectSingleById(u => u.ID.Equals(Id));
-                #SaveData#
-                new #ClassName#Bal().UpdateSingle(entity);
             }
             else
             {
                 entity = new #TableName#();
-                #SaveData#
+            }
+            #SaveData#
+            if (Id != 0)
+            {
+                new #ClassName#Bal().UpdateSingle(entity);
+            }
+            else
+            {
                 new #ClassName#Bal().InsertSingle(entity);
             }
 

@@ -11,7 +11,7 @@ using CmsUtils;
 
 namespace CmsWeb
 {
-    public partial class BasicContentInfo : BasePage
+    public partial class ContentTypeInfo : BasePage
     {
         /// <summary>
         /// 用户ID
@@ -44,7 +44,11 @@ namespace CmsWeb
         /// </summary>
         private void InitData()
         {
-            TB_BasicContent  entity = new BasicContentBal().SelectSingleById(u => u.ID.Equals(Id));
+            TB_ContentType  entity = new ContentTypeBal().SelectSingleById(u => u.ID.Equals(Id));
+            txtTypeName.Text = entity.TypeName.ToString();
+txtTypeAlias.Text = entity.TypeAlias.ToString();
+txtIsUse.Text = entity.IsUse.ToString();
+
         }
 
         /// <summary>
@@ -58,21 +62,21 @@ namespace CmsWeb
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            TB_BasicContent  entity;
+            TB_ContentType  entity;
             if (Id != 0)
             {
-                entity = new BasicContentBal().SelectSingleById(u => u.ID.Equals(Id));
-               
-                new BasicContentBal().UpdateSingle(entity);
+                entity = new ContentTypeBal().SelectSingleById(u => u.ID.Equals(Id));
+                
+                new ContentTypeBal().UpdateSingle(entity);
             }
             else
             {
-                entity = new TB_BasicContent();
-               
-                new BasicContentBal().InsertSingle(entity);
+                entity = new TB_ContentType();
+                
+                new ContentTypeBal().InsertSingle(entity);
             }
 
-            Response.Redirect("~/ContentManage/BasicContentList.aspx");
+            Response.Redirect("~/ContentManage/ContentTypeList.aspx");
         }
         
     }

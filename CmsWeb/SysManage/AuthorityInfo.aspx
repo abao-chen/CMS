@@ -14,7 +14,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>权限类型</label>
-                                <asp:TextBox ID="txtAuthorType" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:DropDownList ID="ddlAuthorType" runat="server" CssClass="form-control">
+                                    <Items>
+                                        <asp:ListItem Text="模块" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="页面" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="按钮" Value="3"></asp:ListItem>
+                                    </Items>
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -33,12 +39,6 @@
                             <div class="form-group">
                                 <label>父级权限ID：</label>
                                 <asp:TextBox ID="txtParentID" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>权限全路径：</label>
-                                <asp:TextBox ID="txtFullID" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -70,29 +70,13 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    <%=txtAuthorType.UniqueID%>: {
+                    <%=ddlAuthorType.UniqueID%>: {
                         validators: {
                             notEmpty: {}
                         }
                     },
                     <%=txtAuthorName.UniqueID%>: {
                         validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    <%=txtAuthorType.UniqueID%>: {
-                        validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    <%=txtPageUrl.UniqueID%>: {
-                        validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    <%=txtParentID.UniqueID%>: {
-                        validators: {
-                            enabled:false,
                             notEmpty: {}
                         }
                     }

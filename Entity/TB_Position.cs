@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/25
+// 制作日期：2017/07/08
 // 文件说明：省市县镇村数据实体类
 // 
 // 
@@ -23,7 +23,7 @@ namespace CmsEntity
         /// <summary>
         /// 
         /// </summary>
-        public decimal ProvinceId { get; set; }
+        public string ProvinceId { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -31,7 +31,7 @@ namespace CmsEntity
         /// <summary>
         /// 
         /// </summary>
-        public decimal CityID { get; set; }
+        public string CityID { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -39,7 +39,7 @@ namespace CmsEntity
         /// <summary>
         /// 
         /// </summary>
-        public decimal CountyID { get; set; }
+        public string CountyID { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -47,7 +47,7 @@ namespace CmsEntity
         /// <summary>
         /// 
         /// </summary>
-        public decimal TownID { get; set; }
+        public string TownID { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -55,7 +55,7 @@ namespace CmsEntity
         /// <summary>
         /// 
         /// </summary>
-        public decimal VillageID { get; set; }
+        public string VillageID { get; set; }
         /// <summary>
         /// 
         /// </summary>

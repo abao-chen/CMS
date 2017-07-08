@@ -44,15 +44,19 @@ namespace CmsWeb
         private void InitData()
         {
             TB_BasicUser userInfo = new BasicUserBal().SelectSingleById(u => u.ID.Equals(Id));
-            txtAccount.Text = userInfo.UserAccount;
-            txtName.Text = userInfo.UserName;
-            txtPassword.Enabled = false;
-            txtPassword.Text = userInfo.UserPassword;
-            lbLastLoginTime.Text = userInfo.LastLoginTime == null
-                ? string.Empty
-                : Convert.ToDateTime(userInfo.LastLoginTime).ToString("yyyy/mm/dd hh:mm:ss");
-            ddlStatus.SelectedValue = userInfo.UserStatus;
-            ddlType.SelectedValue = userInfo.UserType;
+            if (userInfo != null)
+            {
+
+                txtAccount.Text = userInfo.UserAccount;
+                txtName.Text = userInfo.UserName;
+                txtPassword.Enabled = false;
+                txtPassword.Text = userInfo.UserPassword;
+                lbLastLoginTime.Text = userInfo.LastLoginTime == null
+                    ? string.Empty
+                    : Convert.ToDateTime(userInfo.LastLoginTime).ToString("yyyy/mm/dd hh:mm:ss");
+                ddlStatus.SelectedValue = userInfo.UserStatus;
+                ddlType.SelectedValue = userInfo.UserType;
+            }
         }
 
         /// <summary>
@@ -67,7 +71,7 @@ namespace CmsWeb
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
-        {
+        { 
             TB_BasicUser userInfo;
             if (Id != 0)
             {

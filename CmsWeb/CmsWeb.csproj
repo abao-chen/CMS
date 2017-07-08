@@ -73,6 +73,7 @@
     <Content Include="API\AuthorityApi.aspx" />
     <Content Include="API\BasicContentApi.aspx" />
     <Content Include="API\ContentApi.aspx" />
+    <Content Include="API\ContentTypeApi.aspx" />
     <Content Include="API\DictionaryApi.aspx" />
     <Content Include="API\DicTypeApi.aspx" />
     <Content Include="API\OrganizationApi.aspx" />
@@ -84,13 +85,15 @@
     <Content Include="API\PositionVillageApi.aspx" />
     <Content Include="API\RoleApi.aspx" />
     <Content Include="API\SysParamsApi.aspx" />
+    <Content Include="API\UploadApi.aspx" />
     <Content Include="API\UserApi.aspx" />
     <None Include="Config\DataBaseConfig.config" />
     <Content Include="Config\log4net.config" />
     <None Include="Config\SystemConfig.config" />
     <Content Include="ContentManage\BasicContentInfo.aspx" />
     <Content Include="ContentManage\BasicContentList.aspx" />
-    <Content Include="ContentManage\ContentList.aspx" />
+    <Content Include="ContentManage\ContentTypeInfo.aspx" />
+    <Content Include="ContentManage\ContentTypeList.aspx" />
     <Content Include="Css\common.css" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
@@ -332,6 +335,12 @@
     <Content Include="Scripts\bootstrap\vendor\raphael\raphael.min.js" />
     <Content Include="Scripts\bootstrap\vendor\toastr\css\toastr.css" />
     <Content Include="Scripts\bootstrap\vendor\toastr\css\toastr.min.css" />
+    <Content Include="Scripts\bootstrap\vendor\uploadify\jquery.uploadify.js" />
+    <Content Include="Scripts\bootstrap\vendor\uploadify\jquery.uploadify.min.js" />
+    <Content Include="Scripts\bootstrap\vendor\uploadify\license.txt" />
+    <Content Include="Scripts\bootstrap\vendor\uploadify\uploadify-cancel.png" />
+    <Content Include="Scripts\bootstrap\vendor\uploadify\uploadify.css" />
+    <Content Include="Scripts\bootstrap\vendor\uploadify\uploadify.swf" />
     <Content Include="Scripts\bootstrap\vendor\zTree\css\awesomeStyle\awesome.css" />
     <Content Include="Scripts\bootstrap\vendor\zTree\css\awesomeStyle\img\loading.gif" />
     <Content Include="Scripts\bootstrap\vendor\zTree\css\bootStrapStyle\img\diy\1_close.png" />
@@ -464,6 +473,7 @@
     <Content Include="SysManage\DictionaryList.aspx" />
     <Content Include="SysManage\PositionInfo.aspx" />
     <Content Include="SysManage\PositionList.aspx" />
+    <Content Include="SysManage\RoleInfo.aspx" />
     <Content Include="SysManage\RoleList.aspx" />
     <Content Include="SysManage\SysParamsInfo.aspx" />
     <Content Include="SysManage\SysParamsList.aspx" />
@@ -472,7 +482,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\APIBase.cs">
+    <Compile Include="API\BaseApi.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="API\AuthorityApi.aspx.cs">
@@ -495,6 +505,13 @@
     </Compile>
     <Compile Include="API\ContentApi.aspx.designer.cs">
       <DependentUpon>ContentApi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="API\ContentTypeApi.aspx.cs">
+      <DependentUpon>ContentTypeApi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\ContentTypeApi.aspx.designer.cs">
+      <DependentUpon>ContentTypeApi.aspx</DependentUpon>
     </Compile>
     <Compile Include="API\DictionaryApi.aspx.cs">
       <DependentUpon>DictionaryApi.aspx</DependentUpon>
@@ -573,6 +590,13 @@
     <Compile Include="API\SysParamsApi.aspx.designer.cs">
       <DependentUpon>SysParamsApi.aspx</DependentUpon>
     </Compile>
+    <Compile Include="API\UploadApi.aspx.cs">
+      <DependentUpon>UploadApi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\UploadApi.aspx.designer.cs">
+      <DependentUpon>UploadApi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="API\UserApi.aspx.cs">
       <DependentUpon>UserApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -594,12 +618,19 @@
     <Compile Include="ContentManage\BasicContentList.aspx.designer.cs">
       <DependentUpon>BasicContentList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ContentManage\ContentList.aspx.cs">
-      <DependentUpon>ContentList.aspx</DependentUpon>
+    <Compile Include="ContentManage\ContentTypeInfo.aspx.cs">
+      <DependentUpon>ContentTypeInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ContentManage\ContentList.aspx.designer.cs">
-      <DependentUpon>ContentList.aspx</DependentUpon>
+    <Compile Include="ContentManage\ContentTypeInfo.aspx.designer.cs">
+      <DependentUpon>ContentTypeInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentManage\ContentTypeList.aspx.cs">
+      <DependentUpon>ContentTypeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentManage\ContentTypeList.aspx.designer.cs">
+      <DependentUpon>ContentTypeList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -671,6 +702,13 @@
     </Compile>
     <Compile Include="SysManage\PositionList.aspx.designer.cs">
       <DependentUpon>PositionList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SysManage\RoleInfo.aspx.cs">
+      <DependentUpon>RoleInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SysManage\RoleInfo.aspx.designer.cs">
+      <DependentUpon>RoleInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="SysManage\RoleList.aspx.cs">
       <DependentUpon>RoleList.aspx</DependentUpon>

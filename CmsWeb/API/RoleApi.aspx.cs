@@ -17,10 +17,11 @@ using System.Web.UI.WebControls;
 using CmsBAL;
 using CmsCommon;
 using CmsEntity;
+using CmsUtils;
 
 namespace CmsWeb.API
 {
-    public partial class RoleApi : APIBase
+    public partial class RoleApi : BaseApi
     {
         public AjaxResultModel GetPagerList()
         {
@@ -41,6 +42,30 @@ namespace CmsWeb.API
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
             new RoleBal().DeleteByIds(resultModel, searchModel);
+            return resultModel;
+        }
+
+        /// <summary>
+        /// 获取树数据源
+        /// </summary>
+        /// <returns></returns>
+        public AjaxResultModel GetTreeList()
+        {
+            AjaxResultModel resultModel = new AjaxResultModel();
+            AjaxModel searchModel = GetPostParams();
+            string sql = @"SELECT
+					            *
+				            FROM
+					            TB_Authority 
+				            WHERE
+					            isdeleted = 0 ";
+            TB_Authority rootNode = new TB_Authority();
+            rootNode.ID = 0;
+            rootNode.ParentID = -1;
+            rootNode.AuthorName = "系统权限";
+            List<TB_Authority> list = new AuthorityBal().GetDataTable(searchModel, sql).ToList<TB_Authority>();
+            list.Insert(0, rootNode);
+            resultModel.data = list;
             return resultModel;
         }
     }

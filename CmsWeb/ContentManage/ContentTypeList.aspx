@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="BasicContentList.aspx.cs" Inherits="CmsWeb.BasicContentList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="ContentTypeList.aspx.cs" Inherits="CmsWeb.ContentTypeList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -17,13 +17,19 @@
                 <div id="searchBody" class="panel-body collapse in">
                     <div class="row">
                         <div class="col-lg-12">
-                            
-                                <div class="col-lg-4 form-group pull-right">
-                                    <div class="pull-right">
-                                        <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
-                                        <input type="button" id="btnClear" class="btn btn-default" value="重置" />
-                                    </div>
+                            <div class="col-lg-4 form-group">
+                                <asp:TextBox runat="server" ID="txtTypeName" searchattr="TypeName|LIKE|TypeName" CssClass="form-control" placeholder="类型名称"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-4 form-group">
+                                <asp:TextBox runat="server" ID="txtTypeAlias" searchattr="TypeAlias|LIKE|TypeAlias" CssClass="form-control" placeholder="类型别名"></asp:TextBox>
+                            </div>
+
+                            <div class="col-lg-4 form-group pull-right">
+                                <div class="pull-right">
+                                    <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
+                                    <input type="button" id="btnClear" class="btn btn-default" value="重置" />
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -32,7 +38,7 @@
     </div>
     <div class="row" style="padding-bottom: 5px;">
         <div class="col-lg-12">
-            <a id="btnAdd" class="btn btn-info" href="/ContentManage/BasicContentInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
+            <a id="btnAdd" class="btn btn-info" href="/ContentManage/ContentTypeInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
             <a id="btnDelete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>删除</a>
             <a runat="server" class="btn btn-primary" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
         </div>
@@ -49,7 +55,11 @@
                                 <th>
                                     <input id="cbSelectAll" type="checkbox" title="全选/取消" /></th>
                                 <th>操作</th>
-                                
+                                <th>类型名称</th>
+                                <th>类型别名</th>
+                                <th>是否启用</th>
+                                <th>更新时间</th>
+
                             </tr>
                         </thead>
                     </table>
@@ -87,17 +97,17 @@
                     //ajax请求数据
                     $.ajax({
                         type: "POST",
-                        url: "/API/BasicContentApi.aspx",
+                        url: "/API/ContentTypeApi.aspx",
                         cache: false,  //禁用缓存
                         data: param,  //传入组装的参数
                         dataType: "json",
                         success: function (result) {
                             if (result.result == 1) {//请求成功
                                 callback(setDataTablesPagerParas(result, data));
-                            }else if (result.result == 2) {//请求失败
+                            } else if (result.result == 2) {//请求失败
                                 toastr.error(result.message);
                             } else if (result.result == 3) {//登录超时
-                                bootAlert.alert(result.message).on(function() {
+                                bootAlert.alert(result.message).on(function () {
                                     location.href = "/Login.aspx";
                                 });
                             } else {//其他异常情况
@@ -121,11 +131,29 @@
                         "width": "8%",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
-                            var result = "<a href=\"/ContentManage/BasicContentInfo.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
+                            var result = "<a href=\"/ContentManage/ContentTypeInfo.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
                     },
-
+                    { "data": "TypeName" },
+                    { "data": "TypeAlias" },
+                    {
+                        "data": "IsUse",
+                        "orderable": false,
+                        "render": function (data, type, row, meta) {
+                            if (data == 1) {
+                                return "是";
+                            } else {
+                                return "否";
+                            }
+                        }
+                    },
+                    {
+                        "data": "UpdateTime",
+                        "render": function (data, type, row, meta) {
+                            return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
+                        }
+                    }
                 ]
             });
         });
@@ -160,14 +188,14 @@
         function deleteRows(data) {
             bootAlert.confirm({
                 message: "确认要删除选中数据吗？"
-            }).on(function(result) {
+            }).on(function (result) {
                 if (result) {
                     var param = {};
                     param["method"] = "DeleteByIds";
                     param["Id"] = data;
                     $.ajax({
                         type: "POST",
-                        url: "/API/BasicContentApi.aspx",
+                        url: "/API/ContentTypeApi.aspx",
                         cache: false, //禁用缓存
                         data: param, //传入组装的参数
                         dataType: "json",

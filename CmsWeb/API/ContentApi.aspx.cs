@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace CmsWeb.API
 {
-    public partial class ContentApi : APIBase
+    public partial class ContentApi : BaseApi
     {
 
         public AjaxResultModel GetContentPageList()

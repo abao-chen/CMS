@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace CmsWeb.API
 {
-    public abstract class APIBase : Page, IRequiresSessionState
+    public abstract class BaseApi : Page, IRequiresSessionState
     {
         private List<string> KeysWordList => new List<string>(new[] { "length", "limit", "start", "page", "orderColunm", "orderDir" });
 
@@ -23,7 +23,7 @@ namespace CmsWeb.API
             if (HttpContext.Current.Request.HttpMethod == "POST" && !string.IsNullOrEmpty(method))
             {
                 Response.ContentType = "text/plain";
-                ContentApi api = new ContentApi();
+                Response.Charset = "utf-8";
                 string[] url = HttpContext.Current.Request.RawUrl.Split(new string[] { "/" }, StringSplitOptions.None);
                 Type classType = Assembly.Load(GlobalConfig.Assembly).GetType(GlobalConfig.ApiNamespace + url[url.Length - 1].Split(new string[] { "." }, StringSplitOptions.None)[0]);
                 MethodInfo methodInfo = classType.GetMethod(method);

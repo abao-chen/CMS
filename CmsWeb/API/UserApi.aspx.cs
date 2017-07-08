@@ -11,7 +11,7 @@ using CmsEntity;
 
 namespace CmsWeb.API
 {
-    public partial class UserApi : APIBase
+    public partial class UserApi : BaseApi
     {
         public AjaxResultModel GetPagerList()
         {

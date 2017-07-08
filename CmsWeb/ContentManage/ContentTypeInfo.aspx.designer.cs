@@ -10,33 +10,42 @@
 namespace CmsWeb {
     
     
-    public partial class ContentList {
+    public partial class ContentTypeInfo {
         
         /// <summary>
-        /// txtTitle 控件。
+        /// txtTypeName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtTypeName;
         
         /// <summary>
-        /// txtSubTitle 控件。
+        /// txtTypeAlias 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSubTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtTypeAlias;
         
         /// <summary>
-        /// txtCreateTime 控件。
+        /// cbxIsUse 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCreateTime;
+        protected global::System.Web.UI.WebControls.CheckBox cbxIsUse;
+        
+        /// <summary>
+        /// btnSave 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

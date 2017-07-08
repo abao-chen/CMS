@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/28
+// 制作日期：2017/07/08
 // 文件说明：权限实体类
 // 
 // 
@@ -40,6 +40,10 @@ namespace CmsEntity
         /// 权限全路径
         /// </summary>
         public string FullID { get; set; }
+        /// <summary>
+        /// 是否为菜单，1：是，0：否
+        /// </summary>
+        public int? IsMenu { get; set; }
         /// <summary>
         /// 页面URL
         /// </summary>

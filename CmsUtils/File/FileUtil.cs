@@ -145,7 +145,7 @@ namespace CmsUtils
         public static void CreateDir(string dir)
         {
             if (dir.Length == 0) return;
-            if (!Directory.Exists(HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir))
+            if (!Directory.Exists(HttpContext.Current.Server.MapPath(dir)))
                 Directory.CreateDirectory(HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir);
         }
 
@@ -641,14 +641,19 @@ namespace CmsUtils
         #region 从文件的绝对路径中获取扩展名
 
         /// <summary>
-        ///     从文件的绝对路径中获取扩展名
+        ///     从文件路径中获取扩展名
         /// </summary>
-        /// <param name="filePath">文件的绝对路径</param>
+        /// <param name="filePath">文件的路径</param>
         public static string GetExtension(string filePath)
         {
+            string fileExt = string.Empty;
             //获取文件的名称
-            var fi = new FileInfo(filePath);
-            return fi.Extension;
+            if (!filePath.IsEmpty() && filePath.IndexOf(".", StringComparison.Ordinal) > 0)
+            {
+                fileExt = filePath.Substring(filePath.LastIndexOf(".", StringComparison.Ordinal));
+            }
+            
+            return fileExt;
         }
 
         #endregion

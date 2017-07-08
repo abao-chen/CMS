@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserApi.aspx.cs" Inherits="CmsWeb.API.BasicContentApi" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UploadApi.aspx.cs" Inherits="CmsWeb.API.UploadApi" %>
 
 <!DOCTYPE html>
 
@@ -15,4 +15,3 @@
     </form>
 </body>
 </html>
-

@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/28
+// 制作日期：2017/07/01
 // 文件说明：基础内容列表页面
 // 
 // 
@@ -36,7 +36,7 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            //ControlUtil.BindDropDownList(this.#ControlAlisa##ColName#, new DictionaryBal().GetDictionaryList(#DicType#), true);
+            ControlUtil.BindDropDownList(this.ddlContentType, new ContentTypeBal().SelectList(c => c.IsUse == Constants.IS_YES && c.IsDeleted == Constants.IS_NO), "TypeName", "ID", true);
         }
 
         /// <summary>

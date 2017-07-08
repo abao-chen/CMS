@@ -14,7 +14,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>内容类型：</label>
-                                <asp:TextBox ID="txtContentType" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:DropDownList ID="ddlContentType" runat="server" CssClass="form-control"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -86,7 +86,8 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>附件：</label>
-                                <asp:TextBox ID="txtAttachmentUrl" runat="server" CssClass="form-control"></asp:TextBox>
+                                <div id="uploadfile"></div>
+                                <asp:HiddenField ID="txtAttachmentUrl" runat="server" />
                             </div>
                         </div>
 
@@ -112,11 +113,76 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
+                    <%=ddlContentType.UniqueID%>: {
+                        validators: {
+                            notEmpty: {},
+                        }
+                    },
                     <%=txtContentTitle.UniqueID%>: {
                         validators: {
-                            notEmpty: {}
+                            notEmpty: {},
+                        }
+                    },
+                    <%=txtValidStartTime.UniqueID%>: {
+                        validators: {
+                            date: {
+                                format:"YYYY/MM/DD"
+                            },
+                        }
+                    },
+                    <%=txtValidEndTime.UniqueID%>: {
+                        validators: {
+                            date: {
+                                format:"YYYY/MM/DD"
+                            },
+                        }
+                    },
+                    <%=txtOrderNO.UniqueID%>: {
+                        validators: {
+                            digits: {},
+                        }
+                    },
+                    <%=txtPageViewQua.UniqueID%>: {
+                        validators: {
+                            digits: {},
+                        }
+                    },
+                    <%=txtForwardQua.UniqueID%>: {
+                        validators: {
+                            digits: {},
+                        }
+                    },
+                    <%=txtPointQua.UniqueID%>: {
+                        validators: {
+                            digits: {},
+                        }
+                    },
+                    <%=txtCommentQua.UniqueID%>: {
+                        validators: {
+                            digits: {},
                         }
                     }
+                }
+            });
+
+            initDateControl("<%=txtValidStartTime.ClientID%>");
+            initDateControl("<%=txtValidEndTime.ClientID%>");
+
+            $("#uploadfile").uploadify({
+                'uploader' : '/Api/UploadApi.aspx',
+                'swf':'/Scripts/bootstrap/vendor/uploadify/uploadify.swf',
+                'formData': {"method":"UploadFile","FolderPath": "~/Upload/"},
+                'buttonText':'选择文件',
+                'auto': true,
+                'multi':false,
+                onUploadSuccess: function(file, data, response) {
+                    if (data) {
+                        var dataArray = data.split("|");
+                        $("#<%=txtAttachmentUrl.ClientID%>").val(dataArray[0]);
+                    }
+                },
+                onUploadError : function(file, errorCode, errorMsg) {
+                    bootAlert.error("文件上传失败，请重新上传！");
                 }
             });
         });

@@ -59,17 +59,17 @@ namespace CmsCommon
 
         #endregion
 
-        #region 删除标识位
+        #region 是否标识位
 
         /// <summary>
-        /// 是否删除：是
+        /// 是
         /// </summary>
-        public const int IS_DELETED_Y = 1;
+        public const int IS_YES = 1;
 
         /// <summary>
-        /// 是否删除：否
+        /// 否
         /// </summary>
-        public const int IS_DELETED_N = 0;
+        public const int IS_NO = 0;
 
         #endregion
 
@@ -86,10 +86,6 @@ namespace CmsCommon
         public const string USER_STATUS_FROZEN = "U00202";
 
         #endregion
-
-        /// <summary>
-        /// 是否使用
-        /// </summary>
-        public const int IS_USING_Y = 1;
+        
     }
 }

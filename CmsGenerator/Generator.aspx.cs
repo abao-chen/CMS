@@ -363,7 +363,7 @@ namespace CmsGenerator
 
         protected void btnTest_OnClick(object sender, EventArgs e)
         {
-            
+
         }
 
         /// <summary>
@@ -388,6 +388,7 @@ namespace CmsGenerator
                 {//是否可编辑
                     string controlAlisa;
                     string controlType;
+                    string saveCol;
                     string editCols = "<div class=\"col-lg-6\">\r\n";
                     editCols += "             <div class=\"form-group\">\r\n";
                     editCols += "    <label>#ColCnName#：</label>\r\n";
@@ -399,13 +400,13 @@ namespace CmsGenerator
                             controlAlisa = "ddl";
                             controlType = "DropDownList";
                             initDataBuilder.AppendLine("#ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
-                            saveBuilder.AppendLine("entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;");
+                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
                             break;
                         default://文本框
                             controlAlisa = "txt";
                             controlType = "TextBox";
                             initDataBuilder.AppendLine("#ControlAlisa##ColName#.Text = entity.#ColName#.ToString();");
-                            saveBuilder.AppendLine("entity.#ColName# = #ControlAlisa##ColName#.Text;");
+                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.Text;";
                             break;
                     }
                     editCols += "</div>\r\n";
@@ -416,6 +417,10 @@ namespace CmsGenerator
                                         .Replace("#ControlAlisa#", controlAlisa);
                     editFormBuilder.AppendLine(editCols);
 
+                    initDataBuilder = initDataBuilder.Replace("#ControlAlisa#", controlAlisa).Replace("#ColName#", colEntity.colCode);
+                    saveCol = saveCol.Replace("#ColName#", colEntity.colCode)
+                        .Replace("#ControlAlisa#", controlAlisa);
+                    saveBuilder.AppendLine(saveCol);
 
                     //表单校验
                     string validateFileds = @"                    <%=#ControlAlisa##ColName#.UniqueID%>: {
@@ -436,6 +441,9 @@ namespace CmsGenerator
                                     break;
                                 case "2"://数字
                                     validators += "                            digits: {},";
+                                    break;
+                                case "3"://日期
+                                    validators += "                            date: {format:\"YYYY/MM/DD\"},";
                                     break;
                                 default://more
                                     break;
@@ -465,7 +473,8 @@ namespace CmsGenerator
                 .Replace("#CnFileName#", cnFileName)
                 .Replace("#Date#", date)
                 .Replace("#FolderName#", entity.folderName)
-                .Replace("#SaveData#", saveBuilder.ToString());
+                .Replace("#SaveData#", saveBuilder.ToString())
+                .Replace("#InitData#", initDataBuilder.ToString());
             FileUtil.WriteFile(ViewOutputPath + className + "Info.aspx.cs", infoCsContent);
 
             //infoContent.aspx.designer.cs

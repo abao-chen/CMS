@@ -30,5 +30,10 @@ namespace CmsCommon
         /// 登录页面URL
         /// </summary>
         public static readonly string LoginUrl = Configs.GetValue("LoginUrl");
+
+        /// <summary>
+        /// 是否验证权限
+        /// </summary>
+        public static readonly string IsValidAuthor = Configs.GetValue("IsValidAuthor");
     }
 }

@@ -91,6 +91,24 @@ namespace CmsBAL
             }
         }
 
+
+
+        public int DeleteSingle(T entity)
+        {
+            using (var ctx = new CmsEntities())
+            {
+                return new BaseDal<T>(ctx).DeleteSingle(entity);
+            }
+        }
+
+        public int DeleteList(List<T> list)
+        {
+            using (var ctx = new CmsEntities())
+            {
+                return new BaseDal<T>(ctx).DeleteList(list);
+            }
+        }
+
         /// <summary>
         /// 获取分页数据
         /// </summary>

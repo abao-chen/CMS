@@ -21,7 +21,7 @@ using CmsUtils;
 
 namespace CmsWeb.API
 {
-    public partial class DictionaryApi : APIBase
+    public partial class DictionaryApi : BaseApi
     {
         /// <summary>
         /// 获取分页列表数据

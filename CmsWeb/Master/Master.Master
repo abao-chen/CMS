@@ -34,6 +34,9 @@
     <!-- MetisMenu CSS -->
     <link href="~/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
 
+    <!-- uploadify CSS -->
+    <link href="~/Scripts/bootstrap/vendor/uploadify/uploadify.css" rel="stylesheet" />
+
     <!-- Custom CSS -->
     <link href="~/Scripts/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet" />
     <link href="~/Css/common.css" rel="stylesheet" />
@@ -316,79 +319,10 @@
                                 <a href="#"><i class="fa fa-edit fa-fw"></i>内容管理<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="/ContentManage/ContentList.aspx">内容列表</a>
+                                        <a href="/ContentManage/BasicContentList.aspx">内容列表</a>
                                     </li>
                                     <li>
-                                        <a href="/morris.aspx">内容类型</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="/forms.aspx"><i class="fa fa-edit fa-fw"></i>Forms</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-wrench fa-fw"></i>UI Elements<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="/panelswells.aspx">Panels and Wells</a>
-                                    </li>
-                                    <li>
-                                        <a href="/buttons.aspx">Buttons</a>
-                                    </li>
-                                    <li>
-                                        <a href="/notifications.aspx">Notifications</a>
-                                    </li>
-                                    <li>
-                                        <a href="/typography.aspx">Typography</a>
-                                    </li>
-                                    <li>
-                                        <a href="/icons.aspx">Icons</a>
-                                    </li>
-                                    <li>
-                                        <a href="/grid.aspx">Grid</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Multi-Level Dropdown<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="#">Second Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Second Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-third-level">
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                        </ul>
-                                        <!-- /.nav-third-level -->
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-files-o fa-fw"></i>Sample Pages<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="/blank.aspx">Blank Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="/login.aspx">Login Page</a>
+                                        <a href="/ContentManage/ContentTypeList.aspx">内容类型</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -431,6 +365,9 @@
 
             <!-- Metis Menu Plugin JavaScript -->
             <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+
+            <!-- uploadify JavaScript -->
+            <script src="/Scripts/bootstrap/vendor/uploadify/jquery.uploadify.min.js"></script>
 
             <!-- Custom Theme JavaScript -->
             <script src="/Scripts/bootstrap/dist/js/sb-admin-2.js"></script>

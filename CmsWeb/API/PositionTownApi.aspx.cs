@@ -20,7 +20,7 @@ using CmsEntity;
 
 namespace CmsWeb.API
 {
-    public partial class PositionTownApi : APIBase
+    public partial class PositionTownApi : BaseApi
     {
         public AjaxResultModel GetPagerList()
         {

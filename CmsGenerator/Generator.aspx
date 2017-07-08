@@ -67,6 +67,7 @@
                                                 <td>
                                                     <input name="validate" type="checkbox" value="1" />必填
                                                     <input name="validate" type="checkbox" value="2" />数字
+                                                    <input name="validate" type="checkbox" value="3" />日期
                                                 </td>
                                             </tr>
                                         </ItemTemplate>

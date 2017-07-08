@@ -32,16 +32,16 @@ namespace CmsEntity
         public virtual DbSet<TB_Dictionary> TB_Dictionary { get; set; }
         public virtual DbSet<TB_DicType> TB_DicType { get; set; }
         public virtual DbSet<TB_Organization> TB_Organization { get; set; }
+        public virtual DbSet<TB_Role> TB_Role { get; set; }
+        public virtual DbSet<TB_RoleAuthority> TB_RoleAuthority { get; set; }
+        public virtual DbSet<TB_SysParams> TB_SysParams { get; set; }
+        public virtual DbSet<TB_UserRole> TB_UserRole { get; set; }
+        public virtual DbSet<TB_UserOrganization> TB_UserOrganization { get; set; }
         public virtual DbSet<TB_Position> TB_Position { get; set; }
         public virtual DbSet<TB_PositionCity> TB_PositionCity { get; set; }
         public virtual DbSet<TB_PositionCounty> TB_PositionCounty { get; set; }
         public virtual DbSet<TB_PositionProvice> TB_PositionProvice { get; set; }
         public virtual DbSet<TB_PositionTown> TB_PositionTown { get; set; }
         public virtual DbSet<TB_PositionVillage> TB_PositionVillage { get; set; }
-        public virtual DbSet<TB_Role> TB_Role { get; set; }
-        public virtual DbSet<TB_RoleAuthority> TB_RoleAuthority { get; set; }
-        public virtual DbSet<TB_SysParams> TB_SysParams { get; set; }
-        public virtual DbSet<TB_UserRole> TB_UserRole { get; set; }
-        public virtual DbSet<TB_UserOrganization> TB_UserOrganization { get; set; }
     }
 }

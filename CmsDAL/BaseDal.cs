@@ -76,6 +76,30 @@ namespace CmsDAL
         }
 
         /// <summary>
+        /// 删除列表
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public int DeleteList<T>(List<T> list) where T : class
+        {
+            _ctx.Set<T>().RemoveRange(list);
+            return _ctx.SaveChanges();
+        }
+
+        /// <summary>
+        /// 删除单个
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int DeleteSingle<T>(T entity) where T : class
+        {
+            _ctx.Set<T>().Remove(entity);
+            return _ctx.SaveChanges();
+        }
+
+        /// <summary>
         /// 获取分页数据
         /// </summary>
         /// <param name="resultModel"></param>

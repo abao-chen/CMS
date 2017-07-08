@@ -208,7 +208,7 @@ function getFormPostData(formId) {
         }
     }
     return postData;
-}
+};
 
 /**
  * 获取URL参数值
@@ -223,7 +223,19 @@ function getUrlParams(name) {
     } else {
         return null;
     }
-}
+};
+
+/**
+ * 菜单选中效果
+ */
+$(function () {
+    var currentPath = window.location.pathname;
+    if (currentPath.indexOf("Info.aspx") > 0) {
+        var parentPath = currentPath.replace("Info.aspx", "List.aspx");
+        $("a[href='" + parentPath + "']").addClass("active").parent().parent().addClass("in");
+    }
+});
+
 
 /**
  * 打开Tab

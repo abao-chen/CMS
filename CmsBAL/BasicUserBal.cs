@@ -20,17 +20,19 @@ namespace CmsBAL
             TB_BasicUser selectUser;
             using (var ctx = new CmsEntities())
             {
-                selectUser = new BasicUserDal(ctx).SelectSingle(u => u.IsDeleted == Constants.IS_DELETED_N && u.UserAccount.Equals(userInfo.UserAccount) && u.UserStatus == Constants.USER_STATUS_USING);
-            }
-            if (selectUser != null && selectUser.UserPassword.Equals(SecurityUtil.Md5Encrypt64(userInfo.UserPassword + selectUser.PasswordSalt)))
-            {
-                selectUser.CopyTo(userInfo);
-                SessionUtil.SetSession(Constants.SESSION_LOGIN_USERINFO, selectUser);
-                return true;
-            }
-            else
-            {
-                return false;
+                selectUser = new BasicUserDal(ctx).SelectSingle(u => u.IsDeleted == Constants.IS_NO && u.UserAccount.Equals(userInfo.UserAccount) && u.UserStatus == Constants.USER_STATUS_USING);
+                if (selectUser != null && selectUser.UserPassword.Equals(SecurityUtil.Md5Encrypt64(userInfo.UserPassword + selectUser.PasswordSalt)))
+                {
+                    selectUser.RoleList = new RoleDal(ctx).SelectRoleByUserId(selectUser.ID);
+                    selectUser.AuthorityList = new AuthorityDal(ctx).SelectAuthorityByUserId(selectUser.ID);
+                    selectUser.CopyTo(userInfo);
+                    SessionUtil.SetSession(Constants.SESSION_LOGIN_USERINFO, selectUser);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 

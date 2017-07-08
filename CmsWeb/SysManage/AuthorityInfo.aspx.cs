@@ -72,7 +72,7 @@ namespace CmsWeb
                 new AuthorityBal().InsertSingle(entity);
             }
 
-            Response.Redirect("~/SysConfig/AuthorityList.aspx");
+            Response.Redirect("~/SysManage/AuthorityList.aspx");
         }
         
     }

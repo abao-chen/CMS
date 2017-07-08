@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/25
+// 制作日期：2017/07/08
 // 文件说明：镇数据库实体类
 // 
 // 
@@ -23,11 +23,11 @@ namespace CmsEntity
         /// <summary>
         /// 县级市id
         /// </summary>
-        public decimal CountyID { get; set; }
+        public string CountyID { get; set; }
         /// <summary>
         /// 镇id
         /// </summary>
-        public decimal TownID { get; set; }
+        public string TownID { get; set; }
         /// <summary>
         /// 
         /// </summary>

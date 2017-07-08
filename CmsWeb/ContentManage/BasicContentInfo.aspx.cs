@@ -44,7 +44,29 @@ namespace CmsWeb
         /// </summary>
         private void InitData()
         {
-            TB_BasicContent  entity = new BasicContentBal().SelectSingleById(u => u.ID.Equals(Id));
+            TB_BasicContent entity = new BasicContentBal().SelectSingleById(u => u.ID.Equals(Id));
+            if (entity != null)
+            {
+                ddlContentType.SelectedValue = entity.ContentType != null ? entity.ContentType.ToString() : string.Empty;
+                txtContentTitle.Text = entity.ContentTitle;
+                txtContentSubTitle.Text = entity.ContentSubTitle;
+                txtSource.Text = entity.Source;
+                if (entity.ValidStartTime != null)
+                {
+                    txtValidStartTime.Text = Convert.ToDateTime(entity.ValidStartTime).ToString("yyyy/MM/dd");
+                }
+                if (entity.ValidEndTime != null)
+                {
+                    txtValidEndTime.Text = Convert.ToDateTime(entity.ValidEndTime).ToString("yyyy/MM/dd");
+                }
+                txtCoverPictureUrl.Text = entity.CoverPictureUrl;
+                txtAttachmentUrl.Value = entity.AttachmentUrl;
+                txtOrderNO.Text = entity.OrderNO != null ? entity.OrderNO.ToString() : string.Empty;
+                txtPageViewQua.Text = entity.PageViewQua != null ? entity.PageViewQua.ToString() : string.Empty;
+                txtForwardQua.Text = entity.ForwardQua != null ? entity.ForwardQua.ToString() : string.Empty;
+                txtPointQua.Text = entity.PointQua != null ? entity.PointQua.ToString() : string.Empty;
+                txtCommentQua.Text = entity.CommentQua != null ? entity.CommentQua.ToString() : string.Empty;
+            }
         }
 
         /// <summary>
@@ -52,28 +74,83 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            //ControlUtil.BindDropDownList(this.ddlStatus, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERSTATUS), true);
-            //ControlUtil.BindDropDownList(this.ddlType, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERTYPE), true);
+            ControlUtil.BindDropDownList(this.ddlContentType, new ContentTypeBal().SelectList(c => c.IsUse == Constants.IS_YES && c.IsDeleted == Constants.IS_NO), "TypeName", "ID", true);
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            TB_BasicContent  entity;
+            TB_BasicContent entity;
             if (Id != 0)
             {
                 entity = new BasicContentBal().SelectSingleById(u => u.ID.Equals(Id));
-               
+                entity.ContentType = int.Parse(ddlContentType.SelectedValue);
+                entity.ContentTitle = txtContentTitle.Text;
+                entity.ContentSubTitle = txtContentSubTitle.Text;
+                entity.Source = txtSource.Text;
+                if (!txtValidStartTime.Text.IsEmpty())
+                {
+                    entity.ValidStartTime = Convert.ToDateTime(txtValidStartTime.Text);
+                }
+                else
+                {
+                    entity.ValidStartTime = null;
+                }
+                if (!txtValidEndTime.Text.IsEmpty())
+                {
+                    entity.ValidEndTime = Convert.ToDateTime(txtValidEndTime.Text);
+                }
+                else
+                {
+                    entity.ValidEndTime = null;
+                }
+                entity.CoverPictureUrl = txtCoverPictureUrl.Text;
+                entity.ContentSubTitle = txtContentSubTitle.Text;
+                entity.OrderNO = int.Parse(txtOrderNO.Text);
+                entity.PageViewQua = int.Parse(txtPageViewQua.Text);
+                entity.ForwardQua = int.Parse(txtForwardQua.Text);
+                entity.PointQua = int.Parse(txtPointQua.Text);
+                entity.CommentQua = int.Parse(txtCommentQua.Text);
+                entity.AttachmentUrl = txtAttachmentUrl.Value;
+
                 new BasicContentBal().UpdateSingle(entity);
             }
             else
             {
                 entity = new TB_BasicContent();
-               
+                entity.ContentType = int.Parse(ddlContentType.SelectedValue);
+                entity.ContentTitle = txtContentTitle.Text;
+                entity.ContentSubTitle = txtContentSubTitle.Text;
+                entity.Source = txtSource.Text;
+                if (!txtValidStartTime.Text.IsEmpty())
+                {
+                    entity.ValidStartTime = Convert.ToDateTime(txtValidStartTime.Text);
+                }
+                else
+                {
+                    entity.ValidStartTime = null;
+                }
+                if (!txtValidEndTime.Text.IsEmpty())
+                {
+                    entity.ValidEndTime = Convert.ToDateTime(txtValidEndTime.Text);
+                }
+                else
+                {
+                    entity.ValidEndTime = null;
+                }
+                entity.CoverPictureUrl = txtCoverPictureUrl.Text;
+                entity.ContentSubTitle = txtContentSubTitle.Text;
+                entity.OrderNO = int.Parse(txtOrderNO.Text);
+                entity.PageViewQua = int.Parse(txtPageViewQua.Text);
+                entity.ForwardQua = int.Parse(txtForwardQua.Text);
+                entity.PointQua = int.Parse(txtPointQua.Text);
+                entity.CommentQua = int.Parse(txtCommentQua.Text);
+                entity.AttachmentUrl = txtAttachmentUrl.Value;
+
                 new BasicContentBal().InsertSingle(entity);
             }
 
             Response.Redirect("~/ContentManage/BasicContentList.aspx");
         }
-        
+
     }
 }

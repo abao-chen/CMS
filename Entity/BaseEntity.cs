@@ -4,20 +4,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CmsCommon;
+using System.Web;
 
 namespace CmsEntity
 {
     public class BaseEntity
     {
+        private const string SessionKey_LoginUser = "LoginUserInfo";
+
+        private TB_BasicUser LoginUserInfo
+        {
+            get
+            {
+                if (SessionUtil.GetSession(SessionKey_LoginUser) != null)
+                {
+                    return (TB_BasicUser)SessionUtil.GetSession(SessionKey_LoginUser);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public BaseEntity()
         {
             this.IsDeleted = 0;
             this.CreateTime = DateTime.Now;
             this.UpdateTime = DateTime.Now;
-            if (SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO) != null)
+            if (LoginUserInfo != null)
             {
-                this.CreateUser = this.UpdateUser = ((TB_BasicUser)SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO)).ID;
+                this.CreateUser = this.UpdateUser = LoginUserInfo.ID;
             }
             else
             {
