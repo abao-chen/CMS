@@ -5,21 +5,21 @@ using System.IO;
 
 namespace CmsUtils
 {
-    public class VerifyCode
+    public class VerifyCodeUtil
     {
-        public byte[] GetVerifyCode()
+        public const string ValidateCodeKey = "ValidateCode";
+        public static byte[] GetVerifyCode(string chkCode)
         {
             var codeW = 80;
             var codeH = 30;
             var fontSize = 16;
-            var chkCode = string.Empty;
             //颜色列表，用于验证码、噪线、噪点 
             Color[] color =
             {
                 Color.Black, Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Brown, Color.Brown, Color.DarkBlue
             };
             //字体列表，用于验证码 
-            string[] font = {"Times New Roman"};
+            string[] font = { "Times New Roman" };
             //验证码的字符集，去掉了一些容易混淆的字符 
             char[] character =
             {
@@ -27,11 +27,8 @@ namespace CmsUtils
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'W', 'X', 'Y'
             };
             var rnd = new Random();
-            //生成验证码字符串 
-            for (var i = 0; i < 4; i++)
-                chkCode += character[rnd.Next(character.Length)];
             //写入Session、验证码加密
-            SessionUtil.SetSession("verifyCode", SecurityUtil.Md5Encrypt64(chkCode.ToLower()));
+            SessionUtil.SetSession(ValidateCodeKey, SecurityUtil.Md5Encrypt64(chkCode.ToLower()));
             //创建画布
             var bmp = new Bitmap(codeW, codeH);
             var g = Graphics.FromImage(bmp);
@@ -52,7 +49,7 @@ namespace CmsUtils
                 var fnt = font[rnd.Next(font.Length)];
                 var ft = new Font(fnt, fontSize);
                 var clr = color[rnd.Next(color.Length)];
-                g.DrawString(chkCode[i].ToString(), ft, new SolidBrush(clr), (float) i * 18, 0);
+                g.DrawString(chkCode[i].ToString(), ft, new SolidBrush(clr), (float)i * 18, 0);
             }
             //将验证码图片写入内存流，并将其以 "image/Png" 格式输出 
             var ms = new MemoryStream();

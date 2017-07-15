@@ -192,7 +192,9 @@
                                 },
                                 callback: {
                                     onClick: onClickNode,
-                                    onRename: editNode
+                                    onRename: editNode,
+                                    beforeRemove: deleteConfirm,
+                                    onRemove: deleteNode
                                 }
 
                             }, result.data);
@@ -218,26 +220,42 @@
 
         //编辑字典类型
         function editNode(event, treeId, treeNode, isCancel) {
-            console.log(treeNode);
-            bootAlert.confirm().on(function (isOk) {
-                if (isOk) {
-                    var param = {};
-                    param["method"] = "DeleteDicType";
-                    param["ID"] = treeNode.ID;
-                    $.ajax({
-                        type: "POST",
-                        url: "/API/DictionaryApi.aspx",
-                        cache: false, //禁用缓存
-                        data: param, //传入组装的参数
-                        dataType: "json",
-                        success: function () {
-                            toastr.success("删除成功！");
-                            reloadData();
-                        }
-                    });
+            if (!isCancel) {
+                toastr.info("更新成功");
+            }
+
+        };
+
+        //删除节点确认
+        function deleteConfirm(treeId, treeNode) {
+            var result;
+            if (treeNode.ID == 0) {
+                return false;
+            } else {
+                bootAlert.confirm().on(function (confirmResult) {
+                    result = confirmResult;
+                });
+                return result;
+            }
+        }
+
+        //删除字典类型
+        function deleteNode(event, treeId, treeNode) {
+            var param = {};
+            param["method"] = "DeleteDicType";
+            param["ID"] = treeNode.ID;
+            $.ajax({
+                type: "POST",
+                url: "/API/DictionaryApi.aspx",
+                cache: false, //禁用缓存
+                data: param, //传入组装的参数
+                dataType: "json",
+                success: function () {
+                    toastr.success("删除成功！");
+                    reloadData();
                 }
             });
-        }
+        };
 
         //重新加载数据
         function reloadData() {

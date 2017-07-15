@@ -19,17 +19,17 @@
                         <div class="col-lg-12">
                             <div class="col-lg-4 form-group">
                                 <asp:DropDownList runat="server" ID="ddlContentType" searchattr="ContentType|LIKE|ContentType" CssClass="form-control" placeholder="内容类型"></asp:DropDownList>
-                            </div> 
+                            </div>
                             <div class="col-lg-4 form-group">
                                 <asp:TextBox ID="txtContentTitle" runat="server" searchattr="ContentTitle|LIKE|ContentTitle" CssClass="form-control" placeholder="内容标题"></asp:TextBox>
-                            </div> 
+                            </div>
 
-                                <div class="col-lg-4 form-group pull-right">
-                                    <div class="pull-right">
-                                        <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
-                                        <input type="button" id="btnClear" class="btn btn-default" value="重置" />
-                                    </div>
+                            <div class="col-lg-4 form-group pull-right">
+                                <div class="pull-right">
+                                    <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
+                                    <input type="button" id="btnClear" class="btn btn-default" value="重置" />
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,11 +56,11 @@
                                     <input id="cbSelectAll" type="checkbox" title="全选/取消" /></th>
                                 <th>操作</th>
                                 <th>内容类型</th>
-<th>来源</th>
-<th>标题</th>
-<th>有效开始时间</th>
-<th>有效结束时间</th>
-<th>展示顺序</th>
+                                <th>来源</th>
+                                <th>标题</th>
+                                <th>有效开始时间</th>
+                                <th>有效结束时间</th>
+                                <th>展示顺序</th>
 
                             </tr>
                         </thead>
@@ -106,10 +106,10 @@
                         success: function (result) {
                             if (result.result == 1) {//请求成功
                                 callback(setDataTablesPagerParas(result, data));
-                            }else if (result.result == 2) {//请求失败
+                            } else if (result.result == 2) {//请求失败
                                 toastr.error(result.message);
                             } else if (result.result == 3) {//登录超时
-                                bootAlert.alert(result.message).on(function() {
+                                bootAlert.alert(result.message).on(function () {
                                     location.href = "/Login.aspx";
                                 });
                             } else {//其他异常情况
@@ -178,7 +178,7 @@
         function deleteRows(data) {
             bootAlert.confirm({
                 message: "确认要删除选中数据吗？"
-            }).on(function(result) {
+            }).on(function (result) {
                 if (result) {
                     var param = {};
                     param["method"] = "DeleteByIds";

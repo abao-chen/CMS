@@ -17,6 +17,12 @@
 
     <!-- MetisMenu CSS -->
     <link href="~/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
+    <!-- bootstrapValidator -->
+    <link href="~/Scripts/bootstrap/vendor/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" />
+    <!-- toastr -->
+    <link href="~/Scripts/bootstrap/vendor/toastr/css/toastr.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap/vendor/toastr/css/toastr.less" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap/vendor/toastr/css/toastr.scss" rel="stylesheet" />
 
     <!-- Custom CSS -->
     <link href="~/Scripts/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet" />
@@ -32,7 +38,7 @@
     <![endif]-->
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form" runat="server">
 
         <div class="container">
             <div class="row">
@@ -45,10 +51,16 @@
                             <%--<form role="form">--%>
                             <fieldset>
                                 <div class="form-group">
-                                    <asp:TextBox ID="txtAccount" runat="server" class="form-control" placeholder="用户账号" name="email" autofocus></asp:TextBox>
+                                    <asp:TextBox ID="txtAccount" runat="server" class="form-control" placeholder="用户账号" name="email" Text="" autofocus></asp:TextBox>
                                 </div>
                                 <div class="form-group">
-                                    <asp:TextBox runat="server" ID="txtPassword" class="form-control" placeholder="用户密码" name="password" type="password" value=""></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtPassword" class="form-control" placeholder="用户密码" name="password" type="password" Text=""></asp:TextBox>
+                                </div>
+                                <div class="form-group input-group">
+                                    <asp:TextBox runat="server" ID="txtValidateCode" class="form-control" placeholder="验证码" name="validateCode" Text=""></asp:TextBox>
+                                    <span class="input-group-btn">
+                                        <asp:Image ID="ImgValidateCode" runat="server" ImageUrl="~/API/ValidateCodeApi.aspx" ToolTip="点击刷新" />
+                                    </span>
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -72,11 +84,55 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
 
+        <!-- bootstrapValidator -->
+        <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
+        <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/language/zh_CN.js"></script>
+
+        <!-- toastr -->
+        <script src="/Scripts/bootstrap/vendor/toastr/js/toastr.min.js"></script>
+
         <!-- Metis Menu Plugin JavaScript -->
         <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
 
         <!-- Custom Theme JavaScript -->
         <script src="/Scripts/bootstrap/dist/js/sb-admin-2.js"></script>
+        <script type="text/javascript">
+            //表单验证
+            $(function () {
+                $('#form').bootstrapValidator({
+                    message: 'This value is not valid',
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        <%=txtAccount.UniqueID%>: {
+                            validators: {
+                                notEmpty: {}
+                            }
+                        },
+                        <%=txtPassword.UniqueID%>: {
+                            validators: {
+                                notEmpty: {}
+                            }
+                        },
+                        <%=txtValidateCode.UniqueID%>: {
+                            validators: {
+                                notEmpty: {}
+                            }
+                        }
+                    }
+                });
+            });
+
+            $(function () {
+                $("#<%=ImgValidateCode.ClientID%>").click(function () {
+                    var imgSrc = "/API/ValidateCodeApi.aspx?rnd=" + new Date().getTime();
+                    $(this).attr("src", imgSrc);
+                });
+            });
+        </script>
     </form>
 </body>
 </html>

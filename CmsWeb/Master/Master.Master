@@ -23,7 +23,6 @@
     <link href="~/Scripts/bootstrap/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
     <!-- bootstrapValidator -->
-
     <link href="~/Scripts/bootstrap/vendor/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" />
 
     <!-- toastr -->
@@ -36,6 +35,9 @@
 
     <!-- uploadify CSS -->
     <link href="~/Scripts/bootstrap/vendor/uploadify/uploadify.css" rel="stylesheet" />
+
+    <!-- Summernote  CSS -->
+    <link href="~/Scripts/bootstrap/vendor/summernote/summernote.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
     <link href="~/Scripts/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet" />
@@ -368,6 +370,10 @@
 
             <!-- uploadify JavaScript -->
             <script src="/Scripts/bootstrap/vendor/uploadify/jquery.uploadify.min.js"></script>
+
+            <!-- summernote JavaScript -->
+            <script src="/Scripts/bootstrap/vendor/summernote/summernote.min.js"></script>
+            <script src="/Scripts/bootstrap/vendor/summernote/lang/summernote-zh-CN.min.js"></script>
 
             <!-- Custom Theme JavaScript -->
             <script src="/Scripts/bootstrap/dist/js/sb-admin-2.js"></script>

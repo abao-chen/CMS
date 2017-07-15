@@ -96,7 +96,7 @@
     <Compile Include="Convert\Serialize.cs" />
     <Compile Include="Security\SessionUtil.cs" />
     <Compile Include="Security\Validate.cs" />
-    <Compile Include="Security\VerifyCode.cs" />
+    <Compile Include="Security\VerifyCodeUtil.cs" />
     <Compile Include="Web\WebHelper.cs" />
     <Compile Include="File\XmlUtil.cs" />
   </ItemGroup>

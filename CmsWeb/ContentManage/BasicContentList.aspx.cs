@@ -36,7 +36,7 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            ControlUtil.BindDropDownList(this.ddlContentType, new ContentTypeBal().SelectList(c => c.IsUse == Constants.IS_YES && c.IsDeleted == Constants.IS_NO), "TypeName", "ID", true);
+            ControlUtil.BindListControl(this.ddlContentType, new ContentTypeBal().SelectList(c => c.IsUse == Constants.IS_YES && c.IsDeleted == Constants.IS_NO), "TypeName", "ID", true);
         }
 
         /// <summary>

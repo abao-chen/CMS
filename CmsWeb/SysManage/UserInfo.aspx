@@ -47,9 +47,15 @@
                                 <asp:Label ID="lbLastLoginTime" runat="server" Text="" CssClass="form-control"></asp:Label>
                             </div>
                         </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>用户角色：</label>
+                                <asp:CheckBoxList ID="cblRole" runat="server" CssClass="checkbox-inline"></asp:CheckBoxList>
+                            </div>
+                        </div>
                         <div class="col-lg-12" style="text-align: center;">
                             <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnSave_OnClick"/>
-                            <a class="btn btn-default" href="~/SysManage/UserList.aspx" style="margin: 0 auto;">取消</a>
+                            <a class="btn btn-default" href="/SysManage/UserList.aspx" style="margin: 0 auto;">取消</a>
                         </div>
                     </div>
                 </div>
@@ -91,7 +97,11 @@
                     },
                     <%= txtPassword.UniqueID %>: {
                         validators: {
-                            enabled: false,
+                            notEmpty: {}
+                        }
+                    },
+                    <%= cblRole.UniqueID %>: {
+                        validators: {
                             notEmpty: {}
                         }
                     }

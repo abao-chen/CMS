@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.UI;
 
 namespace CmsUtils
 {
@@ -267,7 +268,7 @@ namespace CmsUtils
             string contentType = "application/x-www-form-urlencoded", CookieContainer cookie = null,
             int timeout = 120000)
         {
-            var request = (HttpWebRequest) WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
             request.Timeout = timeout;
             request.CookieContainer = cookie;
             if (isPost)
@@ -281,7 +282,7 @@ namespace CmsUtils
                     stream.Write(postData, 0, postData.Length);
                 }
             }
-            var response = (HttpWebResponse) request.GetResponse();
+            var response = (HttpWebResponse)request.GetResponse();
             string result;
             using (var stream = response.GetResponseStream())
             {
@@ -296,5 +297,15 @@ namespace CmsUtils
         }
 
         #endregion
+
+        /// <summary>
+        /// 客户端提示
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="toastMessage"></param>
+        public static void ClientToast(Page page, string toastMessage)
+        {
+            page.ClientScript.RegisterStartupScript(page.ClientScript.GetType(), "myScript", "<script type='text/javascript'>toastr.error('" + toastMessage + "');</script>");
+        }
     }
 }

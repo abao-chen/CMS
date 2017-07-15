@@ -49,13 +49,21 @@ namespace CmsWeb
 
                 txtAccount.Text = userInfo.UserAccount;
                 txtName.Text = userInfo.UserName;
-                txtPassword.Enabled = false;
                 txtPassword.Text = userInfo.UserPassword;
                 lbLastLoginTime.Text = userInfo.LastLoginTime == null
                     ? string.Empty
                     : Convert.ToDateTime(userInfo.LastLoginTime).ToString("yyyy/mm/dd hh:mm:ss");
                 ddlStatus.SelectedValue = userInfo.UserStatus;
                 ddlType.SelectedValue = userInfo.UserType;
+                List<TB_UserRole> userRoleList = new UserRoleBal().SelectList(ur => ur.UserID == Id);
+                for (int index = 0; index < cblRole.Items.Count; index++)
+                {
+                    int roleId = Convert.ToInt32(cblRole.Items[index].Value);
+                    if (userRoleList.Any(ur => ur.RoleID == roleId))
+                    {
+                        cblRole.Items[index].Selected = true;
+                    }
+                }
             }
         }
 
@@ -64,23 +72,44 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            ControlUtil.BindDropDownList(this.ddlStatus,
+            ControlUtil.BindListControl(this.ddlStatus,
                 new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERSTATUS), true);
-            ControlUtil.BindDropDownList(this.ddlType,
+            ControlUtil.BindListControl(this.ddlType,
                 new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERTYPE), true);
+            ControlUtil.BindListControl(this.cblRole,
+                new RoleBal().SelectList(r => r.IsDeleted == Constants.IS_NO), "RoleName", "ID");
+
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
-        { 
+        {
             TB_BasicUser userInfo;
             if (Id != 0)
             {
                 userInfo = new BasicUserBal().SelectSingleById(u => u.ID.Equals(Id));
                 userInfo.UserAccount = txtAccount.Text;
+                if (txtPassword.Text != userInfo.UserPassword)
+                {
+                    userInfo.UserPassword = SecurityUtil.Md5Encrypt64(txtPassword.Text + userInfo.PasswordSalt);
+                }
                 userInfo.UserName = txtName.Text;
                 userInfo.UserStatus = ddlStatus.SelectedValue;
                 userInfo.UserType = ddlType.SelectedValue;
                 new BasicUserBal().UpdateSingle(userInfo);
+                List<TB_UserRole> userRoleList = new List<TB_UserRole>();
+                for (int index = 0; index < cblRole.Items.Count; index++)
+                {
+                    if (cblRole.Items[index].Selected)
+                    {
+                        userRoleList.Add(new TB_UserRole
+                        {
+                            UserID = userInfo.ID,
+                            RoleID = Convert.ToInt32(cblRole.Items[index].Value)
+                        });
+                    }
+                }
+                new UserRoleBal().DeleteListByUserId(userInfo.ID);
+                new UserRoleBal().InsertList(userRoleList);
             }
             else
             {
@@ -92,6 +121,19 @@ namespace CmsWeb
                 userInfo.UserStatus = ddlStatus.SelectedValue;
                 userInfo.UserType = ddlType.SelectedValue;
                 new BasicUserBal().InsertSingle(userInfo);
+                List<TB_UserRole> userRoleList = new List<TB_UserRole>();
+                for (int index = 0; index < cblRole.Items.Count; index++)
+                {
+                    if (cblRole.Items[index].Selected)
+                    {
+                        userRoleList.Add(new TB_UserRole
+                        {
+                            UserID = userInfo.ID,
+                            RoleID = Convert.ToInt32(cblRole.Items[index].Value)
+                        });
+                    }
+                }
+                new UserRoleBal().InsertList(userRoleList);
             }
 
             Response.Redirect("~/SysManage/UserList.aspx");

@@ -15,9 +15,10 @@ namespace CmsDAL
 {
     public class BaseDal<T> where T : class
     {
-        protected CmsEntities _ctx = null;
-        protected DbSet _dbSet = null;
+        protected CmsEntities _ctx;
+        protected DbSet _dbSet;
         protected Log Logger;
+        protected DbContextTransaction _dbTransac;
 
         public BaseDal(CmsEntities ctx)
         {
@@ -28,7 +29,6 @@ namespace CmsDAL
                 Logger.Debug(s);
             };
             _dbSet = _ctx.Set<T>();
-            Logger = LogFactory.GetLogger(this.GetType());
         }
 
         public int InsertSingle(T entity)

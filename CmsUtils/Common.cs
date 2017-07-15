@@ -31,27 +31,6 @@ namespace CmsUtils
 
         #endregion
 
-        #region 生成0-9随机数
-
-        /// <summary>
-        ///     生成0-9随机数
-        /// </summary>
-        /// <param name="codeNum">生成长度</param>
-        /// <returns></returns>
-        public static string RndNum(int codeNum)
-        {
-            var sb = new StringBuilder(codeNum);
-            var rand = new Random();
-            for (var i = 1; i < codeNum + 1; i++)
-            {
-                var t = rand.Next(9);
-                sb.AppendFormat("{0}", t);
-            }
-            return sb.ToString();
-        }
-
-        #endregion
-
         #region Stopwatch计时器
 
         /// <summary>
@@ -124,16 +103,16 @@ namespace CmsUtils
         }
 
         /// <summary>
-        ///     删除最后结尾的长度
+        ///     删除最后几位的长度
         /// </summary>
         /// <param name="str"></param>
-        /// <param name="Length"></param>
+        /// <param name="length"></param>
         /// <returns></returns>
-        public static string DelLastLength(string str, int Length)
+        public static string DelLastLength(string str, int length)
         {
             if (string.IsNullOrEmpty(str))
                 return "";
-            str = str.Substring(0, str.Length - Length);
+            str = str.Substring(0, str.Length - length);
             return str;
         }
 

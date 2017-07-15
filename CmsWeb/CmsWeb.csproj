@@ -88,6 +88,7 @@
     <Content Include="API\UploadApi.aspx" />
     <Content Include="API\UserApi.aspx" />
     <None Include="Config\DataBaseConfig.config" />
+    <Content Include="API\ValidateCodeApi.aspx" />
     <Content Include="Config\log4net.config" />
     <None Include="Config\SystemConfig.config" />
     <Content Include="ContentManage\BasicContentInfo.aspx" />
@@ -333,6 +334,19 @@
     <Content Include="Scripts\bootstrap\vendor\morrisjs\morris.min.js" />
     <Content Include="Scripts\bootstrap\vendor\raphael\raphael.js" />
     <Content Include="Scripts\bootstrap\vendor\raphael\raphael.min.js" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\lang\summernote-zh-CN.js" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\lang\summernote-zh-CN.min.js" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\plugin\databasic\summernote-ext-databasic.css" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\plugin\databasic\summernote-ext-databasic.js" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\plugin\databasic\summernote-ext-databasic.min.css" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\plugin\databasic\summernote-ext-databasic.min.js" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\plugin\hello\summernote-ext-hello.js" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\plugin\hello\summernote-ext-hello.min.js" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\plugin\specialchars\summernote-ext-specialchars.js" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\plugin\specialchars\summernote-ext-specialchars.min.js" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\summernote.css" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\summernote.js" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\summernote.min.js" />
     <Content Include="Scripts\bootstrap\vendor\toastr\css\toastr.css" />
     <Content Include="Scripts\bootstrap\vendor\toastr\css\toastr.min.css" />
     <Content Include="Scripts\bootstrap\vendor\uploadify\jquery.uploadify.js" />
@@ -451,6 +465,9 @@
     <Content Include="Master\Content.Master" />
     <Content Include="Scripts\bootstrap\vendor\zTree\css\awesomeStyle\awesome.less" />
     <Content Include="Scripts\bootstrap\vendor\zTree\css\awesomeStyle\fa.less" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\font\summernote.eot" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\font\summernote.ttf" />
+    <Content Include="Scripts\bootstrap\vendor\summernote\font\summernote.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -603,6 +620,13 @@
     </Compile>
     <Compile Include="API\UserApi.aspx.designer.cs">
       <DependentUpon>UserApi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="API\ValidateCodeApi.aspx.cs">
+      <DependentUpon>ValidateCodeApi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\ValidateCodeApi.aspx.designer.cs">
+      <DependentUpon>ValidateCodeApi.aspx</DependentUpon>
     </Compile>
     <Compile Include="ContentManage\BasicContentInfo.aspx.cs">
       <DependentUpon>BasicContentInfo.aspx</DependentUpon>

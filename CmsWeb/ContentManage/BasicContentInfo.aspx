@@ -90,6 +90,13 @@
                                 <asp:HiddenField ID="txtAttachmentUrl" runat="server" />
                             </div>
                         </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>内容：</label>
+                                <div id="content"></div>
+                                <asp:HiddenField ID="txtContent" runat="server" />
+                            </div>
+                        </div>
 
                         <div class="col-lg-12" style="text-align: center;">
                             <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnSave_OnClick" />
@@ -103,8 +110,8 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <script type="text/javascript">
-        //表单验证
         $(function () {
+            //表单验证
             $('#form').bootstrapValidator({
                 message: 'This value is not valid',
                 feedbackIcons: {
@@ -168,6 +175,7 @@
             initDateControl("<%=txtValidStartTime.ClientID%>");
             initDateControl("<%=txtValidEndTime.ClientID%>");
 
+            //上传控件
             $("#uploadfile").uploadify({
                 'uploader' : '/Api/UploadApi.aspx',
                 'swf':'/Scripts/bootstrap/vendor/uploadify/uploadify.swf',
@@ -184,6 +192,13 @@
                 onUploadError : function(file, errorCode, errorMsg) {
                     bootAlert.error("文件上传失败，请重新上传！");
                 }
+            });
+
+            $("#content").summernote({
+                lang: 'zh-CN',
+                height: 300,
+                minHeight: null,
+                maxHeight: null
             });
         });
     </script>

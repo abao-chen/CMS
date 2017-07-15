@@ -27,9 +27,9 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            ControlUtil.BindDropDownList(this.ddlUserStatus,
+            ControlUtil.BindListControl(this.ddlUserStatus,
                 new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERSTATUS), true);
-            ControlUtil.BindDropDownList(this.ddlUserType,
+            ControlUtil.BindListControl(this.ddlUserType,
                 new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERTYPE), true);
         }
 

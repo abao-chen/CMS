@@ -38,7 +38,7 @@ namespace CmsWeb.SysManage
         private void InitData()
         {
             List<TB_DicType> list = new DicTypeBal().SelectList(d => d.IsDeleted == Constants.IS_NO);
-            ControlUtil.BindDropDownList<TB_DicType>(this.ddlDicTypeCode, list, "DicTypeName", "DicTypeCode", false);
+            ControlUtil.BindListControl<TB_DicType>(this.ddlDicTypeCode, list, "DicTypeName", "DicTypeCode", false);
             entity = new DictionaryBal().SelectSingleById(s => s.ID.Equals(Id));
             if (entity != null)
             {
