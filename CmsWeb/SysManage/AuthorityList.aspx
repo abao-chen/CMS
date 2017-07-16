@@ -18,7 +18,14 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtAuthorType" searchattr="AuthorType|LIKE|AuthorType" CssClass="form-control" placeholder="权限类型"></asp:TextBox>
+                                <asp:DropDownList ID="ddlAuthorType" searchattr="AuthorType|LIKE|AuthorType" CssClass="form-control" runat="server">
+                                    <Items>
+                                        <asp:ListItem Text="请选择" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="模块" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="页面" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="按钮" Value="3"></asp:ListItem>
+                                    </Items>
+                                </asp:DropDownList>
                             </div>
                             <div class="col-lg-4 form-group">
                                 <asp:TextBox runat="server" ID="txtAuthorName" searchattr="AuthorName|LIKE|AuthorName" CssClass="form-control" placeholder="权限名称"></asp:TextBox>
@@ -132,7 +139,7 @@
                         "width": "8%",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
-                            var result = "<a href=\"/#Folder#/AuthorityInfo.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
+                            var result = "<a href=\"/SysManage/AuthorityInfo.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
                     },

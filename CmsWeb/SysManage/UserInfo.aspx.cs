@@ -52,7 +52,7 @@ namespace CmsWeb
                 txtPassword.Text = userInfo.UserPassword;
                 lbLastLoginTime.Text = userInfo.LastLoginTime == null
                     ? string.Empty
-                    : Convert.ToDateTime(userInfo.LastLoginTime).ToString("yyyy/mm/dd hh:mm:ss");
+                    : Convert.ToDateTime(userInfo.LastLoginTime).ToString("yyyy/MM/dd HH:mm:ss");
                 ddlStatus.SelectedValue = userInfo.UserStatus;
                 ddlType.SelectedValue = userInfo.UserType;
                 List<TB_UserRole> userRoleList = new UserRoleBal().SelectList(ur => ur.UserID == Id);

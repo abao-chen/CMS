@@ -24,7 +24,7 @@ namespace CmsEntity
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<TB_Authority> TB_Authority { get; set; }
         public virtual DbSet<TB_BasicContent> TB_BasicContent { get; set; }
         public virtual DbSet<TB_BasicUser> TB_BasicUser { get; set; }

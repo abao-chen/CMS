@@ -486,12 +486,14 @@
     <Content Include="Scripts\bootstrap\vendor\toastr\js\toastr.min.js" />
     <Content Include="SysManage\AuthorityInfo.aspx" />
     <Content Include="SysManage\AuthorityList.aspx" />
+    <Content Include="SysManage\ChoiceAuthor.aspx" />
     <Content Include="SysManage\DictionaryInfo.aspx" />
     <Content Include="SysManage\DictionaryList.aspx" />
     <Content Include="SysManage\PositionInfo.aspx" />
     <Content Include="SysManage\PositionList.aspx" />
     <Content Include="SysManage\RoleInfo.aspx" />
     <Content Include="SysManage\RoleList.aspx" />
+    <Content Include="SysManage\SendEmail.aspx" />
     <Content Include="SysManage\SysParamsInfo.aspx" />
     <Content Include="SysManage\SysParamsList.aspx" />
     <Content Include="SysManage\UserInfo.aspx" />
@@ -699,6 +701,13 @@
     <Compile Include="SysManage\AuthorityList.aspx.designer.cs">
       <DependentUpon>AuthorityList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SysManage\ChoiceAuthor.aspx.cs">
+      <DependentUpon>ChoiceAuthor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SysManage\ChoiceAuthor.aspx.designer.cs">
+      <DependentUpon>ChoiceAuthor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SysManage\DictionaryInfo.aspx.cs">
       <DependentUpon>DictionaryInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -740,6 +749,13 @@
     </Compile>
     <Compile Include="SysManage\RoleList.aspx.designer.cs">
       <DependentUpon>RoleList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SysManage\SendEmail.aspx.cs">
+      <DependentUpon>SendEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SysManage\SendEmail.aspx.designer.cs">
+      <DependentUpon>SendEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="SysManage\SysParamsInfo.aspx.cs">
       <DependentUpon>SysParamsInfo.aspx</DependentUpon>

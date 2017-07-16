@@ -40,13 +40,22 @@ namespace CmsWeb {
         protected global::System.Web.UI.WebControls.TextBox txtAuthorFlag;
         
         /// <summary>
-        /// txtParentID 控件。
+        /// txtParent 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtParentID;
+        protected global::System.Web.UI.WebControls.TextBox txtParent;
+        
+        /// <summary>
+        /// hidParentID 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidParentID;
         
         /// <summary>
         /// txtPageUrl 控件。
@@ -56,6 +65,15 @@ namespace CmsWeb {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPageUrl;
+        
+        /// <summary>
+        /// cbxIsMenu 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxIsMenu;
         
         /// <summary>
         /// btnSave 控件。

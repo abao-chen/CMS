@@ -87,7 +87,7 @@
     <Compile Include="File\GZip.cs" />
     <Compile Include="Convert\Json.cs" />
     <Compile Include="Log\LogFactory.cs" />
-    <Compile Include="Mail\MailHelper.cs" />
+    <Compile Include="Mail\MailUtil.cs" />
     <Compile Include="Net\HttpMethods.cs" />
     <Compile Include="Net\Net.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

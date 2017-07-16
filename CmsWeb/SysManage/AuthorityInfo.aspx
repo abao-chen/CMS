@@ -37,8 +37,14 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>父级权限ID：</label>
-                                <asp:TextBox ID="txtParentID" runat="server" CssClass="form-control"></asp:TextBox>
+                                <label>父级权限：</label>
+                                <div class="input-group">
+                                    <asp:TextBox ID="txtParent" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <span class="input-group-btn">
+                                        <button id="choiceParent" class="btn btn-default" type="button">选择</button>
+                                    </span>
+                                    <asp:HiddenField ID="hidParentID" runat="server" />
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -47,7 +53,12 @@
                                 <asp:TextBox ID="txtPageUrl" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>是否为菜单：</label>
+                                <asp:CheckBox ID="cbxIsMenu" runat="server" />
+                            </div>
+                        </div>
                         <div class="col-lg-12" style="text-align: center;">
                             <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnSave_OnClick" />
                             <a class="btn btn-default" href="/SysManage/AuthorityList.aspx" style="margin: 0 auto;">取消</a>
@@ -82,7 +93,22 @@
                     }
                 }
             });
+
+            //弹出选择父级权限
+            $("#choiceParent").click(function() {
+                bootAlert.dialog({
+                    "url":"/SysManage/ChoiceAuthor.aspx",
+                    "title":"选择父级权限",
+                    "height": 355
+                });
+            });
         });
+
+        //设置父级权限
+        function setParentValue(parentId, parentValue) {
+            $("#<%= hidParentID.ClientID%>").val(parentId);
+            $("#<%= txtParent.ClientID%>").val(parentValue);
+        }
     </script>
 </asp:Content>
 

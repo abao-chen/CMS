@@ -44,7 +44,21 @@ namespace CmsWeb
         /// </summary>
         private void InitData()
         {
-            TB_Authority  entity = new AuthorityBal().SelectSingleById(u => u.ID.Equals(Id));
+            TB_Authority entity = new AuthorityBal().SelectSingleById(u => u.ID.Equals(Id));
+            ddlAuthorType.SelectedValue = entity.AuthorType.ToString();
+            txtAuthorName.Text = entity.AuthorName;
+            txtAuthorFlag.Text = entity.AuthorFlag;
+            txtPageUrl.Text = entity.PageUrl;
+            if (entity.ParentID != null)
+            {
+                hidParentID.Value = entity.ParentID.ToString();
+                TB_Authority parentEntity = new AuthorityBal().SelectSingleById(u => u.ID == entity.ParentID);
+                if (parentEntity != null)
+                {
+                    txtParent.Text = parentEntity.AuthorName;
+                }
+            }
+            cbxIsMenu.Checked = entity.IsMenu == Constants.IS_YES;
         }
 
         /// <summary>
@@ -52,28 +66,74 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            //ControlUtil.BindDropDownList(this.ddlStatus, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERSTATUS), true);
-            //ControlUtil.BindDropDownList(this.ddlType, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERTYPE), true);
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            TB_Authority  entity;
+            TB_Authority entity;
             if (Id != 0)
             {
                 entity = new AuthorityBal().SelectSingleById(u => u.ID.Equals(Id));
-               
+                entity.AuthorType = Convert.ToInt32(ddlAuthorType.SelectedValue);
+                entity.AuthorName = txtAuthorName.Text;
+                entity.AuthorFlag = txtAuthorFlag.Text;
+                entity.PageUrl = txtPageUrl.Text;
+                if (hidParentID.Value != string.Empty && hidParentID.Value != "0")
+                {
+                    entity.ParentID = Convert.ToInt32(hidParentID.Value);
+                    TB_Authority parentEntity = new AuthorityBal().SelectSingleById(u => u.ID == entity.ParentID);
+                    entity.FullID = parentEntity.FullID;
+                }
+                else
+                {
+                    entity.ParentID = 0;
+                }
+                entity.IsMenu = cbxIsMenu.Checked ? Constants.IS_YES : Constants.IS_NO;
+                new AuthorityBal().UpdateSingle(entity);
+                if (entity.FullID.IsEmpty())
+                {
+                    entity.FullID = entity.ID.ToString();
+                }
+                else
+                {
+                    entity.FullID += "," + entity.ID;
+                }
+
                 new AuthorityBal().UpdateSingle(entity);
             }
             else
             {
                 entity = new TB_Authority();
-               
+                entity.AuthorType = Convert.ToInt32(ddlAuthorType.SelectedValue);
+                entity.AuthorName = txtAuthorName.Text;
+                entity.AuthorFlag = txtAuthorFlag.Text;
+                entity.PageUrl = txtPageUrl.Text;
+                if (hidParentID.Value != string.Empty && hidParentID.Value != "0")
+                {
+                    entity.ParentID = Convert.ToInt32(hidParentID.Value);
+                    TB_Authority parentEntity = new AuthorityBal().SelectSingleById(u => u.ID == entity.ParentID);
+                    entity.FullID = parentEntity.FullID;
+                }
+                else
+                {
+                    entity.ParentID = 0;
+                }
+                entity.IsMenu = cbxIsMenu.Checked ? Constants.IS_YES : Constants.IS_NO;
                 new AuthorityBal().InsertSingle(entity);
+                if (entity.FullID.IsEmpty())
+                {
+                    entity.FullID = entity.ID.ToString();
+                }
+                else
+                {
+                    entity.FullID += "," + entity.ID;
+                }
+
+                new AuthorityBal().UpdateSingle(entity);
             }
 
             Response.Redirect("~/SysManage/AuthorityList.aspx");
         }
-        
+
     }
 }

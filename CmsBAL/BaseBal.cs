@@ -20,7 +20,7 @@ namespace CmsBAL
         {
             get
             {
-                if (SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO) != null && LoginUserInfo == null)
+                if (SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO) != null)
                 {
                     return SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO) as TB_BasicUser;
                 }
@@ -77,11 +77,13 @@ namespace CmsBAL
 
         public int UpdateSingle(T entity)
         {
+            SetEntityCommProp(entity);
             using (var ctx = new CmsEntities())
             {
                 return new BaseDal<T>(ctx).UpdateSingle(entity);
             }
         }
+        
 
         public int UpdateList(List<T> list)
         {
@@ -90,8 +92,6 @@ namespace CmsBAL
                 return new BaseDal<T>(ctx).UpdateList(list);
             }
         }
-
-
 
         public int DeleteSingle(T entity)
         {
@@ -134,6 +134,26 @@ namespace CmsBAL
             using (var ctx = new CmsEntities())
             {
                 return new BaseDal<T>(ctx).GetDataTable(searchModel, sql);
+            }
+        }
+
+        /// <summary>
+        /// 设置公共字段值
+        /// </summary>
+        /// <param name="entity"></param>
+        private void SetEntityCommProp(T entity)
+        {
+            var fields = entity.GetType().GetProperties();
+            foreach (var item in fields)
+            {
+                if (item.Name == "UpdateUser")
+                {
+                    item.SetValue(entity, LoginUserInfo.ID);
+                }
+                else if (item.Name == "UpdateTime")
+                {
+                    item.SetValue(entity, DateTime.Now);
+                }
             }
         }
     }

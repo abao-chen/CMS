@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace CmsUtils
 {
-    public class MailHelper
+    public class MailUtil
     {
         /// <summary>
         ///     邮件服务器地址
@@ -28,12 +28,18 @@ namespace CmsUtils
         /// </summary>
         private string _mailName { get; set; }
 
-        public MailHelper(string mailServer, string mailUserName, string mailPassword, string mailName)
+        /// <summary>
+        ///     端口号
+        /// </summary>
+        private int _mailPort { get; set; }
+
+        public MailUtil(string mailServer, string mailUserName, string mailPassword, string mailName, int mailPort)
         {
             this._mailServer = mailServer;
             this._mailName = mailName;
             this._mailUserName = mailUserName;
             this._mailPassword = mailPassword;
+            this._mailPort = mailPort;
         }
 
         /// <summary>
@@ -42,18 +48,24 @@ namespace CmsUtils
         /// <param name="to">收件人邮箱地址</param>
         /// <param name="subject">主题</param>
         /// <param name="body">内容</param>
+        /// <param name="cc">cc</param>
         /// <param name="encoding">编码</param>
         /// <param name="isBodyHtml">是否Html</param>
         /// <param name="enableSsl">是否SSL加密连接</param>
         /// <returns>是否成功</returns>
-        public bool Send(string to, string subject, string body, string encoding = "UTF-8", bool isBodyHtml = true,
+        public bool Send(string to, string subject, string body, string cc = "", string encoding = "UTF-8", bool isBodyHtml = true,
             bool enableSsl = false)
         {
             try
             {
                 var message = new MailMessage();
                 // 接收人邮箱地址
-                message.To.Add(new MailAddress(to));
+                message.To.Add(to.Replace("；", ",").Replace(";", ",").Replace("，", ","));
+                if (!cc.IsEmpty())
+                {
+                    message.CC.Add(cc.Replace("；", ",").Replace(";", ",").Replace("，", ","));
+                }
+
                 message.From = new MailAddress(_mailUserName, _mailName);
                 message.BodyEncoding = Encoding.GetEncoding(encoding);
                 message.Body = body;
@@ -62,14 +74,14 @@ namespace CmsUtils
                 message.Subject = subject;
                 message.IsBodyHtml = isBodyHtml;
 
-                var smtpclient = new SmtpClient(_mailServer, 25);
+                var smtpclient = new SmtpClient(_mailServer, _mailPort);
                 smtpclient.Credentials = new NetworkCredential(_mailUserName, _mailPassword);
                 //SSL连接
                 smtpclient.EnableSsl = enableSsl;
                 smtpclient.Send(message);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -83,7 +95,7 @@ namespace CmsUtils
         /// <param name="body">邮件内容</param>
         /// <param name="port">端口号</param>
         /// <returns></returns>
-        public void SendByThread(string to, string title, string body, int port = 25)
+        public void SendByThread(string to, string title, string body)
         {
             new Thread(new ThreadStart(delegate ()
             {
@@ -93,7 +105,7 @@ namespace CmsUtils
                     //邮箱的smtp地址
                     smtp.Host = _mailServer;
                     //端口号
-                    smtp.Port = port;
+                    smtp.Port = _mailPort;
                     //构建发件人的身份凭据类
                     smtp.Credentials = new NetworkCredential(_mailUserName, _mailPassword);
                     //构建消息类

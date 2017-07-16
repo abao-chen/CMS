@@ -53,7 +53,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <script src="../Scripts/bootstrap/vendor/zTree/js/jquery.ztree.all.js"></script>
+    <script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.all.js"></script>
     <script type="text/javascript">
         var tableObj;
         //初始化表格

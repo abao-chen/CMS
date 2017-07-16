@@ -27,7 +27,9 @@ namespace CmsWeb
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (SessionUtil.GetSession(VerifyCodeUtil.ValidateCodeKey) != null && SecurityUtil.Md5Encrypt64(txtValidateCode.Text).Equals(SessionUtil.GetSession(VerifyCodeUtil.ValidateCodeKey).ToString()))
+            if (Constants.IS_NO.ToString().Equals(GlobalConfig.IsValidateCode) ||
+                (SessionUtil.GetSession(VerifyCodeUtil.ValidateCodeKey) != null && 
+                SecurityUtil.Md5Encrypt64(txtValidateCode.Text).Equals(SessionUtil.GetSession(VerifyCodeUtil.ValidateCodeKey).ToString())))
             {//验证码校验通过
                 TB_BasicUser userInfo = new TB_BasicUser()
                 {

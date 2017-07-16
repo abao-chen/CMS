@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CmsEntity
 {
@@ -43,13 +44,10 @@ namespace CmsEntity
             }
         }
 
-        public Nullable<int> IsDeleted { get; set; }
-        public Nullable<int> CreateUser { get; set; }
-        public Nullable<System.DateTime> CreateTime { get; set; }
-        public Nullable<int> UpdateUser { get; set; }
-        public Nullable<System.DateTime> UpdateTime { get; set; }
-
-        public virtual TB_BasicUser CreateBasicUser { get; set; }
-        public virtual TB_BasicUser UpdateBasicUser { get; set; }
+        public int? IsDeleted { get; set; }
+        public int? CreateUser { get; set; }
+        public DateTime? CreateTime { get; set; }
+        public int? UpdateUser { get; set; }
+        public DateTime? UpdateTime { get; set; }
     }
 }

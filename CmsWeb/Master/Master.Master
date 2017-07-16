@@ -314,6 +314,9 @@
                                     <li>
                                         <a href="/SysManage/SysParamsList.aspx">系统参数</a>
                                     </li>
+                                    <li>
+                                        <a href="/SysManage/SendEmail.aspx">发送邮件</a>
+                                    </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
