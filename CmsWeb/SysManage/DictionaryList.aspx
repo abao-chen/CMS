@@ -56,6 +56,7 @@
     <script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.all.js"></script>
     <script type="text/javascript">
         var tableObj;
+        var treeObj;
         //初始化表格
         $(function () {
             tableObj = $('#dataTables').DataTable({
@@ -171,7 +172,7 @@
                 dataType: "json",
                 success: function (result) {
                     if (result.result == 1) { //请求成功
-                        var treeObj = $.fn.zTree.init($("#dicTree"),
+                        treeObj = $.fn.zTree.init($("#dicTree"),
                             {
                                 edit: {
                                     enable: true,
@@ -193,8 +194,7 @@
                                 callback: {
                                     onClick: onClickNode,
                                     onRename: editNode,
-                                    beforeRemove: deleteConfirm,
-                                    onRemove: deleteNode
+                                    beforeRemove: deleteConfirm
                                 }
 
                             }, result.data);
@@ -228,22 +228,21 @@
 
         //删除节点确认
         function deleteConfirm(treeId, treeNode) {
-            var result;
-            if (treeNode.ID == 0) {
-                return false;
-            } else {
+            if (treeNode.ID !== 0) {
                 bootAlert.confirm().on(function (confirmResult) {
-                    result = confirmResult;
+                    if (confirmResult) {
+                        deleteNode(treeNode,false);
+                    }
                 });
-                return result;
             }
+            return false;
         }
 
         //删除字典类型
-        function deleteNode(event, treeId, treeNode) {
+        function deleteNode(treeNode) {
             var param = {};
-            param["method"] = "DeleteDicType";
-            param["ID"] = treeNode.ID;
+            param["method"] = "DeleteByIds";
+            param["Id"] = treeNode.ID;
             $.ajax({
                 type: "POST",
                 url: "/API/DictionaryApi.aspx",
@@ -251,6 +250,7 @@
                 data: param, //传入组装的参数
                 dataType: "json",
                 success: function () {
+                    treeObj.removeNode(treeNode);
                     toastr.success("删除成功！");
                     reloadData();
                 }

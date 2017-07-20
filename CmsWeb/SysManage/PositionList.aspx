@@ -85,7 +85,7 @@
         //初始化表格
         $(function () {
             tableObj = $('#dataTables').DataTable({
-                "processing": true,
+                //"processing": true,
                 "serverSide": true,
                 "searching": false,
                 "ordering": true,

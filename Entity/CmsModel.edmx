@@ -19,9 +19,9 @@
           <Property Name="PageUrl" Type="varchar" MaxLength="500" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_BasicContent">
           <Key>
@@ -43,9 +43,9 @@
           <Property Name="AttachmentUrl" Type="varchar" MaxLength="200" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_BasicUser">
           <Key>
@@ -61,9 +61,9 @@
           <Property Name="UserType" Type="varchar" MaxLength="6" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_ContentType">
           <Key>
@@ -75,9 +75,9 @@
           <Property Name="IsUse" Type="int" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_Dictionary">
           <Key>
@@ -90,9 +90,9 @@
           <Property Name="IsUsing" Type="int" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_DicType">
           <Key>
@@ -105,9 +105,9 @@
           <Property Name="IsUsing" Type="int" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_Organization">
           <Key>
@@ -118,9 +118,9 @@
           <Property Name="FullID" Type="varchar" MaxLength="500" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_Position">
           <Key>
@@ -191,9 +191,9 @@
           <Property Name="IsUsing" Type="int" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_RoleAuthority">
           <Key>
@@ -204,9 +204,9 @@
           <Property Name="AuthorityID" Type="int" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_SysParams">
           <Key>
@@ -218,9 +218,9 @@
           <Property Name="ParamDesc" Type="varchar" MaxLength="500" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_UserOrganization">
           <Key>
@@ -231,9 +231,9 @@
           <Property Name="OrganizationID" Type="int" />
           <Property Name="IsDeleted" Type="uint" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="TB_UserRole">
           <Key>
@@ -244,9 +244,9 @@
           <Property Name="RoleID" Type="int" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
-          <Property Name="CreateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
           <Property Name="UpdateUser" Type="int" />
-          <Property Name="UpdateTime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityContainer Name="CmsModelStoreContainer">
           <EntitySet Name="TB_Authority" EntityType="Self.TB_Authority" Schema="cms" store:Type="Tables" />
@@ -280,17 +280,17 @@
           <EntitySet Name="TB_Dictionary" EntityType="CmsModel.TB_Dictionary" />
           <EntitySet Name="TB_DicType" EntityType="CmsModel.TB_DicType" />
           <EntitySet Name="TB_Organization" EntityType="CmsModel.TB_Organization" />
-          <EntitySet Name="TB_Role" EntityType="CmsModel.TB_Role" />
-          <EntitySet Name="TB_RoleAuthority" EntityType="CmsModel.TB_RoleAuthority" />
-          <EntitySet Name="TB_SysParams" EntityType="CmsModel.TB_SysParams" />
-          <EntitySet Name="TB_UserRole" EntityType="CmsModel.TB_UserRole" />
-          <EntitySet Name="TB_UserOrganization" EntityType="CmsModel.TB_UserOrganization" />
           <EntitySet Name="TB_Position" EntityType="CmsModel.TB_Position" />
           <EntitySet Name="TB_PositionCity" EntityType="CmsModel.TB_PositionCity" />
           <EntitySet Name="TB_PositionCounty" EntityType="CmsModel.TB_PositionCounty" />
           <EntitySet Name="TB_PositionProvice" EntityType="CmsModel.TB_PositionProvice" />
           <EntitySet Name="TB_PositionTown" EntityType="CmsModel.TB_PositionTown" />
           <EntitySet Name="TB_PositionVillage" EntityType="CmsModel.TB_PositionVillage" />
+          <EntitySet Name="TB_Role" EntityType="CmsModel.TB_Role" />
+          <EntitySet Name="TB_RoleAuthority" EntityType="CmsModel.TB_RoleAuthority" />
+          <EntitySet Name="TB_SysParams" EntityType="CmsModel.TB_SysParams" />
+          <EntitySet Name="TB_UserOrganization" EntityType="CmsModel.TB_UserOrganization" />
+          <EntitySet Name="TB_UserRole" EntityType="CmsModel.TB_UserRole" />
         </EntityContainer>
         <EntityType Name="TB_Authority">
           <Key>
@@ -298,17 +298,17 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AuthorType" Type="Int32" />
-          <Property Name="ParentID" Type="Int32" />
-          <Property Name="FullID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="IsDeleted" Type="Int32" />
-          <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AuthorName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="AuthorFlag" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="PageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="FullID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="IsMenu" Type="Int32" />
+          <Property Name="PageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" />
         </EntityType>
         <EntityType Name="TB_BasicContent">
           <Key>
@@ -330,9 +330,9 @@
           <Property Name="AttachmentUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="IsDeleted" Type="Int32" />
           <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="DateTime" />
           <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="DateTime" />
         </EntityType>
         <EntityType Name="TB_BasicUser">
           <Key>
@@ -348,9 +348,9 @@
           <Property Name="UserType" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="IsDeleted" Type="Int32" />
           <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="DateTime" />
           <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="DateTime" />
         </EntityType>
         <EntityType Name="TB_ContentType">
           <Key>
@@ -362,9 +362,9 @@
           <Property Name="IsUse" Type="Int32" />
           <Property Name="IsDeleted" Type="Int32" />
           <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="DateTime" />
           <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="DateTime" />
         </EntityType>
         <EntityType Name="TB_Dictionary">
           <Key>
@@ -377,9 +377,9 @@
           <Property Name="IsUsing" Type="Int32" />
           <Property Name="IsDeleted" Type="Int32" />
           <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="DateTime" />
           <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="DateTime" />
         </EntityType>
         <EntityType Name="TB_DicType">
           <Key>
@@ -392,9 +392,9 @@
           <Property Name="IsUsing" Type="Int32" />
           <Property Name="IsDeleted" Type="Int32" />
           <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="DateTime" />
           <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="DateTime" />
         </EntityType>
         <EntityType Name="TB_Organization">
           <Key>
@@ -405,75 +405,9 @@
           <Property Name="FullID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="IsDeleted" Type="Int32" />
           <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateTime" Type="DateTime" />
           <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="TB_Role">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IsUsing" Type="Int32" />
-          <Property Name="IsDeleted" Type="Int32" />
-          <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="TB_RoleAuthority">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleID" Type="Int32" />
-          <Property Name="AuthorityID" Type="Int32" />
-          <Property Name="IsDeleted" Type="Int32" />
-          <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="TB_SysParams">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ParamName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ParamValue" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ParamDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="IsDeleted" Type="Int32" />
-          <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="TB_UserRole">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="RoleID" Type="Int32" />
-          <Property Name="IsDeleted" Type="Int32" />
-          <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="TB_UserOrganization">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="OrganizationID" Type="Int32" />
-          <Property Name="IsDeleted" Type="Int32" />
-          <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UpdateTime" Type="DateTime" />
         </EntityType>
         <EntityType Name="TB_Position">
           <Key>
@@ -535,6 +469,72 @@
           <Property Name="VillageID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="VillageName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="TB_Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsUsing" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="TB_RoleAuthority">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="AuthorityID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="TB_SysParams">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParamName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ParamValue" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ParamDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="TB_UserOrganization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="OrganizationID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="TB_UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -544,17 +544,17 @@
           <EntitySetMapping Name="TB_Authority">
             <EntityTypeMapping TypeName="CmsModel.TB_Authority">
               <MappingFragment StoreEntitySet="TB_Authority">
-                <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
-                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
-                <ScalarProperty Name="AuthorFlag" ColumnName="AuthorFlag" />
-                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
                 <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
                 <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
                 <ScalarProperty Name="FullID" ColumnName="FullID" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="AuthorFlag" ColumnName="AuthorFlag" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
                 <ScalarProperty Name="AuthorType" ColumnName="AuthorType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -665,77 +665,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TB_Role">
-            <EntityTypeMapping TypeName="CmsModel.TB_Role">
-              <MappingFragment StoreEntitySet="TB_Role">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsUsing" ColumnName="IsUsing" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TB_RoleAuthority">
-            <EntityTypeMapping TypeName="CmsModel.TB_RoleAuthority">
-              <MappingFragment StoreEntitySet="TB_RoleAuthority">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="AuthorityID" ColumnName="AuthorityID" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TB_SysParams">
-            <EntityTypeMapping TypeName="CmsModel.TB_SysParams">
-              <MappingFragment StoreEntitySet="TB_SysParams">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="ParamDesc" ColumnName="ParamDesc" />
-                <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
-                <ScalarProperty Name="ParamName" ColumnName="ParamName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TB_UserRole">
-            <EntityTypeMapping TypeName="CmsModel.TB_UserRole">
-              <MappingFragment StoreEntitySet="TB_UserRole">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TB_UserOrganization">
-            <EntityTypeMapping TypeName="CmsModel.TB_UserOrganization">
-              <MappingFragment StoreEntitySet="TB_UserOrganization">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TB_Position">
             <EntityTypeMapping TypeName="CmsModel.TB_Position">
               <MappingFragment StoreEntitySet="TB_Position">
@@ -798,6 +727,77 @@
                 <ScalarProperty Name="VillageName" ColumnName="VillageName" />
                 <ScalarProperty Name="VillageID" ColumnName="VillageID" />
                 <ScalarProperty Name="TownID" ColumnName="TownID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Role">
+            <EntityTypeMapping TypeName="CmsModel.TB_Role">
+              <MappingFragment StoreEntitySet="TB_Role">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsUsing" ColumnName="IsUsing" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_RoleAuthority">
+            <EntityTypeMapping TypeName="CmsModel.TB_RoleAuthority">
+              <MappingFragment StoreEntitySet="TB_RoleAuthority">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AuthorityID" ColumnName="AuthorityID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_SysParams">
+            <EntityTypeMapping TypeName="CmsModel.TB_SysParams">
+              <MappingFragment StoreEntitySet="TB_SysParams">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ParamDesc" ColumnName="ParamDesc" />
+                <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
+                <ScalarProperty Name="ParamName" ColumnName="ParamName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_UserOrganization">
+            <EntityTypeMapping TypeName="CmsModel.TB_UserOrganization">
+              <MappingFragment StoreEntitySet="TB_UserOrganization">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_UserRole">
+            <EntityTypeMapping TypeName="CmsModel.TB_UserRole">
+              <MappingFragment StoreEntitySet="TB_UserRole">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

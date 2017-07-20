@@ -1,0 +1,859 @@
+记录时间：2017-07-19 13:18:46,244 线程ID:[5] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：未能于 2017/7/19 13:18:46 +08:00 打开连接，错误为: Unable to connect to any of the specified MySQL hosts.
+
+记录时间：2017-07-19 13:19:03,255 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：已于 2017/7/19 13:19:03 +08:00
+ 打开了连接
+记录时间：2017-07-19 13:19:03,523 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：SELECT
+`Extent1`.`ID`, 
+`Extent1`.`UserAccount`, 
+`Extent1`.`UserPassword`, 
+`Extent1`.`PasswordSalt`, 
+`Extent1`.`UserName`, 
+`Extent1`.`UserStatus`, 
+`Extent1`.`LastLoginTime`, 
+`Extent1`.`UserType`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`CreateUser`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`UpdateUser`, 
+`Extent1`.`UpdateTime`
+FROM `TB_BasicUser` AS `Extent1`
+ WHERE ((0 = `Extent1`.`IsDeleted`) AND ((`Extent1`.`UserAccount` = @p__linq__0) OR ((`Extent1`.`UserAccount` IS  NULL) AND (@p__linq__0 IS  NULL)))) AND (@gp1 = `Extent1`.`UserStatus`) LIMIT 1
+记录时间：2017-07-19 13:19:03,524 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+
+记录时间：2017-07-19 13:19:03,526 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：-- p__linq__0: 'admin' (Type = String, Size = 5)
+
+记录时间：2017-07-19 13:19:03,526 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：-- @gp1: 'U00201' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 13:19:03,527 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：-- 正在 2017/7/19 13:19:03 +08:00
+ 执行
+记录时间：2017-07-19 13:19:03,546 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：-- 已在 18 毫秒内完成，结果为: EFMySqlDataReader
+
+记录时间：2017-07-19 13:19:03,546 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+
+记录时间：2017-07-19 13:19:03,566 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：已于 2017/7/19 13:19:03 +08:00
+ 关闭了连接
+记录时间：2017-07-19 13:19:03,671 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:19:03 +08:00
+ 打开了连接
+记录时间：2017-07-19 13:19:03,675 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:19:03 +08:00
+ 启动了事务
+记录时间：2017-07-19 13:19:03,689 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：UPDATE `TB_BasicUser` SET `UserAccount`=@gp1, `UserPassword`=@gp2, `PasswordSalt`=@gp3, `UserName`=@gp4, `UserStatus`=@gp5, `LastLoginTime`=@gp6, `UserType`=@gp7, `IsDeleted`=0, `CreateUser`=1, `UpdateUser`=1 WHERE `ID` = 1
+记录时间：2017-07-19 13:19:03,689 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:19:03,689 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp1: 'admin' (Type = String, IsNullable = false, Size = 5)
+
+记录时间：2017-07-19 13:19:03,690 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp2: 'H23Dudvt/WzF8KGVKQgBUQ==' (Type = String, IsNullable = false, Size = 24)
+
+记录时间：2017-07-19 13:19:03,690 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp3: 'F800MCADLK' (Type = String, IsNullable = false, Size = 10)
+
+记录时间：2017-07-19 13:19:03,690 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp4: '陈胜' (Type = String, IsNullable = false, Size = 2)
+
+记录时间：2017-07-19 13:19:03,691 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp5: 'U00201' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 13:19:03,691 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp6: '2017/7/19 13:19:03' (Type = DateTime, IsNullable = false)
+
+记录时间：2017-07-19 13:19:03,691 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp7: 'U00101' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 13:19:03,691 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 正在 2017/7/19 13:19:03 +08:00
+ 执行
+记录时间：2017-07-19 13:19:03,698 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 已在 6 毫秒内完成，结果为: 1
+
+记录时间：2017-07-19 13:19:03,699 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:19:03,701 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:19:03 +08:00
+ 提交了事务
+记录时间：2017-07-19 13:19:03,702 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:19:03 +08:00
+ 关闭了连接
+记录时间：2017-07-19 13:19:03,702 线程ID:[8] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:19:03 +08:00
+ 释放了事务
+记录时间：2017-07-19 13:19:04,319 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:19:04 +08:00
+ 打开了连接
+记录时间：2017-07-19 13:19:04,322 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：select count(*) from (select * from (SELECT
+					            *
+				            FROM
+					            TB_Role 
+				            WHERE
+					            isdeleted = 0 ) t3 where 1=1 ) t 
+记录时间：2017-07-19 13:19:04,323 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:19:04,323 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 正在 2017/7/19 13:19:04 +08:00
+ 执行
+记录时间：2017-07-19 13:19:04,326 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 已在 2 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 13:19:04,327 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:19:04,354 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:19:04 +08:00
+ 关闭了连接
+记录时间：2017-07-19 13:19:09,853 线程ID:[5] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:19:09 +08:00
+ 打开了连接
+记录时间：2017-07-19 13:19:09,854 线程ID:[5] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：select count(*) from (select * from (SELECT
+					            *
+				            FROM
+					            TB_SysParams 
+				            WHERE
+					            isdeleted = 0 ) t3 where 1=1 ) t 
+记录时间：2017-07-19 13:19:09,854 线程ID:[5] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:19:09,854 线程ID:[5] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 正在 2017/7/19 13:19:09 +08:00
+ 执行
+记录时间：2017-07-19 13:19:09,856 线程ID:[5] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 已在 1 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 13:19:09,856 线程ID:[5] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:19:09,857 线程ID:[5] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:19:09 +08:00
+ 关闭了连接
+记录时间：2017-07-19 13:32:12,573 线程ID:[43] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:32:12 +08:00
+ 打开了连接
+记录时间：2017-07-19 13:32:12,574 线程ID:[43] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：select count(*) from (select * from (SELECT
+					            *
+				            FROM
+					            TB_SysParams 
+				            WHERE
+					            isdeleted = 0 ) t3 where 1=1 ) t 
+记录时间：2017-07-19 13:32:12,574 线程ID:[43] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:32:12,575 线程ID:[43] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 正在 2017/7/19 13:32:12 +08:00
+ 执行
+记录时间：2017-07-19 13:32:12,578 线程ID:[43] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 已在 1 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 13:32:12,578 线程ID:[43] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:32:12,579 线程ID:[43] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:32:12 +08:00
+ 关闭了连接
+记录时间：2017-07-19 13:46:31,359 线程ID:[61] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:46:31 +08:00
+ 打开了连接
+记录时间：2017-07-19 13:46:31,359 线程ID:[61] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：select count(*) from (select * from (SELECT
+					            *
+				            FROM
+					            TB_SysParams 
+				            WHERE
+					            isdeleted = 0 ) t3 where 1=1 ) t 
+记录时间：2017-07-19 13:46:31,360 线程ID:[61] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:46:31,360 线程ID:[61] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 正在 2017/7/19 13:46:31 +08:00
+ 执行
+记录时间：2017-07-19 13:46:31,365 线程ID:[61] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 已在 3 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 13:46:31,365 线程ID:[61] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:46:31,367 线程ID:[61] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:46:31 +08:00
+ 关闭了连接
+记录时间：2017-07-19 13:46:49,248 线程ID:[46] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:46:49 +08:00
+ 打开了连接
+记录时间：2017-07-19 13:46:49,249 线程ID:[46] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：select count(*) from (select * from (SELECT
+					            *
+				            FROM
+					            TB_SysParams 
+				            WHERE
+					            isdeleted = 0 ) t3 where 1=1 ) t 
+记录时间：2017-07-19 13:46:49,250 线程ID:[46] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:46:49,250 线程ID:[46] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 正在 2017/7/19 13:46:49 +08:00
+ 执行
+记录时间：2017-07-19 13:46:49,253 线程ID:[46] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 已在 2 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 13:46:49,254 线程ID:[46] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 13:46:49,255 线程ID:[46] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_SysParams, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 13:46:49 +08:00
+ 关闭了连接
+记录时间：2017-07-19 17:40:08,537 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：已于 2017/7/19 17:40:08 +08:00
+ 打开了连接
+记录时间：2017-07-19 17:40:08,845 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：SELECT
+`Extent1`.`ID`, 
+`Extent1`.`UserAccount`, 
+`Extent1`.`UserPassword`, 
+`Extent1`.`PasswordSalt`, 
+`Extent1`.`UserName`, 
+`Extent1`.`UserStatus`, 
+`Extent1`.`LastLoginTime`, 
+`Extent1`.`UserType`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`CreateUser`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`UpdateUser`, 
+`Extent1`.`UpdateTime`
+FROM `TB_BasicUser` AS `Extent1`
+ WHERE ((0 = `Extent1`.`IsDeleted`) AND ((`Extent1`.`UserAccount` = @p__linq__0) OR ((`Extent1`.`UserAccount` IS  NULL) AND (@p__linq__0 IS  NULL)))) AND (@gp1 = `Extent1`.`UserStatus`) LIMIT 1
+记录时间：2017-07-19 17:40:08,846 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+
+记录时间：2017-07-19 17:40:08,848 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：-- p__linq__0: 'admin' (Type = String, Size = 5)
+
+记录时间：2017-07-19 17:40:08,848 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：-- @gp1: 'U00201' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 17:40:08,849 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：-- 正在 2017/7/19 17:40:08 +08:00
+ 执行
+记录时间：2017-07-19 17:40:08,863 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：-- 已在 12 毫秒内完成，结果为: EFMySqlDataReader
+
+记录时间：2017-07-19 17:40:08,863 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+
+记录时间：2017-07-19 17:40:08,885 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：已于 2017/7/19 17:40:08 +08:00
+ 关闭了连接
+记录时间：2017-07-19 17:40:09,012 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 17:40:09 +08:00
+ 打开了连接
+记录时间：2017-07-19 17:40:09,027 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 17:40:09 +08:00
+ 启动了事务
+记录时间：2017-07-19 17:40:09,045 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：UPDATE `TB_BasicUser` SET `UserAccount`=@gp1, `UserPassword`=@gp2, `PasswordSalt`=@gp3, `UserName`=@gp4, `UserStatus`=@gp5, `LastLoginTime`=@gp6, `UserType`=@gp7, `IsDeleted`=0, `CreateUser`=1, `CreateTime`=@gp8, `UpdateUser`=1, `UpdateTime`=@gp9 WHERE `ID` = 1
+记录时间：2017-07-19 17:40:09,045 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 17:40:09,046 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp1: 'admin' (Type = String, IsNullable = false, Size = 5)
+
+记录时间：2017-07-19 17:40:09,046 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp2: 'H23Dudvt/WzF8KGVKQgBUQ==' (Type = String, IsNullable = false, Size = 24)
+
+记录时间：2017-07-19 17:40:09,047 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp3: 'F800MCADLK' (Type = String, IsNullable = false, Size = 10)
+
+记录时间：2017-07-19 17:40:09,047 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp4: '陈胜' (Type = String, IsNullable = false, Size = 2)
+
+记录时间：2017-07-19 17:40:09,047 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp5: 'U00201' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 17:40:09,047 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp6: '2017/7/19 17:40:08' (Type = DateTime, IsNullable = false)
+
+记录时间：2017-07-19 17:40:09,048 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp7: 'U00101' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 17:40:09,048 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp8: '2017/6/11 16:42:09' (Type = DateTime, IsNullable = false)
+
+记录时间：2017-07-19 17:40:09,048 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- @gp9: '2017/7/19 17:40:08' (Type = DateTime, IsNullable = false)
+
+记录时间：2017-07-19 17:40:09,048 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 正在 2017/7/19 17:40:09 +08:00
+ 执行
+记录时间：2017-07-19 17:40:09,060 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 已在 11 毫秒内完成，结果为: 1
+
+记录时间：2017-07-19 17:40:09,060 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 17:40:09,064 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 17:40:09 +08:00
+ 提交了事务
+记录时间：2017-07-19 17:40:09,065 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 17:40:09 +08:00
+ 关闭了连接
+记录时间：2017-07-19 17:40:09,065 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 17:40:09 +08:00
+ 释放了事务
+记录时间：2017-07-19 17:40:11,244 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 17:40:11 +08:00
+ 打开了连接
+记录时间：2017-07-19 17:40:11,248 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：select count(*) from (select * from (SELECT
+					            *
+				            FROM
+					            TB_Role 
+				            WHERE
+					            isdeleted = 0 ) t3 where 1=1 ) t 
+记录时间：2017-07-19 17:40:11,249 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 17:40:11,250 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 正在 2017/7/19 17:40:11 +08:00
+ 执行
+记录时间：2017-07-19 17:40:11,253 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 已在 2 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 17:40:11,253 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 17:40:11,282 线程ID:[7] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 17:40:11 +08:00
+ 关闭了连接
+记录时间：2017-07-19 17:43:41,987 线程ID:[9] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 17:43:41 +08:00
+ 打开了连接
+记录时间：2017-07-19 17:43:41,987 线程ID:[9] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：select count(*) from (select * from (SELECT
+					            *
+				            FROM
+					            TB_Role 
+				            WHERE
+					            isdeleted = 0 ) t3 where 1=1 ) t 
+记录时间：2017-07-19 17:43:41,987 线程ID:[9] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 17:43:41,988 线程ID:[9] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 正在 2017/7/19 17:43:41 +08:00
+ 执行
+记录时间：2017-07-19 17:43:41,990 线程ID:[9] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：-- 已在 1 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 17:43:41,991 线程ID:[9] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+记录时间：2017-07-19 17:43:41,992 线程ID:[9] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：已于 2017/7/19 17:43:41 +08:00
+ 关闭了连接
+记录时间：2017-07-19 17:44:21,370 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+已于 2017/7/19 17:44:21 +08:00
+ 打开了连接
+记录时间：2017-07-19 17:44:23,207 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+SELECT
+`Extent1`.`ID`, 
+`Extent1`.`UserAccount`, 
+`Extent1`.`UserPassword`, 
+`Extent1`.`PasswordSalt`, 
+`Extent1`.`UserName`, 
+`Extent1`.`UserStatus`, 
+`Extent1`.`LastLoginTime`, 
+`Extent1`.`UserType`, 
+`Extent1`.`IsDeleted`, 
+`Extent1`.`CreateUser`, 
+`Extent1`.`CreateTime`, 
+`Extent1`.`UpdateUser`, 
+`Extent1`.`UpdateTime`
+FROM `TB_BasicUser` AS `Extent1`
+ WHERE ((0 = `Extent1`.`IsDeleted`) AND ((`Extent1`.`UserAccount` = @p__linq__0) OR ((`Extent1`.`UserAccount` IS  NULL) AND (@p__linq__0 IS  NULL)))) AND (@gp1 = `Extent1`.`UserStatus`) LIMIT 1
+记录时间：2017-07-19 17:44:23,207 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+
+
+记录时间：2017-07-19 17:44:23,209 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+-- p__linq__0: 'admin' (Type = String, Size = 5)
+
+记录时间：2017-07-19 17:44:23,210 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+-- @gp1: 'U00201' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 17:44:23,210 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+-- 正在 2017/7/19 17:44:23 +08:00
+ 执行
+记录时间：2017-07-19 17:44:23,217 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+-- 已在 3 毫秒内完成，结果为: EFMySqlDataReader
+
+记录时间：2017-07-19 17:44:23,218 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+
+
+记录时间：2017-07-19 17:44:23,309 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BasicUserDal 日志描述：
+已于 2017/7/19 17:44:23 +08:00
+ 关闭了连接
+记录时间：2017-07-19 17:44:23,543 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:44:23 +08:00
+ 打开了连接
+记录时间：2017-07-19 17:44:23,555 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:44:23 +08:00
+ 启动了事务
+记录时间：2017-07-19 17:44:23,767 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+UPDATE `TB_BasicUser` SET `UserAccount`=@gp1, `UserPassword`=@gp2, `PasswordSalt`=@gp3, `UserName`=@gp4, `UserStatus`=@gp5, `LastLoginTime`=@gp6, `UserType`=@gp7, `IsDeleted`=0, `CreateUser`=1, `CreateTime`=@gp8, `UpdateUser`=1, `UpdateTime`=@gp9 WHERE `ID` = 1
+记录时间：2017-07-19 17:44:23,767 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 17:44:23,769 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @gp1: 'admin' (Type = String, IsNullable = false, Size = 5)
+
+记录时间：2017-07-19 17:44:23,770 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @gp2: 'H23Dudvt/WzF8KGVKQgBUQ==' (Type = String, IsNullable = false, Size = 24)
+
+记录时间：2017-07-19 17:44:23,770 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @gp3: 'F800MCADLK' (Type = String, IsNullable = false, Size = 10)
+
+记录时间：2017-07-19 17:44:23,770 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @gp4: '陈胜' (Type = String, IsNullable = false, Size = 2)
+
+记录时间：2017-07-19 17:44:23,770 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @gp5: 'U00201' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 17:44:23,771 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @gp6: '2017/7/19 17:44:23' (Type = DateTime, IsNullable = false)
+
+记录时间：2017-07-19 17:44:23,771 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @gp7: 'U00101' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 17:44:23,771 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @gp8: '2017/6/11 16:42:09' (Type = DateTime, IsNullable = false)
+
+记录时间：2017-07-19 17:44:23,771 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @gp9: '2017/7/19 17:44:23' (Type = DateTime, IsNullable = false)
+
+记录时间：2017-07-19 17:44:23,771 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 17:44:23 +08:00
+ 执行
+记录时间：2017-07-19 17:44:23,777 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 2 毫秒内完成，结果为: 1
+
+记录时间：2017-07-19 17:44:23,777 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 17:44:23,788 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:44:23 +08:00
+ 提交了事务
+记录时间：2017-07-19 17:44:23,789 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:44:23 +08:00
+ 关闭了连接
+记录时间：2017-07-19 17:44:23,792 线程ID:[10] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_BasicUser, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:44:23 +08:00
+ 释放了事务
+记录时间：2017-07-19 17:44:25,065 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:44:25 +08:00
+ 打开了连接
+记录时间：2017-07-19 17:44:25,078 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+					            *
+				            FROM
+					            TB_Role 
+				            WHERE
+					            isdeleted = 0 ) t3 where 1=1 ) t 
+记录时间：2017-07-19 17:44:25,078 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 17:44:25,079 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 17:44:25 +08:00
+ 执行
+记录时间：2017-07-19 17:44:25,083 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 3 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 17:44:25,083 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 17:44:25,110 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Role, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:44:25 +08:00
+ 关闭了连接
+记录时间：2017-07-19 17:59:18,713 线程ID:[6] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:59:18 +08:00
+ 打开了连接
+记录时间：2017-07-19 17:59:18,713 线程ID:[6] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1 ) t 
+记录时间：2017-07-19 17:59:18,714 线程ID:[6] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 17:59:18,714 线程ID:[6] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 17:59:18 +08:00
+ 执行
+记录时间：2017-07-19 17:59:18,719 线程ID:[6] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 4 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 17:59:18,719 线程ID:[6] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 17:59:18,721 线程ID:[6] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:59:18 +08:00
+ 关闭了连接
+记录时间：2017-07-19 17:59:20,810 线程ID:[23] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:59:20 +08:00
+ 打开了连接
+记录时间：2017-07-19 17:59:20,812 线程ID:[23] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 17:59:20,812 线程ID:[23] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 17:59:20,813 线程ID:[23] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U01000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 17:59:20,813 线程ID:[23] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 17:59:20 +08:00
+ 执行
+记录时间：2017-07-19 17:59:20,815 线程ID:[23] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 1 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 17:59:20,816 线程ID:[23] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 17:59:20,817 线程ID:[23] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:59:20 +08:00
+ 关闭了连接
+记录时间：2017-07-19 17:59:27,578 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:59:27 +08:00
+ 打开了连接
+记录时间：2017-07-19 17:59:27,578 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1 ) t 
+记录时间：2017-07-19 17:59:27,578 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 17:59:27,579 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 17:59:27 +08:00
+ 执行
+记录时间：2017-07-19 17:59:27,584 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 4 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 17:59:27,585 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 17:59:27,587 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 17:59:27 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:00:31,689 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:00:31 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:00:31,694 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1 ) t 
+记录时间：2017-07-19 18:00:31,695 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:00:31,696 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:00:31 +08:00
+ 执行
+记录时间：2017-07-19 18:00:31,700 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 4 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:00:31,701 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:00:31,702 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:00:31 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:02:34,469 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:02:34 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:02:34,470 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1 ) t 
+记录时间：2017-07-19 18:02:34,474 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:02:34,476 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:02:34 +08:00
+ 执行
+记录时间：2017-07-19 18:02:34,481 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 3 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:02:34,482 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:02:34,483 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:02:34 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:04:38,603 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:04:38 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:04:38,604 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1 ) t 
+记录时间：2017-07-19 18:04:38,604 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:04:38,604 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:04:38 +08:00
+ 执行
+记录时间：2017-07-19 18:04:38,608 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 2 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:04:38,608 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:04:38,610 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:04:38 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:04:40,916 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:04:40 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:04:40,919 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 18:04:40,920 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:04:40,921 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U02000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 18:04:40,922 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:04:40 +08:00
+ 执行
+记录时间：2017-07-19 18:04:40,925 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 1 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:04:40,926 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:04:40,927 线程ID:[14] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:04:40 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:04:51,433 线程ID:[16] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:04:51 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:04:51,437 线程ID:[16] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 18:04:51,438 线程ID:[16] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:04:51,438 线程ID:[16] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U01000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 18:04:51,439 线程ID:[16] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:04:51 +08:00
+ 执行
+记录时间：2017-07-19 18:04:51,440 线程ID:[16] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 1 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:04:51,441 线程ID:[16] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:04:51,443 线程ID:[16] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:04:51 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:04:52,082 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:04:52 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:04:52,085 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 18:04:52,086 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:04:52,086 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U02000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 18:04:52,087 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:04:52 +08:00
+ 执行
+记录时间：2017-07-19 18:04:52,089 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 0 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:04:52,089 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:04:52,090 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:04:52 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:05:36,922 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:05:36 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:05:36,923 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1 ) t 
+记录时间：2017-07-19 18:05:36,923 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:05:36,923 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:05:36 +08:00
+ 执行
+记录时间：2017-07-19 18:05:36,925 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 0 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:05:36,926 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:05:36,928 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:05:36 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:05:57,834 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:05:57 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:05:57,836 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 18:05:57,838 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:05:57,840 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U02000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 18:05:57,842 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:05:57 +08:00
+ 执行
+记录时间：2017-07-19 18:05:57,846 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 3 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:05:57,847 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:05:57,848 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:05:57 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:07:24,273 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:24 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:07:24,277 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 18:07:24,279 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:24,281 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U01000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 18:07:24,281 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:07:24 +08:00
+ 执行
+记录时间：2017-07-19 18:07:24,284 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 1 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:07:24,285 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:24,286 线程ID:[21] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:24 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:07:25,136 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:25 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:07:25,141 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 18:07:25,142 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:25,143 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U02000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 18:07:25,143 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:07:25 +08:00
+ 执行
+记录时间：2017-07-19 18:07:25,146 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 1 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:07:25,147 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:25,153 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:25 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:07:30,698 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:30 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:07:30,699 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 18:07:30,700 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:30,705 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U01000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 18:07:30,706 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:07:30 +08:00
+ 执行
+记录时间：2017-07-19 18:07:30,708 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 0 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:07:30,709 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:30,710 线程ID:[17] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:30 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:07:31,619 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:31 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:07:31,621 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 18:07:31,622 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:31,622 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U02000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 18:07:31,625 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:07:31 +08:00
+ 执行
+记录时间：2017-07-19 18:07:31,629 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 1 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:07:31,629 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:31,631 线程ID:[19] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:31 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:07:32,293 线程ID:[18] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:32 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:07:32,299 线程ID:[18] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 18:07:32,300 线程ID:[18] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:32,300 线程ID:[18] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U01000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 18:07:32,300 线程ID:[18] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:07:32 +08:00
+ 执行
+记录时间：2017-07-19 18:07:32,302 线程ID:[18] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 1 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:07:32,304 线程ID:[18] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:32,304 线程ID:[18] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:32 +08:00
+ 关闭了连接
+记录时间：2017-07-19 18:07:33,190 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:33 +08:00
+ 打开了连接
+记录时间：2017-07-19 18:07:33,191 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+select count(*) from (select * from (SELECT
+	                            d.*, dt.DicTypeName
+                            FROM
+	                            TB_Dictionary d
+                            LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
+                            WHERE
+	                            d.isdeleted = 0) t3 where 1=1  AND DicTypeCode= @DicTypeCode ) t 
+记录时间：2017-07-19 18:07:33,191 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:33,192 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- @DicTypeCode: 'U02000' (Type = String, IsNullable = false, Size = 6)
+
+记录时间：2017-07-19 18:07:33,192 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 正在 2017/7/19 18:07:33 +08:00
+ 执行
+记录时间：2017-07-19 18:07:33,195 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+-- 已在 2 毫秒内完成，结果为: MySqlDataReader
+
+记录时间：2017-07-19 18:07:33,195 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+
+
+记录时间：2017-07-19 18:07:33,196 线程ID:[20] 日志级别：DEBUG 处理类：CmsDAL.BaseDal`1[[CmsEntity.TB_Dictionary, CmsEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] 日志描述：
+已于 2017/7/19 18:07:33 +08:00
+ 关闭了连接

@@ -225,14 +225,59 @@ function getUrlParams(name) {
     }
 };
 
-/**
- * 菜单选中效果
- */
+$(document).ajaxStart(function () {
+    showLoading(true);
+});
+
+$(document).ajaxSuccess(function () {
+    showLoading(false);
+});
+
+function showLoading(bool, text) {
+    var $loadingpage = $("#loading");
+    var $loadingtext = $loadingpage.find('.loading-content');
+    if (bool) {
+        $loadingpage.show();
+    } else {
+        if ($loadingtext.attr('istableloading') == undefined) {
+            $loadingpage.hide();
+        }
+    }
+    if (!!text) {
+        $loadingtext.html(text);
+    } else {
+        $loadingtext.html("数据加载中，请稍后…");
+    }
+    $loadingtext.css("left", (top.$('body').width() - $loadingtext.width()) / 2 - 50);
+    $loadingtext.css("top", (top.$('body').height() - $loadingtext.height()) / 2);
+}
+
 $(function () {
+    $(window).bind("load resize", function () {
+        var topOffset = 50;
+        var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+        if (width < 768) {
+            $('div.navbar-collapse').addClass('collapse');
+            topOffset = 100; // 2-row-menu
+        } else {
+            $('div.navbar-collapse').removeClass('collapse');
+        }
+
+        var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+        height = height - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#page-wrapper").css("min-height", (height) + "px");
+        }
+    });
+
+    //菜单选中效果
     var currentPath = window.location.pathname;
     if (currentPath.indexOf("Info.aspx") > 0) {
         var parentPath = currentPath.replace("Info.aspx", "List.aspx");
         $("a[href='" + parentPath + "']").addClass("active").parent().parent().addClass("in");
+    } else {
+        $("a[href='" + currentPath + "']").addClass("active").parent().parent().addClass("in");
     }
 });
 

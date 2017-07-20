@@ -12,17 +12,17 @@
         <EntityTypeShape EntityType="CmsModel.TB_Dictionary" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="CmsModel.TB_DicType" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="CmsModel.TB_Organization" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CmsModel.TB_Position" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CmsModel.TB_PositionCity" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CmsModel.TB_PositionCounty" Width="1.5" PointX="6.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CmsModel.TB_PositionProvice" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CmsModel.TB_PositionTown" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="CmsModel.TB_PositionVillage" Width="1.5" PointX="10.75" PointY="0.75" />
         <EntityTypeShape EntityType="CmsModel.TB_Role" Width="1.5" PointX="10.75" PointY="3.75" />
         <EntityTypeShape EntityType="CmsModel.TB_RoleAuthority" Width="1.5" PointX="10.75" PointY="7.75" />
         <EntityTypeShape EntityType="CmsModel.TB_SysParams" Width="1.5" PointX="4.75" PointY="11.75" />
+        <EntityTypeShape EntityType="CmsModel.TB_UserOrganization" Width="1.5" PointX="6.75" PointY="11.75" />
         <EntityTypeShape EntityType="CmsModel.TB_UserRole" Width="1.5" PointX="8.75" PointY="11.75" />
-        <EntityTypeShape EntityType="CmsModel.TB_UserOrganization" Width="2" PointX="11.375" PointY="11.75" />
-        <EntityTypeShape EntityType="CmsModel.TB_Position" Width="1.5" PointX="0.75" PointY="10.75" />
-        <EntityTypeShape EntityType="CmsModel.TB_PositionCity" Width="1.5" PointX="7.75" PointY="8.75" />
-        <EntityTypeShape EntityType="CmsModel.TB_PositionCounty" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CmsModel.TB_PositionProvice" Width="1.5" PointX="11.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CmsModel.TB_PositionTown" Width="1.5" PointX="13.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CmsModel.TB_PositionVillage" Width="1.5" PointX="13.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

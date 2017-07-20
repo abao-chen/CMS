@@ -230,11 +230,11 @@
                     param["Id"] = data;
                     $.ajax({
                         type: "POST",
-                        url: "/API/SystemApi.aspx",
+                        url: "/API/UserApi.aspx",
                         cache: false, //禁用缓存
                         data: param, //传入组装的参数
                         dataType: "json",
-                        success: function () {
+                        success: function (result) {
                             if (result.result == 1) { //请求成功
                                 toastr.success("删除成功！");
                                 reloadData();

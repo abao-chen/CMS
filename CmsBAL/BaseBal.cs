@@ -77,9 +77,9 @@ namespace CmsBAL
 
         public int UpdateSingle(T entity)
         {
-            SetEntityCommProp(entity);
             using (var ctx = new CmsEntities())
             {
+                SetEntityCommProp(entity);
                 return new BaseDal<T>(ctx).UpdateSingle(entity);
             }
         }
