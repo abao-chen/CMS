@@ -225,14 +225,35 @@ function getUrlParams(name) {
     }
 };
 
+/**
+ * 获取列表的初始高度
+ * @returns {列表的初始高度} 
+ */
+function getTableHeight(){
+	if($("#searchPanel")){
+		return window.innerHeight - $("#searchPanel").height() - 249;
+	}else{
+		return window.innerHeight - 249;
+	}	
+}
+
+/**
+ * ajax 全局设置
+ * @returns {} 
+ */
 $(document).ajaxStart(function () {
     showLoading(true);
 });
-
 $(document).ajaxSuccess(function () {
     showLoading(false);
 });
 
+/**
+ * 显示loading遮罩层
+ * @param {是否显示} bool 
+ * @param {显示文字} text 
+ * @returns {} 
+ */
 function showLoading(bool, text) {
     var $loadingpage = $("#loading");
     var $loadingtext = $loadingpage.find('.loading-content');

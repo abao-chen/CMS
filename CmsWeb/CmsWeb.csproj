@@ -96,12 +96,11 @@
     <Content Include="ContentManage\ContentTypeInfo.aspx" />
     <Content Include="ContentManage\ContentTypeList.aspx" />
     <Content Include="Css\common.css" />
+    <Content Include="Css\Image\loading.gif" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="Scripts\bootstrapAlert.js" />
-    <Content Include="Scripts\bootstrap\vendor\bootstrap-bootbox\bootbox.js" />
-    <Content Include="Scripts\bootstrap\vendor\bootstrap-bootbox\bootbox.min.js" />
     <Content Include="Scripts\bootstrap\data\flot-data.js" />
     <Content Include="Scripts\bootstrap\data\morris-data.js" />
     <Content Include="Scripts\bootstrap\dist\css\sb-admin-2.css" />

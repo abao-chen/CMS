@@ -243,3 +243,15 @@ ModelManifest.xml
 
 #Document
 Document/
+
+#LogFile
+CmsWeb/Log
+
+#Temp
+CmsWeb/Temp
+
+#Upload
+CmsWeb/Upload
+
+#bak
+Entity/bak

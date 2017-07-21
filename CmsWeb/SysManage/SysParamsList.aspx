@@ -81,8 +81,8 @@
                 "scrollX": true,
                 "bLengthChange": false, //去掉每页显示多少条数据方法
                 "aLengthMenu": [50, 100, 200],
-				"scrollCollapse": true,
-                "scrollY": "270px",//270px
+                "scrollY": getTableHeight(),
+				"scrollCollapse":false,
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "ID",
