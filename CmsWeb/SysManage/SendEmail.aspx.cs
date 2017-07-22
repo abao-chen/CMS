@@ -9,7 +9,7 @@ using CmsUtils;
 
 namespace CmsWeb.SysManage
 {
-    public partial class SendEmail : System.Web.UI.Page
+    public partial class SendEmail : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

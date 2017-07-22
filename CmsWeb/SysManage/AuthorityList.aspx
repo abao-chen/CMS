@@ -85,7 +85,6 @@
         //初始化表格
         $(function () {
             tableObj = $('#dataTables').DataTable({
-                "processing": true,
                 "serverSide": true,
                 "searching": false,
                 "ordering": true,
@@ -98,7 +97,7 @@
 				"scrollCollapse":false,
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
-                "rowId": "#KeyId#",
+                "rowId": "ID",
                 "order": [6, "asc"],
                 "ajax": function (data, callback) {
                     var param = getSearchParams(data);

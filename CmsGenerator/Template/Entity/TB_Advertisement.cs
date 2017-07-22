@@ -1,8 +1,8 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/19
-// 文件说明：字典实体类
+// 制作日期：2017/07/22
+// 文件说明：广告实体类
 // 
 // 
 //------------------------------------------------------------------------------
@@ -14,26 +14,34 @@ namespace CmsEntity
     using System;
     using System.Collections.Generic;
 
-    public partial class TB_Dictionary : BaseEntity
+    public partial class TB_Advertisement : BaseEntity
     {
         /// <summary>
-        /// 
+        /// ID
         /// </summary>
         public int ID { get; set; }
         /// <summary>
-        /// 字典类型编码
+        /// 广告类型ID
         /// </summary>
-        public string DicTypeCode { get; set; }
+        public int? AdTypeID { get; set; }
         /// <summary>
-        /// 字典名称
+        /// 广告名称
         /// </summary>
-        public string DicName { get; set; }
+        public string AdName { get; set; }
         /// <summary>
-        /// 字典编码
+        /// 广告图片
         /// </summary>
-        public string DicCode { get; set; }
+        public string AdDescription { get; set; }
         /// <summary>
-        /// 是否启用            1：启用，0：未启用
+        /// 广告链接
+        /// </summary>
+        public string AdUrl { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public string AdTypeComment { get; set; }
+        /// <summary>
+        /// 是否启用
         /// </summary>
         public int? IsUsing { get; set; }
 

@@ -229,12 +229,12 @@ function getUrlParams(name) {
  * 获取列表的初始高度
  * @returns {列表的初始高度} 
  */
-function getTableHeight(){
-	if($("#searchPanel")){
-		return window.innerHeight - $("#searchPanel").height() - 249;
-	}else{
-		return window.innerHeight - 249;
-	}	
+function getTableHeight() {
+    if ($("#searchPanel:visible").length > 0) {
+        return window.innerHeight - $("#searchPanel").height() - 249;
+    } else {
+        return window.innerHeight - 232;
+    }
 }
 
 /**

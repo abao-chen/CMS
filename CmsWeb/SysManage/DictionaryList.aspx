@@ -60,7 +60,6 @@
         //初始化表格
         $(function () {
             tableObj = $('#dataTables').DataTable({
-                "processing": true,
                 "serverSide": true,
                 "searching": false,
                 "ordering": true,
@@ -73,7 +72,7 @@
 				"scrollCollapse":false,
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
-                "rowId": "#KeyId#",
+                "rowId": "ID",
                 "order": [2, "desc"],
                 "ajax": function (data, callback) {
                     var param = getSearchParams(data);
@@ -175,13 +174,13 @@
                     if (result.result == 1) { //请求成功
                         treeObj = $.fn.zTree.init($("#dicTree"),
                             {
-                                edit: {
-                                    enable: true,
-                                    showRemoveBtn: true,
-                                    showRenameBtn: true,
-                                    removeTitle: "删除",
-                                    renameTitle: "编辑"
-                                },
+                                //edit: {
+                                //    enable: true,
+                                //    showRemoveBtn: true,
+                                //    showRenameBtn: true,
+                                //    removeTitle: "删除",
+                                //    renameTitle: "编辑"
+                                //},
                                 data: {
                                     simpleData: {
                                         enable: true,
@@ -194,8 +193,8 @@
                                 },
                                 callback: {
                                     onClick: onClickNode,
-                                    onRename: editNode,
-                                    beforeRemove: deleteConfirm
+                                    //onRename: editNode,
+                                    //beforeRemove: deleteConfirm
                                 }
 
                             }, result.data);

@@ -47,10 +47,16 @@
                                 <asp:Label ID="lbLastLoginTime" runat="server" Text="" CssClass="form-control"></asp:Label>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <%--<div class="col-lg-12">
                             <div class="form-group">
                                 <label>用户角色：</label>
                                 <asp:CheckBoxList ID="cblRole" runat="server" CssClass="checkbox-inline"></asp:CheckBoxList>
+                            </div>
+                        </div>--%>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>用户角色：</label>
+                                <Cms:CheckBoxListExt runat="server" ID="cblRole" IsInline="True" Name="cblRole" ></Cms:CheckBoxListExt>
                             </div>
                         </div>
                         <div class="col-lg-12" style="text-align: center;">
@@ -100,7 +106,7 @@
                             notEmpty: {}
                         }
                     },
-                    <%= cblRole.UniqueID %>: {
+                    cblRole: {
                         validators: {
                             notEmpty: {}
                         }

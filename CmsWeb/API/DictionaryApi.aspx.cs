@@ -50,7 +50,7 @@ namespace CmsWeb.API
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
-            new DictionaryBal().DeleteByIds(resultModel, searchModel);
+            new DicTypeBal().DeleteByIds(resultModel, searchModel);
             return resultModel;
         }
 

@@ -64,7 +64,7 @@
         <div class="col-lg-12">
             <a id="btnAdd" class="btn btn-info" href="/SysManage/UserInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
             <a id="btnDelete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>删除</a>
-            <a runat="server" class="btn btn-primary" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
+            <a runat="server" class="btn btn-primary" ID="btnExport" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
         </div>
     </div>
     <!-- /.row -->
@@ -104,7 +104,6 @@
         //初始化表格
         $(function() {
             tableObj = $('#dataTables').DataTable({
-                "processing": true,
                 "serverSide": true,
                 "searching": false,
                 "ordering": true,

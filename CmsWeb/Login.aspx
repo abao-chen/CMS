@@ -56,12 +56,12 @@
                                 <div class="form-group">
                                     <asp:TextBox runat="server" ID="txtPassword" class="form-control" placeholder="用户密码" name="password" type="password" Text=""></asp:TextBox>
                                 </div>
-                                <%--<div class="form-group input-group">
-                                    <asp:TextBox runat="server" ID="txtValidateCode" class="form-control" placeholder="验证码" name="validateCode" Text=""></asp:TextBox>
+                                <div class="form-group input-group" style="display: none;">
+                                    <asp:TextBox runat="server" ID="txtValidateCode" class="form-control" placeholder="验证码" name="validateCode" Text="1"></asp:TextBox>
                                     <span class="input-group-btn">
                                         <asp:Image ID="ImgValidateCode" runat="server" ImageUrl="~/API/ValidateCodeApi.aspx" ToolTip="点击刷新" />
                                     </span>
-                                </div>--%>
+                                </div>
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me" />Remember Me
@@ -117,21 +117,21 @@
                                 notEmpty: {}
                             }
                         },
-                        <%--<%=txtValidateCode.UniqueID%>: {
+                        <%=txtValidateCode.UniqueID%>: {
                             validators: {
                                 notEmpty: {}
                             }
-                        }--%>
+                        }
                     }
                 });
             });
 
-            <%--$(function () {
+            $(function () {
                 $("#<%=ImgValidateCode.ClientID%>").click(function () {
                     var imgSrc = "/API/ValidateCodeApi.aspx?rnd=" + new Date().getTime();
                     $(this).attr("src", imgSrc);
                 });
-            });--%>
+            });
         </script>
     </form>
 </body>

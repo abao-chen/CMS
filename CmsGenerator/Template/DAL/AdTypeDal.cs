@@ -1,8 +1,8 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/19
-// 文件说明：省市县镇村数据数据访问类
+// 制作日期：2017/07/22
+// 文件说明：广告类型数据访问类
 // 
 // 
 //------------------------------------------------------------------------------
@@ -14,9 +14,9 @@ using CmsEntity;
 
 namespace CmsDAL
 {
-    public class PositionDal : BaseDal<TB_Position>
+    public class AdTypeDal : BaseDal<TB_AdType>
     {
-        public PositionDal(CmsEntities ctx) : base(ctx)
+        public AdTypeDal(CmsEntities ctx) : base(ctx)
         {
         }
     }

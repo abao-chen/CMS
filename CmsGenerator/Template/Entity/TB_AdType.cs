@@ -1,8 +1,8 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/19
-// 文件说明：省市县镇村数据实体类
+// 制作日期：2017/07/22
+// 文件说明：广告类型实体类
 // 
 // 
 //------------------------------------------------------------------------------
@@ -14,24 +14,28 @@ namespace CmsEntity
     using System;
     using System.Collections.Generic;
 
-    public partial class TB_PositionVillage : BaseEntity
+    public partial class TB_AdType : BaseEntity
     {
         /// <summary>
-        /// 
+        /// ID
         /// </summary>
         public int ID { get; set; }
         /// <summary>
-        /// 镇id
+        /// 广告位名称
         /// </summary>
-        public string TownID { get; set; }
+        public string AdTypeName { get; set; }
         /// <summary>
-        /// 村id--唯一
+        /// 广告位说明
         /// </summary>
-        public string VillageID { get; set; }
+        public string AdTypeDescription { get; set; }
         /// <summary>
-        /// 村名称
+        /// 备注
         /// </summary>
-        public string VillageName { get; set; }
+        public string AdTypeComment { get; set; }
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public int? IsUsing { get; set; }
 
     }
 }

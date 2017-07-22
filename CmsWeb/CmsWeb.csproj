@@ -95,6 +95,8 @@
     <Content Include="ContentManage\BasicContentList.aspx" />
     <Content Include="ContentManage\ContentTypeInfo.aspx" />
     <Content Include="ContentManage\ContentTypeList.aspx" />
+    <Content Include="ControlExt\CheckBoxListExt.ascx" />
+    <Content Include="ControlExt\RadioBoxListExt.ascx" />
     <Content Include="Css\common.css" />
     <Content Include="Css\Image\loading.gif" />
     <Content Include="Index.aspx" />
@@ -656,6 +658,20 @@
     </Compile>
     <Compile Include="ContentManage\ContentTypeList.aspx.designer.cs">
       <DependentUpon>ContentTypeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlExt\CheckBoxListExt.ascx.cs">
+      <DependentUpon>CheckBoxListExt.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlExt\CheckBoxListExt.ascx.designer.cs">
+      <DependentUpon>CheckBoxListExt.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlExt\RadioBoxListExt.ascx.cs">
+      <DependentUpon>RadioBoxListExt.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlExt\RadioBoxListExt.ascx.designer.cs">
+      <DependentUpon>RadioBoxListExt.ascx</DependentUpon>
     </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>

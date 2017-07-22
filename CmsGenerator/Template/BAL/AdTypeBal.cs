@@ -1,8 +1,8 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/19
-// 文件说明：省市县镇村数据业务逻辑类
+// 制作日期：2017/07/22
+// 文件说明：广告类型业务逻辑类
 // 
 // 
 //------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ using CmsUtils;
 namespace CmsBAL
 {
 
-    public class PositionVillageBal : BaseBal<TB_PositionVillage>
+    public class AdTypeBal : BaseBal<TB_AdType>
     {
         /// <summary>
         /// 删除数据
@@ -27,17 +27,17 @@ namespace CmsBAL
     public void DeleteByIds(AjaxResultModel resultModel, AjaxModel searchModel)
     {
 
-        List<TB_PositionVillage> list = new List<TB_PositionVillage>();
+        List<TB_AdType> list = new List<TB_AdType>();
         using (var ctx = new CmsEntities())
         {
-            PositionVillageDal dal = new PositionVillageDal(ctx);
+            AdTypeDal dal = new AdTypeDal(ctx);
             string[] ids = searchModel.ParamsDic["Id"].Split(new string[] { "," }, StringSplitOptions.None);
             int id = 0;
             foreach (string i in ids)
             {
                 if (int.TryParse(i, out id))
                 {
-                    TB_PositionVillage entity = dal.SelectSingle(u => u.ID.Equals(id));
+                    TB_AdType entity = dal.SelectSingle(u => u.ID.Equals(id));
                     if (entity != null)
                     {
                         entity.IsDeleted = 1;

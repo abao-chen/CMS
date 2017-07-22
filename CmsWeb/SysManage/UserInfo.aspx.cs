@@ -56,14 +56,28 @@ namespace CmsWeb
                 ddlStatus.SelectedValue = userInfo.UserStatus;
                 ddlType.SelectedValue = userInfo.UserType;
                 List<TB_UserRole> userRoleList = new UserRoleBal().SelectList(ur => ur.UserID == Id);
-                for (int index = 0; index < cblRole.Items.Count; index++)
+                //for (int index = 0; index < cblRole.Items.Count; index++)
+                //{
+                //    int roleId = Convert.ToInt32(cblRole.Items[index].Value);
+                //    if (userRoleList.Any(ur => ur.RoleID == roleId))
+                //    {
+                //        cblRole.Items[index].Selected = true;
+                //    }
+                //}
+
+                string selectedValue = string.Empty;
+                foreach (TB_UserRole userRole in userRoleList)
                 {
-                    int roleId = Convert.ToInt32(cblRole.Items[index].Value);
-                    if (userRoleList.Any(ur => ur.RoleID == roleId))
+                    if (selectedValue.IsEmpty())
                     {
-                        cblRole.Items[index].Selected = true;
+                        selectedValue = userRole.RoleID.ToString();
+                    }
+                    else
+                    {
+                        selectedValue += "," + userRole.RoleID;
                     }
                 }
+                cblRole.SelectedValue = selectedValue;
             }
         }
 
@@ -76,9 +90,12 @@ namespace CmsWeb
                 new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERSTATUS), true);
             ControlUtil.BindListControl(this.ddlType,
                 new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERTYPE), true);
-            ControlUtil.BindListControl(this.cblRole,
-                new RoleBal().SelectList(r => r.IsDeleted == Constants.IS_NO), "RoleName", "ID");
+            //ControlUtil.BindListControl(this.cblRole,
+            //    new RoleBal().SelectList(r => r.IsDeleted == Constants.IS_NO), "RoleName", "ID");
 
+            cblRole.DataSource = new RoleBal().SelectList(r => r.IsDeleted == Constants.IS_NO && r.IsUsing == Constants.IS_YES);
+            cblRole.DataTextField = "RoleName";
+            cblRole.DataValueField = "ID";
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
@@ -97,14 +114,25 @@ namespace CmsWeb
                 userInfo.UserType = ddlType.SelectedValue;
                 new BasicUserBal().UpdateSingle(userInfo);
                 List<TB_UserRole> userRoleList = new List<TB_UserRole>();
-                for (int index = 0; index < cblRole.Items.Count; index++)
+                //for (int index = 0; index < cblRole.Items.Count; index++)
+                //{
+                //    if (cblRole.Items[index].Selected)
+                //    {
+                //        userRoleList.Add(new TB_UserRole
+                //        {
+                //            UserID = userInfo.ID,
+                //            RoleID = Convert.ToInt32(cblRole.Items[index].Value)
+                //        });
+                //    }
+                //}
+                if (cblRole.SelectedValueArray != null)
                 {
-                    if (cblRole.Items[index].Selected)
+                    foreach (string selectedValue in cblRole.SelectedValueArray)
                     {
                         userRoleList.Add(new TB_UserRole
                         {
                             UserID = userInfo.ID,
-                            RoleID = Convert.ToInt32(cblRole.Items[index].Value)
+                            RoleID = Convert.ToInt32(selectedValue)
                         });
                     }
                 }
@@ -122,14 +150,25 @@ namespace CmsWeb
                 userInfo.UserType = ddlType.SelectedValue;
                 new BasicUserBal().InsertSingle(userInfo);
                 List<TB_UserRole> userRoleList = new List<TB_UserRole>();
-                for (int index = 0; index < cblRole.Items.Count; index++)
+                //for (int index = 0; index < cblRole.Items.Count; index++)
+                //{
+                //    if (cblRole.Items[index].Selected)
+                //    {
+                //        userRoleList.Add(new TB_UserRole
+                //        {
+                //            UserID = userInfo.ID,
+                //            RoleID = Convert.ToInt32(cblRole.Items[index].Value)
+                //        });
+                //    }
+                //}
+                if (cblRole.SelectedValueArray != null)
                 {
-                    if (cblRole.Items[index].Selected)
+                    foreach (string selectedValue in cblRole.SelectedValueArray)
                     {
                         userRoleList.Add(new TB_UserRole
                         {
                             UserID = userInfo.ID,
-                            RoleID = Convert.ToInt32(cblRole.Items[index].Value)
+                            RoleID = Convert.ToInt32(selectedValue)
                         });
                     }
                 }

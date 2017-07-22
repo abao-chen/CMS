@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -160,14 +161,59 @@ namespace CmsGenerator
         /// <param name="e"></param>
         protected void btnGeneratorBDE_OnClick(object sender, EventArgs e)
         {
+            #region 清空原有文件
+
+            if (Directory.Exists(EntityOutputPath))
+            {
+                FileUtil.DeleteFolderFiles(EntityOutputPath, true);
+            }
+            else
+            {
+                Directory.CreateDirectory(EntityOutputPath);
+            }
+            if (Directory.Exists(DalOutputPath))
+            {
+                FileUtil.DeleteFolderFiles(DalOutputPath, true);
+            }
+            else
+            {
+                Directory.CreateDirectory(DalOutputPath);
+            }
+            if (Directory.Exists(BalOutputPath))
+            {
+                FileUtil.DeleteFolderFiles(BalOutputPath, true);
+            }
+            else
+            {
+                Directory.CreateDirectory(BalOutputPath);
+            }
+
+            #endregion
+
+            string tablesWhere = String.Empty;
+            for (int i = 0; i < this.cbTables.Items.Count; i++)
+            {
+                if (cbTables.Items[i].Selected)
+                {
+                    if (string.IsNullOrEmpty(tablesWhere))
+                    {
+                        tablesWhere = "'" + cbTables.Items[i].Value + "'";
+                    }
+                    else
+                    {
+                        tablesWhere += ",'" + cbTables.Items[i].Value + "'";
+                    }
+                }
+            }
+
             using (var ctx = new CmsEntities())
             {
                 //查询所有表信息
                 string tbSql =
-                    @"select TABLE_NAME,TABLE_COMMENT from information_schema.`TABLES` WHERE TABLE_SCHEMA='{0}'";
+                    @"select TABLE_NAME,TABLE_COMMENT from information_schema.`TABLES` WHERE binary TABLE_NAME IN (" + tablesWhere + ")";
                 //查询表中的所有字段
                 string colSql =
-                    @"select COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,IS_NULLABLE from information_schema.columns WHERE TABLE_NAME='{0}'";
+                    @"select COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT,IS_NULLABLE from information_schema.columns WHERE binary TABLE_NAME='{0}'";
                 string cnFileName = string.Empty;
                 string className = string.Empty;
                 string date = DateTime.Now.ToString("yyyy/MM/dd");
@@ -255,35 +301,11 @@ namespace CmsGenerator
         }
 
         /// <summary>
-        /// 生成页面文件
+        /// 绑定页面配置
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void btnGeneratorView_OnClick(object sender, EventArgs e)
-        {
-            string formDataStr = hidFormData.Value;
-            List<GeneraEntity> list = formDataStr.ToObject<List<GeneraEntity>>();
-            string date = DateTime.Now.ToString("yyyy/MM/dd");
-            foreach (GeneraEntity entity in list)
-            {
-                string className = entity.tableName.Replace("TB_", string.Empty);
-                string cnFileName = entity.tableComment.Replace("表", string.Empty);
-
-                //生成Api文件
-                CreateApiFile(className, entity, cnFileName, date); CreateApiFile(className, entity, cnFileName, date);
-                //生成List文件
-                CreateListFile(className, entity, cnFileName, date);
-                //生成Info文件
-                CreateInfoFile(entity, className, cnFileName, date);
-            }
-        }
-
-        /// <summary>
-        /// 绑定表中的字段数据
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void cbTables_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnShowPageConfig_Click(object sender, EventArgs e)
         {
             string tablesWhere = String.Empty;
             for (int i = 0; i < this.cbTables.Items.Count; i++)
@@ -311,6 +333,50 @@ namespace CmsGenerator
                     rpTables.DataSource = tbDt;
                     rpTables.DataBind();
                 }
+            }
+        }
+
+        /// <summary>
+        /// 生成页面文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnGeneratorView_OnClick(object sender, EventArgs e)
+        {
+            #region 清空原有文件
+
+            if (Directory.Exists(ViewOutputPath))
+            {
+                FileUtil.DeleteFolderFiles(ViewOutputPath, true);
+            }
+            else
+            {
+                Directory.CreateDirectory(ViewOutputPath);
+            }
+            if (Directory.Exists(ApiOutputPath))
+            {
+                FileUtil.DeleteFolderFiles(ApiOutputPath, true);
+            }
+            else
+            {
+                Directory.CreateDirectory(ApiOutputPath);
+            }
+
+            #endregion
+            string formDataStr = hidFormData.Value;
+            List<GeneraEntity> list = formDataStr.ToObject<List<GeneraEntity>>();
+            string date = DateTime.Now.ToString("yyyy/MM/dd");
+            foreach (GeneraEntity entity in list)
+            {
+                string className = entity.tableName.Replace("TB_", string.Empty);
+                string cnFileName = entity.tableComment.Replace("表", string.Empty);
+
+                //生成Api文件
+                CreateApiFile(className, entity, cnFileName, date); CreateApiFile(className, entity, cnFileName, date);
+                //生成List文件
+                CreateListFile(className, entity, cnFileName, date);
+                //生成Info文件
+                CreateInfoFile(entity, className, cnFileName, date);
             }
         }
 
@@ -393,7 +459,7 @@ namespace CmsGenerator
                     editCols += "             <div class=\"form-group\">\r\n";
                     editCols += "    <label>#ColCnName#：</label>\r\n";
                     editCols +=
-                        "<asp:#ControlType# ID =\"#ControlAlisa##ColName#\" runat=\"server\" CssClass=\"form-control\"></asp:#ControlType#>\r\n";
+                        "<#tagPrefix#:#ControlType# ID =\"#ControlAlisa##ColName#\" runat=\"server\" CssClass=\"form-control\"></#tagPrefix#:#ControlType#>\r\n";
                     switch (colEntity.controlType)
                     {
                         case 2://下拉框
@@ -401,12 +467,28 @@ namespace CmsGenerator
                             controlType = "DropDownList";
                             initDataBuilder.AppendLine("#ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
                             saveCol = "entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
+                            editCols = editCols.Replace("#tagPrefix#", "asp");
+                            break;
+                        case 4://多选框 checkboxlist
+                            controlAlisa = "cbl";
+                            controlType = "CheckBoxListExt";
+                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
+                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
+                            editCols = editCols.Replace("#tagPrefix#", "Cms");
+                            break;
+                        case 5://单选框 radioboxlist
+                            controlAlisa = "rbl";
+                            controlType = "RadioBoxListExt";
+                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
+                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
+                            editCols = editCols.Replace("#tagPrefix#", "Cms");
                             break;
                         default://文本框
                             controlAlisa = "txt";
                             controlType = "TextBox";
                             initDataBuilder.AppendLine("#ControlAlisa##ColName#.Text = entity.#ColName#.ToString();");
                             saveCol = "entity.#ColName# = #ControlAlisa##ColName#.Text;";
+                            editCols = editCols.Replace("#tagPrefix#", "asp");
                             break;
                     }
                     editCols += "</div>\r\n";
@@ -577,6 +659,6 @@ namespace CmsGenerator
                 .Replace("#ClassName#", className);
             FileUtil.WriteFile(ApiOutputPath + className + "Api.aspx.designer.cs", ApiDesignerContent);
         }
-
+    
     }
 }

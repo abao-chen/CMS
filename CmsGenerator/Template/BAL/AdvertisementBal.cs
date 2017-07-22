@@ -1,8 +1,8 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/19
-// 文件说明：角色业务逻辑类
+// 制作日期：2017/07/22
+// 文件说明：广告业务逻辑类
 // 
 // 
 //------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ using CmsUtils;
 namespace CmsBAL
 {
 
-    public class RoleBal : BaseBal<TB_Role>
+    public class AdvertisementBal : BaseBal<TB_Advertisement>
     {
         /// <summary>
         /// 删除数据
@@ -27,17 +27,17 @@ namespace CmsBAL
     public void DeleteByIds(AjaxResultModel resultModel, AjaxModel searchModel)
     {
 
-        List<TB_Role> list = new List<TB_Role>();
+        List<TB_Advertisement> list = new List<TB_Advertisement>();
         using (var ctx = new CmsEntities())
         {
-            RoleDal dal = new RoleDal(ctx);
+            AdvertisementDal dal = new AdvertisementDal(ctx);
             string[] ids = searchModel.ParamsDic["Id"].Split(new string[] { "," }, StringSplitOptions.None);
             int id = 0;
             foreach (string i in ids)
             {
                 if (int.TryParse(i, out id))
                 {
-                    TB_Role entity = dal.SelectSingle(u => u.ID.Equals(id));
+                    TB_Advertisement entity = dal.SelectSingle(u => u.ID.Equals(id));
                     if (entity != null)
                     {
                         entity.IsDeleted = 1;

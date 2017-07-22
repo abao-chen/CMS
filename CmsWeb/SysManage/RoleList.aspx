@@ -72,7 +72,6 @@
         //初始化表格
         $(function () {
             tableObj = $('#dataTables').DataTable({
-                "processing": true,
                 "serverSide": true,
                 "searching": false,
                 "ordering": true,
@@ -82,7 +81,7 @@
                 "bLengthChange": false, //去掉每页显示多少条数据方法
                 "aLengthMenu": [50, 100, 200],
                 "scrollY": getTableHeight(),
-				"scrollCollapse":false,
+                "scrollCollapse": false,
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "ID",
@@ -115,7 +114,7 @@
                 "columns": [
                     {
                         "data": "ID",
-                        "width":"4%",
+                        "width": "4%",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
                             var result = "<input id=\"" +
@@ -180,26 +179,32 @@
 
         //删除行数据
         function deleteRows(data) {
-            bootbox.confirm({
-                size: "small",
-                message: "确认要删除选中数据吗？",
-                callback: function (result) {
-                    if (result) {
-                        var param = {};
-                        param["method"] = "DeleteByIds";
-                        param["Id"] = data;
-                        $.ajax({
-                            type: "POST",
-                            url: "/API/RoleApi.aspx",
-                            cache: false, //禁用缓存
-                            data: param, //传入组装的参数
-                            dataType: "json",
-                            success: function () {
+            bootAlert.confirm().on(function (confirmResult) {
+                if (confirmResult) {
+                    var param = {};
+                    param["method"] = "DeleteByIds";
+                    param["Id"] = data;
+                    $.ajax({
+                        type: "POST",
+                        url: "/API/RoleApi.aspx",
+                        cache: false, //禁用缓存
+                        data: param, //传入组装的参数
+                        dataType: "json",
+                        success: function (result) {
+                            if (result.result == 1) { //请求成功
                                 toastr.success("删除成功！");
                                 reloadData();
+                            } else if (result.result == 2) {//请求失败
+                                toastr.error(result.message);
+                            } else if (result.result == 3) {//登录超时
+                                bootAlert.alert(result.message).on(function () {
+                                    location.href = "/Login.aspx";
+                                });
+                            } else {//其他异常情况
+                                toastr.error(result.message);
                             }
-                        });
-                    }
+                        }
+                    });
                 }
             });
         }

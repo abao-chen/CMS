@@ -10,14 +10,17 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            
+            <input id="selectAll" type="checkbox"/><label for="selectAll">全选</label>
+            <asp:Button ID="btnShowPageConfig" runat="server" Text="显示页面配置" OnClick="btnShowPageConfig_Click" />
             <asp:Button ID="btnGeneratorView" runat="server" Text="生成页面" OnClick="btnGeneratorView_OnClick" />
-            <asp:Button ID="btnTest" runat="server" Text="Test" OnClientClick="createFormJsonData();" OnClick="btnTest_OnClick" />
+            <asp:Button ID="btnGeneratorBDE" runat="server" Text="生成三层" OnClick="btnGeneratorBDE_OnClick" />
+
             <asp:HiddenField ID="hidTablesName" runat="server" />
             <asp:HiddenField ID="hidFormData" runat="server" />
-            <asp:Button ID="btnGeneratorBDE" runat="server" Text="生成三层" OnClick="btnGeneratorBDE_OnClick" />
         </div>
         <div>
-            <asp:CheckBoxList ID="cbTables" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" RepeatLayout="Flow" OnSelectedIndexChanged="cbTables_SelectedIndexChanged"></asp:CheckBoxList>
+            <asp:CheckBoxList ID="cbTables" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow"></asp:CheckBoxList>
         </div>
         <table>
             <asp:Repeater ID="rpTables" runat="server" OnItemDataBound="rpTables_ItemDataBound">
@@ -59,6 +62,8 @@
                                                         <option value="1">文本框</option>
                                                         <option value="2">下拉框</option>
                                                         <option value="3">日期</option>
+                                                        <option value="4">多选框</option>
+                                                        <option value="5">单选框</option>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -89,9 +94,14 @@
                 $("#<%=btnGeneratorView.ClientID%>").click(function () {
                     createFormJsonData();
                 });
+
+                $("#selectAll").click(function () {
+                    var selectAll = this;
+                    $("#cbTables input[type='checkbox']").each(function() {
+                        $(this).attr("checked", $(selectAll).attr("checked"));
+                    });
+                });
             });
-
-
 
             function createFormJsonData() {
                 var tableObjArray = [];

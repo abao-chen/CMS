@@ -22,6 +22,15 @@ namespace CmsGenerator {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// btnShowPageConfig 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnShowPageConfig;
+        
+        /// <summary>
         /// btnGeneratorView 控件。
         /// </summary>
         /// <remarks>
@@ -31,13 +40,13 @@ namespace CmsGenerator {
         protected global::System.Web.UI.WebControls.Button btnGeneratorView;
         
         /// <summary>
-        /// btnTest 控件。
+        /// btnGeneratorBDE 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTest;
+        protected global::System.Web.UI.WebControls.Button btnGeneratorBDE;
         
         /// <summary>
         /// hidTablesName 控件。
@@ -56,15 +65,6 @@ namespace CmsGenerator {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidFormData;
-        
-        /// <summary>
-        /// btnGeneratorBDE 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGeneratorBDE;
         
         /// <summary>
         /// cbTables 控件。

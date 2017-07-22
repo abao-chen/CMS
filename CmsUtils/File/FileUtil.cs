@@ -329,31 +329,40 @@ namespace CmsUtils
 
         #endregion
 
-        #region 删除指定文件夹对应其他文件夹里的文件
+        #region 删除指定文件夹下的所有文件
 
         /// <summary>
-        ///     删除指定文件夹对应其他文件夹里的文件
+        ///     删除指定文件夹下的所有文件
         /// </summary>
         /// <param name="varFromDirectory">指定文件夹路径</param>
-        /// <param name="varToDirectory">对应其他文件夹路径</param>
-        public static void DeleteFolderFiles(string varFromDirectory, string varToDirectory)
+        public static void DeleteFolderFiles(string varFromDirectory, bool isDeleteSubDic)
         {
-            Directory.CreateDirectory(varToDirectory);
+            DirectoryInfo di = new DirectoryInfo(varFromDirectory);
+            if (!di.Exists)
+            {
+                return;
+            }
+            if (isDeleteSubDic)
+            {//是否删除子目录
+                DirectoryInfo[] subDic = di.GetDirectories();
+                if (subDic.Length > 0)
+                {
+                    foreach (var d in subDic)
+                    {
+                        DeleteFolderFiles(d.FullName, true);
+                    }
+                }
+            }
 
-            if (!Directory.Exists(varFromDirectory)) return;
-
-            var directories = Directory.GetDirectories(varFromDirectory);
-
-            if (directories.Length > 0)
-                foreach (var d in directories)
-                    DeleteFolderFiles(d, varToDirectory + d.Substring(d.LastIndexOf("\\")));
-
-
-            var files = Directory.GetFiles(varFromDirectory);
-
+            //删除当前目录的所有文件
+            var files = di.GetFiles();
             if (files.Length > 0)
+            {
                 foreach (var s in files)
-                    File.Delete(varToDirectory + s.Substring(s.LastIndexOf("\\")));
+                {
+                    File.Delete(s.FullName);
+                }
+            }
         }
 
         #endregion
@@ -652,7 +661,7 @@ namespace CmsUtils
             {
                 fileExt = filePath.Substring(filePath.LastIndexOf(".", StringComparison.Ordinal));
             }
-            
+
             return fileExt;
         }
 

@@ -303,9 +303,26 @@ namespace CmsUtils
         /// </summary>
         /// <param name="page"></param>
         /// <param name="toastMessage"></param>
-        public static void ClientToast(Page page, string toastMessage)
+        /// <param name="toastMessage">提示消息类型，1：Info，2：warning，3：error，default：Info</param>
+        public static void ClientToast(Page page, string toastMessage, int messageType = 1)
         {
-            page.ClientScript.RegisterStartupScript(page.ClientScript.GetType(), "myScript", "<script type='text/javascript'>toastr.error('" + toastMessage + "');</script>");
+			string toastrType = string.Empty;
+			switch(messageType)
+			{
+				case 1:
+					toastrType = "info";
+					break;
+			    case 2:
+					toastrType = "warning";
+					break;
+			    case 3:
+					toastrType = "error";
+					break;
+				default:
+					toastrType = "info";
+					break;
+			}
+            page.ClientScript.RegisterStartupScript(page.ClientScript.GetType(), "myScript", "<script type='text/javascript'>toastr."+ toastrType +"('" + toastMessage + "');</script>");
         }
     }
 }
