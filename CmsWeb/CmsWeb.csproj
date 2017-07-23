@@ -70,6 +70,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="API\AdTypeApi.aspx" />
+    <Content Include="API\AdvertisementApi.aspx" />
     <Content Include="API\AuthorityApi.aspx" />
     <Content Include="API\BasicContentApi.aspx" />
     <Content Include="API\ContentApi.aspx" />
@@ -91,6 +93,10 @@
     <Content Include="API\ValidateCodeApi.aspx" />
     <Content Include="Config\log4net.config" />
     <None Include="Config\SystemConfig.config" />
+    <Content Include="ContentManage\AdTypeInfo.aspx" />
+    <Content Include="ContentManage\AdTypeList.aspx" />
+    <Content Include="ContentManage\AdvertisementInfo.aspx" />
+    <Content Include="ContentManage\AdvertisementList.aspx" />
     <Content Include="ContentManage\BasicContentInfo.aspx" />
     <Content Include="ContentManage\BasicContentList.aspx" />
     <Content Include="ContentManage\ContentTypeInfo.aspx" />
@@ -502,6 +508,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\AdTypeApi.aspx.cs">
+      <DependentUpon>AdTypeApi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\AdTypeApi.aspx.designer.cs">
+      <DependentUpon>AdTypeApi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="API\AdvertisementApi.aspx.cs">
+      <DependentUpon>AdvertisementApi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="API\AdvertisementApi.aspx.designer.cs">
+      <DependentUpon>AdvertisementApi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="API\BaseApi.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -630,6 +650,34 @@
     </Compile>
     <Compile Include="API\ValidateCodeApi.aspx.designer.cs">
       <DependentUpon>ValidateCodeApi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentManage\AdTypeInfo.aspx.cs">
+      <DependentUpon>AdTypeInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentManage\AdTypeInfo.aspx.designer.cs">
+      <DependentUpon>AdTypeInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentManage\AdTypeList.aspx.cs">
+      <DependentUpon>AdTypeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentManage\AdTypeList.aspx.designer.cs">
+      <DependentUpon>AdTypeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentManage\AdvertisementInfo.aspx.cs">
+      <DependentUpon>AdvertisementInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentManage\AdvertisementInfo.aspx.designer.cs">
+      <DependentUpon>AdvertisementInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContentManage\AdvertisementList.aspx.cs">
+      <DependentUpon>AdvertisementList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentManage\AdvertisementList.aspx.designer.cs">
+      <DependentUpon>AdvertisementList.aspx</DependentUpon>
     </Compile>
     <Compile Include="ContentManage\BasicContentInfo.aspx.cs">
       <DependentUpon>BasicContentInfo.aspx</DependentUpon>

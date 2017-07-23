@@ -7,63 +7,54 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.Master {
+namespace CmsWeb {
     
     
-    public partial class Master {
+    public partial class AdTypeInfo {
         
         /// <summary>
-        /// head 控件。
+        /// txtAdTypeName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.TextBox txtAdTypeName;
         
         /// <summary>
-        /// form 控件。
+        /// txtAdTypeDescription 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form;
+        protected global::System.Web.UI.WebControls.TextBox txtAdTypeDescription;
         
         /// <summary>
-        /// lkLogout 控件。
+        /// txtAdTypeComment 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lkLogout;
+        protected global::System.Web.UI.WebControls.TextBox txtAdTypeComment;
         
         /// <summary>
-        /// sideMenu 控件。
+        /// cbIsUsing 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sideMenu;
+        protected global::System.Web.UI.WebControls.CheckBox cbIsUsing;
         
         /// <summary>
-        /// ContentPlaceHolder1 控件。
+        /// btnSave 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
-        
-        /// <summary>
-        /// ContentPlaceHolder2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder2;
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

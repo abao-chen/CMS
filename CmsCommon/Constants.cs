@@ -86,6 +86,24 @@ namespace CmsCommon
         public const string USER_STATUS_FROZEN = "U00202";
 
         #endregion
-        
+
+        #region 权限标识
+
+        /// <summary>
+        /// 权限标识：模块
+        /// </summary>
+        public const int AUTHOR_FLAG_MODULE = 1;
+
+        /// <summary>
+        /// 权限标识：页面
+        /// </summary>
+        public const int AUTHOR_FLAG_PAGE = 2;
+
+        /// <summary>
+        /// 权限标识：按钮
+        /// </summary>
+        public const int AUTHOR_FLAG_BUTTON = 3;
+
+        #endregion
     }
 }

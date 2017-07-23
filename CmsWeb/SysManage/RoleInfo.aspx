@@ -2,6 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="/Scripts/bootstrap/vendor/zTree/css/metroStyle/metroStyle.css" rel="stylesheet" />
+    <style type="text/css">
+        .ztree {margin:0; padding:5px; color: #333;width:300px; word-break:break-all; word-wrap:break-word;}
+        .ztree li{padding:0; margin:0; list-style:none; line-height:17px; text-align:left; white-space:nowrap; outline: 0;display:inline; }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
@@ -12,7 +16,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -26,15 +30,15 @@
                                         <asp:CheckBox ID="cbxIsUsing" runat="server" CssClass="form-control" />
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <ul id="dicTree" class="ztree"></ul>
+                                    <asp:HiddenField ID="hidAuthorityIds" runat="server" />
+                                </div>
                                 <div class="col-lg-12" style="text-align: center;">
                                     <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnSave_Click" OnClientClick="return setAuthorityIds();" />
                                     <a class="btn btn-default" href="/SysManage/RoleList.aspx" style="margin: 0 auto;">取消</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <ul id="dicTree" class="ztree"></ul>
-                            <asp:HiddenField ID="hidAuthorityIds" runat="server" />
                         </div>
                     </div>
                 </div>

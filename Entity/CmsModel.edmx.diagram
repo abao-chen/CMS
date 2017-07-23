@@ -23,6 +23,8 @@
         <EntityTypeShape EntityType="CmsModel.TB_SysParams" Width="1.5" PointX="4.75" PointY="11.75" />
         <EntityTypeShape EntityType="CmsModel.TB_UserOrganization" Width="1.5" PointX="6.75" PointY="11.75" />
         <EntityTypeShape EntityType="CmsModel.TB_UserRole" Width="1.5" PointX="8.75" PointY="11.75" />
+        <EntityTypeShape EntityType="CmsModel.TB_AdType" Width="1.5" PointX="11.75" PointY="11.75" />
+        <EntityTypeShape EntityType="CmsModel.TB_Advertisement" Width="1.5" PointX="0.75" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

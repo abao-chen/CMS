@@ -129,7 +129,6 @@ namespace CmsDAL
         /// <summary>
         /// 获取分页数据
         /// </summary>
-        /// <param name="resultModel"></param>
         /// <param name="searchModel"></param>
         /// <param name="sql"></param>
         public DataTable GetDataTable(AjaxModel searchModel, string sql)
@@ -140,6 +139,18 @@ namespace CmsDAL
             executeSql += "select * from (" + sql + ") t3 where 1=1 " + sqlWhere;
             DbParameter[] parameters = paramsList.ToArray();
             DataTable dt = _ctx.Database.SqlQueryForDataTatable(executeSql, parameters);
+            return dt;
+        }
+
+        /// <summary>
+        /// 获取分页数据
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        public DataTable GetDataTable(string sql, DbParameter[] param)
+        {
+            List<DbParameter> paramsList = new List<DbParameter>();
+            DataTable dt = _ctx.Database.SqlQueryForDataTatable(sql, param);
             return dt;
         }
 

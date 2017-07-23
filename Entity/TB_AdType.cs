@@ -2,7 +2,7 @@
 // 
 // 制作人：ChenSheng  
 // 制作日期：2017/07/22
-// 文件说明：角色实体类
+// 文件说明：广告类型实体类
 // 
 // 
 //------------------------------------------------------------------------------
@@ -14,16 +14,24 @@ namespace CmsEntity
     using System;
     using System.Collections.Generic;
 
-    public partial class TB_Role : BaseEntity
+    public partial class TB_AdType : BaseEntity
     {
         /// <summary>
-        /// 
+        /// ID
         /// </summary>
         public int ID { get; set; }
         /// <summary>
-        /// 角色名称
+        /// 广告位名称
         /// </summary>
-        public string RoleName { get; set; }
+        public string AdTypeName { get; set; }
+        /// <summary>
+        /// 广告位说明
+        /// </summary>
+        public string AdTypeDescription { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public string AdTypeComment { get; set; }
         /// <summary>
         /// 是否启用
         /// </summary>

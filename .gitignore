@@ -255,3 +255,6 @@ CmsWeb/Upload
 
 #bak
 Entity/bak
+
+#Template
+CmsGenerator/Template

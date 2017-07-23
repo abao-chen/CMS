@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdTypeBal.cs" />
+    <Compile Include="AdvertisementBal.cs" />
     <Compile Include="AuthorityBal.cs" />
     <Compile Include="BaseBal.cs" />
     <Compile Include="BasicUserBal.cs" />

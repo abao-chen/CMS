@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,7 +84,7 @@ namespace CmsBAL
                 return new BaseDal<T>(ctx).UpdateSingle(entity);
             }
         }
-        
+
 
         public int UpdateList(List<T> list)
         {
@@ -134,6 +135,20 @@ namespace CmsBAL
             using (var ctx = new CmsEntities())
             {
                 return new BaseDal<T>(ctx).GetDataTable(searchModel, sql);
+            }
+        }
+
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="param">参数</param>
+        /// <returns>返回结果DataTable</returns>
+        public DataTable GetDataTable(string sql, DbParameter[] param = null)
+        {
+            using (var ctx = new CmsEntities())
+            {
+                return new BaseDal<T>(ctx).GetDataTable(sql, param);
             }
         }
 

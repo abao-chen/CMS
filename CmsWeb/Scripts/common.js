@@ -31,6 +31,81 @@ Date.prototype.Format = function (fmt) {
 };
 
 /**
+ * toastr 初始化
+ */
+toastr.options = {
+    closeButton: true,
+    debug: true,
+    progressBar: true,
+    positionClass: "toast-top-center",
+    onclick: null,
+    showDuration: "300",
+    hideDuration: "1000",
+    timeOut: "3000",
+    extendedTimeOut: "1000",
+    showEasing: "swing",
+    hideEasing: "linear",
+    showMethod: "fadeIn",
+    hideMethod: "fadeOut"
+};
+
+/**
+ * 初始化
+ */
+$(function () {
+    //菜单
+    $('#sideMenu').metisMenu();
+
+    //datatables 全选功能,全选ID必须：cbSelectAll，列表中的选择框name必须：tbCheckbox
+    $("#cbSelectAll").click(function () {
+        $("input[name='tbCheckbox']").each(function () {
+            if ($("#cbSelectAll").is(":checked")) {
+                $(this).attr("checked", true);
+            } else {
+                $(this).attr("checked", false);
+            }
+        });
+    });
+
+    //初始化查询条件的折叠样式
+    if ($("#searchBody")) {
+        $("#searchBody").on("hidden.bs.collapse", function () {
+            $(".glyphicon.glyphicon-menu-up").removeClass("glyphicon-menu-up").addClass("glyphicon-menu-down");
+        }).on("shown.bs.collapse", function () {
+            $(".glyphicon.glyphicon-menu-down").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-up");
+        });
+    }
+
+    //模板布局
+    $(window).bind("load resize", function () {
+        var topOffset = 50;
+        var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+        if (width < 768) {
+            $('div.navbar-collapse').addClass('collapse');
+            topOffset = 100; // 2-row-menu
+        } else {
+            $('div.navbar-collapse').removeClass('collapse');
+        }
+
+        var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+        height = height - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#page-wrapper").css("min-height", (height) + "px");
+        }
+    });
+
+    //菜单选中效果
+    var currentPath = window.location.pathname;
+    if (currentPath.indexOf("Info.aspx") > 0) {
+        var parentPath = currentPath.replace("Info.aspx", "List.aspx");
+        $("a[href='" + parentPath + "']").addClass("active").parent().parent().addClass("in");
+    } else {
+        $("a[href='" + currentPath + "']").addClass("active").parent().parent().addClass("in");
+    }
+});
+
+/**
  * 获取检索列表参数
  * @param {datatables默认参数} data 
  * @returns {} 
@@ -96,20 +171,6 @@ function setDataTablesPagerParas(result, data) {
     return returnData;
 };
 
-/**
- * datatables 全选功能,全选ID必须：cbSelectAll，列表中的选择框name必须：tbCheckbox
- */
-$(function () {
-    $("#cbSelectAll").click(function () {
-        $("input[name='tbCheckbox']").each(function () {
-            if ($("#cbSelectAll").is(":checked")) {
-                $(this).attr("checked", true);
-            } else {
-                $(this).attr("checked", false);
-            }
-        });
-    });
-});
 
 /**
  * 获取datatables选中行的ID
@@ -145,38 +206,6 @@ function initDateControl(inputId) {
         format: "yyyy/mm/dd"
     });
 }
-
-/**
- * toastr 初始化
- */
-toastr.options = {
-    closeButton: true,
-    debug: true,
-    progressBar: true,
-    positionClass: "toast-top-center",
-    onclick: null,
-    showDuration: "300",
-    hideDuration: "1000",
-    timeOut: "3000",
-    extendedTimeOut: "1000",
-    showEasing: "swing",
-    hideEasing: "linear",
-    showMethod: "fadeIn",
-    hideMethod: "fadeOut"
-};
-
-/**
- * 初始化查询条件的折叠样式
- */
-$(function () {
-    if ($("#searchBody")) {
-        $("#searchBody").on("hidden.bs.collapse", function () {
-            $(".glyphicon.glyphicon-menu-up").removeClass("glyphicon-menu-up").addClass("glyphicon-menu-down");
-        }).on("shown.bs.collapse", function () {
-            $(".glyphicon.glyphicon-menu-down").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-up");
-        });
-    }
-});
 
 /**
  * 关闭模态窗口
@@ -272,35 +301,6 @@ function showLoading(bool, text) {
     $loadingtext.css("left", (top.$('body').width() - $loadingtext.width()) / 2 - 50);
     $loadingtext.css("top", (top.$('body').height() - $loadingtext.height()) / 2);
 }
-
-$(function () {
-    $(window).bind("load resize", function () {
-        var topOffset = 50;
-        var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
-        if (width < 768) {
-            $('div.navbar-collapse').addClass('collapse');
-            topOffset = 100; // 2-row-menu
-        } else {
-            $('div.navbar-collapse').removeClass('collapse');
-        }
-
-        var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
-        height = height - topOffset;
-        if (height < 1) height = 1;
-        if (height > topOffset) {
-            $("#page-wrapper").css("min-height", (height) + "px");
-        }
-    });
-
-    //菜单选中效果
-    var currentPath = window.location.pathname;
-    if (currentPath.indexOf("Info.aspx") > 0) {
-        var parentPath = currentPath.replace("Info.aspx", "List.aspx");
-        $("a[href='" + parentPath + "']").addClass("active").parent().parent().addClass("in");
-    } else {
-        $("a[href='" + currentPath + "']").addClass("active").parent().parent().addClass("in");
-    }
-});
 
 /**
  * 打开Tab

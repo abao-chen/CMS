@@ -5,6 +5,40 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CmsModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_AdType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdTypeName" Type="varchar" MaxLength="100" />
+          <Property Name="AdTypeDescription" Type="varchar" MaxLength="200" />
+          <Property Name="AdTypeComment" Type="varchar" MaxLength="500" />
+          <Property Name="IsUsing" Type="int" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="TB_Advertisement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdTypeID" Type="int" />
+          <Property Name="AdName" Type="varchar" MaxLength="100" />
+          <Property Name="AdDescription" Type="varchar" MaxLength="500" />
+          <Property Name="AdUrl" Type="varchar" MaxLength="500" />
+          <Property Name="ValidStartTime" Type="datetime" Precision="0" />
+          <Property Name="ValidEndTime" Type="datetime" Precision="0" />
+          <Property Name="AdTypeComment" Type="varchar" MaxLength="500" />
+          <Property Name="IsUsing" Type="int" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
+        </EntityType>
         <EntityType Name="TB_Authority">
           <Key>
             <PropertyRef Name="ID" />
@@ -249,6 +283,8 @@
           <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityContainer Name="CmsModelStoreContainer">
+          <EntitySet Name="TB_AdType" EntityType="Self.TB_AdType" Schema="cms" store:Type="Tables" />
+          <EntitySet Name="TB_Advertisement" EntityType="Self.TB_Advertisement" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_Authority" EntityType="Self.TB_Authority" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_BasicContent" EntityType="Self.TB_BasicContent" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_BasicUser" EntityType="Self.TB_BasicUser" Schema="cms" store:Type="Tables" />
@@ -291,6 +327,8 @@
           <EntitySet Name="TB_SysParams" EntityType="CmsModel.TB_SysParams" />
           <EntitySet Name="TB_UserOrganization" EntityType="CmsModel.TB_UserOrganization" />
           <EntitySet Name="TB_UserRole" EntityType="CmsModel.TB_UserRole" />
+          <EntitySet Name="TB_AdType" EntityType="CmsModel.TB_AdType" />
+          <EntitySet Name="TB_Advertisement" EntityType="CmsModel.TB_Advertisement" />
         </EntityContainer>
         <EntityType Name="TB_Authority">
           <Key>
@@ -529,6 +567,40 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="RoleID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="TB_AdType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AdTypeDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AdTypeComment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsUsing" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="TB_Advertisement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdTypeID" Type="Int32" />
+          <Property Name="AdName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AdDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AdUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ValidStartTime" Type="DateTime" />
+          <Property Name="ValidEndTime" Type="DateTime" />
+          <Property Name="AdTypeComment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsUsing" Type="Int32" />
           <Property Name="IsDeleted" Type="Int32" />
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="CreateTime" Type="DateTime" />
@@ -798,6 +870,42 @@
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_AdType">
+            <EntityTypeMapping TypeName="CmsModel.TB_AdType">
+              <MappingFragment StoreEntitySet="TB_AdType">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsUsing" ColumnName="IsUsing" />
+                <ScalarProperty Name="AdTypeComment" ColumnName="AdTypeComment" />
+                <ScalarProperty Name="AdTypeDescription" ColumnName="AdTypeDescription" />
+                <ScalarProperty Name="AdTypeName" ColumnName="AdTypeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_Advertisement">
+            <EntityTypeMapping TypeName="CmsModel.TB_Advertisement">
+              <MappingFragment StoreEntitySet="TB_Advertisement">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsUsing" ColumnName="IsUsing" />
+                <ScalarProperty Name="AdTypeComment" ColumnName="AdTypeComment" />
+                <ScalarProperty Name="ValidEndTime" ColumnName="ValidEndTime" />
+                <ScalarProperty Name="ValidStartTime" ColumnName="ValidStartTime" />
+                <ScalarProperty Name="AdUrl" ColumnName="AdUrl" />
+                <ScalarProperty Name="AdDescription" ColumnName="AdDescription" />
+                <ScalarProperty Name="AdName" ColumnName="AdName" />
+                <ScalarProperty Name="AdTypeID" ColumnName="AdTypeID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

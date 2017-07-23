@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdTypeDal.cs" />
+    <Compile Include="AdvertisementDal.cs" />
     <Compile Include="AuthorityDal.cs" />
     <Compile Include="BaseDal.cs" />
     <Compile Include="ContentTypeDal.cs" />

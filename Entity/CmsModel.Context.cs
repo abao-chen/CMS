@@ -43,5 +43,7 @@ namespace CmsEntity
         public virtual DbSet<TB_SysParams> TB_SysParams { get; set; }
         public virtual DbSet<TB_UserOrganization> TB_UserOrganization { get; set; }
         public virtual DbSet<TB_UserRole> TB_UserRole { get; set; }
+        public virtual DbSet<TB_AdType> TB_AdType { get; set; }
+        public virtual DbSet<TB_Advertisement> TB_Advertisement { get; set; }
     }
 }

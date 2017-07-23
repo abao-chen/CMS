@@ -33,25 +33,33 @@ namespace CmsUtils
 
         public static List<T> ToList<T>(this DataTable dt)
         {
-            // 定义集合    
-            var list = new List<T>();
-            foreach (DataRow dr in dt.Rows)
+            if (dt != null && dt.Rows.Count > 0)
             {
-                var entity = Activator.CreateInstance<T>();
-                ;
-                // 获得此模型的公共属性      
-                var propertys = entity.GetType().GetProperties();
-                foreach (var pi in propertys)
-                    if (dt.Columns.Contains(pi.Name) && pi.CanWrite)
-                    {
-                        // 检查DataTable是否包含此列和属性是否有Setter
-                        var value = dr[pi.Name];
-                        if (value != DBNull.Value)
-                            pi.SetValue(entity, value, null);
-                    }
-                list.Add(entity);
+
+                // 定义集合    
+                var list = new List<T>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var entity = Activator.CreateInstance<T>();
+                    ;
+                    // 获得此模型的公共属性      
+                    var propertys = entity.GetType().GetProperties();
+                    foreach (var pi in propertys)
+                        if (dt.Columns.Contains(pi.Name) && pi.CanWrite)
+                        {
+                            // 检查DataTable是否包含此列和属性是否有Setter
+                            var value = dr[pi.Name];
+                            if (value != DBNull.Value)
+                                pi.SetValue(entity, value, null);
+                        }
+                    list.Add(entity);
+                }
+                return list;
             }
-            return list;
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>

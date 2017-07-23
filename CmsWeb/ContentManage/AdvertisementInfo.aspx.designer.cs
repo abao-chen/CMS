@@ -7,63 +7,90 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.Master {
+namespace CmsWeb {
     
     
-    public partial class Master {
+    public partial class AdvertisementInfo {
         
         /// <summary>
-        /// head 控件。
+        /// ddlAdTypeID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAdTypeID;
         
         /// <summary>
-        /// form 控件。
+        /// txtAdName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form;
+        protected global::System.Web.UI.WebControls.TextBox txtAdName;
         
         /// <summary>
-        /// lkLogout 控件。
+        /// txtAdDescription 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lkLogout;
+        protected global::System.Web.UI.WebControls.TextBox txtAdDescription;
         
         /// <summary>
-        /// sideMenu 控件。
+        /// txtAdUrl 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sideMenu;
+        protected global::System.Web.UI.WebControls.TextBox txtAdUrl;
         
         /// <summary>
-        /// ContentPlaceHolder1 控件。
+        /// txtValidStartTime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.TextBox txtValidStartTime;
         
         /// <summary>
-        /// ContentPlaceHolder2 控件。
+        /// txtValidEndTime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder2;
+        protected global::System.Web.UI.WebControls.TextBox txtValidEndTime;
+        
+        /// <summary>
+        /// txtAdTypeComment 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdTypeComment;
+        
+        /// <summary>
+        /// cbIsUsing 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbIsUsing;
+        
+        /// <summary>
+        /// btnSave 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

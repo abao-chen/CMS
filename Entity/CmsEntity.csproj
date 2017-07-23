@@ -84,6 +84,12 @@
     <Compile Include="ExtModel\TB_DicTypeExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper.cs" />
+    <Compile Include="TB_AdType.cs">
+      <DependentUpon>CmsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_Advertisement.cs">
+      <DependentUpon>CmsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TB_Authority.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>

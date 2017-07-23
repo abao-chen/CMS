@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CmsBAL;
+using CmsCommon;
+using CmsEntity;
 using CmsUtils;
 
 namespace CmsWeb.Master
@@ -12,7 +16,32 @@ namespace CmsWeb.Master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                //绑定菜单
+                List<TB_Authority> authorList = new AuthorityBal().GetMenuList();
+                if (authorList != null)
+                {
+                    StringBuilder menuHtml = new StringBuilder();
+                    List<TB_Authority> moduleList = authorList.Where(m => m.AuthorType == Constants.AUTHOR_FLAG_MODULE).ToList();
+                    foreach (TB_Authority module in moduleList)
+                    {
+                        menuHtml.AppendLine("<li>");
+                        menuHtml.AppendLine("<a href=\"#\">" + module.AuthorName + "<span class=\"fa arrow\"></span></a>");
+                        menuHtml.AppendLine("<ul class=\"nav nav-second-level\">");
+                        List<TB_Authority> pageList = authorList.Where(m => m.AuthorType == Constants.AUTHOR_FLAG_PAGE && m.ParentID == module.ID).ToList();
+                        foreach (TB_Authority page in pageList)
+                        {
+                            menuHtml.AppendLine("<li>");
+                            menuHtml.AppendLine("<a href=\"" + page.PageUrl + "\">" + page.AuthorName + "</a>");
+                            menuHtml.AppendLine("</li>");
+                        }
+                        menuHtml.AppendLine("</ul>");
+                        menuHtml.AppendLine("</li>");
+                        sideMenu.InnerHtml = menuHtml.ToString();
+                    }
+                }
+            }
         }
 
         /// <summary>
