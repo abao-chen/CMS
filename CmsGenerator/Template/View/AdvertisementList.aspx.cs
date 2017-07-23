@@ -1,8 +1,8 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/08
-// 文件说明：内容类型列表页面
+// 制作日期：2017/07/23
+// 文件说明：广告列表页面
 // 
 // 
 //------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ using CmsUtils;
 
 namespace CmsWeb
 {
-    public partial class ContentTypeList : BasePage
+    public partial class AdvertisementList : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,12 +51,12 @@ namespace CmsWeb
             string sql = @"SELECT
 					            *
 				            FROM
-					            TB_ContentType
+					            TB_Advertisement
 				            WHERE
 					            isdeleted = 0 ";
-            DataTable dt = new ContentTypeBal().GetDataTable(searchModel, sql);
+            DataTable dt = new AdvertisementBal().GetDataTable(searchModel, sql);
             string filePath = Server.MapPath("~/Temp/" + DateTime.Now.ToString("yyyyMMdd"));
-            string fileName = "ContentTypeList_" + DateTime.Now.ToString("yyyyMMdd") + ".xls";
+            string fileName = "AdvertisementList_" + DateTime.Now.ToString("yyyyMMdd") + ".xls";
             ExcelUtil.WriteExcel(dt, filePath, fileName);
             FileDownHelper.DownLoadFile(filePath + "/" + fileName, fileName);
         }

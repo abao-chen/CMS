@@ -2,7 +2,7 @@
 // 
 // 制作人：ChenSheng  
 // 制作日期：2017/07/22
-// 文件说明：广告实体类
+// 文件说明：用户基础实体类
 // 
 // 
 //------------------------------------------------------------------------------
@@ -14,44 +14,40 @@ namespace CmsEntity
     using System;
     using System.Collections.Generic;
 
-    public partial class TB_Advertisement : BaseEntity
+    public partial class TB_BasicUser : BaseEntity
     {
         /// <summary>
-        /// ID
+        /// 
         /// </summary>
         public int ID { get; set; }
         /// <summary>
-        /// 广告类型ID
+        /// 
         /// </summary>
-        public int? AdTypeID { get; set; }
+        public string UserAccount { get; set; }
         /// <summary>
-        /// 广告名称
+        /// 
         /// </summary>
-        public string AdName { get; set; }
+        public string UserPassword { get; set; }
         /// <summary>
-        /// 广告图片
+        /// 
         /// </summary>
-        public string AdDescription { get; set; }
+        public string PasswordSalt { get; set; }
         /// <summary>
-        /// 广告链接
+        /// 
         /// </summary>
-        public string AdUrl { get; set; }
+        public string UserName { get; set; }
         /// <summary>
-        /// 有效开始时间
+        /// 
         /// </summary>
-        public DateTime? ValidStartTime { get; set; }
+        public string UserStatus { get; set; }
         /// <summary>
-        /// 有效结束时间
+        /// 
         /// </summary>
-        public DateTime? ValidEndTime { get; set; }
+        public DateTime? LastLoginTime { get; set; }
         /// <summary>
-        /// 备注
+        /// 
         /// </summary>
-        public string AdTypeComment { get; set; }
-        /// <summary>
-        /// 是否启用
-        /// </summary>
-        public int? IsUsing { get; set; }
+        public string UserType { get; set; }
 
     }
 }

@@ -10,9 +10,8 @@
 namespace CmsWeb {
     
     
-    public partial class ContentType {
+    public partial class Advertisement {
         
-       
     }
 }
 

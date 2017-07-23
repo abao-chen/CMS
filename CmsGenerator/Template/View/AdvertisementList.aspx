@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="ContentTypeList.aspx.cs" Inherits="CmsWeb.ContentTypeList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="AdvertisementList.aspx.cs" Inherits="CmsWeb.AdvertisementList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -17,13 +17,7 @@
                 <div id="searchBody" class="panel-body collapse in">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtTypeName" searchattr="TypeName|LIKE|TypeName" CssClass="form-control" placeholder="类型名称"></asp:TextBox>
-                            </div> 
-<div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtTypeAlias" searchattr="TypeAlias|LIKE|TypeAlias" CssClass="form-control" placeholder="类型别名"></asp:TextBox>
-                            </div> 
-
+                            
                                 <div class="col-lg-4 form-group pull-right">
                                     <div class="pull-right">
                                         <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
@@ -38,7 +32,7 @@
     </div>
     <div class="row" style="padding-bottom: 5px;">
         <div class="col-lg-12">
-            <a id="btnAdd" class="btn btn-info" href="/ContentManage/ContentTypeInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
+            <a id="btnAdd" class="btn btn-info" href="/ContentManage/AdvertisementInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
             <a id="btnDelete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>删除</a>
             <a runat="server" class="btn btn-primary" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
         </div>
@@ -55,11 +49,7 @@
                                 <th>
                                     <input id="cbSelectAll" type="checkbox" title="全选/取消" /></th>
                                 <th>操作</th>
-                                <th>类型名称</th>
-<th>类型别名</th>
-<th>是否启用            1:启用,0不启用</th>
-<th>创建时间</th>
-
+                                
                             </tr>
                         </thead>
                     </table>
@@ -77,7 +67,6 @@
         //初始化表格
         $(function () {
             tableObj = $('#dataTables').DataTable({
-                "processing": true,
                 "serverSide": true,
                 "searching": false,
                 "ordering": true,
@@ -86,7 +75,8 @@
                 "scrollX": true,
                 "bLengthChange": false,   //去掉每页显示多少条数据方法
                 "aLengthMenu": [50, 100, 200],
-                //"scrollY": "500px",
+                "scrollY": getTableHeight(),
+				"scrollCollapse":false,
                 "renderer": "bootstrap",
                 "pagingType": "full_numbers",
                 "rowId": "ID",
@@ -97,7 +87,7 @@
                     //ajax请求数据
                     $.ajax({
                         type: "POST",
-                        url: "/API/ContentTypeApi.aspx",
+                        url: "/API/AdvertisementApi.aspx",
                         cache: false,  //禁用缓存
                         data: param,  //传入组装的参数
                         dataType: "json",
@@ -131,14 +121,10 @@
                         "width": "8%",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
-                            var result = "<a href=\"/ContentManage/ContentTypeInfo.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
+                            var result = "<a href=\"/ContentManage/AdvertisementInfo.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
                     },
-                    { "data": "TypeName" },
-                    { "data": "TypeAlias" },
-                    { "data": "IsUse" },
-                    { "data": "CreateTime" },
 
                 ]
             });
@@ -181,7 +167,7 @@
                     param["Id"] = data;
                     $.ajax({
                         type: "POST",
-                        url: "/API/ContentTypeApi.aspx",
+                        url: "/API/AdvertisementApi.aspx",
                         cache: false, //禁用缓存
                         data: param, //传入组装的参数
                         dataType: "json",

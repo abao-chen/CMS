@@ -12,6 +12,7 @@ namespace CmsWeb {
     
     public partial class #ClassName# {
         
-       
+#Designer#
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

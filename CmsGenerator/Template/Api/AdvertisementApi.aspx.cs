@@ -1,8 +1,8 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/08
-// 文件说明：内容类型Ajax请求页
+// 制作日期：2017/07/23
+// 文件说明：广告Ajax请求页
 // 
 // 
 //------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ using CmsEntity;
 
 namespace CmsWeb.API
 {
-    public partial class ContentTypeApi : BaseApi
+    public partial class AdvertisementApi : BaseApi
     {
         public AjaxResultModel GetPagerList()
         {
@@ -29,10 +29,10 @@ namespace CmsWeb.API
             string sql = @"SELECT
 					            *
 				            FROM
-					            TB_ContentType 
+					            TB_Advertisement 
 				            WHERE
 					            isdeleted = 0 ";
-            new ContentTypeBal().GetPagerList(resultModel, searchModel, sql);
+            new AdvertisementBal().GetPagerList(resultModel, searchModel, sql);
             return resultModel;
         }
 
@@ -40,7 +40,7 @@ namespace CmsWeb.API
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
-            new ContentTypeBal().DeleteByIds(resultModel, searchModel);
+            new AdvertisementBal().DeleteByIds(resultModel, searchModel);
             return resultModel;
         }
     }

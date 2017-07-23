@@ -131,6 +131,7 @@
         });
 
         $(function () {
+            #InitDateControl#
             //检索
             $("#btnSearch").click(function () {
                 reloadData();

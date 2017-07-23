@@ -37,6 +37,8 @@
                     #ValidateFileds#
                 }
             });
+
+            #InitDateControl#
         });
     </script>
 </asp:Content>

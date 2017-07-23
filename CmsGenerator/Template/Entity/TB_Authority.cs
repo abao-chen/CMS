@@ -2,7 +2,7 @@
 // 
 // 制作人：ChenSheng  
 // 制作日期：2017/07/22
-// 文件说明：广告实体类
+// 文件说明：权限实体类
 // 
 // 
 //------------------------------------------------------------------------------
@@ -14,44 +14,40 @@ namespace CmsEntity
     using System;
     using System.Collections.Generic;
 
-    public partial class TB_Advertisement : BaseEntity
+    public partial class TB_Authority : BaseEntity
     {
         /// <summary>
         /// ID
         /// </summary>
         public int ID { get; set; }
         /// <summary>
-        /// 广告类型ID
+        /// 权限类型            1：模块，2：页面，3：按钮
         /// </summary>
-        public int? AdTypeID { get; set; }
+        public int? AuthorType { get; set; }
         /// <summary>
-        /// 广告名称
+        /// 
         /// </summary>
-        public string AdName { get; set; }
+        public string AuthorName { get; set; }
         /// <summary>
-        /// 广告图片
+        /// 权限标识，为权限按钮使用
         /// </summary>
-        public string AdDescription { get; set; }
+        public string AuthorFlag { get; set; }
         /// <summary>
-        /// 广告链接
+        /// 父级权限ID
         /// </summary>
-        public string AdUrl { get; set; }
+        public int? ParentID { get; set; }
         /// <summary>
-        /// 有效开始时间
+        /// 权限全路径
         /// </summary>
-        public DateTime? ValidStartTime { get; set; }
+        public string FullID { get; set; }
         /// <summary>
-        /// 有效结束时间
+        /// 是否为菜单，1：是，0：否
         /// </summary>
-        public DateTime? ValidEndTime { get; set; }
+        public int? IsMenu { get; set; }
         /// <summary>
-        /// 备注
+        /// 页面URL
         /// </summary>
-        public string AdTypeComment { get; set; }
-        /// <summary>
-        /// 是否启用
-        /// </summary>
-        public int? IsUsing { get; set; }
+        public string PageUrl { get; set; }
 
     }
 }

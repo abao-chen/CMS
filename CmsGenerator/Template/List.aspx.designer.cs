@@ -11,6 +11,7 @@ namespace CmsWeb {
     
     
     public partial class #ClassName# {
-        
+#Designer#
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnExport;
     }
 }

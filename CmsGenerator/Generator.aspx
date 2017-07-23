@@ -59,11 +59,13 @@
                                                     <input name="isShowList" type="checkbox" value="1" /></td>
                                                 <td>
                                                     <select name="controlType">
-                                                        <option value="1">文本框</option>
-                                                        <option value="2">下拉框</option>
-                                                        <option value="3">日期</option>
-                                                        <option value="4">多选框</option>
-                                                        <option value="5">单选框</option>
+                                                        <option value="1">TextBox</option>
+                                                        <option value="2">DropDownList</option>
+                                                        <option value="3">Date</option>
+                                                        <option value="4">CheckBoxList</option>
+                                                        <option value="5">RadioBoxList</option>
+                                                        <option value="6">CheckBox</option>
+                                                        <option value="7">RadioBox</option>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -98,7 +100,7 @@
                 $("#selectAll").click(function () {
                     var selectAll = this;
                     $("#cbTables input[type='checkbox']").each(function() {
-                        $(this).attr("checked", $(selectAll).attr("checked"));
+                        $(this).attr("checked", $(selectAll).is(":checked"));
                     });
                 });
             });
