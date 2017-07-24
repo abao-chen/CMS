@@ -172,9 +172,6 @@
                 }
             });
 
-            initDateControl("<%=txtValidStartTime.ClientID%>");
-            initDateControl("<%=txtValidEndTime.ClientID%>");
-
             //上传控件
             $("#uploadfile").uploadify({
                 'uploader' : '/Api/UploadApi.aspx',

@@ -102,6 +102,7 @@
     <Content Include="ContentManage\ContentTypeInfo.aspx" />
     <Content Include="ContentManage\ContentTypeList.aspx" />
     <Content Include="ControlExt\CheckBoxListExt.ascx" />
+    <Content Include="ControlExt\DataPickerExt.ascx" />
     <Content Include="ControlExt\RadioBoxListExt.ascx" />
     <Content Include="Css\common.css" />
     <Content Include="Css\Image\loading.gif" />
@@ -713,6 +714,13 @@
     </Compile>
     <Compile Include="ControlExt\CheckBoxListExt.ascx.designer.cs">
       <DependentUpon>CheckBoxListExt.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlExt\DataPickerExt.ascx.cs">
+      <DependentUpon>DataPickerExt.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlExt\DataPickerExt.ascx.designer.cs">
+      <DependentUpon>DataPickerExt.ascx</DependentUpon>
     </Compile>
     <Compile Include="ControlExt\RadioBoxListExt.ascx.cs">
       <DependentUpon>RadioBoxListExt.ascx</DependentUpon>

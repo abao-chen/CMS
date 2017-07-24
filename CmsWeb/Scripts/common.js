@@ -74,7 +74,7 @@ $(function () {
         }).on("shown.bs.collapse", function () {
             $(".glyphicon.glyphicon-menu-down").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-up");
         });
-    }
+    };
 
     //模板布局
     $(window).bind("load resize", function () {
@@ -187,24 +187,6 @@ function getSelectedRowIds() {;
         }
     });
     return ids;
-}
-
-/**
- * 初始化日期控件
- * @param {} inputId 
- * @returns {} 
- */
-function initDateControl(inputId) {
-    $("#" + inputId).datetimepicker({
-        weekStart: 1,
-        todayBtn: 1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        forceParse: 0,
-        minView: 2,
-        format: "yyyy/mm/dd"
-    });
 }
 
 /**

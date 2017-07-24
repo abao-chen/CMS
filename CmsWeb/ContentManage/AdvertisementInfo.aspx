@@ -105,10 +105,6 @@
 
                 }
             });
-
-            initDateControl("<%=txtValidStartTime.ClientID%>");
-            initDateControl("<%=txtValidEndTime.ClientID%>");
-
         });
     </script>
 </asp:Content>
