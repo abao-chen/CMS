@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="BasicContentInfo.aspx.cs" Inherits="CmsWeb.BasicContentInfo" %>
+
 <%@ Register TagPrefix="Cms" Namespace="CmsWeb.ControlExt" Assembly="CmsWeb" %>
+<%@ Register Src="~/ControlExt/UploadExt.ascx" TagPrefix="Cms" TagName="UploadExt" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -45,14 +48,12 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>有效开始时间：</label>
-                                <%--<asp:TextBox ID="txtValidStartTime" runat="server" CssClass="form-control"></asp:TextBox>--%>
                                 <Cms:DataPicker ID="txtValidStartTime" runat="server" Name="ValidStartTime" Format="yyyy/MM/dd"></Cms:DataPicker>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>有效结束时间：</label>
-                                <%--<asp:TextBox ID="txtValidEndTime" runat="server" CssClass="form-control"></asp:TextBox>--%>
                                 <Cms:DataPicker ID="txtValidEndTime" runat="server" Name="ValidEndTime" Format="yyyy/MM/dd"></Cms:DataPicker>
                             </div>
                         </div>
@@ -86,11 +87,10 @@
                                 <asp:TextBox ID="txtCommentQua" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label>附件：</label>
-                                <div id="uploadfile"></div>
-                                <asp:HiddenField ID="txtAttachmentUrl" runat="server" />
+                                <Cms:UploadExt runat="server" ID="UploadExtAttachmentUrl" ></Cms:UploadExt>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -174,24 +174,7 @@
                 }
             });
 
-            //上传控件
-            $("#uploadfile").uploadify({
-                'uploader' : '/Api/UploadApi.aspx',
-                'swf':'/Scripts/bootstrap/vendor/uploadify/uploadify.swf',
-                'formData': {"method":"UploadFile","FolderPath": "~/Upload/"},
-                'buttonText':'选择文件',
-                'auto': true,
-                'multi':false,
-                onUploadSuccess: function(file, data, response) {
-                    if (data) {
-                        var dataArray = data.split("|");
-                        $("#<%=txtAttachmentUrl.ClientID%>").val(dataArray[0]);
-                    }
-                },
-                onUploadError : function(file, errorCode, errorMsg) {
-                    bootAlert.error("文件上传失败，请重新上传！");
-                }
-            });
+           
         });
     </script>
 </asp:Content>

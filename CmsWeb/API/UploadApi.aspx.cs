@@ -32,13 +32,13 @@ namespace CmsWeb.API
                 string fileName = httpPostedFile.FileName;
                 string fileExt = FileUtil.GetExtension(fileName);
                 string serverFileName = Guid.NewGuid().ToString();
-                //文件路径（用于发至前台）
-                string filePath = folderPath + "/" + serverFileName+ fileExt;
-                //存储在服务器的文件物理路径 
-                string normalPhotoFilePath = folderDic + "/" + serverFileName + fileExt;
-                httpPostedFile.SaveAs(normalPhotoFilePath);
+                //存储在服务器的文件物理绝对路径 
+                string saveFilePath = folderDic + "/" + serverFileName + fileExt;
+                //文件相对路径(用于发送至前台下载)
+                string downloadPath = folderPath + "/" + serverFileName + fileExt;
+                httpPostedFile.SaveAs(saveFilePath);
                 //文件地址
-                result = string.Format(@"{0}|{1}|{2}", filePath, fileName, serverFileName + fileExt);
+                result = string.Format(@"{0}|{1}", fileName, downloadPath);
             }
             return result;
         }

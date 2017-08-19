@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace CmsWeb.ControlExt
+{
+    public partial class UploadExt : System.Web.UI.UserControl
+    {
+        public string Value
+        {
+            get { return this.hidFilePath.Value; }
+            set { this.hidFilePath.Value = value; }
+        }
+
+        //1：单文件,0：多文件
+        public string Single = "1";
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

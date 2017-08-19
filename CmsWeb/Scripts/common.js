@@ -31,6 +31,16 @@ Date.prototype.Format = function (fmt) {
 };
 
 /**
+ * 字符串全部替换
+ * @param {原要替换的字符串} source 
+ * @param {替换为的字符串} target 
+ * @returns {} 
+ */
+String.prototype.replaceAll = function(source, target) {
+    return this.replace(new RegExp(source, 'gm'), target);
+};
+
+/**
  * toastr 初始化
  */
 toastr.options = {

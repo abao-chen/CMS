@@ -60,7 +60,7 @@ namespace CmsWeb
                     txtValidEndTime.DateValue = entity.ValidEndTime;
                 }
                 txtCoverPictureUrl.Text = entity.CoverPictureUrl;
-                txtAttachmentUrl.Value = entity.AttachmentUrl;
+                UploadExtAttachmentUrl.Value = entity.AttachmentUrl;
                 txtOrderNO.Text = entity.OrderNO != null ? entity.OrderNO.ToString() : string.Empty;
                 txtPageViewQua.Text = entity.PageViewQua != null ? entity.PageViewQua.ToString() : string.Empty;
                 txtForwardQua.Text = entity.ForwardQua != null ? entity.ForwardQua.ToString() : string.Empty;
@@ -126,7 +126,7 @@ namespace CmsWeb
                 {
                     entity.CommentQua = int.Parse(txtCommentQua.Text);
                 }
-                entity.AttachmentUrl = txtAttachmentUrl.Value;
+                entity.AttachmentUrl = UploadExtAttachmentUrl.Value;
                 entity.Content = edtContent.Text;
                 
                 new BasicContentBal().UpdateSingle(entity);
@@ -176,7 +176,7 @@ namespace CmsWeb
                 {
                     entity.CommentQua = int.Parse(txtCommentQua.Text);
                 }
-                entity.AttachmentUrl = txtAttachmentUrl.Value;
+                entity.AttachmentUrl = UploadExtAttachmentUrl.Value;
                 entity.Content = edtContent.Text;
 
                 new BasicContentBal().InsertSingle(entity);

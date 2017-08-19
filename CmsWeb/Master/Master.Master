@@ -36,9 +36,6 @@
     <!-- uploadify CSS -->
     <link href="~/Scripts/bootstrap/vendor/uploadify/uploadify.css" rel="stylesheet" />
 
-    <!-- Summernote  CSS -->
-    <link href="~/Scripts/bootstrap/vendor/summernote/summernote.css" rel="stylesheet" />
-
     <!-- Custom CSS -->
     <link href="~/Scripts/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet" />
     <link href="~/Css/common.css" rel="stylesheet" />
@@ -337,8 +334,6 @@
             <!-- Metis Menu Plugin JavaScript -->
             <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
 
-            <!-- uploadify JavaScript -->
-            <script src="/Scripts/bootstrap/vendor/uploadify/jquery.uploadify.min.js"></script>
 
             <!-- Custom Common JavaScript -->
             <script src="/Scripts/bootstrapAlert.js"></script>
