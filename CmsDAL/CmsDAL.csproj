@@ -70,6 +70,10 @@
     <Compile Include="UserRoleDal.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CmsCommon\CmsCommon.csproj">
+      <Project>{69505100-56a0-4ef9-ad9c-f9c359b792ec}</Project>
+      <Name>CmsCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entity\CmsEntity.csproj">
       <Project>{1ebb8e27-e404-47f4-bc9e-44e0866eb77f}</Project>
       <Name>CmsEntity</Name>

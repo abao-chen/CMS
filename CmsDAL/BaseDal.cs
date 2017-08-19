@@ -6,9 +6,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using System.Threading.Tasks;
+using CmsCommon;
 using CmsEntity;
-using CmsUtils;
 using MySql.Data.MySqlClient;
 
 namespace CmsDAL
@@ -16,31 +15,73 @@ namespace CmsDAL
     public class BaseDal<T> where T : class
     {
         protected CmsEntities _ctx;
-        protected DbSet _dbSet;
-        protected Log Logger;
-        protected DbContextTransaction _dbTransac;
+        private DbSet _dbSet;
+        private Log Logger;
+        private DbContextTransaction _dbTransac;
 
         public BaseDal(CmsEntities ctx)
         {
             _ctx = ctx;
-            Logger = LogFactory.GetLogger(this.GetType());
-            _ctx.Database.Log = s =>
-            {
-                Logger.Debug(s);
-            };
+            //Logger = LogFactory.GetLogger(this.GetType());
+            //_ctx.Database.Log = s =>
+            //{
+            //    Logger.Debug(s);
+            //};
             _dbSet = _ctx.Set<T>();
         }
 
+        public void BeginTran()
+        {
+            if (_dbTransac == null)
+            {
+                _dbTransac = _ctx.Database.BeginTransaction();
+            }
+        }
+
+        public void CommitTran()
+        {
+            if (_dbTransac != null)
+            {
+                _dbTransac.Commit();
+            }
+        }
+
+
+
         public int InsertSingle(T entity)
         {
-            _dbSet.Add(entity);
-            return _ctx.SaveChanges();
+            try
+            {
+                _dbSet.Add(entity);
+                return _ctx.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                //Logger.Error(e.Message);
+                if (_dbTransac != null)
+                {
+                    _dbTransac.Rollback();
+                }
+                throw e;
+            }
         }
 
         public int InsertList(List<T> list)
         {
-            _dbSet.AddRange(list);
-            return _ctx.SaveChanges();
+            try
+            {
+                _dbSet.AddRange(list);
+                return _ctx.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.Message);
+                if (_dbTransac != null)
+                {
+                    _dbTransac.Rollback();
+                }
+                throw e;
+            }
         }
 
         public List<T> SelectList(Expression<Func<T, bool>> where)
@@ -60,19 +101,43 @@ namespace CmsDAL
 
         public int UpdateSingle(T entity)
         {
-            _ctx.Set<T>().Attach(entity);
-            _ctx.Entry(entity).State = EntityState.Modified;
-            return _ctx.SaveChanges();
+            try
+            {
+                _ctx.Set<T>().Attach(entity);
+                _ctx.Entry(entity).State = EntityState.Modified;
+                return _ctx.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.Message);
+                if (_dbTransac != null)
+                {
+                    _dbTransac.Rollback();
+                }
+                throw e;
+            }
         }
 
         public int UpdateList(List<T> list)
         {
-            foreach (T entity in list)
+            try
             {
-                _ctx.Set<T>().Attach(entity);
-                _ctx.Entry(entity).State = EntityState.Modified;
+                foreach (T entity in list)
+                {
+                    _ctx.Set<T>().Attach(entity);
+                    _ctx.Entry(entity).State = EntityState.Modified;
+                }
+                return _ctx.SaveChanges();
             }
-            return _ctx.SaveChanges();
+            catch (Exception e)
+            {
+                Logger.Error(e.Message);
+                if (_dbTransac != null)
+                {
+                    _dbTransac.Rollback();
+                }
+                throw e;
+            }
         }
 
         /// <summary>
@@ -83,8 +148,20 @@ namespace CmsDAL
         /// <returns></returns>
         public int DeleteList<T>(List<T> list) where T : class
         {
-            _ctx.Set<T>().RemoveRange(list);
-            return _ctx.SaveChanges();
+            try
+            {
+                _ctx.Set<T>().RemoveRange(list);
+                return _ctx.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.Message);
+                if (_dbTransac != null)
+                {
+                    _dbTransac.Rollback();
+                }
+                throw e;
+            }
         }
 
         /// <summary>
@@ -95,8 +172,20 @@ namespace CmsDAL
         /// <returns></returns>
         public int DeleteSingle<T>(T entity) where T : class
         {
-            _ctx.Set<T>().Remove(entity);
-            return _ctx.SaveChanges();
+            try
+            {
+                _ctx.Set<T>().Remove(entity);
+                return _ctx.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.Message);
+                if (_dbTransac != null)
+                {
+                    _dbTransac.Rollback();
+                }
+                throw e;
+            }
         }
 
         /// <summary>
@@ -127,7 +216,7 @@ namespace CmsDAL
         }
 
         /// <summary>
-        /// 获取分页数据
+        /// 获取数据
         /// </summary>
         /// <param name="searchModel"></param>
         /// <param name="sql"></param>
@@ -143,13 +232,12 @@ namespace CmsDAL
         }
 
         /// <summary>
-        /// 获取分页数据
+        /// 获取数据
         /// </summary>
         /// <param name="sql"></param>
         /// <param name="param"></param>
-        public DataTable GetDataTable(string sql, DbParameter[] param)
+        public DataTable GetDataTable(string sql, DbParameter[] param = null)
         {
-            List<DbParameter> paramsList = new List<DbParameter>();
             DataTable dt = _ctx.Database.SqlQueryForDataTatable(sql, param);
             return dt;
         }

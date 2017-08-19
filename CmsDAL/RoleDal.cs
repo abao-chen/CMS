@@ -40,7 +40,7 @@ namespace CmsDAL
             selectSql.AppendLine("WHERE");
             selectSql.AppendLine("	u.ID = " + id);
             selectSql.AppendLine("AND r.IsDeleted = 0");
-            return _ctx.Database.SqlQueryForDataTatable(selectSql.ToString()).ToList<TB_Role>();
+            return GetDataTable(selectSql.ToString()).ToList<TB_Role>();
         }
     }
 }
