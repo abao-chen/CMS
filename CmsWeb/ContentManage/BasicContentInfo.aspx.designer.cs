@@ -64,7 +64,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtValidStartTime;
+        protected global::CmsWeb.ControlExt.DataPickerExt txtValidStartTime;
         
         /// <summary>
         /// txtValidEndTime 控件。
@@ -73,7 +73,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtValidEndTime;
+        protected global::CmsWeb.ControlExt.DataPickerExt txtValidEndTime;
         
         /// <summary>
         /// txtOrderNO 控件。
@@ -130,13 +130,13 @@ namespace CmsWeb {
         protected global::System.Web.UI.WebControls.HiddenField txtAttachmentUrl;
         
         /// <summary>
-        /// txtContent 控件。
+        /// edtContent 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField txtContent;
+        protected global::CmsWeb.ControlExt.EditorExt edtContent;
         
         /// <summary>
         /// btnSave 控件。

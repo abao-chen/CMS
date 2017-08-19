@@ -12,11 +12,16 @@ namespace CmsUtils
     {
         public static DataTable ReadExcel(string filePath)
         {
+            if (!FileUtil.IsExistFile(filePath))
+            {
+                return null;
+            }
+
+            //根据路径通过已存在的excel来创建HSSFWorkbook，即整个excel文档
+            var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            IWorkbook workbook = new HSSFWorkbook(fs);
             try
             {
-                //根据路径通过已存在的excel来创建HSSFWorkbook，即整个excel文档
-                var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                IWorkbook workbook = new HSSFWorkbook(fs);
                 //获取excel的第一个sheet
                 var sheet = workbook.GetSheetAt(0);
                 var table = new DataTable();
@@ -54,31 +59,41 @@ namespace CmsUtils
             {
                 throw ex;
             }
+            finally
+            {
+                workbook?.Dispose();
+                fs.Close();
+                fs.Dispose();
+            }
         }
 
         /// <summary>
-        ///     写Excel文件
+        /// 写Excel文件
         /// </summary>
         /// <param name="dt">数据源</param>
         /// <param name="filePath">文件夹路径</param>
         /// <param name="fileName">文件名称（带上文件名后缀.xlsx)</param>
         /// <param name="ignoreColumns">忽略的列名</param>
-        /// <returns>文件字节流大小</returns>
         public static void WriteExcel(DataTable dt, string filePath, string fileName, string[] ignoreColumns = null)
         {
-            long fileLength = 0;
+            if (dt == null)
+            {
+                return;
+            }
+
             if (!Directory.Exists(filePath))
                 Directory.CreateDirectory(filePath);
             var fullPath = filePath + "/" + fileName;
             var workbook = new HSSFWorkbook();
             var filestream = new FileStream(fullPath, FileMode.Create);
             var sheet = workbook.CreateSheet(fileName);
-            if (dt == null)
-            {
-                workbook.Close();
-                filestream.Close();
-                filestream.Dispose();
-            }
+
+            //设置单元格样式
+            var cellStyle = workbook.CreateCellStyle();
+            cellStyle.BorderTop = BorderStyle.Thin;
+            cellStyle.BorderRight = BorderStyle.Thin;
+            cellStyle.BorderBottom = BorderStyle.Thin;
+            cellStyle.BorderLeft = BorderStyle.Thin;
 
             try
             {
@@ -93,12 +108,6 @@ namespace CmsUtils
                         {
                             var cell = headRow.CreateCell(columnIndex);
                             cell.SetCellValue(dc.ColumnName);
-
-                            var cellStyle = workbook.CreateCellStyle();
-                            cellStyle.BorderTop = BorderStyle.Thin;
-                            cellStyle.BorderRight = BorderStyle.Thin;
-                            cellStyle.BorderBottom = BorderStyle.Thin;
-                            cellStyle.BorderLeft = BorderStyle.Thin;
                             cell.CellStyle = cellStyle;
 
                             columnIndex++;
@@ -108,12 +117,6 @@ namespace CmsUtils
                     {
                         var cell = headRow.CreateCell(columnIndex);
                         cell.SetCellValue(dc.ColumnName);
-
-                        var cellStyle = workbook.CreateCellStyle();
-                        cellStyle.BorderTop = BorderStyle.Thin;
-                        cellStyle.BorderRight = BorderStyle.Thin;
-                        cellStyle.BorderBottom = BorderStyle.Thin;
-                        cellStyle.BorderLeft = BorderStyle.Thin;
                         cell.CellStyle = cellStyle;
 
                         columnIndex++;
@@ -134,13 +137,13 @@ namespace CmsUtils
                         {
                             if (!ignoreColumns.Contains(dt.Columns[colIndex].ColumnName))
                             {
-                                SetCell(dt, rowIndex, colIndex, row, columnIndex, sheet, workbook);
+                                SetCell(dt, rowIndex, colIndex, row, columnIndex, sheet, cellStyle);
                                 columnIndex++;
                             }
                         }
                         else
                         {
-                            SetCell(dt, rowIndex, colIndex, row, columnIndex, sheet, workbook);
+                            SetCell(dt, rowIndex, colIndex, row, columnIndex, sheet, cellStyle);
                             columnIndex++;
                         }
                 }
@@ -148,7 +151,6 @@ namespace CmsUtils
                 #endregion
 
                 workbook.Write(filestream);
-                fileLength = new FileInfo(fullPath).Length;
             }
             catch (Exception e)
             {
@@ -163,6 +165,87 @@ namespace CmsUtils
         }
 
         /// <summary>
+        /// 根据已有模板写入Excel文件
+        /// </summary>
+        /// <param name="dt">数据源</param>
+        /// <param name="filePath">文件夹路径</param>
+        /// <param name="fileName">文件名称（带上文件名后缀.xlsx)</param>
+        /// <param name="templateFilePath">模板文件全路径</param>
+        /// <param name="startIndex">写入数据开始行</param>
+        /// <param name="ignoreColumns">忽略的列名</param>
+        public static void WriteExcel(DataTable dt, string filePath, string fileName, string templateFilePath, int startIndex, string[] ignoreColumns = null)
+        {
+            if (dt == null || !FileUtil.IsExistFile(templateFilePath))
+            {
+                return;
+            }
+
+            if (!Directory.Exists(filePath))
+                Directory.CreateDirectory(filePath);
+
+            var filestream = new FileStream(templateFilePath, FileMode.Open, FileAccess.Read);
+            var workbook = new HSSFWorkbook(filestream);
+            var fullPath = filePath + fileName;
+            var newFilesStream = new FileStream(fullPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            var sheet = workbook.GetSheetAt(0);
+            try
+            {
+                #region 写数据内容
+
+                var dtCount = dt.Rows.Count;
+                var rowIndex = startIndex;
+                for (; rowIndex < dtCount + startIndex; rowIndex++)
+                {
+                    var columnIndex = 0;
+                    var row = sheet.CreateRow(rowIndex);
+                    for (var colIndex = 0; colIndex < dt.Columns.Count; colIndex++)
+                        if (ignoreColumns != null)
+                        {
+                            if (!ignoreColumns.Contains(dt.Columns[colIndex].ColumnName))
+                            {
+                                var cellValue = dt.Rows[rowIndex - startIndex][colIndex] == null
+                                    ? string.Empty
+                                    : dt.Rows[rowIndex - startIndex][colIndex].ToString();
+                                var cell = row.CreateCell(columnIndex);
+                                cell.SetCellValue(cellValue);
+                                columnIndex++;
+                            }
+                        }
+                        else
+                        {
+                            var cellValue = dt.Rows[rowIndex - startIndex][colIndex] == null
+                                ? string.Empty
+                                : dt.Rows[rowIndex - startIndex][colIndex].ToString();
+                            var cell = row.CreateCell(columnIndex);
+                            cell.SetCellValue(cellValue);
+                            columnIndex++;
+                        }
+                }
+                IRow lastRow = sheet.GetRow(rowIndex);
+                if (lastRow != null)
+                {
+                    sheet.RemoveRow(lastRow);
+                }
+
+                #endregion
+
+                workbook.Write(newFilesStream);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                workbook.Close();
+                newFilesStream.Close();
+                filestream.Close();
+                newFilesStream.Dispose();
+                filestream.Dispose();
+            }
+        }
+
+        /// <summary>
         ///     设置单元格的内容和格式
         /// </summary>
         /// <param name="dt">数据源</param>
@@ -171,20 +254,14 @@ namespace CmsUtils
         /// <param name="row">行对象</param>
         /// <param name="columnIndex"></param>
         /// <param name="sheet">sheet对象</param>
-        private static void SetCell(DataTable dt, int rowIndex, int colIndex, IRow row, int columnIndex, ISheet sheet,
-            IWorkbook workbook)
+        /// <param name="cellStyle">单元格样式</param>
+        private static void SetCell(DataTable dt, int rowIndex, int colIndex, IRow row, int columnIndex, ISheet sheet, ICellStyle cellStyle)
         {
             var cellValue = dt.Rows[rowIndex - 1][colIndex] == null
                 ? string.Empty
                 : dt.Rows[rowIndex - 1][colIndex].ToString();
             var cell = row.CreateCell(columnIndex);
             cell.SetCellValue(cellValue);
-
-            var cellStyle = workbook.CreateCellStyle();
-            cellStyle.BorderTop = BorderStyle.Thin;
-            cellStyle.BorderRight = BorderStyle.Thin;
-            cellStyle.BorderBottom = BorderStyle.Thin;
-            cellStyle.BorderLeft = BorderStyle.Thin;
             cell.CellStyle = cellStyle;
 
             #region 设置列宽高度自适应

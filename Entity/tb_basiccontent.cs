@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/22
+// 制作日期：2017/07/29
 // 文件说明：基础内容实体类
 // 
 // 
@@ -72,6 +72,10 @@ namespace CmsEntity
         /// 附件
         /// </summary>
         public string AttachmentUrl { get; set; }
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public string Content { get; set; }
 
     }
 }

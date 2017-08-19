@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="BasicContentInfo.aspx.cs" Inherits="CmsWeb.BasicContentInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="BasicContentInfo.aspx.cs" Inherits="CmsWeb.BasicContentInfo" %>
+<%@ Register TagPrefix="Cms" Namespace="CmsWeb.ControlExt" Assembly="CmsWeb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -44,13 +45,15 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>有效开始时间：</label>
-                                <asp:TextBox ID="txtValidStartTime" runat="server" CssClass="form-control"></asp:TextBox>
+                                <%--<asp:TextBox ID="txtValidStartTime" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                                <Cms:DataPicker ID="txtValidStartTime" runat="server" Name="ValidStartTime" Format="yyyy/MM/dd"></Cms:DataPicker>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>有效结束时间：</label>
-                                <asp:TextBox ID="txtValidEndTime" runat="server" CssClass="form-control"></asp:TextBox>
+                                <%--<asp:TextBox ID="txtValidEndTime" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                                <Cms:DataPicker ID="txtValidEndTime" runat="server" Name="ValidEndTime" Format="yyyy/MM/dd"></Cms:DataPicker>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -93,8 +96,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>内容：</label>
-                                <div id="content"></div>
-                                <asp:HiddenField ID="txtContent" runat="server" />
+                                <Cms:EditorExt runat="server" ID="edtContent"></Cms:EditorExt>
                             </div>
                         </div>
 
@@ -130,18 +132,18 @@
                             notEmpty: {},
                         }
                     },
-                    <%=txtValidStartTime.UniqueID%>: {
+                    ValidStartTime: {
                         validators: {
                             date: {
                                 format:"YYYY/MM/DD"
-                            },
+                            }
                         }
                     },
-                    <%=txtValidEndTime.UniqueID%>: {
+                    ValidEndTime: {
                         validators: {
                             date: {
                                 format:"YYYY/MM/DD"
-                            },
+                            }
                         }
                     },
                     <%=txtOrderNO.UniqueID%>: {
@@ -189,13 +191,6 @@
                 onUploadError : function(file, errorCode, errorMsg) {
                     bootAlert.error("文件上传失败，请重新上传！");
                 }
-            });
-
-            $("#content").summernote({
-                lang: 'zh-CN',
-                height: 300,
-                minHeight: null,
-                maxHeight: null
             });
         });
     </script>

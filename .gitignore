@@ -258,3 +258,9 @@ Entity/bak
 
 #Template
 CmsGenerator/Template
+
+#CmsBatch
+CmsBatch/
+
+#Solution
+*.sln

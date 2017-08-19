@@ -26,7 +26,6 @@ namespace CmsEntity
         }
     
         public virtual DbSet<TB_Authority> TB_Authority { get; set; }
-        public virtual DbSet<TB_BasicContent> TB_BasicContent { get; set; }
         public virtual DbSet<TB_BasicUser> TB_BasicUser { get; set; }
         public virtual DbSet<TB_ContentType> TB_ContentType { get; set; }
         public virtual DbSet<TB_Dictionary> TB_Dictionary { get; set; }
@@ -45,5 +44,6 @@ namespace CmsEntity
         public virtual DbSet<TB_UserRole> TB_UserRole { get; set; }
         public virtual DbSet<TB_AdType> TB_AdType { get; set; }
         public virtual DbSet<TB_Advertisement> TB_Advertisement { get; set; }
+        public virtual DbSet<TB_BasicContent> TB_BasicContent { get; set; }
     }
 }

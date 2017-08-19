@@ -9,15 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmsEntity", "Entity\CmsEnti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmsCommon", "CmsCommon\CmsCommon.csproj", "{69505100-56A0-4EF9-AD9C-F9C359B792EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmsUtils", "CmsUtils\CmsUtils.csproj", "{C7355B99-F287-47F0-9A80-BC1284430D80}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmsBAL", "CmsBAL\CmsBAL.csproj", "{44B6F607-37D7-4EE7-856B-267B66AC50F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmsDAL", "CmsDAL\CmsDAL.csproj", "{D7176B6E-BB57-4D1E-9298-3D7EFAAC4753}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataFactory", "DataFactory\DataFactory.csproj", "{77F52C92-D9FF-4281-9CA0-1ABE7196B4EF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CmsGenerator", "CmsGenerator\CmsGenerator.csproj", "{5643B422-4F45-4361-9022-89BBDB9B9AFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

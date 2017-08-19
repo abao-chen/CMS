@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CmsUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CmsLibrary\CmsUtils.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -89,6 +93,7 @@
     <Content Include="API\SysParamsApi.aspx" />
     <Content Include="API\UploadApi.aspx" />
     <Content Include="API\UserApi.aspx" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Config\DataBaseConfig.config" />
     <Content Include="API\ValidateCodeApi.aspx" />
     <Content Include="Config\log4net.config" />
@@ -103,6 +108,7 @@
     <Content Include="ContentManage\ContentTypeList.aspx" />
     <Content Include="ControlExt\CheckBoxListExt.ascx" />
     <Content Include="ControlExt\DataPickerExt.ascx" />
+    <Content Include="ControlExt\EditorExt.ascx" />
     <Content Include="ControlExt\RadioBoxListExt.ascx" />
     <Content Include="Css\common.css" />
     <Content Include="Css\Image\loading.gif" />
@@ -476,6 +482,7 @@
     <Content Include="Scripts\bootstrap\vendor\summernote\font\summernote.eot" />
     <Content Include="Scripts\bootstrap\vendor\summernote\font\summernote.ttf" />
     <Content Include="Scripts\bootstrap\vendor\summernote\font\summernote.woff" />
+    <None Include="Properties\PublishProfiles\Cms.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -506,7 +513,9 @@
     <Content Include="SysManage\SysParamsList.aspx" />
     <Content Include="SysManage\UserInfo.aspx" />
     <Content Include="SysManage\UserList.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\AdTypeApi.aspx.cs">
@@ -722,6 +731,13 @@
     <Compile Include="ControlExt\DataPickerExt.ascx.designer.cs">
       <DependentUpon>DataPickerExt.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ControlExt\EditorExt.ascx.cs">
+      <DependentUpon>EditorExt.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlExt\EditorExt.ascx.designer.cs">
+      <DependentUpon>EditorExt.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ControlExt\RadioBoxListExt.ascx.cs">
       <DependentUpon>RadioBoxListExt.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -856,6 +872,13 @@
     <Compile Include="SysManage\UserList.aspx.designer.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -868,10 +891,6 @@
     <ProjectReference Include="..\CmsCommon\CmsCommon.csproj">
       <Project>{69505100-56a0-4ef9-ad9c-f9c359b792ec}</Project>
       <Name>CmsCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CmsUtils\CmsUtils.csproj">
-      <Project>{c7355b99-f287-47f0-9a80-bc1284430d80}</Project>
-      <Name>CmsUtils</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entity\CmsEntity.csproj">
       <Project>{1ebb8e27-e404-47f4-bc9e-44e0866eb77f}</Project>

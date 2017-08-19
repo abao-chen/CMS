@@ -13,13 +13,13 @@ namespace CmsWeb {
     public partial class UserInfo {
         
         /// <summary>
-        /// txtAccount 控件。
+        /// txtUserAccount 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAccount;
+        protected global::System.Web.UI.WebControls.TextBox txtUserAccount;
         
         /// <summary>
         /// txtPassword 控件。

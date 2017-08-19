@@ -28,7 +28,7 @@ namespace CmsWeb.ControlExt
         {
             get
             {
-                if (hidSelectedValue.Value.IsEmpty())
+                if (hidSelectedValue.Value.IsNotEmpty())
                 {
                     return hidSelectedValue.Value.Split(new string[] { "," }, StringSplitOptions.None);
                 }

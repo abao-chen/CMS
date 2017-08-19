@@ -51,6 +51,7 @@
           <Property Name="FullID" Type="varchar" MaxLength="500" />
           <Property Name="IsMenu" Type="int" />
           <Property Name="PageUrl" Type="varchar" MaxLength="500" />
+          <Property Name="OrderIndex" Type="int" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
           <Property Name="CreateTime" Type="datetime" Precision="0" />
@@ -75,6 +76,7 @@
           <Property Name="PointQua" Type="int" />
           <Property Name="CommentQua" Type="int" />
           <Property Name="AttachmentUrl" Type="varchar" MaxLength="200" />
+          <Property Name="Content" Type="text" />
           <Property Name="IsDeleted" Type="int" />
           <Property Name="CreateUser" Type="int" />
           <Property Name="CreateTime" Type="datetime" Precision="0" />
@@ -310,7 +312,6 @@
       <Schema Namespace="CmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="CmsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TB_Authority" EntityType="CmsModel.TB_Authority" />
-          <EntitySet Name="TB_BasicContent" EntityType="CmsModel.TB_BasicContent" />
           <EntitySet Name="TB_BasicUser" EntityType="CmsModel.TB_BasicUser" />
           <EntitySet Name="TB_ContentType" EntityType="CmsModel.TB_ContentType" />
           <EntitySet Name="TB_Dictionary" EntityType="CmsModel.TB_Dictionary" />
@@ -329,6 +330,7 @@
           <EntitySet Name="TB_UserRole" EntityType="CmsModel.TB_UserRole" />
           <EntitySet Name="TB_AdType" EntityType="CmsModel.TB_AdType" />
           <EntitySet Name="TB_Advertisement" EntityType="CmsModel.TB_Advertisement" />
+          <EntitySet Name="TB_BasicContent" EntityType="CmsModel.TB_BasicContent" />
         </EntityContainer>
         <EntityType Name="TB_Authority">
           <Key>
@@ -347,30 +349,7 @@
           <Property Name="CreateTime" Type="DateTime" />
           <Property Name="UpdateUser" Type="Int32" />
           <Property Name="UpdateTime" Type="DateTime" />
-        </EntityType>
-        <EntityType Name="TB_BasicContent">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ContentType" Type="Int32" />
-          <Property Name="Source" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ContentTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ContentSubTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="CoverPictureUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ValidStartTime" Type="DateTime" />
-          <Property Name="ValidEndTime" Type="DateTime" />
-          <Property Name="OrderNO" Type="Int32" />
-          <Property Name="PageViewQua" Type="Int32" />
-          <Property Name="ForwardQua" Type="Int32" />
-          <Property Name="PointQua" Type="Int32" />
-          <Property Name="CommentQua" Type="Int32" />
-          <Property Name="AttachmentUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="IsDeleted" Type="Int32" />
-          <Property Name="CreateUser" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" />
-          <Property Name="UpdateUser" Type="Int32" />
-          <Property Name="UpdateTime" Type="DateTime" />
+          <Property Name="OrderIndex" Type="Int32" />
         </EntityType>
         <EntityType Name="TB_BasicUser">
           <Key>
@@ -607,6 +586,31 @@
           <Property Name="UpdateUser" Type="Int32" />
           <Property Name="UpdateTime" Type="DateTime" />
         </EntityType>
+        <EntityType Name="TB_BasicContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentType" Type="Int32" />
+          <Property Name="Source" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContentTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ContentSubTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CoverPictureUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ValidStartTime" Type="DateTime" />
+          <Property Name="ValidEndTime" Type="DateTime" />
+          <Property Name="OrderNO" Type="Int32" />
+          <Property Name="PageViewQua" Type="Int32" />
+          <Property Name="ForwardQua" Type="Int32" />
+          <Property Name="PointQua" Type="Int32" />
+          <Property Name="CommentQua" Type="Int32" />
+          <Property Name="AttachmentUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -616,6 +620,7 @@
           <EntitySetMapping Name="TB_Authority">
             <EntityTypeMapping TypeName="CmsModel.TB_Authority">
               <MappingFragment StoreEntitySet="TB_Authority">
+                <ScalarProperty Name="OrderIndex" ColumnName="OrderIndex" />
                 <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
                 <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
@@ -628,31 +633,6 @@
                 <ScalarProperty Name="AuthorFlag" ColumnName="AuthorFlag" />
                 <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
                 <ScalarProperty Name="AuthorType" ColumnName="AuthorType" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TB_BasicContent">
-            <EntityTypeMapping TypeName="CmsModel.TB_BasicContent">
-              <MappingFragment StoreEntitySet="TB_BasicContent">
-                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="AttachmentUrl" ColumnName="AttachmentUrl" />
-                <ScalarProperty Name="CommentQua" ColumnName="CommentQua" />
-                <ScalarProperty Name="PointQua" ColumnName="PointQua" />
-                <ScalarProperty Name="ForwardQua" ColumnName="ForwardQua" />
-                <ScalarProperty Name="PageViewQua" ColumnName="PageViewQua" />
-                <ScalarProperty Name="OrderNO" ColumnName="OrderNO" />
-                <ScalarProperty Name="ValidEndTime" ColumnName="ValidEndTime" />
-                <ScalarProperty Name="ValidStartTime" ColumnName="ValidStartTime" />
-                <ScalarProperty Name="CoverPictureUrl" ColumnName="CoverPictureUrl" />
-                <ScalarProperty Name="ContentSubTitle" ColumnName="ContentSubTitle" />
-                <ScalarProperty Name="ContentTitle" ColumnName="ContentTitle" />
-                <ScalarProperty Name="Source" ColumnName="Source" />
-                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -906,6 +886,32 @@
                 <ScalarProperty Name="AdDescription" ColumnName="AdDescription" />
                 <ScalarProperty Name="AdName" ColumnName="AdName" />
                 <ScalarProperty Name="AdTypeID" ColumnName="AdTypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_BasicContent">
+            <EntityTypeMapping TypeName="CmsModel.TB_BasicContent">
+              <MappingFragment StoreEntitySet="TB_BasicContent">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="AttachmentUrl" ColumnName="AttachmentUrl" />
+                <ScalarProperty Name="CommentQua" ColumnName="CommentQua" />
+                <ScalarProperty Name="PointQua" ColumnName="PointQua" />
+                <ScalarProperty Name="ForwardQua" ColumnName="ForwardQua" />
+                <ScalarProperty Name="PageViewQua" ColumnName="PageViewQua" />
+                <ScalarProperty Name="OrderNO" ColumnName="OrderNO" />
+                <ScalarProperty Name="ValidEndTime" ColumnName="ValidEndTime" />
+                <ScalarProperty Name="ValidStartTime" ColumnName="ValidStartTime" />
+                <ScalarProperty Name="CoverPictureUrl" ColumnName="CoverPictureUrl" />
+                <ScalarProperty Name="ContentSubTitle" ColumnName="ContentSubTitle" />
+                <ScalarProperty Name="ContentTitle" ColumnName="ContentTitle" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

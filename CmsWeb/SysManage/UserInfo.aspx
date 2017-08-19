@@ -14,7 +14,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>用户账号：</label>
-                                <asp:TextBox ID="txtAccount" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtUserAccount" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -86,9 +86,16 @@
                             notEmpty: {}
                         }
                     },
-                    <%= txtAccount.UniqueID %>: {
+                    <%= txtUserAccount.UniqueID %>: {
                         validators: {
-                            notEmpty: {}
+                            notEmpty: {},
+                            remote: {
+                                type: 'POST',
+                                url: '/API/UserApi.aspx',
+                                data: { "method": "ValidateUserAccount", "ID": getUrlParams("ID") },
+                                message: '用户账户已存在',
+                                delay: 1000
+                            }
                         }
                     },
                     <%= ddlStatus.UniqueID %>: {

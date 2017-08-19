@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Threading;
 
@@ -80,9 +81,10 @@ namespace CmsUtils
                 message.IsBodyHtml = isBodyHtml;
 
                 var smtpclient = new SmtpClient(_mailServer, _mailPort);
-                smtpclient.Credentials = new NetworkCredential(_mailUserName, _mailPassword);
                 //SSL连接
+                smtpclient.UseDefaultCredentials = true;
                 smtpclient.EnableSsl = enableSsl;
+                smtpclient.Credentials = new NetworkCredential(_mailUserName, _mailPassword);
                 smtpclient.Send(message);
                 return true;
             }

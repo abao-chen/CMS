@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/22
+// 制作日期：2017/07/29
 // 文件说明：权限实体类
 // 
 // 
@@ -48,6 +48,10 @@ namespace CmsEntity
         /// 页面URL
         /// </summary>
         public string PageUrl { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? OrderIndex { get; set; }
 
     }
 }

@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="5fdbb5040acd4bf59e3795832427556c" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="CmsModel.TB_Authority" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CmsModel.TB_BasicContent" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="CmsModel.TB_BasicUser" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="CmsModel.TB_ContentType" Width="1.5" PointX="4.75" PointY="5.75" />
         <EntityTypeShape EntityType="CmsModel.TB_Dictionary" Width="1.5" PointX="6.75" PointY="0.75" />
@@ -25,6 +24,7 @@
         <EntityTypeShape EntityType="CmsModel.TB_UserRole" Width="1.5" PointX="8.75" PointY="11.75" />
         <EntityTypeShape EntityType="CmsModel.TB_AdType" Width="1.5" PointX="11.75" PointY="11.75" />
         <EntityTypeShape EntityType="CmsModel.TB_Advertisement" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="CmsModel.TB_BasicContent" Width="1.5" PointX="13.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

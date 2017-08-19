@@ -36,6 +36,15 @@ namespace CmsUtils
         }
 
         /// <summary>
+        ///     是否不为空
+        /// </summary>
+        /// <param name="value">值</param>
+        public static bool IsNotEmpty(this string value)
+        {
+            return !string.IsNullOrWhiteSpace(value);
+        }
+
+        /// <summary>
         ///     是否为空
         /// </summary>
         /// <param name="value">值</param>

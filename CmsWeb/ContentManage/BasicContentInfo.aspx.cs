@@ -53,11 +53,11 @@ namespace CmsWeb
                 txtSource.Text = entity.Source;
                 if (entity.ValidStartTime != null)
                 {
-                    txtValidStartTime.Text = Convert.ToDateTime(entity.ValidStartTime).ToString("yyyy/MM/dd");
+                    txtValidStartTime.DateValue = entity.ValidStartTime;
                 }
                 if (entity.ValidEndTime != null)
                 {
-                    txtValidEndTime.Text = Convert.ToDateTime(entity.ValidEndTime).ToString("yyyy/MM/dd");
+                    txtValidEndTime.DateValue = entity.ValidEndTime;
                 }
                 txtCoverPictureUrl.Text = entity.CoverPictureUrl;
                 txtAttachmentUrl.Value = entity.AttachmentUrl;
@@ -66,6 +66,7 @@ namespace CmsWeb
                 txtForwardQua.Text = entity.ForwardQua != null ? entity.ForwardQua.ToString() : string.Empty;
                 txtPointQua.Text = entity.PointQua != null ? entity.PointQua.ToString() : string.Empty;
                 txtCommentQua.Text = entity.CommentQua != null ? entity.CommentQua.ToString() : string.Empty;
+                edtContent.Text = entity.Content;
             }
         }
 
@@ -87,17 +88,17 @@ namespace CmsWeb
                 entity.ContentTitle = txtContentTitle.Text;
                 entity.ContentSubTitle = txtContentSubTitle.Text;
                 entity.Source = txtSource.Text;
-                if (!txtValidStartTime.Text.IsEmpty())
+                if (!txtValidStartTime.TextValue.IsEmpty())
                 {
-                    entity.ValidStartTime = Convert.ToDateTime(txtValidStartTime.Text);
+                    entity.ValidStartTime = txtValidStartTime.DateValue;
                 }
                 else
                 {
                     entity.ValidStartTime = null;
                 }
-                if (!txtValidEndTime.Text.IsEmpty())
+                if (!txtValidEndTime.TextValue.IsEmpty())
                 {
-                    entity.ValidEndTime = Convert.ToDateTime(txtValidEndTime.Text);
+                    entity.ValidEndTime = txtValidEndTime.DateValue;
                 }
                 else
                 {
@@ -105,13 +106,29 @@ namespace CmsWeb
                 }
                 entity.CoverPictureUrl = txtCoverPictureUrl.Text;
                 entity.ContentSubTitle = txtContentSubTitle.Text;
-                entity.OrderNO = int.Parse(txtOrderNO.Text);
-                entity.PageViewQua = int.Parse(txtPageViewQua.Text);
-                entity.ForwardQua = int.Parse(txtForwardQua.Text);
-                entity.PointQua = int.Parse(txtPointQua.Text);
-                entity.CommentQua = int.Parse(txtCommentQua.Text);
+                if (txtOrderNO.Text.IsNotEmpty())
+                {
+                    entity.OrderNO = int.Parse(txtOrderNO.Text);
+                }
+                if (txtPageViewQua.Text.IsNotEmpty())
+                {
+                    entity.PageViewQua = int.Parse(txtPageViewQua.Text);
+                }
+                if (txtForwardQua.Text.IsNotEmpty())
+                {
+                    entity.ForwardQua = int.Parse(txtForwardQua.Text);
+                }
+                if (txtPointQua.Text.IsNotEmpty())
+                {
+                    entity.PointQua = int.Parse(txtPointQua.Text);
+                }
+                if (txtCommentQua.Text.IsNotEmpty())
+                {
+                    entity.CommentQua = int.Parse(txtCommentQua.Text);
+                }
                 entity.AttachmentUrl = txtAttachmentUrl.Value;
-
+                entity.Content = edtContent.Text;
+                
                 new BasicContentBal().UpdateSingle(entity);
             }
             else
@@ -121,17 +138,17 @@ namespace CmsWeb
                 entity.ContentTitle = txtContentTitle.Text;
                 entity.ContentSubTitle = txtContentSubTitle.Text;
                 entity.Source = txtSource.Text;
-                if (!txtValidStartTime.Text.IsEmpty())
+                if (!txtValidStartTime.TextValue.IsEmpty())
                 {
-                    entity.ValidStartTime = Convert.ToDateTime(txtValidStartTime.Text);
+                    entity.ValidStartTime = txtValidStartTime.DateValue;
                 }
                 else
                 {
                     entity.ValidStartTime = null;
                 }
-                if (!txtValidEndTime.Text.IsEmpty())
+                if (!txtValidEndTime.TextValue.IsEmpty())
                 {
-                    entity.ValidEndTime = Convert.ToDateTime(txtValidEndTime.Text);
+                    entity.ValidEndTime = txtValidEndTime.DateValue;
                 }
                 else
                 {
@@ -139,12 +156,28 @@ namespace CmsWeb
                 }
                 entity.CoverPictureUrl = txtCoverPictureUrl.Text;
                 entity.ContentSubTitle = txtContentSubTitle.Text;
-                entity.OrderNO = int.Parse(txtOrderNO.Text);
-                entity.PageViewQua = int.Parse(txtPageViewQua.Text);
-                entity.ForwardQua = int.Parse(txtForwardQua.Text);
-                entity.PointQua = int.Parse(txtPointQua.Text);
-                entity.CommentQua = int.Parse(txtCommentQua.Text);
+                if (txtOrderNO.Text.IsNotEmpty())
+                {
+                    entity.OrderNO = int.Parse(txtOrderNO.Text);
+                }
+                if (txtPageViewQua.Text.IsNotEmpty())
+                {
+                    entity.PageViewQua = int.Parse(txtPageViewQua.Text);
+                }
+                if (txtForwardQua.Text.IsNotEmpty())
+                {
+                    entity.ForwardQua = int.Parse(txtForwardQua.Text);
+                }
+                if (txtPointQua.Text.IsNotEmpty())
+                {
+                    entity.PointQua = int.Parse(txtPointQua.Text);
+                }
+                if (txtCommentQua.Text.IsNotEmpty())
+                {
+                    entity.CommentQua = int.Parse(txtCommentQua.Text);
+                }
                 entity.AttachmentUrl = txtAttachmentUrl.Value;
+                entity.Content = edtContent.Text;
 
                 new BasicContentBal().InsertSingle(entity);
             }

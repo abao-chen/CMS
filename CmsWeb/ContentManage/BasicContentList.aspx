@@ -139,11 +139,30 @@
                     },
                     { "data": "ContentType" },
                     { "data": "Source" },
-                    { "data": "ContentTitle" },
-                    { "data": "ValidStartTime" },
-                    { "data": "ValidEndTime" },
-                    { "data": "OrderNO" },
-
+                    {
+                        "data": "ContentTitle"
+                    },
+                    {
+                        "data": "ValidStartTime",
+                        "render": function (data, type, row, meta) {
+                            if (data && data != "") {
+                                return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
+                            } else {
+                                return data;
+                            }
+                        }
+                    },
+                    {
+                        "data": "ValidEndTime",
+                        "render": function (data, type, row, meta) {
+                            if (data && data != "") {
+                                return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
+                            } else {
+                                return data;
+                            }
+                        }
+                    },
+                    { "data": "OrderNO" }
                 ]
             });
         });

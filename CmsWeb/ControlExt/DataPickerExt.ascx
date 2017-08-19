@@ -24,5 +24,10 @@
             forceParse: 0,
             minView: 2
         });
+
+        var hidValue = $("#<%= hidDate.ClientID%>").val();
+        if (hidValue && hidValue != "") {
+            $("#<%=this.ID%>").val(hidValue);
+        }
     });
 </script>

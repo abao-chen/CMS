@@ -47,24 +47,15 @@ namespace CmsWeb
             if (userInfo != null)
             {
 
-                txtAccount.Text = userInfo.UserAccount;
+                txtUserAccount.Text = userInfo.UserAccount;
                 txtName.Text = userInfo.UserName;
-                txtPassword.Text = userInfo.UserPassword;
+                txtPassword.Attributes["value"] =userInfo.UserPassword;
                 lbLastLoginTime.Text = userInfo.LastLoginTime == null
                     ? string.Empty
                     : Convert.ToDateTime(userInfo.LastLoginTime).ToString("yyyy/MM/dd HH:mm:ss");
                 ddlStatus.SelectedValue = userInfo.UserStatus;
                 ddlType.SelectedValue = userInfo.UserType;
                 List<TB_UserRole> userRoleList = new UserRoleBal().SelectList(ur => ur.UserID == Id);
-                //for (int index = 0; index < cblRole.Items.Count; index++)
-                //{
-                //    int roleId = Convert.ToInt32(cblRole.Items[index].Value);
-                //    if (userRoleList.Any(ur => ur.RoleID == roleId))
-                //    {
-                //        cblRole.Items[index].Selected = true;
-                //    }
-                //}
-
                 string selectedValue = string.Empty;
                 foreach (TB_UserRole userRole in userRoleList)
                 {
@@ -90,9 +81,6 @@ namespace CmsWeb
                 new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERSTATUS), true);
             ControlUtil.BindListControl(this.ddlType,
                 new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERTYPE), true);
-            //ControlUtil.BindListControl(this.cblRole,
-            //    new RoleBal().SelectList(r => r.IsDeleted == Constants.IS_NO), "RoleName", "ID");
-
             cblRole.DataSource = new RoleBal().SelectList(r => r.IsDeleted == Constants.IS_NO && r.IsUsing == Constants.IS_YES);
             cblRole.DataTextField = "RoleName";
             cblRole.DataValueField = "ID";
@@ -104,8 +92,8 @@ namespace CmsWeb
             if (Id != 0)
             {
                 userInfo = new BasicUserBal().SelectSingleById(u => u.ID.Equals(Id));
-                userInfo.UserAccount = txtAccount.Text;
-                if (txtPassword.Text != userInfo.UserPassword)
+                userInfo.UserAccount = txtUserAccount.Text;
+                if (txtPassword.Text.IsNotEmpty() && txtPassword.Text != userInfo.UserPassword)
                 {
                     userInfo.UserPassword = SecurityUtil.Md5Encrypt64(txtPassword.Text + userInfo.PasswordSalt);
                 }
@@ -114,17 +102,6 @@ namespace CmsWeb
                 userInfo.UserType = ddlType.SelectedValue;
                 new BasicUserBal().UpdateSingle(userInfo);
                 List<TB_UserRole> userRoleList = new List<TB_UserRole>();
-                //for (int index = 0; index < cblRole.Items.Count; index++)
-                //{
-                //    if (cblRole.Items[index].Selected)
-                //    {
-                //        userRoleList.Add(new TB_UserRole
-                //        {
-                //            UserID = userInfo.ID,
-                //            RoleID = Convert.ToInt32(cblRole.Items[index].Value)
-                //        });
-                //    }
-                //}
                 if (cblRole.SelectedValueArray != null)
                 {
                     foreach (string selectedValue in cblRole.SelectedValueArray)
@@ -142,7 +119,7 @@ namespace CmsWeb
             else
             {
                 userInfo = new TB_BasicUser();
-                userInfo.UserAccount = txtAccount.Text;
+                userInfo.UserAccount = txtUserAccount.Text;
                 userInfo.UserName = txtName.Text;
                 userInfo.PasswordSalt = SecurityUtil.RandomCode(Constants.RANDOM_MODEL_MIXED, 10);
                 userInfo.UserPassword = SecurityUtil.Md5Encrypt64(txtPassword.Text + userInfo.PasswordSalt);
@@ -150,17 +127,6 @@ namespace CmsWeb
                 userInfo.UserType = ddlType.SelectedValue;
                 new BasicUserBal().InsertSingle(userInfo);
                 List<TB_UserRole> userRoleList = new List<TB_UserRole>();
-                //for (int index = 0; index < cblRole.Items.Count; index++)
-                //{
-                //    if (cblRole.Items[index].Selected)
-                //    {
-                //        userRoleList.Add(new TB_UserRole
-                //        {
-                //            UserID = userInfo.ID,
-                //            RoleID = Convert.ToInt32(cblRole.Items[index].Value)
-                //        });
-                //    }
-                //}
                 if (cblRole.SelectedValueArray != null)
                 {
                     foreach (string selectedValue in cblRole.SelectedValueArray)

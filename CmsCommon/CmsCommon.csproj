@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CmsUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CmsLibrary\CmsUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CmsLibrary\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -49,13 +57,11 @@
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="GlobalConfig.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="LogFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CmsUtils\CmsUtils.csproj">
-      <Project>{c7355b99-f287-47f0-9a80-bc1284430d80}</Project>
-      <Name>CmsUtils</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Entity\CmsEntity.csproj">
       <Project>{1ebb8e27-e404-47f4-bc9e-44e0866eb77f}</Project>
       <Name>CmsEntity</Name>

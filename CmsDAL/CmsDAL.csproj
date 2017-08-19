@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CmsUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CmsLibrary\CmsUtils.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -66,10 +70,6 @@
     <Compile Include="UserRoleDal.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CmsUtils\CmsUtils.csproj">
-      <Project>{c7355b99-f287-47f0-9a80-bc1284430d80}</Project>
-      <Name>CmsUtils</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Entity\CmsEntity.csproj">
       <Project>{1ebb8e27-e404-47f4-bc9e-44e0866eb77f}</Project>
       <Name>CmsEntity</Name>

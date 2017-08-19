@@ -1,6 +1,6 @@
 ﻿using log4net;
 
-namespace CmsUtils
+namespace CmsCommon
 {
     public class Log
     {
