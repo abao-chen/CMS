@@ -62,31 +62,35 @@ namespace CmsBAL
         /// <returns></returns>
         public List<TB_Authority> GetMenuList()
         {
-            StringBuilder selectSql = new StringBuilder();
-            selectSql.AppendLine("SELECT");
-            selectSql.AppendLine("	*");
-            selectSql.AppendLine("FROM");
-            selectSql.AppendLine("	TB_Authority a");
-            selectSql.AppendLine("WHERE");
-            selectSql.AppendLine("	a.IsDeleted = 0");
-            selectSql.AppendLine("AND a.IsMenu = 1");
-            selectSql.AppendLine("AND EXISTS (");
-            selectSql.AppendLine("	SELECT");
-            selectSql.AppendLine("		*");
-            selectSql.AppendLine("	FROM");
-            selectSql.AppendLine("		TB_BasicUser u");
-            selectSql.AppendLine("	JOIN TB_UserRole ur ON u.ID = ur.UserID");
-            selectSql.AppendLine("	AND ur.IsDeleted = 0");
-            selectSql.AppendLine("	JOIN TB_Role r ON ur.RoleID = r.ID");
-            selectSql.AppendLine("	AND r.IsDeleted = 0");
-            selectSql.AppendLine("	JOIN TB_RoleAuthority ra ON ra.RoleID = r.ID");
-            selectSql.AppendLine("	AND ra.IsDeleted = 0");
-            selectSql.AppendLine("	WHERE");
-            selectSql.AppendLine("		u.IsDeleted = 0");
-            selectSql.AppendLine("	AND u.ID = " + LoginUserInfo.ID);
-            selectSql.AppendLine("	AND ra.AuthorityID = a.ID");
-            selectSql.AppendLine(")");
-            return base.GetDataTable(selectSql.ToString()).ToList<TB_Authority>();
+            if (LoginUserInfo.AuthorityList == null)
+            {
+                StringBuilder selectSql = new StringBuilder();
+                selectSql.AppendLine("SELECT");
+                selectSql.AppendLine("	*");
+                selectSql.AppendLine("FROM");
+                selectSql.AppendLine("	TB_Authority a");
+                selectSql.AppendLine("WHERE");
+                selectSql.AppendLine("	a.IsDeleted = 0");
+                selectSql.AppendLine("AND a.IsMenu = 1");
+                selectSql.AppendLine("AND EXISTS (");
+                selectSql.AppendLine("	SELECT");
+                selectSql.AppendLine("		*");
+                selectSql.AppendLine("	FROM");
+                selectSql.AppendLine("		TB_BasicUser u");
+                selectSql.AppendLine("	JOIN TB_UserRole ur ON u.ID = ur.UserID");
+                selectSql.AppendLine("	AND ur.IsDeleted = 0");
+                selectSql.AppendLine("	JOIN TB_Role r ON ur.RoleID = r.ID");
+                selectSql.AppendLine("	AND r.IsDeleted = 0");
+                selectSql.AppendLine("	JOIN TB_RoleAuthority ra ON ra.RoleID = r.ID");
+                selectSql.AppendLine("	AND ra.IsDeleted = 0");
+                selectSql.AppendLine("	WHERE");
+                selectSql.AppendLine("		u.IsDeleted = 0");
+                selectSql.AppendLine("	AND u.ID = " + LoginUserInfo.ID);
+                selectSql.AppendLine("	AND ra.AuthorityID = a.ID");
+                selectSql.AppendLine(")");
+                LoginUserInfo.AuthorityList = base.GetDataTable(selectSql.ToString()).ToList<TB_Authority>();
+            }
+            return LoginUserInfo.AuthorityList;
         }
     }
 }

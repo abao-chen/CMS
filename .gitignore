@@ -241,26 +241,14 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 
-#Document
+#Cus file
 Document/
-
-#LogFile
 CmsWeb/Log
-
-#Temp
 CmsWeb/Temp
-
-#Upload
 CmsWeb/Upload
-
-#bak
 Entity/bak
-
-#Template
 CmsGenerator/Template
-
-#CmsBatch
 CmsBatch/
-
-#Solution
 *.sln
+CmsUnitTest/
+TestResults/
