@@ -59,13 +59,15 @@
                                                     <input name="isShowList" type="checkbox" value="1" /></td>
                                                 <td>
                                                     <select name="controlType">
-                                                        <option value="1">TextBox</option>
-                                                        <option value="2">DropDownList</option>
-                                                        <option value="3">Date</option>
-                                                        <option value="4">CheckBoxList</option>
-                                                        <option value="5">RadioBoxList</option>
-                                                        <option value="6">CheckBox</option>
-                                                        <option value="7">RadioBox</option>
+                                                        <option value="1">文本框</option>
+                                                        <option value="2">下拉框</option>
+                                                        <option value="3">日历框</option>
+                                                        <option value="4">多选组</option>
+                                                        <option value="5">单选组</option>
+                                                        <option value="6">多选</option>
+                                                        <option value="7">单选</option>
+                                                        <option value="8">文件上传</option>
+                                                        <option value="9">富文本</option>
                                                     </select>
                                                 </td>
                                                 <td>

@@ -464,108 +464,131 @@ namespace CmsGenerator
                     string controlAlisa;
                     string controlType;
                     string saveCol;
-                    string editCols = "<div class=\"col-lg-6\">\r\n";
-                    editCols += "             <div class=\"form-group\">\r\n";
-                    editCols += "    <label>#ColCnName#：</label>\r\n";
-                    editCols +=
-                        "<#tagPrefix#:#ControlType# ID =\"#ControlAlisa##ColName#\" runat=\"server\" CssClass=\"form-control\"></#tagPrefix#:#ControlType#>\r\n";
+                    string editCols = "                        <div class=\"col-lg-6\">\r\n";
+                    editCols += "                            <div class=\"form-group\">\r\n";
+                    editCols += "                                <label>#ColCnName#：</label>\r\n";
+                    editCols += "                                <#tagPrefix#:#ControlType# ID =\"#ControlAlisa##ColName#\" runat=\"server\" CssClass=\"form-control\"></#tagPrefix#:#ControlType#>\r\n";
                     switch (colEntity.controlType)
                     {
                         case 1://文本框
                             controlAlisa = "txt";
                             controlType = "TextBox";
-                            initDataBuilder.AppendLine("if(entity.#ColName# != null )");
-                            initDataBuilder.AppendLine("{");
-                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.Text = entity.#ColName#.ToString();");
-                            initDataBuilder.AppendLine("}");
-                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.Text.Trim();";
+                            initDataBuilder.AppendLine("            if(entity.#ColName# != null )");
+                            initDataBuilder.AppendLine("            {");
+                            initDataBuilder.AppendLine("                #ControlAlisa##ColName#.Text = entity.#ColName#.ToString();");
+                            initDataBuilder.AppendLine("            }");
+                            saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.Text.Trim();";
                             editCols = editCols.Replace("#tagPrefix#", "asp");
                             designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.TextBox #ControlAlisa##ColName#;");
                             break;
                         case 2://下拉框
                             controlAlisa = "ddl";
                             controlType = "DropDownList";
-                            initDataBuilder.AppendLine("if(entity.#ColName# != null )");
-                            initDataBuilder.AppendLine("{");
-                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
-                            initDataBuilder.AppendLine("}");
-                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
+                            initDataBuilder.AppendLine("            if(entity.#ColName# != null )");
+                            initDataBuilder.AppendLine("            {");
+                            initDataBuilder.AppendLine("                #ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
+                            initDataBuilder.AppendLine("            }");
+                            saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
                             editCols = editCols.Replace("#tagPrefix#", "asp");
                             designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.DropDownList #ControlAlisa##ColName#;");
                             break;
                         case 3://日期
                             controlAlisa = "txt";
-                            controlType = "TextBox";
-                            initDataBuilder.AppendLine("if(entity.#ColName# != null )");
-                            initDataBuilder.AppendLine("{");
-                            initDataBuilder.AppendLine("    #ControlAlisa##ColName#.Text = entity.#ColName#.ToString();");
-                            initDataBuilder.AppendLine("}");
-                            saveCol = "if(#ControlAlisa##ColName#.Text != null )\r\n";
-                            saveCol += "{\r\n";
-                            saveCol += "entity.#ColName# = Convert.ToDateTime(#ControlAlisa##ColName#.Text);\r\n";
-                            saveCol += "}\r\n";
-                            editCols = editCols.Replace("#tagPrefix#", "asp");
-                            initDateBuilder.AppendLine("initDateControl(\"<%=#ControlAlisa##ColName#.ClientID%>\");");
-                            designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.TextBox #ControlAlisa##ColName#;");
+                            controlType = "DataPickerExt";
+                            initDataBuilder.AppendLine("            if(entity.#ColName# != null )");
+                            initDataBuilder.AppendLine("            {");
+                            initDataBuilder.AppendLine("                #ControlAlisa##ColName#.DateValue = entity.#ColName#;");
+                            initDataBuilder.AppendLine("            }");
+                            saveCol = "            if(!#ControlAlisa##ColName#.TextValue.IsEmpty())\r\n";
+                            saveCol += "            {\r\n";
+                            saveCol += "                entity.#ColName# = #ControlAlisa##ColName#.DateValue;\r\n";
+                            saveCol += "            }\r\n";
+                            editCols = "                        <div class=\"col-lg-6\">\r\n";
+                            editCols += "                            <div class=\"form-group\">\r\n";
+                            editCols += "                                <label>#ColCnName#：</label>\r\n";
+                            editCols += "                                <Cms:DataPicker ID=\"#ControlAlisa##ColName#\" runat=\"server\" Name=\"#ColName#\" Format=\"yyyy/MM/dd\"></Cms:DataPicker>";
+                            designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.DataPickerExt #ControlAlisa##ColName#;");
                             break;
                         case 4://多选框 checkboxlist
                             controlAlisa = "cbl";
                             controlType = "CheckBoxListExt";
-                            initDataBuilder.AppendLine("if(entity.#ColName# != null )");
-                            initDataBuilder.AppendLine("{");
-                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
-                            initDataBuilder.AppendLine("}");
-                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
+                            initDataBuilder.AppendLine("            if(entity.#ColName# != null )");
+                            initDataBuilder.AppendLine("            {");
+                            initDataBuilder.AppendLine("                #ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
+                            initDataBuilder.AppendLine("            }");
+                            saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
                             editCols = editCols.Replace("#tagPrefix#", "Cms");
                             designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.CheckBoxListExt #ControlAlisa##ColName#;");
                             break;
                         case 5://单选框 radioboxlist
                             controlAlisa = "rbl";
                             controlType = "RadioBoxListExt";
-                            initDataBuilder.AppendLine("if(entity.#ColName# != null )");
-                            initDataBuilder.AppendLine("{");
-                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
-                            initDataBuilder.AppendLine("}");
-                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
+                            initDataBuilder.AppendLine("            if(entity.#ColName# != null )");
+                            initDataBuilder.AppendLine("            {");
+                            initDataBuilder.AppendLine("                #ControlAlisa##ColName#.SelectedValue = entity.#ColName#.ToString();");
+                            initDataBuilder.AppendLine("            }");
+                            saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
                             editCols = editCols.Replace("#tagPrefix#", "Cms");
                             designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.RadioBoxListExt #ControlAlisa##ColName#;");
                             break;
                         case 6://多选框 checkbox
                             controlAlisa = "cb";
                             controlType = "CheckBox";
-                            initDataBuilder.AppendLine("if(entity.#ColName# != null )");
-                            initDataBuilder.AppendLine("{");
-                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.Checked = entity.#ColName#  == Constants.IS_YES;");
-                            initDataBuilder.AppendLine("}");
-                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.Checked ? Constants.IS_YES : Constants.IS_NO;";
+                            initDataBuilder.AppendLine("            if(entity.#ColName# != null )");
+                            initDataBuilder.AppendLine("            {");
+                            initDataBuilder.AppendLine("                #ControlAlisa##ColName#.Checked = entity.#ColName#  == Constants.IS_YES;");
+                            initDataBuilder.AppendLine("            }");
+                            saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.Checked ? Constants.IS_YES : Constants.IS_NO;";
                             editCols = editCols.Replace("#tagPrefix#", "asp");
                             designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.CheckBox #ControlAlisa##ColName#;");
                             break;
                         case 7://单选框 radiobox
                             controlAlisa = "rb";
                             controlType = "RadioBox";
-                            initDataBuilder.AppendLine("if(entity.#ColName# != null )");
-                            initDataBuilder.AppendLine("{");
-                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.Checked = entity.#ColName#  == Constants.IS_YES;");
-                            initDataBuilder.AppendLine("}");
-                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
+                            initDataBuilder.AppendLine("            if(entity.#ColName# != null )");
+                            initDataBuilder.AppendLine("            {");
+                            initDataBuilder.AppendLine("                #ControlAlisa##ColName#.Checked = entity.#ColName#  == Constants.IS_YES;");
+                            initDataBuilder.AppendLine("            }");
+                            saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.SelectedValue;";
                             editCols = editCols.Replace("#tagPrefix#", "asp");
                             designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.RadioBox #ControlAlisa##ColName#;");
+                            break;
+                        case 8://文件上传
+                            controlAlisa = "upl";
+                            controlType = "UploadExt";
+                            initDataBuilder.AppendLine("            #ControlAlisa##ColName#.Value = entity.#ColName#;");
+                            saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.Value;";
+                            editCols = "                        <div class=\"col-lg-12\">\r\n";
+                            editCols += "                            <div class=\"form-group\">\r\n";
+                            editCols += "                                <label>#ColCnName#：</label>\r\n";
+                            editCols += "                                <Cms:UploadExt ID=\"#ControlAlisa##ColName#\" runat=\"server\"></Cms:UploadExt>";
+                            designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.UploadExt #ControlAlisa##ColName#;");
+                            break;
+                        case 9://富文本
+                            controlAlisa = "edt";
+                            controlType = "EditorExt";
+                            initDataBuilder.AppendLine("            #ControlAlisa##ColName#.Text = entity.#ColName#;");
+                            saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.Text;";
+                            editCols = "                        <div class=\"col-lg-12\">\r\n";
+                            editCols += "                            <div class=\"form-group\">\r\n";
+                            editCols += "                                <label>#ColCnName#：</label>\r\n";
+                            editCols += "                                <Cms:EditorExt ID=\"#ControlAlisa##ColName#\" runat=\"server\"></Cms:EditorExt>";
+                            designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.EditorExt #ControlAlisa##ColName#;");
                             break;
                         default://文本框
                             controlAlisa = "txt";
                             controlType = "TextBox";
-                            initDataBuilder.AppendLine("if(entity.#ColName# != null )");
-                            initDataBuilder.AppendLine("{");
-                            initDataBuilder.AppendLine("#ControlAlisa##ColName#.Text = entity.#ColName#.ToString();");
-                            initDataBuilder.AppendLine("}");
-                            saveCol = "entity.#ColName# = #ControlAlisa##ColName#.Text.Trim();";
+                            initDataBuilder.AppendLine("            if(entity.#ColName# != null )");
+                            initDataBuilder.AppendLine("            {");
+                            initDataBuilder.AppendLine("                #ControlAlisa##ColName#.Text = entity.#ColName#.ToString();");
+                            initDataBuilder.AppendLine("            }");
+                            saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.Text.Trim();";
                             editCols = editCols.Replace("#tagPrefix#", "asp");
                             designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.TextBox #ControlAlisa##ColName#;");
                             break;
                     }
-                    editCols += "</div>\r\n";
-                    editCols += "</div> ";
+                    editCols += "                            </div>\r\n";
+                    editCols += "                        </div> ";
                     editCols = editCols.Replace("#ColName#", colEntity.colCode)
                                         .Replace("#ColCnName#", colEntity.colComment)
                                         .Replace("#ControlType#", controlType)
@@ -582,10 +605,10 @@ namespace CmsGenerator
                     designerBuilder = designerBuilder.Replace("#ColName#", colEntity.colCode).Replace("#ControlAlisa#", controlAlisa); ;
                     //表单校验
                     string validateFileds = @"                    <%=#ControlAlisa##ColName#.UniqueID%>: {
-                        validators: {
-                            #Validators#
-                        }
-                    },";
+                                            validators: {
+                                                #Validators#
+                                            }
+                                        },";
                     if (!colEntity.validate.IsEmpty())
                     {
                         string validators = string.Empty;
@@ -595,13 +618,13 @@ namespace CmsGenerator
                             switch (v)
                             {
                                 case "1"://不能为空
-                                    validators += "                            notEmpty: {},";
+                                    validators += "notEmpty: {},";
                                     break;
                                 case "2"://数字
-                                    validators += "                            digits: {},";
+                                    validators += "digits: {},";
                                     break;
                                 case "3"://日期
-                                    validators += "                            date: {format:\"YYYY/MM/DD\"},";
+                                    validators += "date: {format:\"YYYY/MM/DD\"},";
                                     break;
                                 default://more
                                     break;
