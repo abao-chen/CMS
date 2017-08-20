@@ -45,29 +45,51 @@ namespace CmsWeb
         private void InitData()
         {
             TB_BasicContent entity = new BasicContentBal().SelectSingleById(u => u.ID.Equals(Id));
-            if (entity != null)
+            if (entity.ContentType != null)
             {
-                ddlContentType.SelectedValue = entity.ContentType != null ? entity.ContentType.ToString() : string.Empty;
-                txtContentTitle.Text = entity.ContentTitle;
-                txtContentSubTitle.Text = entity.ContentSubTitle;
-                txtSource.Text = entity.Source;
-                if (entity.ValidStartTime != null)
-                {
-                    txtValidStartTime.DateValue = entity.ValidStartTime;
-                }
-                if (entity.ValidEndTime != null)
-                {
-                    txtValidEndTime.DateValue = entity.ValidEndTime;
-                }
-                txtCoverPictureUrl.Text = entity.CoverPictureUrl;
-                UploadExtAttachmentUrl.Value = entity.AttachmentUrl;
-                txtOrderNO.Text = entity.OrderNO != null ? entity.OrderNO.ToString() : string.Empty;
-                txtPageViewQua.Text = entity.PageViewQua != null ? entity.PageViewQua.ToString() : string.Empty;
-                txtForwardQua.Text = entity.ForwardQua != null ? entity.ForwardQua.ToString() : string.Empty;
-                txtPointQua.Text = entity.PointQua != null ? entity.PointQua.ToString() : string.Empty;
-                txtCommentQua.Text = entity.CommentQua != null ? entity.CommentQua.ToString() : string.Empty;
-                edtContent.Text = entity.Content;
+                ddlContentType.SelectedValue = entity.ContentType.ToString();
             }
+            if (entity.Source != null)
+            {
+                txtSource.Text = entity.Source.ToString();
+            }
+            if (entity.ContentTitle != null)
+            {
+                txtContentTitle.Text = entity.ContentTitle.ToString();
+            }
+            if (entity.ContentSubTitle != null)
+            {
+                txtContentSubTitle.Text = entity.ContentSubTitle.ToString();
+            }
+            uplCoverPictureUrl.Value = entity.CoverPictureUrl;
+            if (entity.ValidStartTime != null)
+            {
+                txtValidStartTime.DateValue = entity.ValidStartTime;
+            }
+            if (entity.ValidEndTime != null)
+            {
+                txtValidEndTime.DateValue = entity.ValidEndTime;
+            }
+            if (entity.OrderNO != null)
+            {
+                txtOrderNO.Text = entity.OrderNO.ToString();
+            }
+            txtPageViewQua.Text = entity.PageViewQua?.ToString();
+            if (entity.ForwardQua != null)
+            {
+                txtForwardQua.Text = entity.ForwardQua.ToString();
+            }
+            if (entity.PointQua != null)
+            {
+                txtPointQua.Text = entity.PointQua.ToString();
+            }
+            if (entity.CommentQua != null)
+            {
+                txtCommentQua.Text = entity.CommentQua.ToString();
+            }
+            uplAttachmentUrl.Value = entity.AttachmentUrl;
+            edtContent.Text = entity.Content;
+
         }
 
         /// <summary>
@@ -84,101 +106,51 @@ namespace CmsWeb
             if (Id != 0)
             {
                 entity = new BasicContentBal().SelectSingleById(u => u.ID.Equals(Id));
-                entity.ContentType = int.Parse(ddlContentType.SelectedValue);
-                entity.ContentTitle = txtContentTitle.Text;
-                entity.ContentSubTitle = txtContentSubTitle.Text;
-                entity.Source = txtSource.Text;
-                if (!txtValidStartTime.TextValue.IsEmpty())
-                {
-                    entity.ValidStartTime = txtValidStartTime.DateValue;
-                }
-                else
-                {
-                    entity.ValidStartTime = null;
-                }
-                if (!txtValidEndTime.TextValue.IsEmpty())
-                {
-                    entity.ValidEndTime = txtValidEndTime.DateValue;
-                }
-                else
-                {
-                    entity.ValidEndTime = null;
-                }
-                entity.CoverPictureUrl = txtCoverPictureUrl.Text;
-                entity.ContentSubTitle = txtContentSubTitle.Text;
-                if (txtOrderNO.Text.IsNotEmpty())
-                {
-                    entity.OrderNO = int.Parse(txtOrderNO.Text);
-                }
-                if (txtPageViewQua.Text.IsNotEmpty())
-                {
-                    entity.PageViewQua = int.Parse(txtPageViewQua.Text);
-                }
-                if (txtForwardQua.Text.IsNotEmpty())
-                {
-                    entity.ForwardQua = int.Parse(txtForwardQua.Text);
-                }
-                if (txtPointQua.Text.IsNotEmpty())
-                {
-                    entity.PointQua = int.Parse(txtPointQua.Text);
-                }
-                if (txtCommentQua.Text.IsNotEmpty())
-                {
-                    entity.CommentQua = int.Parse(txtCommentQua.Text);
-                }
-                entity.AttachmentUrl = UploadExtAttachmentUrl.Value;
-                entity.Content = edtContent.Text;
-                
-                new BasicContentBal().UpdateSingle(entity);
             }
             else
             {
                 entity = new TB_BasicContent();
-                entity.ContentType = int.Parse(ddlContentType.SelectedValue);
-                entity.ContentTitle = txtContentTitle.Text;
-                entity.ContentSubTitle = txtContentSubTitle.Text;
-                entity.Source = txtSource.Text;
-                if (!txtValidStartTime.TextValue.IsEmpty())
-                {
-                    entity.ValidStartTime = txtValidStartTime.DateValue;
-                }
-                else
-                {
-                    entity.ValidStartTime = null;
-                }
-                if (!txtValidEndTime.TextValue.IsEmpty())
-                {
-                    entity.ValidEndTime = txtValidEndTime.DateValue;
-                }
-                else
-                {
-                    entity.ValidEndTime = null;
-                }
-                entity.CoverPictureUrl = txtCoverPictureUrl.Text;
-                entity.ContentSubTitle = txtContentSubTitle.Text;
-                if (txtOrderNO.Text.IsNotEmpty())
-                {
-                    entity.OrderNO = int.Parse(txtOrderNO.Text);
-                }
-                if (txtPageViewQua.Text.IsNotEmpty())
-                {
-                    entity.PageViewQua = int.Parse(txtPageViewQua.Text);
-                }
-                if (txtForwardQua.Text.IsNotEmpty())
-                {
-                    entity.ForwardQua = int.Parse(txtForwardQua.Text);
-                }
-                if (txtPointQua.Text.IsNotEmpty())
-                {
-                    entity.PointQua = int.Parse(txtPointQua.Text);
-                }
-                if (txtCommentQua.Text.IsNotEmpty())
-                {
-                    entity.CommentQua = int.Parse(txtCommentQua.Text);
-                }
-                entity.AttachmentUrl = UploadExtAttachmentUrl.Value;
-                entity.Content = edtContent.Text;
+            }
+            entity.ContentType = ddlContentType.SelectedValue?.ToInt();
+            entity.Source = txtSource.Text.Trim();
+            entity.ContentTitle = txtContentTitle.Text.Trim();
+            entity.ContentSubTitle = txtContentSubTitle.Text.Trim();
+            entity.CoverPictureUrl = uplCoverPictureUrl.Value;
+            if (!txtValidStartTime.TextValue.IsEmpty())
+            {
+                entity.ValidStartTime = txtValidStartTime.DateValue;
+            }
 
+            if (!txtValidEndTime.TextValue.IsEmpty())
+            {
+                entity.ValidEndTime = txtValidEndTime.DateValue;
+            }
+
+            if (txtPageViewQua.Text.IsNotEmpty())
+            {
+                entity.OrderNO = txtOrderNO.Text.Trim().ToInt();
+            }
+            if (txtForwardQua.Text.IsNotEmpty())
+            {
+                entity.ForwardQua = txtForwardQua.Text.Trim().ToInt();
+            }
+            if (txtPointQua.Text.IsNotEmpty())
+            {
+                entity.PointQua = txtPointQua.Text.Trim().ToInt();
+            }
+            if (txtCommentQua.Text.IsNotEmpty())
+            {
+                entity.CommentQua = txtCommentQua.Text.Trim().ToInt();
+            }
+            entity.AttachmentUrl = uplAttachmentUrl.Value;
+            entity.Content = edtContent.Text;
+
+            if (Id != 0)
+            {
+                new BasicContentBal().UpdateSingle(entity);
+            }
+            else
+            {
                 new BasicContentBal().InsertSingle(entity);
             }
 

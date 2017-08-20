@@ -334,7 +334,6 @@
             <!-- Metis Menu Plugin JavaScript -->
             <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
 
-
             <!-- Custom Common JavaScript -->
             <script src="/Scripts/bootstrapAlert.js"></script>
             <script src="/Scripts/JSON2.js"></script>

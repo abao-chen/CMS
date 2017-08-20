@@ -15,7 +15,14 @@ namespace CmsWeb.ControlExt
             set { this.hidFilePath.Value = value; }
         }
 
-        //1：单文件,0：多文件
+        /// <summary>
+        /// 上传路径
+        /// </summary>
+        public string FolderPath = "/Upload/";
+
+        /// <summary>
+        /// 1：单文件,0：多文件
+        /// </summary>
         public string Single = "1";
 
         protected void Page_Load(object sender, EventArgs e)

@@ -1,8 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="BasicContentInfo.aspx.cs" Inherits="CmsWeb.BasicContentInfo" %>
-
-<%@ Register TagPrefix="Cms" Namespace="CmsWeb.ControlExt" Assembly="CmsWeb" %>
-<%@ Register Src="~/ControlExt/UploadExt.ascx" TagPrefix="Cms" TagName="UploadExt" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" ValidateRequest="false" CodeBehind="BasicContentInfo.aspx.cs" Inherits="CmsWeb.BasicContentInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -37,12 +33,6 @@
                             <div class="form-group">
                                 <label>子标题：</label>
                                 <asp:TextBox ID="txtContentSubTitle" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>封面图：</label>
-                                <asp:TextBox ID="txtCoverPictureUrl" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -89,14 +79,20 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
+                                <label>封面图：</label>
+                                <Cms:UploadExt ID="uplCoverPictureUrl" runat="server"></Cms:UploadExt>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
                                 <label>附件：</label>
-                                <Cms:UploadExt runat="server" ID="UploadExtAttachmentUrl" ></Cms:UploadExt>
+                                <Cms:UploadExt ID="uplAttachmentUrl" runat="server"></Cms:UploadExt>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>内容：</label>
-                                <Cms:EditorExt runat="server" ID="edtContent"></Cms:EditorExt>
+                                <Cms:EditorExt ID="edtContent" runat="server"></Cms:EditorExt>
                             </div>
                         </div>
 
@@ -112,8 +108,8 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <script type="text/javascript">
+        //表单验证
         $(function () {
-            //表单验证
             $('#form').bootstrapValidator({
                 message: 'This value is not valid',
                 feedbackIcons: {
@@ -123,27 +119,23 @@
                 },
                 fields: {
                     <%=ddlContentType.UniqueID%>: {
-                        validators: {
-                            notEmpty: {},
-                        }
-                    },
+                                            validators: {
+                                                notEmpty: {},
+                                            }
+                                        },
                     <%=txtContentTitle.UniqueID%>: {
                         validators: {
                             notEmpty: {},
                         }
                     },
-                    ValidStartTime: {
+                    <%=txtValidStartTime.UniqueID%>: {
                         validators: {
-                            date: {
-                                format:"YYYY/MM/DD"
-                            }
+                            date: {format:"YYYY/MM/DD"},
                         }
                     },
-                    ValidEndTime: {
+                    <%=txtValidEndTime.UniqueID%>: {
                         validators: {
-                            date: {
-                                format:"YYYY/MM/DD"
-                            }
+                            date: {format:"YYYY/MM/DD"},
                         }
                     },
                     <%=txtOrderNO.UniqueID%>: {
@@ -170,11 +162,12 @@
                         validators: {
                             digits: {},
                         }
-                    }
+                    },
+
                 }
             });
 
-           
+            
         });
     </script>
 </asp:Content>
