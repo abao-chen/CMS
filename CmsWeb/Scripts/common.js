@@ -36,7 +36,7 @@ Date.prototype.Format = function (fmt) {
  * @param {替换为的字符串} target 
  * @returns {} 
  */
-String.prototype.replaceAll = function(source, target) {
+String.prototype.replaceAll = function (source, target) {
     return this.replace(new RegExp(source, 'gm'), target);
 };
 
@@ -69,11 +69,7 @@ $(function () {
     //datatables 全选功能,全选ID必须：cbSelectAll，列表中的选择框name必须：tbCheckbox
     $("#cbSelectAll").click(function () {
         $("input[name='tbCheckbox']").each(function () {
-            if ($("#cbSelectAll").is(":checked")) {
-                $(this).attr("checked", true);
-            } else {
-                $(this).attr("checked", false);
-            }
+            $(this).prop("checked", $("#cbSelectAll").is(":checked"));
         });
     });
 

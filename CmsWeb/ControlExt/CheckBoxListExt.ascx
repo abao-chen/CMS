@@ -16,8 +16,6 @@
 </asp:Repeater>
 <asp:HiddenField ID="hidSelectedValue" runat="server" />
 
-<!-- jQuery -->
-<script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
     $(function () {
         $("input[type='checkbox'][name='<%= Name %>']").click(function () {

@@ -21,6 +21,11 @@ namespace CmsWeb.ControlExt
         public string FolderPath = "/Upload/";
 
         /// <summary>
+        /// 上传文件限制
+        /// </summary>
+        public string Extensions = "jpg,jpeg,gif,png,zip,txt,xls,xlsx,rar,doc,docx,ppt,pptx";
+
+        /// <summary>
         /// 1：单文件,0：多文件
         /// </summary>
         public string Single = "1";

@@ -40,7 +40,7 @@
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                                 </div>--%>
-                                <Cms:DataPicker ID="txtCreateTimeBegin" runat="server" Name="TestDateName" Format="yyyy/MM/dd" PlaceHolder="创建开始日期" SearchAttr="CreateTime|>=|CreateTimeBegin"></Cms:DataPicker>
+                                <Cms:DataPicker ID="txtCreateTimeBegin" runat="server" Name="CreateTimeBegin" Format="yyyy/MM/dd" PlaceHolder="创建开始日期" SearchAttr="CreateTime|>=|CreateTimeBegin"></Cms:DataPicker>
                             </div>
                             <div class="col-lg-4 form-group">
                                 <%--<label>创建日期</label>--%>

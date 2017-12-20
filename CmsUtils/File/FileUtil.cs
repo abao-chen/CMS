@@ -136,17 +136,17 @@ namespace CmsUtils
 
         #endregion
 
-        #region 创建目录
+        #region 创建一个目录
 
         /// <summary>
-        ///     创建目录
+        ///     创建一个目录
         /// </summary>
-        /// <param name="dir">要创建的目录路径包括目录名</param>
-        public static void CreateDir(string dir)
+        /// <param name="directoryPath">目录的绝对路径</param>
+        public static void CreateDirectory(string directoryPath)
         {
-            if (dir.Length == 0) return;
-            if (!Directory.Exists(HttpContext.Current.Server.MapPath(dir)))
-                Directory.CreateDirectory(HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir);
+            //如果目录不存在则创建该目录
+            if (!IsExistDirectory(directoryPath))
+                Directory.CreateDirectory(directoryPath);
         }
 
         #endregion
@@ -463,21 +463,6 @@ namespace CmsUtils
 
         #endregion
 
-        #region 创建一个目录
-
-        /// <summary>
-        ///     创建一个目录
-        /// </summary>
-        /// <param name="directoryPath">目录的绝对路径</param>
-        public static void CreateDirectory(string directoryPath)
-        {
-            //如果目录不存在则创建该目录
-            if (!IsExistDirectory(directoryPath))
-                Directory.CreateDirectory(directoryPath);
-        }
-
-        #endregion
-
         #region 获取文本文件的行数
 
         /// <summary>
@@ -567,15 +552,26 @@ namespace CmsUtils
         #region 向文本文件写入内容
 
         /// <summary>
-        ///     向文本文件中写入内容
+        ///     写文件
         /// </summary>
-        /// <param name="filePath">文件的绝对路径</param>
-        /// <param name="text">写入的内容</param>
-        /// <param name="encoding">编码</param>
-        public static void WriteText(string filePath, string text, Encoding encoding)
+        /// <param name="outPath">文件路径</param>
+        /// <param name="content">文件内容</param>
+        public static void WriteFile(string outPath, string content, Encoding encoding = null)
         {
-            //向文件写入内容
-            File.WriteAllText(filePath, text, encoding);
+            string dicPath = outPath.Replace(outPath.Substring(outPath.LastIndexOf("\\", StringComparison.Ordinal)), "");
+            if (!Directory.Exists(dicPath))
+            {
+                Directory.CreateDirectory(dicPath);
+            }
+            if (File.Exists(outPath))
+                File.Delete(outPath);
+            var f = File.Create(outPath);
+            f.Close();
+            f.Dispose();
+            var f2 = new StreamWriter(outPath, true, encoding ?? Encoding.UTF8);
+            f2.WriteLine(content);
+            f2.Close();
+            f2.Dispose();
         }
 
         #endregion
@@ -667,30 +663,6 @@ namespace CmsUtils
 
         #endregion
 
-        #region 清空指定目录
-
-        /// <summary>
-        ///     清空指定目录下所有文件及子目录,但该目录依然保存.
-        /// </summary>
-        /// <param name="directoryPath">指定目录的绝对路径</param>
-        public static void ClearDirectory(string directoryPath)
-        {
-            directoryPath = HttpContext.Current.Server.MapPath(directoryPath);
-            if (IsExistDirectory(directoryPath))
-            {
-                //删除目录中所有的文件
-                var fileNames = GetFileNames(directoryPath);
-                for (var i = 0; i < fileNames.Length; i++)
-                    DeleteFile(fileNames[i]);
-                //删除目录中所有的子目录
-                var directoryNames = GetDirectories(directoryPath);
-                for (var i = 0; i < directoryNames.Length; i++)
-                    DeleteDirectory(directoryNames[i]);
-            }
-        }
-
-        #endregion
-
         #region 清空文件内容
 
         /// <summary>
@@ -704,35 +676,6 @@ namespace CmsUtils
 
             //重新创建该文件
             CreateFile(filePath);
-        }
-
-        #endregion
-
-        #region 删除指定目录
-
-        /// <summary>
-        ///     删除指定目录及其所有子目录
-        /// </summary>
-        /// <param name="directoryPath">指定目录的绝对路径</param>
-        public static void DeleteDirectory(string directoryPath)
-        {
-            directoryPath = HttpContext.Current.Server.MapPath(directoryPath);
-            if (IsExistDirectory(directoryPath))
-                Directory.Delete(directoryPath, true);
-        }
-
-        #endregion
-
-        #region 本地路径
-
-        /// <summary>
-        ///     本地路径
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public static string MapPath(string path)
-        {
-            return HttpContext.Current.Server.MapPath(path);
         }
 
         #endregion
@@ -792,81 +735,6 @@ namespace CmsUtils
                 throw new Exception(ex.Message);
                 //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
             }
-        }
-
-        #endregion
-
-        #region 写文件
-
-        /****************************************
-         * 函数名称：WriteFile
-         * 功能说明：当文件不存时，则创建文件，并追加文件
-         * 参    数：Path:文件路径,Strings:文本内容
-        *****************************************/
-
-        /// <summary>
-        ///     写文件
-        /// </summary>
-        /// <param name="outPath">文件路径</param>
-        /// <param name="content">文件内容</param>
-        public static void WriteFile(string outPath, string content)
-        {
-            string dicPath = outPath.Replace(outPath.Substring(outPath.LastIndexOf("\\")), "");
-            if (!Directory.Exists(dicPath))
-            {
-                Directory.CreateDirectory(dicPath);
-            }
-            if (File.Exists(outPath))
-                File.Delete(outPath);
-            var f = File.Create(outPath);
-            f.Close();
-            f.Dispose();
-            var f2 = new StreamWriter(outPath, true, Encoding.UTF8);
-            f2.WriteLine(content);
-            f2.Close();
-            f2.Dispose();
-        }
-
-        #endregion
-
-        #region MyRegion
-
-        /// <summary>
-        ///     创建文件
-        /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="content">内容</param>
-        public static void CreateFileContent(string path, string content)
-        {
-            var fi = new FileInfo(path);
-            var di = fi.Directory;
-            if (!di.Exists)
-                di.Create();
-            var sw = new StreamWriter(path, false, Encoding.GetEncoding("GB2312"));
-            sw.Write(content);
-            sw.Close();
-        }
-
-        #endregion
-
-        #region 根据时间得到目录名 / 格式:yyyyMMdd 或者 HHmmssff
-
-        /// <summary>
-        ///     根据时间得到目录名yyyyMMdd
-        /// </summary>
-        /// <returns></returns>
-        public static string GetDateDir()
-        {
-            return DateTime.Now.ToString("yyyyMMdd");
-        }
-
-        /// <summary>
-        ///     根据时间得到文件名HHmmssff
-        /// </summary>
-        /// <returns></returns>
-        public static string GetDateFile()
-        {
-            return DateTime.Now.ToString("HHmmssff");
         }
 
         #endregion

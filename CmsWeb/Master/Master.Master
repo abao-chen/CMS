@@ -19,6 +19,9 @@
     <!-- Bootstrap DataTables -->
     <link href="~/Scripts/bootstrap/vendor/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
 
+    <!-- Bootstrap jqGrid -->
+    <link href="~/Scripts/bootstrap/vendor/jquery.jqGrid-4.4.3/css/ui.jqgrid.css" rel="stylesheet" />
+
     <!-- Bootstrap datetimepicker -->
     <link href="~/Scripts/bootstrap/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
@@ -52,6 +55,39 @@
         <script src="~/Scripts/bootstrap/js/html5shiv.js"></script>
         <script src="~/Scripts/bootstrap/js/respond.min.js"></script>
     <![endif]-->
+    
+    <!-- jQuery -->
+    <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>  
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- DataTables -->
+    <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.js"></script>
+    <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>
+
+    <!-- jqGrid -->
+    <script src="/Scripts/bootstrap/vendor/jquery.jqGrid-4.4.3/js/jquery.jqGrid.src.js"></script>
+
+    <!-- datetimepicker -->
+    <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+    <!-- bootstrapValidator -->
+    <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/language/zh_CN.js"></script>
+
+    <!-- toastr -->
+    <script src="/Scripts/bootstrap/vendor/toastr/js/toastr.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Common JavaScript -->
+    <script src="/Scripts/bootstrapAlert.js"></script>
+    <script src="/Scripts/JSON2.js"></script>
+    <script src="/Scripts/common.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -309,36 +345,7 @@
                 <div class="loading-shade"></div>
                 <div class="loading-content">数据加载中，请稍后…</div>
             </div>
-
-            <!-- jQuery -->
-            <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
-
-            <!-- Bootstrap Core JavaScript -->
-            <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-            <!-- DataTables -->
-            <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.js"></script>
-            <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>
-
-            <!-- datetimepicker -->
-            <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-            <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
-
-            <!-- bootstrapValidator -->
-            <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
-            <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/language/zh_CN.js"></script>
-
-            <!-- toastr -->
-            <script src="/Scripts/bootstrap/vendor/toastr/js/toastr.min.js"></script>
-
-            <!-- Metis Menu Plugin JavaScript -->
-            <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
-
-            <!-- Custom Common JavaScript -->
-            <script src="/Scripts/bootstrapAlert.js"></script>
-            <script src="/Scripts/JSON2.js"></script>
-            <script src="/Scripts/common.js"></script>
-
+            
             <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder2">
             </asp:ContentPlaceHolder>
         </div>
