@@ -49,6 +49,38 @@
         <script src="~/Scripts/bootstrap/js/html5shiv.js"></script>
         <script src="~/Scripts/bootstrap/js/respond.min.js"></script>
     <![endif]-->
+
+    <!-- jQuery -->
+    <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- DataTables -->
+    <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.js"></script>
+    <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>
+
+    <!-- datetimepicker -->
+    <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+    <!-- bootstrapValidator -->
+    <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/language/zh_CN.js"></script>
+
+    <!-- toastr -->
+    <script src="/Scripts/bootstrap/vendor/toastr/js/toastr.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/Scripts/bootstrap/dist/js/sb-admin-2.js"></script>
+
+    <!-- Custom Common JavaScript -->
+    <script src="/Scripts/bootstrapAlert.js"></script>
+    <script src="/Scripts/JSON2.js"></script>
+    <script src="/Scripts/common.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -56,37 +88,7 @@
     <form id="form1" runat="server">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
-        <!-- jQuery -->
-        <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-        <!-- DataTables -->
-        <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.js"></script>
-        <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>
-
-        <!-- datetimepicker -->
-        <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-        <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
-
-        <!-- bootstrapValidator -->
-        <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
-        <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/language/zh_CN.js"></script>
-
-        <!-- toastr -->
-        <script src="/Scripts/bootstrap/vendor/toastr/js/toastr.min.js"></script>
-
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
-
-        <!-- Custom Theme JavaScript -->
-        <script src="/Scripts/bootstrap/dist/js/sb-admin-2.js"></script>
-
-        <!-- Custom Common JavaScript -->
-        <script src="/Scripts/bootstrapAlert.js"></script>
-        <script src="/Scripts/JSON2.js"></script>
-        <script src="/Scripts/common.js"></script>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
         </asp:ContentPlaceHolder>
     </form>

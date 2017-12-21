@@ -29,7 +29,7 @@ namespace CmsWeb.Master
                         menuHtml.AppendLine("<li>");
                         menuHtml.AppendLine("<a href=\"#\">" + module.AuthorName + "<span class=\"fa arrow\"></span></a>");
                         menuHtml.AppendLine("<ul class=\"nav nav-second-level\">");
-                        List<TB_Authority> pageList = authorList.Where(m => m.AuthorType == Constants.AUTHOR_FLAG_PAGE && m.IsMenu==Constants.IS_YES && m.ParentID == module.ID).ToList();
+                        List<TB_Authority> pageList = authorList.Where(m => m.AuthorType == Constants.AUTHOR_FLAG_PAGE && m.IsMenu == Constants.IS_YES && m.ParentID == module.ID).ToList();
                         foreach (TB_Authority page in pageList)
                         {
                             menuHtml.AppendLine("<li>");
@@ -52,7 +52,7 @@ namespace CmsWeb.Master
         protected void lkLogout_OnClick(object sender, EventArgs e)
         {
             SessionUtil.ClearAllSession();
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("~/Login.aspx?Logout=" + Guid.NewGuid());
         }
     }
 }

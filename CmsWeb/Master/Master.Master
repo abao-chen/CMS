@@ -58,7 +58,7 @@
     
     <!-- jQuery -->
     <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>  
+    <%--<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>  --%>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -68,7 +68,7 @@
     <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>
 
     <!-- jqGrid -->
-    <script src="/Scripts/bootstrap/vendor/jquery.jqGrid-4.4.3/js/jquery.jqGrid.src.js"></script>
+    <%--<script src="/Scripts/bootstrap/vendor/jquery.jqGrid-4.4.3/js/jquery.jqGrid.src.js"></script>--%>
 
     <!-- datetimepicker -->
     <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
