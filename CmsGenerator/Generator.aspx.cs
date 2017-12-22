@@ -191,17 +191,17 @@ namespace CmsGenerator
             #endregion
 
             string tablesWhere = String.Empty;
-            for (int i = 0; i < this.cbTables.Items.Count; i++)
+            if (this.cbTables.SelectedValueArray != null)
             {
-                if (cbTables.Items[i].Selected)
+                for (int i = 0; i < this.cbTables.SelectedValueArray.Length; i++)
                 {
                     if (string.IsNullOrEmpty(tablesWhere))
                     {
-                        tablesWhere = "'" + cbTables.Items[i].Value + "'";
+                        tablesWhere = "'" + cbTables.SelectedValueArray[i] + "'";
                     }
                     else
                     {
-                        tablesWhere += ",'" + cbTables.Items[i].Value + "'";
+                        tablesWhere += ",'" + cbTables.SelectedValueArray[i] + "'";
                     }
                 }
             }
@@ -308,20 +308,21 @@ namespace CmsGenerator
         protected void btnShowPageConfig_Click(object sender, EventArgs e)
         {
             string tablesWhere = String.Empty;
-            for (int i = 0; i < this.cbTables.Items.Count; i++)
+            if (this.cbTables.SelectedValueArray != null)
             {
-                if (cbTables.Items[i].Selected)
+                for (int i = 0; i < this.cbTables.SelectedValueArray.Length; i++)
                 {
                     if (string.IsNullOrEmpty(tablesWhere))
                     {
-                        tablesWhere = "'" + cbTables.Items[i].Value + "'";
+                        tablesWhere = "'" + cbTables.SelectedValueArray[i] + "'";
                     }
                     else
                     {
-                        tablesWhere += ",'" + cbTables.Items[i].Value + "'";
+                        tablesWhere += ",'" + cbTables.SelectedValueArray[i] + "'";
                     }
                 }
             }
+            
             if (!string.IsNullOrEmpty(tablesWhere))
             {
                 using (var ctx = new CmsEntities())
@@ -700,7 +701,7 @@ namespace CmsGenerator
                     {
                         case 2:
                             searchCols = searchCols.Replace("#ControlType#", "DropDownList").Replace("#ControlAlisa#", "ddl");
-                            designerBuilder =designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.DropDownList ddl#ColName#;");
+                            designerBuilder = designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.DropDownList ddl#ColName#;");
                             break;
                         case 3:
                             searchCols = searchCols.Replace("#ControlType#", "TextBox").Replace("#ControlAlisa#", "txt");
@@ -734,7 +735,7 @@ namespace CmsGenerator
             FileUtil.WriteFile(ViewOutputPath + className + "List.aspx", listContent);
 
             //List.aspx.designer.cs
-            
+
             string listDesignerContent = FileUtil.ReadFile(ListDesignerFilePath)
                                                  .Replace("#ClassName#", className)
                                                  .Replace("#Designer#", designerBuilder.ToString());

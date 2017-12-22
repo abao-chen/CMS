@@ -32,6 +32,7 @@ namespace CmsWeb.Master
                         List<TB_Authority> pageList = authorList.Where(m => m.AuthorType == Constants.AUTHOR_FLAG_PAGE && m.IsMenu == Constants.IS_YES && m.ParentID == module.ID).ToList();
                         foreach (TB_Authority page in pageList)
                         {
+                            //menuHtml.AppendLine("<li mid=\"" + page.ID + "\" funurl=\"" + page.PageUrl + "\"><a tabindex=\"-1\" href=\"javascript:void(0);\">" + page.AuthorName + "</a></li>");
                             menuHtml.AppendLine("<li>");
                             menuHtml.AppendLine("<a href=\"" + page.PageUrl + "\">" + page.AuthorName + "</a>");
                             menuHtml.AppendLine("</li>");

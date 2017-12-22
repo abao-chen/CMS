@@ -14,6 +14,8 @@ namespace CmsCommon
 {
     public class BasePage : Page, IRequiresSessionState
     {
+        protected Log log = LogFactory.GetLogger(HttpContext.Current.GetType());
+
         /// <summary>
         /// 登录用户信息
         /// </summary>

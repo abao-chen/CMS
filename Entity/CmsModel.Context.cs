@@ -45,5 +45,6 @@ namespace CmsEntity
         public virtual DbSet<TB_AdType> TB_AdType { get; set; }
         public virtual DbSet<TB_Advertisement> TB_Advertisement { get; set; }
         public virtual DbSet<TB_BasicContent> TB_BasicContent { get; set; }
+        public virtual DbSet<TB_LoginLog> TB_LoginLog { get; set; }
     }
 }

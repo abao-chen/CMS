@@ -45,6 +45,9 @@
 
     <!-- Morris Charts CSS -->
     <link href="~/Scripts/bootstrap/vendor/morrisjs/morris.css" rel="stylesheet" />
+    
+    <!--bTabs-->
+    <link href="~/Scripts/bootstrap/vendor/bTabs/b.tabs.css" rel="stylesheet" />
 
     <!-- Custom Fonts -->
     <link href="~/Scripts/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -58,6 +61,7 @@
     
     <!-- jQuery -->
     <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
+    <script src="/Scripts/bootstrap/vendor/jquery/jquery-ui.min.js"></script>
     <%--<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>  --%>
 
     <!-- Bootstrap Core JavaScript -->
@@ -83,6 +87,9 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+    
+    <!--bTabs-->
+    <script src="/Scripts/bootstrap/vendor/bTabs/b.tabs.min.js"></script>
 
     <!-- Custom Common JavaScript -->
     <script src="/Scripts/bootstrapAlert.js"></script>
@@ -345,7 +352,6 @@
                 <div class="loading-shade"></div>
                 <div class="loading-content">数据加载中，请稍后…</div>
             </div>
-            
             <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder2">
             </asp:ContentPlaceHolder>
         </div>

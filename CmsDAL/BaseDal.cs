@@ -22,11 +22,11 @@ namespace CmsDAL
         public BaseDal(CmsEntities ctx)
         {
             _ctx = ctx;
-            //Logger = LogFactory.GetLogger(this.GetType());
-            //_ctx.Database.Log = s =>
-            //{
-            //    Logger.Debug(s);
-            //};
+            Logger = LogFactory.GetLogger(this.GetType());
+            _ctx.Database.Log = s =>
+            {
+                Logger.Debug(s);
+            };
             _dbSet = _ctx.Set<T>();
         }
 

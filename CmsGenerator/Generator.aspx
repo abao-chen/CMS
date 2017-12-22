@@ -5,94 +5,104 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
     <title></title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            
-            <input id="selectAll" type="checkbox"/><label for="selectAll">全选</label>
-            <asp:Button ID="btnShowPageConfig" runat="server" Text="显示页面配置" OnClick="btnShowPageConfig_Click" />
-            <asp:Button ID="btnGeneratorView" runat="server" Text="生成页面" OnClick="btnGeneratorView_OnClick" />
-            <asp:Button ID="btnGeneratorBDE" runat="server" Text="生成三层" OnClick="btnGeneratorBDE_OnClick" />
+        <div class="row">
+            <asp:Button ID="btnShowPageConfig" runat="server" Text="显示页面配置" CssClass="btn btn-default" OnClick="btnShowPageConfig_Click" />
+            <asp:Button ID="btnGeneratorView" runat="server" Text="生成页面" CssClass="btn btn-default" OnClick="btnGeneratorView_OnClick" />
+            <asp:Button ID="btnGeneratorBDE" runat="server" Text="生成三层" CssClass="btn btn-default" OnClick="btnGeneratorBDE_OnClick" />
 
             <asp:HiddenField ID="hidTablesName" runat="server" />
             <asp:HiddenField ID="hidFormData" runat="server" />
         </div>
-        <div>
-            <asp:CheckBoxList ID="cbTables" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow"></asp:CheckBoxList>
+        <div class="row">
+            <input id="selectAll" type="checkbox" /><label for="selectAll">全选</label>
+            <Cms:CheckBoxListExt ID="cbTables" Name="cbtbl" runat="server"></Cms:CheckBoxListExt>
         </div>
-        <table>
-            <asp:Repeater ID="rpTables" runat="server" OnItemDataBound="rpTables_ItemDataBound">
-                <ItemTemplate>
-                    <tr>
-                        <td>
-                            <table id="<%#Eval("TABLE_NAME") %>" name="parentTable">
-                                <thead>
-                                    <tr>
-                                        <td colspan="8"><%#Eval("TABLE_NAME") %><input type="text" name="tableComment" value="<%#Eval("TABLE_COMMENT") %>" />文件夹名称：<input type="text" name="folderName" value="" /></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>字段Code</td>
-                                        <td>字段名称</td>
-                                        <td>是否筛选</td>
-                                        <td>是否编辑</td>
-                                        <td>列表显示</td>
-                                        <td>控件类型</td>
-                                        <td>字典类型</td>
-                                        <td>验证</td>
-                                    </tr>
-                                    <!--各表中的字段显示-->
-                                    <asp:Repeater ID="rpCols" runat="server" OnItemDataBound="rpCols_ItemDataBound">
-                                        <ItemTemplate>
-                                            <tr id="<%#Eval("COLUMN_NAME") %>">
-                                                <td><%#Eval("COLUMN_NAME") %></td>
-                                                <td>
-                                                    <input name="colComment" type="text" value="<%#Eval("COLUMN_COMMENT") %>" /></td>
-                                                <td>
-                                                    <input name="isSelect" type="checkbox" value="1" /></td>
-                                                <td>
-                                                    <input name="isEdit" type="checkbox" value="1" /></td>
-                                                <td>
-                                                    <input name="isShowList" type="checkbox" value="1" /></td>
-                                                <td>
-                                                    <select name="controlType">
-                                                        <option value="1">文本框</option>
-                                                        <option value="2">下拉框</option>
-                                                        <option value="3">日历框</option>
-                                                        <option value="4">多选组</option>
-                                                        <option value="5">单选组</option>
-                                                        <option value="6">多选</option>
-                                                        <option value="7">单选</option>
-                                                        <option value="8">文件上传</option>
-                                                        <option value="9">富文本</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <asp:DropDownList ID="dicType" runat="server"></asp:DropDownList>
-                                                </td>
-                                                <td>
-                                                    <input name="validate" type="checkbox" value="1" />必填
+        <div class="row">
+            <table>
+                <asp:Repeater ID="rpTables" runat="server" OnItemDataBound="rpTables_ItemDataBound">
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <table id="<%#Eval("TABLE_NAME") %>" name="parentTable">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="8"><%#Eval("TABLE_NAME") %><input type="text" name="tableComment" value="<%#Eval("TABLE_COMMENT") %>" />文件夹名称：<input type="text" name="folderName" value="" /></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>字段Code</td>
+                                            <td>字段名称</td>
+                                            <td>是否筛选</td>
+                                            <td>是否编辑</td>
+                                            <td>列表显示</td>
+                                            <td>控件类型</td>
+                                            <td>字典类型</td>
+                                            <td>验证</td>
+                                        </tr>
+                                        <!--各表中的字段显示-->
+                                        <asp:Repeater ID="rpCols" runat="server" OnItemDataBound="rpCols_ItemDataBound">
+                                            <ItemTemplate>
+                                                <tr id="<%#Eval("COLUMN_NAME") %>">
+                                                    <td><%#Eval("COLUMN_NAME") %></td>
+                                                    <td>
+                                                        <input name="colComment" type="text" value="<%#Eval("COLUMN_COMMENT") %>" /></td>
+                                                    <td>
+                                                        <input name="isSelect" type="checkbox" value="1" /></td>
+                                                    <td>
+                                                        <input name="isEdit" type="checkbox" value="1" /></td>
+                                                    <td>
+                                                        <input name="isShowList" type="checkbox" value="1" /></td>
+                                                    <td>
+                                                        <select name="controlType">
+                                                            <option value="1">文本框</option>
+                                                            <option value="2">下拉框</option>
+                                                            <option value="3">日历框</option>
+                                                            <option value="4">多选组</option>
+                                                            <option value="5">单选组</option>
+                                                            <option value="6">多选</option>
+                                                            <option value="7">单选</option>
+                                                            <option value="8">文件上传</option>
+                                                            <option value="9">富文本</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <asp:DropDownList ID="dicType" runat="server"></asp:DropDownList>
+                                                    </td>
+                                                    <td>
+                                                        <input name="validate" type="checkbox" value="1" />必填
                                                     <input name="validate" type="checkbox" value="2" />数字
                                                     <input name="validate" type="checkbox" value="3" />日期
-                                                </td>
-                                            </tr>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                </ItemTemplate>
-                <FooterTemplate>
-                </FooterTemplate>
-            </asp:Repeater>
-        </table>
+                                                    </td>
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:Repeater>
+            </table>
+        </div>
 
-        <script src="Script/jquery.min.js"></script>
-        <script src="Script/JSON2.js"></script>
+        <script src="Scripts/jquery-1.9.1.min.js"></script>
+        <script src="Scripts/bootstrap.min.js"></script>
+        <script src="Scripts/JSON2.js"></script>
         <script type="text/javascript">
             $(function () {
                 $("#<%=btnGeneratorView.ClientID%>").click(function () {
@@ -101,8 +111,9 @@
 
                 $("#selectAll").click(function () {
                     var selectAll = this;
-                    $("#cbTables input[type='checkbox']").each(function() {
-                        $(this).attr("checked", $(selectAll).is(":checked"));
+                    $("input[name='cbtbl']").each(function () {
+                        $(this).prop("checked", $(selectAll).is(":checked"));
+                        //$(this).click();
                     });
                 });
             });

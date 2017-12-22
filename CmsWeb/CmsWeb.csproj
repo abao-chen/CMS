@@ -132,6 +132,10 @@
     <Content Include="ControlExt\UploadExt.ascx" />
     <Content Include="Css\Image\upload-img.png" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="Scripts\bootstrap\vendor\bTabs\b.tabs.css" />
+    <Content Include="Scripts\bootstrap\vendor\bTabs\b.tabs.js" />
+    <Content Include="Scripts\bootstrap\vendor\bTabs\b.tabs.min.js" />
+    <Content Include="Scripts\bootstrap\vendor\jquery\jquery-ui.min.js" />
     <Content Include="Scripts\bootstrap\vendor\jquery.jqGrid-4.4.3\css\ellipsis-xbl.xml" />
     <Content Include="Scripts\bootstrap\vendor\jquery.jqGrid-4.4.3\css\ui.jqgrid.css" />
     <Content Include="Scripts\bootstrap\vendor\jquery.jqGrid-4.4.3\js\Changes.txt" />
@@ -172,7 +176,7 @@
     <Content Include="Scripts\bootstrap\vendor\jquery.jqGrid-4.4.3\src\jqModal.js" />
     <Content Include="Scripts\bootstrap\vendor\jquery.jqGrid-4.4.3\src\jquery.fmatter.js" />
     <Content Include="Scripts\bootstrap\vendor\jquery.jqGrid-4.4.3\src\JsonXml.js" />
-    <Content Include="Scripts\bootstrap\vendor\jquery\jquery-ui.min.js" />
+    <Content Include="Scripts\bootstrap\vendor\jquery\jquery-migrate-1.2.1.js" />
     <Content Include="Scripts\bootstrap\vendor\plupload-2.3.1\i18n\ar.js" />
     <Content Include="Scripts\bootstrap\vendor\plupload-2.3.1\i18n\az.js" />
     <Content Include="Scripts\bootstrap\vendor\plupload-2.3.1\i18n\bg.js" />
@@ -510,6 +514,7 @@
     <Content Include="Scripts\bootstrap\vendor\ueditor\ueditor.parse.js" />
     <Content Include="Scripts\bootstrap\vendor\ueditor\ueditor.parse.min.js" />
     <Content Include="Scripts\bootstrap\vendor\uploadify\jquery.uploadify-3.1.min.js" />
+    <Content Include="TestTab.aspx" />
     <Content Include="WebForm1.aspx" />
     <Content Include="ueditorconfig.json" />
     <Content Include="API\UEditorApi.ashx" />
@@ -824,8 +829,6 @@
     <Content Include="Scripts\bootstrap\vendor\zTree\js\jquery.ztree.exhide.js" />
     <Content Include="Scripts\bootstrap\vendor\zTree\js\jquery.ztree.exhide.min.js" />
     <Content Include="Scripts\common.js" />
-    <Content Include="Scripts\jquery\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery\jquery-3.1.1.min.map" />
     <Content Include="Scripts\bootstrap\less\mixins.less" />
     <Content Include="Scripts\bootstrap\less\sb-admin-2.less" />
     <Content Include="Scripts\bootstrap\less\variables.less" />
@@ -881,7 +884,6 @@
     <Content Include="Scripts\bootstrap\vendor\datetimepicker\less\datetimepicker.less" />
     <Content Include="Scripts\bootstrap\vendor\toastr\css\toastr.less" />
     <Content Include="Scripts\bootstrap\vendor\toastr\css\toastr.scss" />
-    <Content Include="Scripts\jquery\jquery.min.js" />
     <Content Include="Master\Content.Master" />
     <Content Include="Scripts\bootstrap\vendor\zTree\css\awesomeStyle\awesome.less" />
     <Content Include="Scripts\bootstrap\vendor\zTree\css\awesomeStyle\fa.less" />
@@ -899,11 +901,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\jquery\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\JSON2.js" />
     <Content Include="Scripts\bootstrap\vendor\toastr\js\toastr.js" />
     <Content Include="Scripts\bootstrap\vendor\toastr\js\toastr.min.js" />
@@ -1297,6 +1294,13 @@
     </Compile>
     <Compile Include="SysManage\UserList.aspx.designer.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestTab.aspx.cs">
+      <DependentUpon>TestTab.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestTab.aspx.designer.cs">
+      <DependentUpon>TestTab.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

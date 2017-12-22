@@ -18,37 +18,22 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="col-lg-4 form-group">
-                                <%--<label>用户账号</label>--%>
                                 <asp:TextBox runat="server" ID="txtUserAccount" searchattr="UserAccount|LIKE|UserAccount" CssClass="form-control" placeholder="用户账号"></asp:TextBox>
                             </div>
                             <div class="col-lg-4 form-group">
-                                <%--<label>用户名称</label>--%>
                                 <asp:TextBox runat="server" ID="txtUserName" searchattr="UserName|LIKE|UserName" CssClass="form-control" placeholder="用户名称"></asp:TextBox>
                             </div>
                             <div class="col-lg-4 form-group">
-                                <%--<label>用户状态</label>--%>
                                 <asp:DropDownList runat="server" ID="ddlUserStatus" searchattr="UserStatus|=|UserStatus" CssClass="form-control" placeholder="用户状态"></asp:DropDownList>
                             </div>
                             <div class="col-lg-4 form-group">
-                                <%--<label>用户类型</label>--%>
                                 <asp:DropDownList runat="server" ID="ddlUserType" searchattr="UserType|=|UserType" CssClass="form-control" placeholder="用户类型"></asp:DropDownList>
                             </div>
                             <div class="col-lg-4 form-group">
-                                <%--<label>创建日期</label>--%>
-                                <%--<div class="input-group date form_date" data-date-format="yyyy/mm/dd">
-                                    <asp:TextBox runat="server" ID="txtCreateTimeBegin" searchattr="CreateTime|>=|CreateTimeBegin" ReadOnly="True" CssClass="form-control" placeholder="创建开始日期"></asp:TextBox>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                                </div>--%>
                                 <Cms:DataPicker ID="txtCreateTimeBegin" runat="server" Name="CreateTimeBegin" Format="yyyy/MM/dd" PlaceHolder="创建开始日期" SearchAttr="CreateTime|>=|CreateTimeBegin"></Cms:DataPicker>
                             </div>
                             <div class="col-lg-4 form-group">
-                                <%--<label>创建日期</label>--%>
-                                <div class="input-group date form_date" data-date-format="yyyy/mm/dd">
-                                    <asp:TextBox runat="server" ID="txtCreateTimeEnd" searchattr="CreateTime|<=|CreateTimeEnd" ReadOnly="True" CssClass="form-control" placeholder="创建开始结束"></asp:TextBox>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                                </div>
+                                <Cms:DataPicker ID="txtCreateTimeEnd" runat="server" Name="CreateTimeEnd" Format="yyyy/MM/dd" PlaceHolder="创建结束日期" SearchAttr="CreateTime|<=|CreateTimeBegin"></Cms:DataPicker>
                             </div>
                             <div class="col-lg-4 pull-right">
                                 <div class="pull-right">

@@ -20,13 +20,14 @@ namespace CmsUtils
         }
 
         /// <summary>
-        ///     设置Cookie值(过期时间)
+        ///     设置Cookie值
         /// </summary>
         /// <param name="cookieKey"></param>
         /// <param name="cookieValue"></param>
-        public static void SetCookie(string cookieKey, string cookieValue)
+        /// <param name="expires">过期时间，默认为永久</param>
+        public static void SetCookie(string cookieKey, string cookieValue, DateTime? expires = null)
         {
-            SetCookie(cookieKey, cookieValue, DateTime.Now.AddDays(1.0));
+            SetCookie(cookieKey, cookieValue, expires ?? DateTime.MaxValue);
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace CmsUtils
         {
             var cookie = new HttpCookie(cookieKey)
             {
-                Value = cookieKey,
+                Value = cookieValue,
                 Expires = expires
             };
             HttpContext.Current.Response.Cookies.Add(cookie);

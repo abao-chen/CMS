@@ -55,7 +55,7 @@ namespace CmsUtils
         /// <param name="isBodyHtml">是否Html</param>
         /// <param name="enableSsl">是否SSL加密连接</param>
         /// <returns>是否成功</returns>
-        public bool Send(string to, string subject, string body, string cc = "", string encoding = "UTF-8", string attachFile = "", bool isBodyHtml = true,
+        public bool Send(string to, string subject, string body, string cc = "", string encoding = "UTF-8", string [] attachFile = null, bool isBodyHtml = true,
             bool enableSsl = false)
         {
             try
@@ -67,9 +67,15 @@ namespace CmsUtils
                 {
                     message.CC.Add(cc.Replace("；", ",").Replace(";", ",").Replace("，", ","));
                 }
-                if (!attachFile.IsEmpty() && FileUtil.IsExistFile(attachFile))
+                if (attachFile != null && attachFile.Length > 0)
                 {
-                    message.Attachments.Add(new Attachment(attachFile));
+                    foreach (string file in attachFile)
+                    {
+                        if (!file.IsEmpty() && FileUtil.IsExistFile(file))
+                        {
+                            message.Attachments.Add(new Attachment(file));
+                        }
+                    }
                 }
 
                 message.From = new MailAddress(_mailUserName, _mailName);

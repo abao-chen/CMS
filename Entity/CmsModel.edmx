@@ -145,6 +145,19 @@
           <Property Name="UpdateUser" Type="int" />
           <Property Name="UpdateTime" Type="datetime" Precision="0" />
         </EntityType>
+        <EntityType Name="TB_LoginLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="LoginIP" Type="varchar" MaxLength="200" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="CreateUser" Type="int" />
+          <Property Name="CreateTime" Type="datetime" Precision="0" />
+          <Property Name="UpdateUser" Type="int" />
+          <Property Name="UpdateTime" Type="datetime" Precision="0" />
+        </EntityType>
         <EntityType Name="TB_Organization">
           <Key>
             <PropertyRef Name="ID" />
@@ -293,6 +306,7 @@
           <EntitySet Name="TB_ContentType" EntityType="Self.TB_ContentType" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_Dictionary" EntityType="Self.TB_Dictionary" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_DicType" EntityType="Self.TB_DicType" Schema="cms" store:Type="Tables" />
+          <EntitySet Name="TB_LoginLog" EntityType="Self.TB_LoginLog" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_Organization" EntityType="Self.TB_Organization" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_Position" EntityType="Self.TB_Position" Schema="cms" store:Type="Tables" />
           <EntitySet Name="TB_PositionCity" EntityType="Self.TB_PositionCity" Schema="cms" store:Type="Tables" />
@@ -331,6 +345,7 @@
           <EntitySet Name="TB_AdType" EntityType="CmsModel.TB_AdType" />
           <EntitySet Name="TB_Advertisement" EntityType="CmsModel.TB_Advertisement" />
           <EntitySet Name="TB_BasicContent" EntityType="CmsModel.TB_BasicContent" />
+          <EntitySet Name="TB_LoginLog" EntityType="CmsModel.TB_LoginLog" />
         </EntityContainer>
         <EntityType Name="TB_Authority">
           <Key>
@@ -605,6 +620,19 @@
           <Property Name="CommentQua" Type="Int32" />
           <Property Name="AttachmentUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Content" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreateUser" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" />
+          <Property Name="UpdateUser" Type="Int32" />
+          <Property Name="UpdateTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="TB_LoginLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="LoginIP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="IsDeleted" Type="Int32" />
           <Property Name="CreateUser" Type="Int32" />
           <Property Name="CreateTime" Type="DateTime" />
@@ -912,6 +940,20 @@
                 <ScalarProperty Name="ContentTitle" ColumnName="ContentTitle" />
                 <ScalarProperty Name="Source" ColumnName="Source" />
                 <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_LoginLog">
+            <EntityTypeMapping TypeName="CmsModel.TB_LoginLog">
+              <MappingFragment StoreEntitySet="TB_LoginLog">
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

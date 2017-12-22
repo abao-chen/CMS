@@ -113,6 +113,9 @@
     <Compile Include="TB_DicType.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TB_LoginLog.cs">
+      <DependentUpon>CmsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TB_Organization.cs">
       <DependentUpon>CmsModel.tt</DependentUpon>
     </Compile>

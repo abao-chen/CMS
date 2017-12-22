@@ -68,6 +68,95 @@ namespace CmsUtils
         }
 
         /// <summary>
+        /// 写Excel文件(多sheet)
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <param name="filePath"></param>
+        /// <param name="fileName"></param>
+        /// <param name="sheetNames"></param>
+        public static void WriteExcel(DataSet ds, string filePath, string fileName, string[] sheetNames = null)
+        {
+            if (ds != null)
+            {
+                if (sheetNames != null && ds.Tables.Count != sheetNames.Length)
+                {
+                    throw new Exception("sheet数据源个数与sheet名称个数不匹配");
+                }
+                if (!Directory.Exists(filePath))
+                    Directory.CreateDirectory(filePath);
+                var fullPath = filePath + "/" + fileName;
+                var workbook = new HSSFWorkbook();
+                var filestream = new FileStream(fullPath, FileMode.Create);
+                try
+                {
+                    for (int i = 0; i < ds.Tables.Count; i++)
+                    {
+                        ISheet sheet;
+                        DataTable dt = ds.Tables[i];
+                        if (sheetNames != null)
+                        {
+                            sheet = workbook.CreateSheet(sheetNames[i]);
+                        }
+                        else
+                        {
+                            sheet = workbook.CreateSheet("Sheet" + (i + 1));
+                        }
+
+                        //设置单元格样式
+                        var cellStyle = workbook.CreateCellStyle();
+                        cellStyle.BorderTop = BorderStyle.Thin;
+                        cellStyle.BorderRight = BorderStyle.Thin;
+                        cellStyle.BorderBottom = BorderStyle.Thin;
+                        cellStyle.BorderLeft = BorderStyle.Thin;
+
+
+                        #region 创建表头
+
+                        var headRow = sheet.CreateRow(0);
+                        var columnIndex = 0;
+                        foreach (DataColumn dc in dt.Columns)
+                        {
+                            var cell = headRow.CreateCell(columnIndex);
+                            cell.SetCellValue(dc.ColumnName);
+                            cell.CellStyle = cellStyle;
+
+                            columnIndex++;
+                        }
+
+                        #endregion
+
+                        #region 写数据内容
+
+                        var dtCount = dt.Rows.Count;
+                        for (var rowIndex = 1; rowIndex <= dtCount; rowIndex++)
+                        {
+                            columnIndex = 0;
+                            var row = sheet.CreateRow(rowIndex);
+                            for (var colIndex = 0; colIndex < dt.Columns.Count; colIndex++)
+                            {
+                                SetCell(dt, rowIndex, colIndex, row, columnIndex, sheet, cellStyle);
+                                columnIndex++;
+                            }
+                        }
+                        #endregion
+                    }
+
+                    workbook.Write(filestream);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    workbook.Close();
+                    filestream.Close();
+                    filestream.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
         /// 写Excel文件
         /// </summary>
         /// <param name="dt">数据源</param>

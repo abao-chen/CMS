@@ -3,7 +3,7 @@
 <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 <div class="input-group date form_date" data-date-format="<%=Format.ToLower() %>" data-link-field="<%=hidDate.ClientID %>">
-    <input type="text" id="<%=this.ID %>" name="<%=this.Name %>" placeholder="<%=this.PlaceHolder %>" class="form-control" readonly="readonly"/>
+    <input type="text" id="<%=this.ID %>" name="<%=this.Name %>" placeholder="<%=this.PlaceHolder %>" SearchAttr="<%=this.SearchAttr %>" class="form-control" readonly="readonly"/>
     <asp:HiddenField ID="hidDate" runat="server" />
     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>

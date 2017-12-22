@@ -57,6 +57,7 @@
     <Compile Include="DictionaryBal.cs" />
     <Compile Include="DicTypeBal.cs" />
     <Compile Include="BasicContentBal.cs" />
+    <Compile Include="LoginLogBal.cs" />
     <Compile Include="OrganizationBal.cs" />
     <Compile Include="PositionBal.cs" />
     <Compile Include="PositionCityBal.cs" />

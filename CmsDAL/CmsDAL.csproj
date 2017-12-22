@@ -55,6 +55,7 @@
     <Compile Include="DicTypeDal.cs" />
     <Compile Include="BasicUserDal.cs" />
     <Compile Include="BasicContentDal.cs" />
+    <Compile Include="LoginLogDal.cs" />
     <Compile Include="OrganizationDal.cs" />
     <Compile Include="PositionCityDal.cs" />
     <Compile Include="PositionCountyDal.cs" />
