@@ -131,10 +131,10 @@
     <Content Include="API\UserApi.aspx" />
     <Content Include="ControlExt\UploadExt.ascx" />
     <Content Include="Css\Image\upload-img.png" />
-    <Content Include="HtmlPage1.html" />
     <Content Include="Scripts\bootstrap\vendor\bTabs\b.tabs.css" />
     <Content Include="Scripts\bootstrap\vendor\bTabs\b.tabs.js" />
     <Content Include="Scripts\bootstrap\vendor\bTabs\b.tabs.min.js" />
+    <Content Include="Scripts\bootstrap\vendor\Echarts\echarts.min.js" />
     <Content Include="Scripts\bootstrap\vendor\jquery\jquery-ui.min.js" />
     <Content Include="Scripts\bootstrap\vendor\jquery.jqGrid-4.4.3\css\ellipsis-xbl.xml" />
     <Content Include="Scripts\bootstrap\vendor\jquery.jqGrid-4.4.3\css\ui.jqgrid.css" />
@@ -515,7 +515,7 @@
     <Content Include="Scripts\bootstrap\vendor\ueditor\ueditor.parse.min.js" />
     <Content Include="Scripts\bootstrap\vendor\uploadify\jquery.uploadify-3.1.min.js" />
     <Content Include="TestTab.aspx" />
-    <Content Include="WebForm1.aspx" />
+    <Content Include="TicketsCharts.html" />
     <Content Include="ueditorconfig.json" />
     <Content Include="API\UEditorApi.ashx" />
     <Content Include="Config\DataBaseConfig.config" />
@@ -887,6 +887,7 @@
     <Content Include="Master\Content.Master" />
     <Content Include="Scripts\bootstrap\vendor\zTree\css\awesomeStyle\awesome.less" />
     <Content Include="Scripts\bootstrap\vendor\zTree\css\awesomeStyle\fa.less" />
+    <Content Include="API\TicketsApi.ashx" />
     <None Include="Properties\PublishProfiles\Cms.pubxml" />
     <Content Include="Scripts\bootstrap\vendor\ueditor\third-party\jquery-1.10.2.min.map" />
     <Content Include="Scripts\bootstrap\vendor\ueditor\third-party\video-js\font\vjs.eot" />
@@ -1044,6 +1045,9 @@
     </Compile>
     <Compile Include="API\SysParamsApi.aspx.designer.cs">
       <DependentUpon>SysParamsApi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="API\TicketsApi.ashx.cs">
+      <DependentUpon>TicketsApi.ashx</DependentUpon>
     </Compile>
     <Compile Include="API\UEditorApi.ashx.cs">
       <DependentUpon>UEditorApi.ashx</DependentUpon>
@@ -1301,13 +1305,6 @@
     </Compile>
     <Compile Include="TestTab.aspx.designer.cs">
       <DependentUpon>TestTab.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

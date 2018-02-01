@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="/Scripts/bootstrap/vendor/jquery/jquery.min.js"></script>
+    <script src="/Scripts/bootstrap/vendor/Echarts/echarts.min.js"></script>
+    <script type="text/javascript">
+        function reloadData(userCode) {
+            $.ajax({
+                type: "POST",
+                url: "/API/TicketsApi.ashx",
+                cache: false,  //禁用缓存
+                data: { "Method": "TicketsProcess", "UserCode": userCode },  //传入组装的参数
+                dataType: "json",
+                success: function (result) {
+                    var xdata = [];
+                    var ydata = [];
+                    for (var i = 0; i < result.length; i++) {
+                        xdata.push(result[i].split("|")[0]);
+                        ydata.push(result[i].split("|")[1]);
+                    }
+                    option.xAxis.data = xdata;
+                    option.series[0].data = ydata;
+                    option.series[0].name = userCode;
+                    option.legend.data[0] = userCode;
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="maintop" style="width: 100%; height: 400px;"></div>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 100%; height: 400px;"></div>
+    <script type="text/javascript">
+		// 基于准备好的dom，初始化echarts实例
+        var topChart = echarts.init(document.getElementById('maintop'));
+        // 指定图表的配置项和数据
+        var topOption = {
+            title: {
+                text:"投票排行前20"
+            },
+            color: ['#3398DB'],
+            tooltip: {
+                trigger: 'axis'
+            },
+            grid: {
+                left: '3%',
+                right: '3%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: [],
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: '票数',
+                    type: 'bar',
+                    barWidth: '50%',
+                    data: []
+                }
+            ]
+        };
+		topChart.on('click', function (params) {
+			reloadData(params.name);
+		});
+
+        $.ajax({
+            type: "POST",
+            url: "/API/TicketsApi.ashx",
+            cache: false,  //禁用缓存
+            data: { "Method": "TicketsTop" },  //传入组装的参数
+            dataType: "json",
+            success: function (result) {
+                var xdata = [];
+                var ydata = [];
+                for (var i = 0; i < result.length; i++) {
+                    xdata.push(result[i].split("|")[0]);
+                    ydata.push(result[i].split("|")[1]);
+                }
+                topOption.xAxis[0].data = xdata;
+                topOption.series[0].data = ydata;
+                // 使用刚指定的配置项和数据显示图表。
+                topChart.setOption(topOption);
+            }
+        });
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: "投票趋势图",
+                textStyle: {
+                    color: "#ccc"
+                }
+            },
+            backgroundColor: '#0f375f',
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        backgroundColor: '#333'
+                    }
+                }
+            },
+            legend: {
+                data: ['张颖珊'],
+                textStyle: {
+                    color: '#ccc'
+                }
+            },
+            xAxis: {
+                data: [],
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                }
+            },
+            yAxis: {
+                splitLine: { show: false },
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                }
+            },
+            series: [
+                {
+                    name: '张颖珊',
+                    type: 'line',
+                    smooth: true,
+                    showAllSymbol: true,
+                    symbol: 'emptyCircle',
+                    symbolSize: 15,
+                    data: []
+                }
+            ]
+        };
+        reloadData("张颖珊");
+    </script>
+</body>
+</html>

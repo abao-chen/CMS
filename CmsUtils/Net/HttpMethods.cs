@@ -315,7 +315,7 @@ namespace CmsUtils
             }
 
             request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentType = "text/html;charset=gbk";
             request.Accept = "*/*";
             request.Timeout = 15000;
             request.AllowAutoRedirect = false;
@@ -334,7 +334,7 @@ namespace CmsUtils
                 response = request.GetResponse();
                 if (response != null)
                 {
-                    var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                    var reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("GBK"));
                     responseStr = reader.ReadToEnd();
                     reader.Close();
                 }
