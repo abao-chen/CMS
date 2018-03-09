@@ -5,42 +5,49 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
         <div class="col-lg-12">
-            <div id="searchPanel" class="panel panel-default">
-                <div class="panel-heading">
-                    查询条件
-                    <div class="pull-right">
-                        <a data-toggle="collapse" data-parent="#searchPanel" href="#searchBody">
-                            <span class="glyphicon glyphicon-menu-up"></span>
-                        </a>
-                    </div>
-                </div>
-                <div id="searchBody" class="panel-body collapse in">
+            <div id="searchPanel" class="panel panel-default hide">
+                <div id="searchBody" class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="col-lg-4 form-group">
-                                <asp:DropDownList runat="server" ID="ddlContentType" searchattr="ContentType|LIKE|ContentType" CssClass="form-control" placeholder="内容类型"></asp:DropDownList>
+                            <div class="col-lg-6 form-group">
+                                <label>内容类型</label>
+                                <asp:DropDownList runat="server" ID="ddlContentType" searchattr="ContentType|=|ContentType" CssClass="form-control" placeholder="内容类型"></asp:DropDownList>
                             </div>
-                            <div class="col-lg-4 form-group">
-                                <asp:TextBox ID="txtContentTitle" runat="server" searchattr="ContentTitle|LIKE|ContentTitle" CssClass="form-control" placeholder="内容标题"></asp:TextBox>
+                            <div class="col-lg-6 form-group">
+                                <label>标题</label>
+                                <asp:TextBox runat="server" ID="txtContentTitle" searchattr="ContentTitle|=|ContentTitle" CssClass="form-control" placeholder="标题"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>子标题</label>
+                                <asp:TextBox runat="server" ID="txtContentSubTitle" searchattr="ContentSubTitle|=|ContentSubTitle" CssClass="form-control" placeholder="子标题"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>封面图</label>
+                                <asp:TextBox runat="server" ID="txtCoverPictureUrl" searchattr="CoverPictureUrl|=|CoverPictureUrl" CssClass="form-control" placeholder="封面图"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>有效开始时间</label>
+                                <Cms:DataPickerExt runat="server" ID="txtValidStartTime" searchattr="ValidStartTime|=|ValidStartTime" CssClass="form-control" placeholder="有效开始时间"></Cms:DataPickerExt>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>有效结束时间</label>
+                                <Cms:DataPickerExt runat="server" ID="txtValidEndTime" searchattr="ValidEndTime|=|ValidEndTime" CssClass="form-control" placeholder="有效结束时间"></Cms:DataPickerExt>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>内容</label>
+                                <asp:TextBox runat="server" ID="txtContent" searchattr="Content|=|Content" CssClass="form-control" placeholder="内容"></asp:TextBox>
                             </div>
 
-                            <div class="col-lg-4 form-group pull-right">
-                                <div class="pull-right">
-                                    <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
-                                    <input type="button" id="btnClear" class="btn btn-default" value="重置" />
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="panel-footer navbar-fixed-bottom">
+                    <div class="row" style="text-align: center;">
+                        <input type="button" id="btnSearch" class="btn btn-default" style="margin: 0 auto;" value="查询" />
+                        <input type="button" id="btnClear" class="btn btn-default" style="margin: 0 auto;" value="重置" />
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row" style="padding-bottom: 5px;">
-        <div class="col-lg-12">
-            <a id="btnAdd" class="btn btn-info" href="/ContentManage/BasicContentInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
-            <a id="btnDelete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>删除</a>
-            <a runat="server" class="btn btn-primary" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
         </div>
     </div>
     <!-- /.row -->
@@ -61,6 +68,7 @@
                                 <th>有效开始时间</th>
                                 <th>有效结束时间</th>
                                 <th>展示顺序</th>
+                                <th>更新时间</th>
 
                             </tr>
                         </thead>
@@ -75,53 +83,19 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <script type="text/javascript">
-        var tableObj;
+        var curTable;
         //初始化表格
         $(function () {
-            tableObj = $('#dataTables').DataTable({
-                "serverSide": true,
-                "searching": false,
-                "ordering": true,
-                "orderMulti": false,
-                "select": true,
-                "scrollX": true,
-                "bLengthChange": false,   //去掉每页显示多少条数据方法
-                "aLengthMenu": [50, 100, 200],
-                "scrollY": getTableHeight(),
-				"scrollCollapse":false,
-                "renderer": "bootstrap",
-                "pagingType": "full_numbers",
-                "rowId": "ID",
-                "order": [0, "desc"],
-                "ajax": function (data, callback) {
-                    var param = getSearchParams(data);
-                    param["method"] = "GetPagerList";
-                    //ajax请求数据
-                    $.ajax({
-                        type: "POST",
-                        url: "/API/BasicContentApi.aspx",
-                        cache: false,  //禁用缓存
-                        data: param,  //传入组装的参数
-                        dataType: "json",
-                        success: function (result) {
-                            if (result.result == 1) {//请求成功
-                                callback(setDataTablesPagerParas(result, data));
-                            } else if (result.result == 2) {//请求失败
-                                toastr.error(result.message);
-                            } else if (result.result == 3) {//登录超时
-                                bootAlert.alert(result.message).on(function () {
-                                    location.href = "/Login.aspx";
-                                });
-                            } else {//其他异常情况
-                                toastr.error(result.message);
-                            }
-                        }
-                    });
-                },
+            var options = {
+                "url": "/API/BasicContentApi.aspx",
+                "editUrl": "/ContentManage/BasicContentInfo.aspx",
+                "aLengthMenu":<%= CmsUtils.Configs.GetValue("LengthMenu")%>,
+                "searchColunms": "ContentTitle|ContentSubTitle|CoverPictureUrl|Content",
                 "columns": [
                     {
                         "data": "ID",
-                        "width": "4%",
+                        "width": "20px",
+                        "class": "center",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
                             var result = "<input id=\"" + data + "\" name=\"tbCheckbox\" type=\"checkbox\" title=\"全选/取消\" />";
@@ -130,102 +104,29 @@
                     },
                     {
                         "data": "ID",
-                        "width": "8%",
+                        "width": "40px",
+                        "class": "center",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
-                            var result = "<a href=\"/ContentManage/BasicContentInfo.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
+                            var result = "<a href=\"javascript:curTable.edit(" + row.ID +
+                                ")\"><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:curTable.delSingleRow(curTable.settings.delMethod,'" +
+                                row.ID +
+                                "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
                     },
                     { "data": "ContentType" },
                     { "data": "Source" },
-                    {
-                        "data": "ContentTitle"
-                    },
-                    {
-                        "data": "ValidStartTime",
-                        "render": function (data, type, row, meta) {
-                            if (data && data != "") {
-                                return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
-                            } else {
-                                return data;
-                            }
-                        }
-                    },
-                    {
-                        "data": "ValidEndTime",
-                        "render": function (data, type, row, meta) {
-                            if (data && data != "") {
-                                return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
-                            } else {
-                                return data;
-                            }
-                        }
-                    },
-                    { "data": "OrderNO" }
+                    { "data": "ContentTitle" },
+                    { "data": "ValidStartTime" },
+                    { "data": "ValidEndTime" },
+                    { "data": "OrderNO" },
+                    { "data": "UpdateTime" },
+
                 ]
-            });
+            };
+            curTable = tableUtils.initTable(options);
         });
-
-        $(function () {
-            //检索
-            $("#btnSearch").click(function () {
-                reloadData();
-            });
-            //清除检索条件
-            $("#btnClear").click(function () {
-                clearSearchForm();
-            });
-            //删除选中
-            $("#btnDelete").click(function () {
-                var ids = getSelectedRowIds();
-                if (ids != "") {
-                    deleteRows(ids);
-                } else {
-                    toastr.warning("请选择你要删除的数据！");
-                }
-            });
-        });
-
-        //重新加载数据
-        function reloadData() {
-            tableObj.ajax.reload(null
-                , false);
-        };
-
-        //删除行数据
-        function deleteRows(data) {
-            bootAlert.confirm({
-                message: "确认要删除选中数据吗？"
-            }).on(function (result) {
-                if (result) {
-                    var param = {};
-                    param["method"] = "DeleteByIds";
-                    param["Id"] = data;
-                    $.ajax({
-                        type: "POST",
-                        url: "/API/BasicContentApi.aspx",
-                        cache: false, //禁用缓存
-                        data: param, //传入组装的参数
-                        dataType: "json",
-                        success: function (data) {
-                            if (data.result == 1) { //请求成功
-                                toastr.success("删除成功！");
-                                reloadData();
-                            } else if (data.result == 2) { //请求失败
-                                toastr.error(data.message);
-                            } else if (data.result == 3) { //登录超时
-                                bootAlert.alert(data.message).on(function () {
-                                    location.href = "/Login.aspx";
-                                });
-                            } else { //其他异常情况
-                                toastr.error(data.message);
-                            }
-                        }
-                    });
-                }
-            });
-        }
     </script>
 </asp:Content>
 

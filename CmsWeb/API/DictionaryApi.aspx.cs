@@ -27,12 +27,12 @@ namespace CmsWeb.API
         /// 获取分页列表数据
         /// </summary>
         /// <returns></returns>
-        public AjaxResultModel GetPagerList()
+        public override AjaxResultModel GetPagerList()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
             string sql = @"SELECT
-	                            d.*, dt.DicTypeName
+	                            d.ID,d.DicTypeCode,d.DicCode,d.DicName,CASE d.IsUsing WHEN 1 THEN '启用' ELSE '不启用' END IsUsing, dt.DicTypeName,d.UpdateTime
                             FROM
 	                            TB_Dictionary d
                             LEFT JOIN TB_DicType dt ON d.DicTypeCode = dt.DicTypeCode
@@ -46,7 +46,7 @@ namespace CmsWeb.API
         /// 删除
         /// </summary>
         /// <returns></returns>
-        public AjaxResultModel DeleteByIds()
+        public override AjaxResultModel DeleteByIds()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
@@ -86,6 +86,11 @@ namespace CmsWeb.API
                 result.Add("valid", true);
             }
             return result;
+        }
+
+        public override AjaxResultModel Download()
+        {
+            throw new NotImplementedException();
         }
     }
 }

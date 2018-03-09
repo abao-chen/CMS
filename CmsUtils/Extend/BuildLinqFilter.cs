@@ -7,28 +7,54 @@ using System.Linq.Dynamic;
 
 namespace CmsUtils
 {
-    public static class BuildLinqFilter
+    public static class BuildFilter
     {
+        #region Linq
+
         public static Expression<Func<T, bool>> BuildFilterExpression<T>(this List<FilterModel> filterConditionList)
         {
-            Expression<Func<T, bool>> condition = LinqBuilder.True<T>();
+            Expression<Func<T, bool>> condition = null;
             try
             {
                 if (filterConditionList != null && filterConditionList.Count > 0)
                 {
                     foreach (FilterModel filterCondition in filterConditionList)
                     {
-                        Expression<Func<T, bool>> tempCondition = BuildLambda<T>(filterCondition);
-
-                        if ("AND".Equals(filterCondition.Logic))
+                        if (filterCondition.Value.IsNotEmpty())
                         {
-                            condition = condition.And(tempCondition);
-                        }
-                        else
-                        {
-                            condition = condition.Or(tempCondition);
+                            Expression<Func<T, bool>> tempCondition = BuildLambda<T>(filterCondition);
+                            if (condition == null)
+                            {
+                                condition = tempCondition;
+                            }
+                            else
+                            {
+                                if (FilterLogic.AND.Equals(filterCondition.Logic))
+                                {
+                                    condition = condition.And(tempCondition);
+                                }
+                                else
+                                {
+                                    condition = condition.Or(tempCondition);
+                                }
+                            }
                         }
                     }
+                }
+
+                FilterModel delModel = new FilterModel();
+                delModel.Action = FilterAction.Equal;
+                delModel.Column = "IsDeleted";
+                delModel.Logic = FilterLogic.AND;
+                delModel.Value = "0";
+                delModel.DataType = FilterDataType.Int;
+                if (condition == null)
+                {
+                    condition = BuildLambda<T>(delModel);
+                }
+                else
+                {
+                    condition = condition.And(BuildLambda<T>(delModel));
                 }
             }
             catch (Exception ex)
@@ -41,37 +67,52 @@ namespace CmsUtils
         private static Expression<Func<T, bool>> BuildLambda<T>(FilterModel filterCondition)
         {
             var parameter = Expression.Parameter(typeof(T), "p");//创建参数i
-            var constant = Expression.Constant(filterCondition.Value);//创建常数
+            ConstantExpression constant = null;//创建常数
+            switch (filterCondition.DataType)
+            {
+                case FilterDataType.Int:
+                    constant = Expression.Constant(filterCondition.Value.ToIntOrNull(), typeof(int?));
+                    break;
+                case FilterDataType.Decimal:
+                    constant = Expression.Constant(filterCondition.Value.ToDecimalOrNull(), typeof(decimal?));
+                    break;
+                case FilterDataType.DateTime:
+                    constant = Expression.Constant(filterCondition.Value.ToDateOrNull(), typeof(DateTime?));
+                    break;
+                default:
+                    constant = Expression.Constant(filterCondition.Value);
+                    break;
+            }
             MemberExpression member = Expression.PropertyOrField(parameter, filterCondition.Column);
-            if ("=".Equals(filterCondition.Action))
+            if (FilterAction.Equal.Equals(filterCondition.Action))
             {
                 return Expression.Lambda<Func<T, bool>>(Expression.Equal(member, constant), parameter);
             }
-            else if ("!=".Equals(filterCondition.Action))
+            else if (FilterAction.NotEqual.Equals(filterCondition.Action))
             {
                 return Expression.Lambda<Func<T, bool>>(Expression.NotEqual(member, constant), parameter);
             }
-            else if (">".Equals(filterCondition.Action))
+            else if (FilterAction.GreaterThan.Equals(filterCondition.Action))
             {
                 return Expression.Lambda<Func<T, bool>>(Expression.GreaterThan(member, constant), parameter);
             }
-            else if ("<".Equals(filterCondition.Action))
+            else if (FilterAction.LessThan.Equals(filterCondition.Action))
             {
                 return Expression.Lambda<Func<T, bool>>(Expression.LessThan(member, constant), parameter);
             }
-            else if (">=".Equals(filterCondition.Action))
+            else if (FilterAction.GreaterThanOrEqual.Equals(filterCondition.Action))
             {
                 return Expression.Lambda<Func<T, bool>>(Expression.GreaterThanOrEqual(member, constant), parameter);
             }
-            else if ("<=".Equals(filterCondition.Action))
+            else if (FilterAction.LessThanOrEqual.Equals(filterCondition.Action))
             {
                 return Expression.Lambda<Func<T, bool>>(Expression.LessThanOrEqual(member, constant), parameter);
             }
-            else if ("like".Equals(filterCondition.Action))
+            else if (FilterAction.Like.Equals(filterCondition.Action))
             {
                 return GetExpressionWithMethod<T>("Contains", filterCondition);
             }
-            else if ("notlike".Equals(filterCondition.Action))
+            else if (FilterAction.NotLike.Equals(filterCondition.Action))
             {
                 return GetExpressionWithoutMethod<T>("Contains", filterCondition);
             }
@@ -117,10 +158,6 @@ namespace CmsUtils
         public static IQueryable<T> DataSort<T>(this IQueryable<T> source, string sortExpression, string sortDirection)
         {
             Type t = typeof(T);
-            if (t == typeof(object))
-            {
-                t = source.FirstOrDefault().GetType();
-            }
             var parameter = Expression.Parameter(t, "t");
             var property = t.GetProperty(sortExpression);
             var propertyAccess = Expression.MakeMemberAccess(parameter, property);
@@ -132,8 +169,8 @@ namespace CmsUtils
 
         public static IQueryable<T> DataPaging<T>(this IQueryable<T> source, int pageNumber, int pageSize, out int totalCount, string sortExpression, string sortDirection)
         {
+            totalCount = source.Count();
             var query = source.DataSort(sortExpression, sortDirection).Skip(pageNumber * pageSize).Take(pageSize);
-            totalCount = query.Count();
             return query;
         }
     }
@@ -181,12 +218,49 @@ namespace CmsUtils
         }
     }
 
+    #endregion
+
+    #region SQL
+
+    #endregion
+
     public class FilterModel
     {
+        public FilterModel()
+        {
+            this.Action = FilterAction.Equal;
+            this.Logic = FilterLogic.AND;
+            this.DataType = FilterDataType.String;
+        }
+
         public string Column { get; set; }//过滤条件中使用的数据列
-        public string Action { get; set; }//过滤条件中的操作:==、!=等
-        public string Logic { get; set; }//过滤条件之间的逻辑关系：AND和OR
+        public FilterAction Action { get; set; }//过滤条件中的操作:==、!=等
+        public FilterLogic Logic { get; set; }//过滤条件之间的逻辑关系：AND和OR
         public string Value { get; set; }//过滤条件中的操作的值
-        public string DataType { get; set; }//过滤条件中的操作的字段的类型
+        public FilterDataType DataType { get; set; }//过滤条件中的操作的字段的类型
+    }
+
+    public enum FilterAction
+    {
+        Equal = 1,
+        NotEqual = 2,
+        GreaterThan = 3,
+        LessThan = 4,
+        GreaterThanOrEqual = 5,
+        LessThanOrEqual = 6,
+        Like = 7,
+        NotLike = 8
+    }
+    public enum FilterLogic
+    {
+        AND = 1,
+        OR = 2
+    }
+    public enum FilterDataType
+    {
+        String = 1,
+        Int = 2,
+        Decimal = 3,
+        DateTime = 4
     }
 }

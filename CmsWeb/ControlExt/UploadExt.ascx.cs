@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CmsUtils;
 
 namespace CmsWeb.ControlExt
 {
@@ -16,6 +17,11 @@ namespace CmsWeb.ControlExt
         }
 
         /// <summary>
+        /// 上传类型：1：图片，2：文件
+        /// </summary>
+        public string UploadType = "1";
+
+        /// <summary>
         /// 上传路径
         /// </summary>
         public string FolderPath = "/Upload/";
@@ -23,7 +29,19 @@ namespace CmsWeb.ControlExt
         /// <summary>
         /// 上传文件限制
         /// </summary>
-        public string Extensions = "jpg,jpeg,gif,png,zip,txt,xls,xlsx,rar,doc,docx,ppt,pptx";
+        protected string Extensions
+        {
+            get
+            {
+                if (this.UploadType == "1")
+                {
+                    return Configs.GetValue("ImageExt"); 
+                }
+                else {
+                    return Configs.GetValue("FileExt");
+                }
+            }
+        }
 
         /// <summary>
         /// 1：单文件,0：多文件

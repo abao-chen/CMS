@@ -7,10 +7,11 @@ using System.Web;
 using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CmsCommon;
 using CmsEntity;
 using CmsUtils;
 
-namespace CmsCommon
+namespace CmsWeb
 {
     public class BasePage : Page, IRequiresSessionState
     {
@@ -96,7 +97,7 @@ namespace CmsCommon
         private void ValidateControlsAuthor()
         {
             string currentUrl = HttpContext.Current.Request.Url.LocalPath;
-            TB_Authority pageAuthor = LoginUserInfo.AuthorityList.FirstOrDefault(a => a.IsDeleted == Constants.IS_NO && a.AuthorType == 2 && a.PageUrl.Equals(currentUrl));
+            var pageAuthor = LoginUserInfo.AuthorityList.FirstOrDefault(a => a.IsDeleted == Constants.IS_NO && a.AuthorType == 2 && a.PageUrl.Equals(currentUrl));
             if (pageAuthor != null)
             {
                 FindControls(Page, pageAuthor.ID);

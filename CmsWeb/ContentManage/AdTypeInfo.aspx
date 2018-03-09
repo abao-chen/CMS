@@ -58,14 +58,19 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    <%=txtAdTypeName.UniqueID%>: {
-                                            validators: {
-                                                notEmpty: {},
-                                            }
-                                        },
-
+                                        <%=txtAdTypeName.UniqueID%>: {
+                    validators: {
+                        notEmpty: {},
+                    }
+                },                    <%=txtAdTypeDescription.UniqueID%>: {
+                    validators: {
+                        notEmpty: {},
+                    }
+                },
                 }
             });
+
+            
         });
     </script>
 </asp:Content>

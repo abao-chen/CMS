@@ -22,12 +22,13 @@ namespace CmsWeb.API
 {
     public partial class AuthorityApi : BaseApi
     {
-        public AjaxResultModel GetPagerList()
+        public override AjaxResultModel GetPagerList()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
             string sql = @"SELECT
-					            *
+					          ID,AuthorType,CASE AuthorType WHEN 1 THEN '模块' WHEN 2 THEN '页面' WHEN 3 THEN '操作' END AuthorTypeName,
+							  AuthorName,AuthorFlag,ParentID,FullID,CASE IsMenu WHEN 1 THEN '是' ELSE '否' END IsMenu, PageUrl, UpdateTime
 				            FROM
 					            TB_Authority 
 				            WHERE
@@ -36,12 +37,17 @@ namespace CmsWeb.API
             return resultModel;
         }
 
-        public AjaxResultModel DeleteByIds()
+        public override AjaxResultModel DeleteByIds()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
             new AuthorityBal().DeleteByIds(resultModel, searchModel);
             return resultModel;
+        }
+
+        public override AjaxResultModel Download()
+        {
+            throw new NotImplementedException();
         }
     }
 }

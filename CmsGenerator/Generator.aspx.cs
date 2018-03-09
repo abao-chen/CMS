@@ -322,7 +322,7 @@ namespace CmsGenerator
                     }
                 }
             }
-            
+
             if (!string.IsNullOrEmpty(tablesWhere))
             {
                 using (var ctx = new CmsEntities())
@@ -478,7 +478,15 @@ namespace CmsGenerator
                             initDataBuilder.AppendLine("            {");
                             initDataBuilder.AppendLine("                #ControlAlisa##ColName#.Text = entity.#ColName#.ToString();");
                             initDataBuilder.AppendLine("            }");
-                            saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.Text.Trim();";
+                            if (colEntity.validate.IsNotEmpty() && colEntity.validate.Contains("2"))
+                            {//数字
+                                saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.Text.ToIntOrNull();";
+                            }
+                            else
+                            {//默认 文本
+                                saveCol = "            entity.#ColName# = #ControlAlisa##ColName#.Text.Trim();";
+                            }
+                            
                             editCols = editCols.Replace("#tagPrefix#", "asp");
                             designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.TextBox #ControlAlisa##ColName#;");
                             break;
@@ -507,7 +515,7 @@ namespace CmsGenerator
                             editCols = "                        <div class=\"col-lg-6\">\r\n";
                             editCols += "                            <div class=\"form-group\">\r\n";
                             editCols += "                                <label>#ColCnName#：</label>\r\n";
-                            editCols += "                                <Cms:DataPicker ID=\"#ControlAlisa##ColName#\" runat=\"server\" Name=\"#ColName#\" Format=\"yyyy/MM/dd\"></Cms:DataPicker>";
+                            editCols += "                                <Cms:DataPickerExt ID=\"#ControlAlisa##ColName#\" runat=\"server\" Name=\"#ColName#\" Format=\"yyyy/MM/dd\"></Cms:DataPickerExt>";
                             designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.DataPickerExt #ControlAlisa##ColName#;");
                             break;
                         case 4://多选框 checkboxlist
@@ -605,7 +613,7 @@ namespace CmsGenerator
 
                     designerBuilder = designerBuilder.Replace("#ColName#", colEntity.colCode).Replace("#ControlAlisa#", controlAlisa); ;
                     //表单校验
-                    string validateFileds = @"                    <%=#ControlAlisa##ColName#.UniqueID%>: {
+                    string validateFileds = @"                    '<%=#ControlAlisa##ColName#.UniqueID%>': {
                                             validators: {
                                                 #Validators#
                                             }
@@ -634,7 +642,7 @@ namespace CmsGenerator
                         validateFileds = validateFileds.Replace("#ControlAlisa#", controlAlisa)
                             .Replace("#ColName#", colEntity.colCode)
                             .Replace("#Validators#", validators);
-                        validatorBuilder.AppendLine(validateFileds);
+                        validatorBuilder.Append(validateFileds);
                     }
                 }
             }
@@ -678,10 +686,10 @@ namespace CmsGenerator
         private void CreateListFile(string className, GeneraEntity entity, string cnFileName, string date)
         {
             StringBuilder searchBuilder = new StringBuilder();
+            StringBuilder likeSearchBuilder = new StringBuilder();
             StringBuilder listHeadBuilder = new StringBuilder();
             StringBuilder colConfigBuilder = new StringBuilder();
             StringBuilder designerBuilder = new StringBuilder();
-            StringBuilder initDateBuilder = new StringBuilder();
             //List.aspx
             string listContent = FileUtil.ReadFile(ListFilePath)
                 .Replace("#ClassName#", className)
@@ -693,32 +701,42 @@ namespace CmsGenerator
                 //搜索条件
                 if (colEntity.isSelect == 1)
                 {
-                    string searchCols = "<div class=\"col-lg-4 form-group\">\r\n";
-                    searchCols +=
-                        "                                <asp:#ControlType# runat=\"server\" ID=\"#ControlAlisa##ColName#\" searchattr=\"#ColName#|LIKE|#ColName#\" CssClass=\"form-control\" placeholder=\"#ColCnName#\"></asp:#ControlType#>\r\n";
+                    string searchCols = "<div class=\"col-lg-6 form-group\">\r\n";
+                    searchCols += "                            <label>#ColCnName#</label>";
+                    searchCols += "                                <#ControlType# runat=\"server\" ID=\"#ControlAlisa##ColName#\" searchattr=\"#ColName#|=|#ColName#\" CssClass=\"form-control\" placeholder=\"#ColCnName#\"></#ControlType#>\r\n";
                     searchCols += "                            </div> ";
                     switch (colEntity.controlType)
                     {
                         case 2:
-                            searchCols = searchCols.Replace("#ControlType#", "DropDownList").Replace("#ControlAlisa#", "ddl");
+                            searchCols = searchCols.Replace("#ControlType#", "asp:DropDownList").Replace("#ControlAlisa#", "ddl");
                             designerBuilder = designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.DropDownList ddl#ColName#;");
                             break;
                         case 3:
-                            searchCols = searchCols.Replace("#ControlType#", "TextBox").Replace("#ControlAlisa#", "txt");
-                            designerBuilder = designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.TextBox txt#ColName#;");
-                            initDateBuilder.AppendLine("initDateControl(\"<%=txt#ColName#.ClientID%>\");");
+                            searchCols = searchCols.Replace("#ControlType#", "Cms:DataPickerExt").Replace("#ControlAlisa#", "txt");
+                            designerBuilder = designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.DataPickerExt txt#ColName#;");
+                            break;
+                        case 6:
+                            searchCols = searchCols.Replace("#ControlType#", "asp:CheckBox").Replace("#ControlAlisa#", "cbx");
+                            designerBuilder = designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.CheckBox cbx#ColName#;");
                             break;
                         default:
-                            searchCols = searchCols.Replace("#ControlType#", "TextBox").Replace("#ControlAlisa#", "txt");
+                            searchCols = searchCols.Replace("#ControlType#", "asp:TextBox").Replace("#ControlAlisa#", "txt");
                             designerBuilder = designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.TextBox txt#ColName#;");
+                            if (likeSearchBuilder.Length == 0)
+                            {
+                                likeSearchBuilder.Append("#ColName#");
+                            }
+                            else
+                            {
+                                likeSearchBuilder.Append("|#ColName#");
+                            }
                             break;
                     }
                     searchCols = searchCols.Replace("#ColName#", colEntity.colCode)
                         .Replace("#ColCnName#", colEntity.colComment);
                     searchBuilder.AppendLine(searchCols);
                     designerBuilder = designerBuilder.Replace("#ColName#", colEntity.colCode);
-                    initDateBuilder = initDateBuilder.Replace("#ColName#", colEntity.colCode);
-
+                    likeSearchBuilder = likeSearchBuilder.Replace("#ColName#", colEntity.colCode);
                 }
 
                 //表头级datatables列配置
@@ -729,9 +747,9 @@ namespace CmsGenerator
                 }
             }
             listContent = listContent.Replace("#SearchCols#", searchBuilder.ToString())
-                .Replace("#InitDateControl#", initDateBuilder.ToString())
                 .Replace("#ListHead#", listHeadBuilder.ToString()) //datatables头部
-                .Replace("#ColConfig#", colConfigBuilder.ToString()); //datatables列配置
+                .Replace("#ColConfig#", colConfigBuilder.ToString()) //datatables列配置
+                .Replace("#LikeSearchColunms#", likeSearchBuilder.ToString()); //datatables 模糊搜索配置
             FileUtil.WriteFile(ViewOutputPath + className + "List.aspx", listContent);
 
             //List.aspx.designer.cs

@@ -7,74 +7,93 @@ using System.Web.UI.WebControls;
 using CmsBAL;
 using CmsCommon;
 using CmsEntity;
+using CmsUtils;
 
-namespace CmsWeb.SysManage
+namespace CmsWeb
 {
     public partial class SysParamsInfo : BasePage
     {
+        /// <summary>
+        /// 用户ID
+        /// </summary>
         private int Id
         {
             get
             {
-                int iId;
-                Int32.TryParse(Request.QueryString["ID"], out iId);
-                return iId;
+                int id = 0;
+                int.TryParse(Request.QueryString["Id"], out id);
+                return id;
             }
         }
-        protected TB_SysParams entity;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                InitData();
+                BindData();
+                if (Id != 0)
+                {
+                    InitData();
+                }
             }
+
         }
 
         /// <summary>
-        /// 初始化数据
+        /// 初始页面数据
         /// </summary>
         private void InitData()
         {
-            entity = new SysParamsBal().SelectSingleById(s => s.ID.Equals(Id));
-            if (entity != null)
+            TB_SysParams  entity = new SysParamsBal().SelectSingleById(u => u.ID.Equals(Id));
+                        if(entity.ParamName != null )
             {
-                txtParamValue.Text = entity.ParamValue;
-                txtParamName.Text = entity.ParamName;
-                txtParamDesc.Text = entity.ParamDesc;
+                txtParamName.Text = entity.ParamName.ToString();
             }
+            if(entity.ParamValue != null )
+            {
+                txtParamValue.Text = entity.ParamValue.ToString();
+            }
+            if(entity.ParamDesc != null )
+            {
+                txtParamDesc.Text = entity.ParamDesc.ToString();
+            }
+
+        }
+
+        /// <summary>
+        /// 绑定下拉框数据源
+        /// </summary>
+        private void BindData()
+        {
+            //ControlUtil.BindListControl(this.ddlAdTypeID, new AdTypeBal().SelectList(a => a.IsDeleted != Constants.IS_YES && a.IsUsing == Constants.IS_YES).ToList(), "AdTypeName", "ID", true);
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            int result;
+            TB_SysParams  entity;
             if (Id != 0)
             {
-                entity = new SysParamsBal().SelectSingleById(s => s.ID.Equals(Id));
-                entity.ParamName = txtParamName.Text.Trim();
-                entity.ParamValue = txtParamValue.Text.Trim();
-                entity.ParamDesc = txtParamDesc.Text.Trim();
-                result = new SysParamsBal().UpdateSingle(entity);
-
+                entity = new SysParamsBal().SelectSingleById(u => u.ID.Equals(Id));
             }
             else
             {
                 entity = new TB_SysParams();
-                entity.ParamName = txtParamName.Text.Trim();
-                entity.ParamValue = txtParamValue.Text.Trim();
-                entity.ParamDesc = txtParamDesc.Text.Trim();
-                result = new SysParamsBal().InsertSingle(entity);
             }
+                        entity.ParamName = txtParamName.Text.Trim();
+            entity.ParamValue = txtParamValue.Text.Trim();
+            entity.ParamDesc = txtParamDesc.Text.Trim();
 
-            if (result > 0)
+            if (Id != 0)
             {
-                ClientScript.RegisterStartupScript(ClientScript.GetType(),"myScript", "<script>saveCallback(1);</script>");
+                new SysParamsBal().UpdateSingle(entity);
             }
             else
             {
-                ClientScript.RegisterStartupScript(ClientScript.GetType(), "myScript", "<script>saveCallback(2);</script>");
+                new SysParamsBal().InsertSingle(entity);
             }
 
+            Response.Redirect("~/SysManage/SysParamsList.aspx");
         }
+        
     }
 }

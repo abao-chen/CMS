@@ -44,38 +44,35 @@ namespace CmsWeb
         /// </summary>
         private void InitData()
         {
-            TB_Advertisement entity = new AdvertisementBal().SelectSingleById(u => u.ID.Equals(Id));
-            if (entity.AdTypeID != null)
+            TB_Advertisement  entity = new AdvertisementBal().SelectSingleById(u => u.ID.Equals(Id));
+                        if(entity.AdTypeID != null )
             {
-                ddlAdTypeID.SelectedValue = entity.AdTypeID.ToString();
+                txtAdTypeID.Text = entity.AdTypeID.ToString();
             }
-            if (entity.AdName != null)
+            if(entity.AdName != null )
             {
                 txtAdName.Text = entity.AdName.ToString();
             }
-            if (entity.AdDescription != null)
-            {
-                txtAdDescription.Text = entity.AdDescription.ToString();
-            }
-            if (entity.AdUrl != null)
+            uplAdDescription.Value = entity.AdImage;
+            if(entity.AdUrl != null )
             {
                 txtAdUrl.Text = entity.AdUrl.ToString();
             }
-            if (entity.ValidStartTime != null)
+            if(entity.ValidStartTime != null )
             {
-                txtValidStartTime.Text = entity.ValidStartTime.ToString();
+                txtValidStartTime.DateValue = entity.ValidStartTime;
             }
-            if (entity.ValidEndTime != null)
+            if(entity.ValidEndTime != null )
             {
-                txtValidEndTime.Text = entity.ValidEndTime.ToString();
+                txtValidEndTime.DateValue = entity.ValidEndTime;
             }
-            if (entity.AdTypeComment != null)
+            if(entity.AdTypeComment != null )
             {
                 txtAdTypeComment.Text = entity.AdTypeComment.ToString();
             }
-            if (entity.IsUsing != null)
+            if(entity.IsUsing != null )
             {
-                cbIsUsing.Checked = entity.IsUsing == Constants.IS_YES;
+                txtIsUsing.Text = entity.IsUsing.ToString();
             }
 
         }
@@ -85,12 +82,12 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            ControlUtil.BindListControl(this.ddlAdTypeID, new AdTypeBal().SelectList(a => a.IsDeleted != Constants.IS_NO && a.IsUsing == Constants.IS_YES).ToList(), "AdTypeName", "ID", true);
+            //ControlUtil.BindListControl(this.ddlAdTypeID, new AdTypeBal().SelectList(a => a.IsDeleted != Constants.IS_NO && a.IsUsing == Constants.IS_YES).ToList(), "AdTypeName", "ID", true);
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            TB_Advertisement entity;
+            TB_Advertisement  entity;
             if (Id != 0)
             {
                 entity = new AdvertisementBal().SelectSingleById(u => u.ID.Equals(Id));
@@ -99,22 +96,22 @@ namespace CmsWeb
             {
                 entity = new TB_Advertisement();
             }
-            entity.AdTypeID = Convert.ToInt32(ddlAdTypeID.SelectedValue);
+                        entity.AdTypeID = txtAdTypeID.Text.ToIntOrNull();
             entity.AdName = txtAdName.Text.Trim();
-            entity.AdDescription = txtAdDescription.Text.Trim();
+            entity.AdImage = uplAdDescription.Value;
             entity.AdUrl = txtAdUrl.Text.Trim();
-            if (txtValidStartTime.Text != null)
+            if(!txtValidStartTime.TextValue.IsEmpty())
             {
-                entity.ValidStartTime = Convert.ToDateTime(txtValidStartTime.Text);
+                entity.ValidStartTime = txtValidStartTime.DateValue;
             }
 
-            if (txtValidEndTime.Text != null)
+            if(!txtValidEndTime.TextValue.IsEmpty())
             {
-                entity.ValidEndTime = Convert.ToDateTime(txtValidEndTime.Text);
+                entity.ValidEndTime = txtValidEndTime.DateValue;
             }
 
             entity.AdTypeComment = txtAdTypeComment.Text.Trim();
-            entity.IsUsing = cbIsUsing.Checked ? Constants.IS_YES : Constants.IS_NO;
+            entity.IsUsing = txtIsUsing.Text.ToIntOrNull();
 
             if (Id != 0)
             {
@@ -127,6 +124,6 @@ namespace CmsWeb
 
             Response.Redirect("~/ContentManage/AdvertisementList.aspx");
         }
-
+        
     }
 }

@@ -45,9 +45,18 @@ namespace CmsWeb
         private void InitData()
         {
             TB_ContentType entity = new ContentTypeBal().SelectSingleById(u => u.ID.Equals(Id));
-            txtTypeName.Text = entity.TypeName.ToString();
-            txtTypeAlias.Text = entity.TypeAlias.ToString();
-            cbxIsUse.Checked = entity.IsUse == Constants.IS_YES;
+            if (entity.TypeName != null)
+            {
+                txtTypeName.Text = entity.TypeName.ToString();
+            }
+            if (entity.TypeAlias != null)
+            {
+                txtTypeAlias.Text = entity.TypeAlias.ToString();
+            }
+            if (entity.IsUse != null)
+            {
+                cbxIsUse.Checked = (entity.IsUse == Constants.IS_YES);
+            }
 
         }
 
@@ -56,8 +65,7 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            //ControlUtil.BindDropDownList(this.ddlStatus, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERSTATUS), true);
-            //ControlUtil.BindDropDownList(this.ddlType, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERTYPE), true);
+            //ControlUtil.BindListControl(this.ddlAdTypeID, new AdTypeBal().SelectList(a => a.IsDeleted != Constants.IS_NO && a.IsUsing == Constants.IS_YES).ToList(), "AdTypeName", "ID", true);
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
@@ -66,19 +74,21 @@ namespace CmsWeb
             if (Id != 0)
             {
                 entity = new ContentTypeBal().SelectSingleById(u => u.ID.Equals(Id));
-                entity.TypeName = txtTypeName.Text;
-                entity.TypeAlias = txtTypeAlias.Text;
-                entity.IsUse = cbxIsUse.Checked ? Constants.IS_YES : Constants.IS_NO;
-
-                new ContentTypeBal().UpdateSingle(entity);
             }
             else
             {
                 entity = new TB_ContentType();
-                entity.TypeName = txtTypeName.Text;
-                entity.TypeAlias = txtTypeAlias.Text;
-                entity.IsUse = cbxIsUse.Checked ? Constants.IS_YES : Constants.IS_NO;
+            }
+            entity.TypeName = txtTypeName.Text.Trim();
+            entity.TypeAlias = txtTypeAlias.Text.Trim();
+            entity.IsUse = cbxIsUse.Checked ? Constants.IS_YES : Constants.IS_NO;
 
+            if (Id != 0)
+            {
+                new ContentTypeBal().UpdateSingle(entity);
+            }
+            else
+            {
                 new ContentTypeBal().InsertSingle(entity);
             }
 

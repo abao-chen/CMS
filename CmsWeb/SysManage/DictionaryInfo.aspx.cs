@@ -5,81 +5,100 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CmsBAL;
-using CmsEntity;
 using CmsCommon;
+using CmsEntity;
 using CmsUtils;
 
-namespace CmsWeb.SysManage
+namespace CmsWeb
 {
     public partial class DictionaryInfo : BasePage
     {
+        /// <summary>
+        /// 用户ID
+        /// </summary>
         private int Id
         {
             get
             {
-                int iId;
-                Int32.TryParse(Request.QueryString["ID"], out iId);
-                return iId;
+                int id = 0;
+                int.TryParse(Request.QueryString["Id"], out id);
+                return id;
             }
         }
-        protected TB_Dictionary entity;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                InitData();
+                BindData();
+                if (Id != 0)
+                {
+                    InitData();
+                }
             }
+
         }
 
         /// <summary>
-        /// 初始化数据
+        /// 初始页面数据
         /// </summary>
         private void InitData()
         {
-            List<TB_DicType> list = new DicTypeBal().SelectList(d => d.IsDeleted == Constants.IS_NO);
-            ControlUtil.BindListControl<TB_DicType>(this.ddlDicTypeCode, list, "DicTypeName", "DicTypeCode", false);
-            entity = new DictionaryBal().SelectSingleById(s => s.ID.Equals(Id));
-            if (entity != null)
+            TB_Dictionary entity = new DictionaryBal().SelectSingleById(u => u.ID.Equals(Id));
+            if (entity.DicTypeCode != null)
             {
-                txtDicCode.Text = entity.DicCode;
-                txtDicName.Text = entity.DicName;
-                ddlDicTypeCode.SelectedValue = entity.DicTypeCode;
-                cbxIsUsing.Checked = (entity.IsUsing == Constants.IS_YES);
+                ddlDicTypeCode.SelectedValue = entity.DicTypeCode.ToString();
             }
+            if (entity.DicName != null)
+            {
+                txtDicName.Text = entity.DicName.ToString();
+            }
+            if (entity.DicCode != null)
+            {
+                txtDicCode.Text = entity.DicCode.ToString();
+            }
+            if (entity.IsUsing != null)
+            {
+                cbIsUsing.Checked = entity.IsUsing == Constants.IS_YES;
+            }
+
+        }
+
+        /// <summary>
+        /// 绑定下拉框数据源
+        /// </summary>
+        private void BindData()
+        {
+            ControlUtil.BindListControl(this.ddlDicTypeCode, new DicTypeBal().SelectList(a => a.IsDeleted != Constants.IS_YES && a.IsUsing == Constants.IS_YES).ToList(), "DicTypeName", "DicTypeCode", true);
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            int result;
+            TB_Dictionary entity;
             if (Id != 0)
             {
-                entity = new DictionaryBal().SelectSingleById(s => s.ID.Equals(Id));
-                entity.DicTypeCode = ddlDicTypeCode.SelectedValue;
-                entity.DicCode = txtDicCode.Text;
-                entity.DicName = txtDicName.Text;
-                entity.IsUsing = cbxIsUsing.Checked ? 1 : 0;
-                result = new DictionaryBal().UpdateSingle(entity);
-
+                entity = new DictionaryBal().SelectSingleById(u => u.ID.Equals(Id));
             }
             else
             {
                 entity = new TB_Dictionary();
-                entity.DicTypeCode = ddlDicTypeCode.SelectedValue;
-                entity.DicCode = txtDicCode.Text;
-                entity.DicName = txtDicName.Text;
-                entity.IsUsing = cbxIsUsing.Checked ? 1 : 0;
-                result = new DictionaryBal().InsertSingle(entity);
             }
+            entity.DicTypeCode = ddlDicTypeCode.SelectedValue;
+            entity.DicName = txtDicName.Text.Trim();
+            entity.DicCode = txtDicCode.Text.Trim();
+            entity.IsUsing = cbIsUsing.Checked ? Constants.IS_YES : Constants.IS_NO;
 
-            if (result > 0)
+            if (Id != 0)
             {
-                ClientScript.RegisterStartupScript(ClientScript.GetType(), "myScript", "<script>saveCallback(1);</script>");
+                new DictionaryBal().UpdateSingle(entity);
             }
             else
             {
-                ClientScript.RegisterStartupScript(ClientScript.GetType(), "myScript", "<script>saveCallback(2);</script>");
+                new DictionaryBal().InsertSingle(entity);
             }
+
+            Response.Redirect("~/SysManage/DictionaryList.aspx");
         }
+
     }
 }

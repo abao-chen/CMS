@@ -170,6 +170,7 @@
                     });
                     tableObjArray.push(tableObj);
                 });
+                console.log(JSON.stringify(tableObjArray))
                 $("#<%=hidFormData.ClientID%>").val(JSON.stringify(tableObjArray));
                 $("#<%=hidTablesName.ClientID%>").val(tablesName);
             }

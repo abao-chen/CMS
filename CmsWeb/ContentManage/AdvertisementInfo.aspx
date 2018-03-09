@@ -14,7 +14,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>广告类型ID：</label>
-                                <asp:DropDownList ID="ddlAdTypeID" runat="server" CssClass="form-control"></asp:DropDownList>
+                                <asp:TextBox ID="txtAdTypeID" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -23,10 +23,10 @@
                                 <asp:TextBox ID="txtAdName" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label>广告图片：</label>
-                                <asp:TextBox ID="txtAdDescription" runat="server" CssClass="form-control"></asp:TextBox>
+                                <Cms:UploadExt ID="uplAdDescription" runat="server"></Cms:UploadExt>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -38,13 +38,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>有效开始时间：</label>
-                                <asp:TextBox ID="txtValidStartTime" runat="server" CssClass="form-control"></asp:TextBox>
+                                <Cms:DataPickerExt ID="txtValidStartTime" runat="server" Name="ValidStartTime" Format="yyyy/MM/dd"></Cms:DataPickerExt>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>有效结束时间：</label>
-                                <asp:TextBox ID="txtValidEndTime" runat="server" CssClass="form-control"></asp:TextBox>
+                                <Cms:DataPickerExt ID="txtValidEndTime" runat="server" Name="ValidEndTime" Format="yyyy/MM/dd"></Cms:DataPickerExt>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -56,7 +56,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>是否启用：</label>
-                                <asp:CheckBox ID="cbIsUsing" runat="server" CssClass="form-control"></asp:CheckBox>
+                                <asp:TextBox ID="txtIsUsing" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
 
@@ -82,29 +82,31 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    <%=ddlAdTypeID.UniqueID%>: {
+                                        <%=txtAdTypeID.UniqueID%>: {
+                    validators: {
+                        notEmpty: {},
+                    }
+                },                    <%=txtAdName.UniqueID%>: {
+                    validators: {
+                        notEmpty: {},
+                    }
+                },                    <%=uplAdDescription.UniqueID%>: {
                                             validators: {
                                                 notEmpty: {},
                                             }
+                                        },                    <%=txtValidStartTime.UniqueID%>: {
+                                            validators: {
+                                                date: { format: "YYYY/MM/DD" },
+                                            }
+                                        },                    <%=txtValidEndTime.UniqueID%>: {
+                                            validators: {
+                                                date: { format: "YYYY/MM/DD" },
+                                            }
                                         },
-                    <%=txtAdName.UniqueID%>: {
-                        validators: {
-                            notEmpty: {},
-                        }
-                    },
-                    <%=txtValidStartTime.UniqueID%>: {
-                        validators: {
-                            date: {format:"YYYY/MM/DD"},
-                        }
-                    },
-                    <%=txtValidEndTime.UniqueID%>: {
-                        validators: {
-                            date: {format:"YYYY/MM/DD"},
-                        }
-                    },
-
                 }
             });
+
+            
         });
     </script>
 </asp:Content>

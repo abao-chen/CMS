@@ -23,7 +23,7 @@ namespace CmsWeb.API
 {
     public partial class DicTypeApi : BaseApi
     {
-        public AjaxResultModel GetPagerList()
+        public override AjaxResultModel GetPagerList()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
@@ -61,12 +61,17 @@ namespace CmsWeb.API
             return resultModel;
         }
 
-        public AjaxResultModel DeleteByIds()
+        public override AjaxResultModel DeleteByIds()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
             new DicTypeBal().DeleteByIds(resultModel, searchModel);
             return resultModel;
+        }
+
+        public override AjaxResultModel Download()
+        {
+            throw new NotImplementedException();
         }
     }
 }

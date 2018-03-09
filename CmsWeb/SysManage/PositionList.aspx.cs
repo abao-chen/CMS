@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/25
+// 制作日期：2018/03/09
 // 文件说明：省市县镇村数据列表页面
 // 
 // 
@@ -53,7 +53,7 @@ namespace CmsWeb
 				            FROM
 					            TB_Position
 				            WHERE
-					            1 = 1 ";
+					            isdeleted = 0 ";
             DataTable dt = new PositionBal().GetDataTable(searchModel, sql);
             string filePath = Server.MapPath("~/Temp/" + DateTime.Now.ToString("yyyyMMdd"));
             string fileName = "PositionList_" + DateTime.Now.ToString("yyyyMMdd") + ".xls";

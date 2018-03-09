@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.SysManage {
+namespace CmsWeb {
     
     
     public partial class DictionaryInfo {
@@ -22,15 +22,6 @@ namespace CmsWeb.SysManage {
         protected global::System.Web.UI.WebControls.DropDownList ddlDicTypeCode;
         
         /// <summary>
-        /// txtDicCode 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDicCode;
-        
-        /// <summary>
         /// txtDicName 控件。
         /// </summary>
         /// <remarks>
@@ -40,13 +31,22 @@ namespace CmsWeb.SysManage {
         protected global::System.Web.UI.WebControls.TextBox txtDicName;
         
         /// <summary>
-        /// cbxIsUsing 控件。
+        /// txtDicCode 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbxIsUsing;
+        protected global::System.Web.UI.WebControls.TextBox txtDicCode;
+        
+        /// <summary>
+        /// cbIsUsing 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbIsUsing;
         
         /// <summary>
         /// btnSave 控件。

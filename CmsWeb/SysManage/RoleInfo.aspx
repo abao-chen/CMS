@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="RoleInfo.aspx.cs" Inherits="CmsWeb.SysManage.RoleInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="RoleInfo.aspx.cs" Inherits="CmsWeb.RoleInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="/Scripts/bootstrap/vendor/zTree/css/metroStyle/metroStyle.css" rel="stylesheet" />
@@ -12,33 +12,29 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    角色编辑
+                    角色信息
                 </div>
                 <div class="panel-body">
                     <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>角色名称：</label>
+                                <asp:TextBox ID="txtRoleName" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>是否启用：</label>
+                                <asp:CheckBox ID="cbIsUsing" runat="server" CssClass="form-control"></asp:CheckBox>
+                            </div>
+                        </div>
                         <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>角色名称：</label>
-                                        <asp:TextBox ID="txtRoleName" runat="server" CssClass="form-control"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>是否启用：</label>
-                                        <asp:CheckBox ID="cbxIsUsing" runat="server" CssClass="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
                                     <ul id="dicTree" class="ztree"></ul>
                                     <asp:HiddenField ID="hidAuthorityIds" runat="server" />
                                 </div>
-                                <div class="col-lg-12" style="text-align: center;">
-                                    <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnSave_Click" OnClientClick="return setAuthorityIds();" />
-                                    <a class="btn btn-default" href="/SysManage/RoleList.aspx" style="margin: 0 auto;">取消</a>
-                                </div>
-                            </div>
+                        <div class="col-lg-12" style="text-align: center;">
+                            <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClientClick="setAuthorityIds();" OnClick="btnSave_OnClick" />
+                            <a class="btn btn-default" href="/SysManage/RoleList.aspx" style="margin: 0 auto;">取消</a>
                         </div>
                     </div>
                 </div>
@@ -48,6 +44,28 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <script src="/Scripts/bootstrap/vendor/zTree/js/jquery.ztree.all.js"></script>
+    <script type="text/javascript">
+        //表单验证
+        $(function () {
+            $('#form').bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                                        "<%=txtRoleName.UniqueID%>": {
+                        validators: {
+                            notEmpty: {},
+                        }
+                    }
+                }
+            });
+
+
+        });
+    </script>
     <script type="text/javascript">
         var treeObj;
         //初始化树控件
@@ -104,22 +122,22 @@
                 },
                 fields: {
                     <%=txtRoleName.UniqueID%>: {
-                        validators: {
-                            notEmpty: {}
-                        }
+                    validators: {
+                        notEmpty: {}
                     }
+                }
                 }
             });
         });
 
         //选中树节点
-        function checkTreeNodes(){
+        function checkTreeNodes() {
             var checkIds = $("#<%=hidAuthorityIds.ClientID%>").val();
             var checkIdArray = checkIds.split(",");
-            for(i=0;i<checkIdArray.length;i++){
-                var node =  treeObj.getNodesByParam("ID", checkIdArray[i], null);
+            for (i = 0; i < checkIdArray.length; i++) {
+                var node = treeObj.getNodesByParam("ID", checkIdArray[i], null);
                 if (node.length > 0) {
-                    treeObj.checkNode(node[0],true,false);
+                    treeObj.checkNode(node[0], true, false);
                 }
             }
         };
@@ -131,7 +149,7 @@
                 var checkIds = "";
                 for (var i = 0; i < checkNodes.length; i++) {
                     if (checkIds == "") {
-                        checkIds = checkNodes[i].ID+ "";
+                        checkIds = checkNodes[i].ID + "";
                     } else {
                         checkIds += "," + checkNodes[i].ID;
                     }
@@ -145,3 +163,4 @@
         }
     </script>
 </asp:Content>
+

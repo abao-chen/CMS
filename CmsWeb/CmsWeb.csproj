@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -130,6 +131,7 @@
     <Content Include="API\UploadApi.aspx" />
     <Content Include="API\UserApi.aspx" />
     <Content Include="ControlExt\UploadExt.ascx" />
+    <Content Include="Css\Image\file_ico.png" />
     <Content Include="Css\Image\upload-img.png" />
     <Content Include="Scripts\bootstrap\vendor\bTabs\b.tabs.css" />
     <Content Include="Scripts\bootstrap\vendor\bTabs\b.tabs.js" />
@@ -514,6 +516,9 @@
     <Content Include="Scripts\bootstrap\vendor\ueditor\ueditor.parse.js" />
     <Content Include="Scripts\bootstrap\vendor\ueditor\ueditor.parse.min.js" />
     <Content Include="Scripts\bootstrap\vendor\uploadify\jquery.uploadify-3.1.min.js" />
+    <Content Include="Scripts\tableUtils.js" />
+    <Content Include="SysManage\DicTypeInfo.aspx" />
+    <Content Include="SysManage\DicTypeList.aspx" />
     <Content Include="TestTab.aspx" />
     <Content Include="TicketsCharts.html" />
     <Content Include="ueditorconfig.json" />
@@ -1073,6 +1078,9 @@
     <Compile Include="API\ValidateCodeApi.aspx.designer.cs">
       <DependentUpon>ValidateCodeApi.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="App_Code\Config.cs" />
     <Compile Include="App_Code\ConfigHandler.cs" />
     <Compile Include="App_Code\CrawlerHandler.cs" />
@@ -1235,6 +1243,20 @@
     </Compile>
     <Compile Include="SysManage\DictionaryList.aspx.designer.cs">
       <DependentUpon>DictionaryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SysManage\DicTypeInfo.aspx.cs">
+      <DependentUpon>DicTypeInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SysManage\DicTypeInfo.aspx.designer.cs">
+      <DependentUpon>DicTypeInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SysManage\DicTypeList.aspx.cs">
+      <DependentUpon>DicTypeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SysManage\DicTypeList.aspx.designer.cs">
+      <DependentUpon>DicTypeList.aspx</DependentUpon>
     </Compile>
     <Compile Include="SysManage\PositionInfo.aspx.cs">
       <DependentUpon>PositionInfo.aspx</DependentUpon>

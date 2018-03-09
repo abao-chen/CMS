@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>CMS</title>
+    <title>CMS-Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="~/Scripts/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />

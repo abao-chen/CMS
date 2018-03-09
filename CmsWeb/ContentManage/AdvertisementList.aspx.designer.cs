@@ -13,13 +13,13 @@ namespace CmsWeb {
     public partial class AdvertisementList {
         
         /// <summary>
-        /// ddlAdTypeID 控件。
+        /// txtAdTypeID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAdTypeID;
+        protected global::System.Web.UI.WebControls.TextBox txtAdTypeID;
         
         /// <summary>
         /// txtAdName 控件。
@@ -29,5 +29,23 @@ namespace CmsWeb {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAdName;
+        
+        /// <summary>
+        /// txtValidStartTime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::CmsWeb.ControlExt.DataPickerExt txtValidStartTime;
+        
+        /// <summary>
+        /// txtValidEndTime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::CmsWeb.ControlExt.DataPickerExt txtValidEndTime;
     }
 }

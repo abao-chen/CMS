@@ -22,11 +22,11 @@ namespace CmsDAL
         public BaseDal(CmsEntities ctx)
         {
             _ctx = ctx;
-            Logger = LogFactory.GetLogger(this.GetType());
-            _ctx.Database.Log = s =>
-            {
-                Logger.Debug(s);
-            };
+            //Logger = LogFactory.GetLogger(this.GetType());
+            //_ctx.Database.Log = s =>
+            //{
+            //    Logger.Debug(s);
+            //};
             _dbSet = _ctx.Set<T>();
         }
 
@@ -251,11 +251,11 @@ namespace CmsDAL
         private static string BuildWhereBySearchModel(AjaxModel searchModel, List<DbParameter> paramsList)
         {
             string sqlWhere = string.Empty;
-            if (searchModel.ParamsDic != null)
+            List<string> valueList = new List<string>();
+            if (searchModel.OrParamsDic != null)
             {
                 string[] valueParams;
-                List<string> valueList = new List<string>();
-                foreach (string paramValue in searchModel.ParamsDic.Keys)
+                foreach (string paramValue in searchModel.OrParamsDic.Keys)
                 {
                     //0:字段名称（包含表别名），1：运算操作符，2：参数值
                     valueParams = paramValue.Split(new string[] { "|" }, StringSplitOptions.None);
@@ -263,27 +263,80 @@ namespace CmsDAL
                     {
                         if (valueParams[1] == "LIKE")
                         {
-                            sqlWhere += " AND " + valueParams[0] + " " + valueParams[1] + " @" + valueParams[0] + " ";
-                        }
-                        else
-                        {
-                            sqlWhere += " AND " + valueParams[0] + valueParams[1] + " @" + valueParams[0] + " ";
-                        }
-                        if (!valueList.Any(v => v.Equals(valueParams[0])))
-                        {
-                            //判断参数是否存在，如不存在添加，存在则不添加重复
-                            MySqlParameter mySqlParam = new MySqlParameter();
-                            mySqlParam.ParameterName = "@" + valueParams[0];
-                            if (valueParams[1] == "LIKE")
+                            if (string.IsNullOrEmpty( sqlWhere))
                             {
-                                mySqlParam.Value = "%" + searchModel.ParamsDic[paramValue] + "%";
+                                sqlWhere += " AND (" + valueParams[0] + " " + valueParams[1] + " @" + valueParams[2] + " ";
                             }
                             else
                             {
-                                mySqlParam.Value = searchModel.ParamsDic[paramValue];
+                                sqlWhere += " OR " + valueParams[0] + " " + valueParams[1] + " @" + valueParams[2] + " ";
+                            }
+                        }
+                        else
+                        {
+                            if (string.IsNullOrEmpty(sqlWhere))
+                            {
+                                sqlWhere += " AND ( " + valueParams[0] + valueParams[1] + " @" + valueParams[2] + " ";
+                            }
+                            else
+                            {
+                                sqlWhere += " OR " + valueParams[0] + valueParams[1] + " @" + valueParams[2] + " ";
+                            }
+                        }
+                        if (!valueList.Any(v => v.Equals(valueParams[2])))
+                        {
+                            //判断参数是否存在，如不存在添加，存在则不添加重复
+                            MySqlParameter mySqlParam = new MySqlParameter();
+                            mySqlParam.ParameterName = "@" + valueParams[2];
+                            if (valueParams[1] == "LIKE")
+                            {
+                                mySqlParam.Value = "%" + searchModel.OrParamsDic[paramValue] + "%";
+                            }
+                            else
+                            {
+                                mySqlParam.Value = searchModel.OrParamsDic[paramValue];
                             }
                             paramsList.Add(mySqlParam);
-                            valueList.Add(valueParams[0]);
+                            valueList.Add(valueParams[2]);
+                        }
+                    }
+                }
+                if (!string.IsNullOrEmpty(sqlWhere)) {
+                    sqlWhere += ")";
+                }
+            }
+            if (searchModel.AndParamsDic != null)
+            {
+                string[] valueParams;
+                foreach (string paramValue in searchModel.AndParamsDic.Keys)
+                {
+                    //0:字段名称（包含表别名），1：运算操作符，2：参数值
+                    valueParams = paramValue.Split(new string[] { "|" }, StringSplitOptions.None);
+                    if (valueParams.Length == 3)
+                    {
+                        if (valueParams[1] == "LIKE")
+                        {
+                            sqlWhere += " AND " + valueParams[0] + " " + valueParams[1] + " @" + valueParams[2] + " ";
+                        }
+                        else
+                        {
+                            sqlWhere += " AND " + valueParams[0] + valueParams[1] + " @" + valueParams[2] + " ";
+                        }
+                        if (!valueList.Any(v => v.Equals(valueParams[2])))
+                        {
+                            //判断参数是否存在，如不存在添加，存在则不添加重复
+                            MySqlParameter mySqlParam = new MySqlParameter();
+                            mySqlParam.ParameterName = "@" + valueParams[2];
+                            if (valueParams[1] == "LIKE")
+                            {
+                                mySqlParam.Value = "%" + searchModel.AndParamsDic[paramValue] + "%";
+                            }
+                            else
+                            {
+                                mySqlParam.Value = searchModel.AndParamsDic[paramValue];
+                            }
+                            paramsList.Add(mySqlParam);
+                            valueList.Add(valueParams[2]);
                         }
                     }
                 }

@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/01
+// 制作日期：2018/03/09
 // 文件说明：基础内容列表页面
 // 
 // 
@@ -36,7 +36,7 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            ControlUtil.BindListControl(this.ddlContentType, new ContentTypeBal().SelectList(c => c.IsUse == Constants.IS_YES && c.IsDeleted == Constants.IS_NO), "TypeName", "ID", true);
+            ControlUtil.BindListControl(this.ddlContentType, new ContentTypeBal().SelectList(c => c.IsUse == Constants.IS_YES && c.IsDeleted != Constants.IS_YES), "TypeName", "ID", true);
         }
 
         /// <summary>

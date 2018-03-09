@@ -13,13 +13,13 @@ namespace CmsWeb {
     public partial class AdvertisementInfo {
         
         /// <summary>
-        /// ddlAdTypeID 控件。
+        /// txtAdTypeID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAdTypeID;
+        protected global::System.Web.UI.WebControls.TextBox txtAdTypeID;
         
         /// <summary>
         /// txtAdName 控件。
@@ -31,13 +31,13 @@ namespace CmsWeb {
         protected global::System.Web.UI.WebControls.TextBox txtAdName;
         
         /// <summary>
-        /// txtAdDescription 控件。
+        /// uplAdDescription 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAdDescription;
+        protected global::CmsWeb.ControlExt.UploadExt uplAdDescription;
         
         /// <summary>
         /// txtAdUrl 控件。
@@ -55,7 +55,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtValidStartTime;
+        protected global::CmsWeb.ControlExt.DataPickerExt txtValidStartTime;
         
         /// <summary>
         /// txtValidEndTime 控件。
@@ -64,7 +64,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtValidEndTime;
+        protected global::CmsWeb.ControlExt.DataPickerExt txtValidEndTime;
         
         /// <summary>
         /// txtAdTypeComment 控件。
@@ -76,13 +76,13 @@ namespace CmsWeb {
         protected global::System.Web.UI.WebControls.TextBox txtAdTypeComment;
         
         /// <summary>
-        /// cbIsUsing 控件。
+        /// txtIsUsing 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbIsUsing;
+        protected global::System.Web.UI.WebControls.TextBox txtIsUsing;
         
         /// <summary>
         /// btnSave 控件。

@@ -8,40 +8,39 @@ namespace CmsUtils
 {
     public class FileDownHelper
     {
-        public static string FileNameExtension(string FileName)
-        {
-            return Path.GetExtension(MapPathFile(FileName));
-        }
-
-        public static string MapPathFile(string FileName)
+        private static string MapPathFile(string FileName)
         {
             return HttpContext.Current.Server.MapPath(FileName);
-        }
-
-        public static bool FileExists(string FileName)
-        {
-            var destFileName = FileName;
-            if (File.Exists(destFileName))
-                return true;
-            return false;
         }
 
         /// <summary>
         /// 下载文件
         /// </summary>
-        /// <param name="fileName">文件全路径，包含文件名</param>
+        /// <param name="destFileName">文件全路径，包含文件名</param>
         /// <param name="name">下载文件默认名</param>
-        public static void DownLoadFile(string fileName, string name)
+        public static void DownLoadFile(string destFileName, string name = null)
         {
-            var destFileName = fileName;
             if (File.Exists(destFileName))
             {
                 var fi = new FileInfo(destFileName);
+                string fileName;
+                if (name == null)
+                {
+                    fileName = destFileName.Substring(destFileName.LastIndexOf("\\") + 1);
+                }
+                else
+                {
+                    fileName = name;
+                }
+                string userAgent = HttpContext.Current.Request.ServerVariables["http_user_agent"].ToLower();
+                if (userAgent.IndexOf("firefox") == -1)//FF浏览器
+                {
+                    fileName = HttpUtility.UrlEncode(fileName, Encoding.UTF8);
+                }
                 HttpContext.Current.Response.Clear();
                 HttpContext.Current.Response.ClearHeaders();
                 HttpContext.Current.Response.Buffer = false;
-                HttpContext.Current.Response.AppendHeader("Content-Disposition",
-                    "attachment;filename=" + HttpUtility.UrlEncode(name, Encoding.UTF8));
+                HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment;filename=" + fileName);
                 HttpContext.Current.Response.AppendHeader("Content-Length", fi.Length.ToString());
                 HttpContext.Current.Response.ContentType = "application/octet-stream";
                 HttpContext.Current.Response.WriteFile(destFileName);
@@ -122,7 +121,7 @@ namespace CmsUtils
                     var fileLength = myFile.Length;
                     long startBytes = 0;
                     var pack = 10240; //10K bytes
-                    var sleep = (int) Math.Floor((double) (1000 * pack / _speed)) + 1;
+                    var sleep = (int)Math.Floor((double)(1000 * pack / _speed)) + 1;
 
                     if (_Request.Headers["Range"] != null)
                     {
@@ -141,7 +140,7 @@ namespace CmsUtils
                         "attachment;filename=" + HttpUtility.UrlEncode(_fileName, Encoding.UTF8));
 
                     br.BaseStream.Seek(startBytes, SeekOrigin.Begin);
-                    var maxCount = (int) Math.Floor((double) ((fileLength - startBytes) / pack)) + 1;
+                    var maxCount = (int)Math.Floor((double)((fileLength - startBytes) / pack)) + 1;
 
                     for (var i = 0; i < maxCount; i++)
                         if (_Response.IsClientConnected)

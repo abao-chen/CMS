@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.SysManage {
+namespace CmsWeb {
     
     
     public partial class RoleInfo {
@@ -22,13 +22,13 @@ namespace CmsWeb.SysManage {
         protected global::System.Web.UI.WebControls.TextBox txtRoleName;
         
         /// <summary>
-        /// cbxIsUsing 控件。
+        /// cbIsUsing 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbxIsUsing;
+        protected global::System.Web.UI.WebControls.CheckBox cbIsUsing;
         
         /// <summary>
         /// hidAuthorityIds 控件。

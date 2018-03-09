@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/07/22
+// 制作日期：2018/03/08
 // 文件说明：广告列表页面
 // 
 // 
@@ -36,7 +36,7 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            ControlUtil.BindListControl(this.ddlAdTypeID, new AdTypeBal().SelectList(a => a.IsDeleted != Constants.IS_NO && a.IsUsing == Constants.IS_YES).ToList(), "AdTypeName", "ID", true);
+            //ControlUtil.BindDropDownList(this.#ControlAlisa##ColName#, new DictionaryBal().GetDictionaryList(#DicType#), true);
         }
 
         /// <summary>

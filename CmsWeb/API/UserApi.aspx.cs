@@ -14,7 +14,48 @@ namespace CmsWeb.API
 {
     public partial class UserApi : BaseApi
     {
-        public AjaxResultModel GetPagerList()
+        public override AjaxResultModel GetPagerList()
+        {
+            AjaxResultModel resultModel = new AjaxResultModel();
+            AjaxModel searchModel = GetPostParams();
+            string sql = @"SELECT
+					            u.*,
+					            d1.DicName UserStatusName,
+					            d2.DicName UserTypeName,
+		                        (SELECT
+			                        GROUP_CONCAT(r.RoleName)
+		                        FROM
+			                        TB_Role r
+		                        JOIN TB_UserRole ur ON r.ID = ur.RoleID
+		                        WHERE
+			                        ur.UserID = u.ID
+		                        GROUP BY
+			                        ur.UserID) RoleNames
+				            FROM
+					            tb_basicuser u
+				            LEFT JOIN tb_dictionary d1 ON d1.isdeleted = 0
+				            AND d1.DicTypeCode = '{0}'
+				            AND d1.DicCode = u.UserStatus
+				            LEFT JOIN tb_dictionary d2 ON d2.isdeleted = 0
+				            AND d2.DicTypeCode = '{1}'
+				            AND d2.DicCode = u.UserType
+				            WHERE
+					            u.isdeleted = 0 ";
+
+            sql = string.Format(sql, Constants.DIC_TYPE_USERSTATUS, Constants.DIC_TYPE_USERTYPE);
+            new BasicUserBal().GetPagerList(resultModel, searchModel, sql);
+            return resultModel;
+        }
+
+        public override AjaxResultModel DeleteByIds()
+        {
+            AjaxResultModel resultModel = new AjaxResultModel();
+            AjaxModel searchModel = GetPostParams();
+            new BasicUserBal().DeleteByIds(resultModel, searchModel);
+            return resultModel;
+        }
+
+        public override AjaxResultModel Download()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
@@ -32,18 +73,15 @@ namespace CmsWeb.API
 				            AND d2.DicCode = u.UserType
 				            WHERE
 					            u.isdeleted = 0 ";
-            
-            sql = string.Format(sql, Constants.DIC_TYPE_USERSTATUS, Constants.DIC_TYPE_USERTYPE);
-            new BasicUserBal().GetPagerList(resultModel, searchModel, sql);
-            return resultModel;
-        }
 
-        public AjaxResultModel DeleteByIds()
-        {
-            AjaxResultModel resultModel = new AjaxResultModel();
-            AjaxModel searchModel = GetPostParams();
-            new BasicUserBal().DeleteByIds(resultModel, searchModel);
+            sql = string.Format(sql, Constants.DIC_TYPE_USERSTATUS, Constants.DIC_TYPE_USERTYPE);
+            DataTable dt = new BasicUserBal().GetDataTable(searchModel, sql);
+            string filePath = Server.MapPath("~/Temp/" + DateTime.Now.ToString("yyyyMMdd"));
+            string fileName = "UserList_" + DateTime.Now.ToString("yyyyMMdd") + ".xls";
+            ExcelUtil.WriteExcel(dt, filePath, fileName, new string[] { "ID", "UserType", "UserStatus" });
+            resultModel.data = "/Temp/" + DateTime.Now.ToString("yyyyMMdd") + "/" + fileName;
             return resultModel;
+            //FileDownHelper.DownLoadFile(filePath + "/" + fileName, fileName);
         }
 
         /// <summary>

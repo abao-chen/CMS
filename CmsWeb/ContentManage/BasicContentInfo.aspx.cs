@@ -74,7 +74,10 @@ namespace CmsWeb
             {
                 txtOrderNO.Text = entity.OrderNO.ToString();
             }
-            txtPageViewQua.Text = entity.PageViewQua?.ToString();
+            if (entity.PageViewQua != null)
+            {
+                txtPageViewQua.Text = entity.PageViewQua.ToString();
+            }
             if (entity.ForwardQua != null)
             {
                 txtForwardQua.Text = entity.ForwardQua.ToString();
@@ -97,7 +100,7 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            ControlUtil.BindListControl(this.ddlContentType, new ContentTypeBal().SelectList(c => c.IsUse == Constants.IS_YES && c.IsDeleted == Constants.IS_NO), "TypeName", "ID", true);
+            ControlUtil.BindListControl(this.ddlContentType, new ContentTypeBal().SelectList(c => c.IsUse == Constants.IS_YES && c.IsDeleted != Constants.IS_YES), "TypeName", "ID", true);
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
@@ -111,7 +114,7 @@ namespace CmsWeb
             {
                 entity = new TB_BasicContent();
             }
-            entity.ContentType = ddlContentType.SelectedValue?.ToInt();
+            entity.ContentType = ddlContentType.SelectedValue.ToIntOrNull();
             entity.Source = txtSource.Text.Trim();
             entity.ContentTitle = txtContentTitle.Text.Trim();
             entity.ContentSubTitle = txtContentSubTitle.Text.Trim();
@@ -126,22 +129,11 @@ namespace CmsWeb
                 entity.ValidEndTime = txtValidEndTime.DateValue;
             }
 
-            if (txtPageViewQua.Text.IsNotEmpty())
-            {
-                entity.OrderNO = txtOrderNO.Text.Trim().ToInt();
-            }
-            if (txtForwardQua.Text.IsNotEmpty())
-            {
-                entity.ForwardQua = txtForwardQua.Text.Trim().ToInt();
-            }
-            if (txtPointQua.Text.IsNotEmpty())
-            {
-                entity.PointQua = txtPointQua.Text.Trim().ToInt();
-            }
-            if (txtCommentQua.Text.IsNotEmpty())
-            {
-                entity.CommentQua = txtCommentQua.Text.Trim().ToInt();
-            }
+            entity.OrderNO = txtOrderNO.Text.ToIntOrNull();
+            entity.PageViewQua = txtPageViewQua.Text.ToIntOrNull();
+            entity.ForwardQua = txtForwardQua.Text.ToIntOrNull();
+            entity.PointQua = txtPointQua.Text.ToIntOrNull();
+            entity.CommentQua = txtCommentQua.Text.ToIntOrNull();
             entity.AttachmentUrl = uplAttachmentUrl.Value;
             entity.Content = edtContent.Text;
 

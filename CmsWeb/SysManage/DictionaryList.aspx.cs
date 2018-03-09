@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/23
+// 制作日期：2018/03/09
 // 文件说明：字典列表页面
 // 
 // 
@@ -36,6 +36,7 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
+            ControlUtil.BindListControl(this.ddlDicTypeCode, new DicTypeBal().SelectList(a => a.IsDeleted != Constants.IS_YES && a.IsUsing == Constants.IS_YES).ToList(), "DicTypeName", "DicTypeCode", true);
         }
 
         /// <summary>
@@ -45,6 +46,7 @@ namespace CmsWeb
         /// <param name="e"></param>
         protected void btnExport_OnClick(object sender, EventArgs e)
         {
+
             AjaxModel searchModel = new AjaxModel();
             string sql = @"SELECT
 					            *

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CmsEntity;
 using CmsUtils;
 
 namespace CmsWeb.API
@@ -41,6 +42,21 @@ namespace CmsWeb.API
                 result = string.Format(@"{0}|{1}", fileName, downloadPath);
             }
             return result;
+        }
+
+        public override AjaxResultModel Download()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override AjaxResultModel GetPagerList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override AjaxResultModel DeleteByIds()
+        {
+            throw new NotImplementedException();
         }
     }
 }

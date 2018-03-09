@@ -18,15 +18,14 @@
            '</div>' +
            '</div>';
 
-        var dialogdHtml = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">' +
-           '<div class="modal-dialog">' +
+        var dialogdHtml = '<div id="[Id]" class="modal fade" role="dialog" data-backdrop="static" aria-labelledby="modalLabel">' +
+           '<div class="modal-dialog" style="width:[Width]px;">' +
             '<div class="modal-content">' +
             '<div class="modal-header">' +
              '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>' +
              '<h4 class="modal-title" id="modalLabel">[Title]</h4>' +
             '</div>' +
-            '<div class="modal-body"><iframe style="border:0;width:100%;height:[Height]px;" scrolling="no">' +
-            '<iframe></div>' +
+            '<div class="modal-body" style="height:[Height]px;overflow-y:auto;">[Iframe]</div>' +
             '</div>' +
            '</div>' +
            '</div>';
@@ -80,12 +79,12 @@
                 return {
                     id: id,
                     on: function (callback) {
-                        if (callback && callback instanceof Function) {
+                        if (callback && typeof callback === "function") {
                             modal.find('.ok').click(function () { callback(true); });
                         }
                     },
                     hide: function (callback) {
-                        if (callback && callback instanceof Function) {
+                        if (callback && typeof callback === "function") {
                             modal.on('hide.bs.modal', function (e) {
                                 callback(e);
                             });
@@ -101,13 +100,13 @@
                 return {
                     id: id,
                     on: function (callback) {
-                        if (callback && callback instanceof Function) {
+                        if (callback && typeof callback === "function") {
                             modal.find('.ok').click(function () { callback(true); });
                             modal.find('.cancel').click(function () { callback(false); });
                         }
                     },
                     hide: function (callback) {
-                        if (callback && callback instanceof Function) {
+                        if (callback && typeof callback === "function") {
                             modal.on('hide.bs.modal', function (e) {
                                 callback(e);
                             });
@@ -119,24 +118,36 @@
                 options = $.extend({}, {
                     title: 'title',
                     url: '',
+                    targetId:"",
                     width: 800,
                     height: 550,
                     onReady: function () { },
                     onShown: function (e) { }
                 }, options || {});
                 var modalId = generateId();
-
+                var iframeHtml = "";
+                if (options.url != "") {
+                    iframeHtml = '<iframe style="border:0;width:100%;" scrolling="no"><iframe>';
+                }
                 var content = dialogdHtml.replace(reg, function (node, key) {
                     return {
                         Id: modalId,
                         Title: options.title,
-                        Height: options.height
+                        Height: options.height,
+                        Width: options.width,
+                        Iframe: iframeHtml
                     }[key];
                 });
                 $('body').append(content);
                 var target = $('#' + modalId);
                 //target.find('.modal-body iframe').load(options.url);
-                target.find('.modal-body iframe').attr("src", options.url);
+                if (options.url == '') {
+                    if ($("#" + options.targetId).length > 0) {
+                        target.find('.modal-body').append($("#" + options.targetId).removeClass("hide"));
+                    }
+                } else {
+                    target.find('.modal-body iframe').attr("src", options.url);
+                }                
                 if (options.onReady())
                     options.onReady.call(target);
                 target.modal();
@@ -145,6 +156,7 @@
                         options.onReady.call(target, e);
                 });
                 target.on('hide.bs.modal', function (e) {
+                    $("body").append($("#" + options.targetId).addClass("hide"));
                     $('body').find(target).remove();
                 });
             }

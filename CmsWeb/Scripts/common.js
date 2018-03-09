@@ -112,90 +112,6 @@ $(function () {
 });
 
 /**
- * 获取检索列表参数
- * @param {datatables默认参数} data 
- * @returns {} 
- */
-function getSearchParams(data) {
-    var param = {};
-    param.limit = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
-    param.start = data.start;//开始的记录序号
-    param.page = (data.start / data.length) + 1;//当前页码
-    param.orderColunm = data.columns[parseInt(data.order[0].column)].data;//排序列名
-    param.orderDir = data.order[0].dir;//排序方式DESC、ASC
-    var $formObj = $("#searchPanel .form-control");
-    $formObj.each(function (index, inputObj) {
-        if ($(this).attr("SearchAttr") && $(this).val() != "") {
-            switch ($(this)[0].tagName.toUpperCase()) {//表单元素类型
-                case "INPUT":
-                    param[$(inputObj).attr("SearchAttr")] = $(this).val();
-                    break;
-                case "SELECT":
-                    param[$(inputObj).attr("SearchAttr")] = $(this).val();
-                    break;
-                default:
-                    break;
-            }
-        }
-    });
-    return param;
-};
-
-/**
- * 清除检索条件
- * @returns {} 
- */
-function clearSearchForm() {
-    var $formObj = $("#searchPanel .form-control");
-    $formObj.each(function (index, inputObj) {
-        if ($(this).attr("SearchAttr") && $(this).val() != "") {
-            switch ($(this)[0].tagName.toUpperCase()) {//表单元素类型
-                case "INPUT":
-                    $(this).val("");
-                    break;
-                case "SELECT":
-                    $(this).val("");
-                    break;
-                default:
-                    break;
-            }
-        }
-    });
-}
-
-/**
- * 设置datatables分页默认参数
- * @param {默认参数} result,{}data 
- * @returns {} 
- */
-function setDataTablesPagerParas(result, data) {
-    var returnData = {};
-    returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
-    returnData.recordsTotal = result.total;//返回数据全部记录
-    returnData.recordsFiltered = result.total;//后台不实现过滤功能，每次查询均视作全部结果
-    returnData.data = result.data;//返回的数据列表
-    return returnData;
-};
-
-
-/**
- * 获取datatables选中行的ID
- */
-function getSelectedRowIds() {;
-    var ids = "";
-    $("input[name='tbCheckbox']").each(function () {
-        if ($(this).is(":checked")) {
-            if (ids == "") {
-                ids += $(this).attr("id");
-            } else {
-                ids += "," + $(this).attr("id");
-            }
-        }
-    });
-    return ids;
-}
-
-/**
  * 关闭模态窗口
  * @returns {} 
  */
@@ -243,18 +159,6 @@ function getUrlParams(name) {
 };
 
 /**
- * 获取列表的初始高度
- * @returns {列表的初始高度} 
- */
-function getTableHeight() {
-    if ($("#searchPanel:visible").length > 0) {
-        return window.innerHeight - $("#searchPanel").height() - 249;
-    } else {
-        return window.innerHeight - 232;
-    }
-}
-
-/**
  * ajax 全局设置
  * @returns {} 
  */
@@ -291,31 +195,42 @@ function showLoading(bool, text) {
 }
 
 /**
- * 打开Tab
- * @param {} tabId 
- * @param {} tabName 
- * @param {} url 
+ * Ajax请求成功处理
+ * @param {} func 
  * @returns {} 
  */
-function openTab(tabId, tabName, url) {
-    //是否已经打开Tab
-    var isOpen = false;
-    $("#myTab a[role='tab']").each(function () {
-        if ($(this).attr("href") == ("#" + tabId)) {
-            isOpen = true;
+function ajaxSuccessDone(ajaxResult, successFun, failFun) {
+    if (ajaxResult.result == 1) { //请求成功
+        if (typeof successFun === "function") {
+            successFun();
         }
-    });
-    if (!isOpen) {//不存在已经打开的Tab
-        $("#myTab").append('<li role="presentation" class=""><a href="#' +
-            tabId + '" role="tab" data-toggle="tab" aria-controls="' +
-            tabId + '" >' + tabName + '</a></li>');
-        //'<iframe  role="tabpanel" class="tab-pane" width="100%" height="100%" src="' + url + '" frameborder="0" id="' + tabId + '" seamless></iframe>';
-        //$("#myTabContent").append('<div role="tabpanel" class="tab-pane" id="' + tabId + '"></div>');
-        $("#myTabContent").append('<iframe role="tabpanel" class="tab-pane" width="100%" height="500px" src="' + url + '" frameborder="0" id="' + tabId + '" seamless></iframe>');
-        $("#" + tabId).load(function () {
-            var mainheight = $(this).contents().find("body").height() + 30;
-            $(this).height(mainheight);
+    } else if (ajaxResult.result == 2) { //请求失败
+        if (typeof failFun === "function") {
+            failFun();
+        } else {
+            toastr.error(ajaxResult.message);
+        }
+    } else if (ajaxResult.result == 3) {//登录超时
+        top.bootAlert.alert(ajaxResult.message).on(function () {
+            location.href = "/Login.aspx";
         });
+    } else { //其他异常情况
+        top.toastr.error(ajaxResult.message);
     }
-    $("#myTab a[href='#" + tabId + "]'").tab("show");
-};
+}
+
+/**
+ * 获取UUID
+ */
+function uuid() {
+    var s = [];
+    var hexDigits = "0123456789abcdef";
+    for (var i = 0; i < 36; i++) {
+        s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+    }
+    s[14] = "4";  
+    s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  
+    s[8] = s[13] = s[18] = s[23] = "-";
+    var uuid = s.join("");
+    return uuid;
+}

@@ -44,11 +44,23 @@ namespace CmsWeb
         /// </summary>
         private void InitData()
         {
-            TB_AdType entity = new AdTypeBal().SelectSingleById(u => u.ID.Equals(Id));
-            txtAdTypeName.Text = entity.AdTypeName.ToString();
-            txtAdTypeDescription.Text = entity.AdTypeDescription.ToString();
-            txtAdTypeComment.Text = entity.AdTypeComment.ToString();
-            cbIsUsing.Checked = entity.IsUsing == Constants.IS_YES;
+            TB_AdType  entity = new AdTypeBal().SelectSingleById(u => u.ID.Equals(Id));
+                        if(entity.AdTypeName != null )
+            {
+                txtAdTypeName.Text = entity.AdTypeName.ToString();
+            }
+            if(entity.AdTypeDescription != null )
+            {
+                txtAdTypeDescription.Text = entity.AdTypeDescription.ToString();
+            }
+            if(entity.AdTypeComment != null )
+            {
+                txtAdTypeComment.Text = entity.AdTypeComment.ToString();
+            }
+            if(entity.IsUsing != null )
+            {
+                cbIsUsing.Checked = entity.IsUsing  == Constants.IS_YES;
+            }
 
         }
 
@@ -57,13 +69,12 @@ namespace CmsWeb
         /// </summary>
         private void BindData()
         {
-            //ControlUtil.BindDropDownList(this.ddlStatus, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERSTATUS), true);
-            //ControlUtil.BindDropDownList(this.ddlType, new DictionaryBal().GetDictionaryList(Constants.DIC_TYPE_USERTYPE), true);
+            //ControlUtil.BindListControl(this.ddlAdTypeID, new AdTypeBal().SelectList(a => a.IsDeleted != Constants.IS_NO && a.IsUsing == Constants.IS_YES).ToList(), "AdTypeName", "ID", true);
         }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            TB_AdType entity;
+            TB_AdType  entity;
             if (Id != 0)
             {
                 entity = new AdTypeBal().SelectSingleById(u => u.ID.Equals(Id));
@@ -72,10 +83,10 @@ namespace CmsWeb
             {
                 entity = new TB_AdType();
             }
-            entity.AdTypeName = txtAdTypeName.Text;
-            entity.AdTypeDescription = txtAdTypeDescription.Text;
-            entity.AdTypeComment = txtAdTypeComment.Text;
-            entity.IsUsing = !cbIsUsing.Checked ? Constants.IS_NO : Constants.IS_YES;
+                        entity.AdTypeName = txtAdTypeName.Text.Trim();
+            entity.AdTypeDescription = txtAdTypeDescription.Text.Trim();
+            entity.AdTypeComment = txtAdTypeComment.Text.Trim();
+            entity.IsUsing = cbIsUsing.Checked ? Constants.IS_YES : Constants.IS_NO;
 
             if (Id != 0)
             {
@@ -88,6 +99,6 @@ namespace CmsWeb
 
             Response.Redirect("~/ContentManage/AdTypeList.aspx");
         }
-
+        
     }
 }

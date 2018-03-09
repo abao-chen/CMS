@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/06/23
+// 制作日期：2018/03/09
 // 文件说明：系统参数列表页面
 // 
 // 
@@ -46,6 +46,7 @@ namespace CmsWeb
         /// <param name="e"></param>
         protected void btnExport_OnClick(object sender, EventArgs e)
         {
+
             AjaxModel searchModel = new AjaxModel();
             string sql = @"SELECT
 					            *
@@ -58,11 +59,6 @@ namespace CmsWeb
             string fileName = "SysParamsList_" + DateTime.Now.ToString("yyyyMMdd") + ".xls";
             ExcelUtil.WriteExcel(dt, filePath, fileName);
             FileDownHelper.DownLoadFile(filePath + "/" + fileName, fileName);
-            //Response.WriteFile(filePath + "/" + fileName);
-            //Response.ContentType = "application/x-xls";
-            //Response.Charset = "UTF-8";
-            //Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
-            //Response.End();
         }
     }
 }

@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.SysManage {
+namespace CmsWeb {
     
     
     public partial class SysParamsInfo {

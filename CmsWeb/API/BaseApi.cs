@@ -15,7 +15,7 @@ namespace CmsWeb.API
 {
     public abstract class BaseApi : Page, IRequiresSessionState
     {
-        private List<string> KeysWordList => new List<string>(new[] { "length", "limit", "start", "page", "orderColunm", "orderDir" });
+        private List<string> KeysWordList => new List<string>(new[] { "length", "limit", "start", "page", "orderColunm", "orderDir", "keywords", "searchColunms" });
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +29,7 @@ namespace CmsWeb.API
                 MethodInfo methodInfo = classType.GetMethod(method);
                 object methodObj = Activator.CreateInstance(classType);
                 object result = methodInfo.Invoke(methodObj, null);
-                Response.Write(JsonConvert.SerializeObject(result));
+                Response.Write(result.ToJson());
                 Response.End();
             }
         }
@@ -46,11 +46,20 @@ namespace CmsWeb.API
             paramsModel.Start = formParams["start"] == null ? 0 : long.Parse(formParams["start"]);
             paramsModel.Limit = formParams["limit"] == null ? 0 : long.Parse(formParams["limit"]);
             paramsModel.Page = formParams["page"] == null ? 0 : long.Parse(formParams["page"]);
+            if (!string.IsNullOrEmpty(formParams["searchColunms"]) && !string.IsNullOrEmpty(formParams["keywords"]))
+            {
+                List<string> searchColunms = formParams["searchColunms"].Split('|').ToList();
+                for (int i = 0; i < searchColunms.Count(); i++)
+                {
+                    string col = searchColunms[i];
+                    paramsModel.OrParamsDic.Add(col+"|LIKE|"+col+"_like", formParams["keywords"].Trim());
+                }
+            }
             foreach (string key in formParams.AllKeys)
             {
                 if (!KeysWordList.Any(k => k.Equals(key)) && !string.IsNullOrEmpty(formParams[key].Trim()))
                 {
-                    paramsModel.ParamsDic.Add(key, formParams[key].Trim());
+                    paramsModel.AndParamsDic.Add(key, formParams[key].Trim());
                 }
             }
             return paramsModel;
@@ -64,11 +73,10 @@ namespace CmsWeb.API
                 AjaxResultModel resultModel = new AjaxResultModel();
                 resultModel.result = 3;
                 resultModel.message = "登录已超时，请重新登录！";
-                Response.Write(JsonConvert.SerializeObject(resultModel));
+                Response.Write(resultModel.ToJson());
                 Response.End();
             }
         }
-
 
         /// <summary>
         /// 获取验证的参数
@@ -77,18 +85,23 @@ namespace CmsWeb.API
         /// <param name="postParams"></param>
         protected static void GetValidateParams(AjaxModel searchModel, Dictionary<string, string> postParams)
         {
-            foreach (string key in searchModel.ParamsDic.Keys)
+            foreach (string key in searchModel.AndParamsDic.Keys)
             {
                 string[] keys = key.Split(new string[] { "$" }, StringSplitOptions.None);
                 if (keys.Length == 3)
                 {
-                    postParams.Add(keys[2].Replace("txt", string.Empty), searchModel.ParamsDic[key]);
+                    postParams.Add(keys[2].Replace("txt", string.Empty), searchModel.AndParamsDic[key]);
                 }
                 else
                 {
-                    postParams.Add(key, searchModel.ParamsDic[key]);
+                    postParams.Add(key, searchModel.AndParamsDic[key]);
                 }
             }
         }
+
+        public abstract AjaxResultModel GetPagerList();
+        public abstract AjaxResultModel Download();
+        public abstract AjaxResultModel DeleteByIds();
+
     }
 }

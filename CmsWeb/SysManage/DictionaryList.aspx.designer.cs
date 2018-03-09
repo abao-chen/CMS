@@ -13,12 +13,39 @@ namespace CmsWeb {
     public partial class DictionaryList {
         
         /// <summary>
-        /// txtDicTypeCode 控件。
+        /// ddlDicTypeCode 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDicTypeCode;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDicTypeCode;
+        
+        /// <summary>
+        /// txtDicName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDicName;
+        
+        /// <summary>
+        /// txtDicCode 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDicCode;
+        
+        /// <summary>
+        /// cbxIsUsing 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxIsUsing;
     }
 }

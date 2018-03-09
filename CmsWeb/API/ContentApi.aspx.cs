@@ -14,8 +14,17 @@ namespace CmsWeb.API
 {
     public partial class ContentApi : BaseApi
     {
+        public override AjaxResultModel DeleteByIds()
+        {
+            throw new NotImplementedException();
+        }
 
-        public AjaxResultModel GetContentPageList()
+        public override AjaxResultModel Download()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override AjaxResultModel GetPagerList()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
@@ -24,6 +33,5 @@ namespace CmsWeb.API
             bcBal.GetPagerList(resultModel, searchModel, sql);
             return resultModel;
         }
-        
     }
 }

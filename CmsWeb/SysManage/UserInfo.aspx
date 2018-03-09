@@ -47,20 +47,14 @@
                                 <asp:Label ID="lbLastLoginTime" runat="server" Text="" CssClass="form-control"></asp:Label>
                             </div>
                         </div>
-                        <%--<div class="col-lg-12">
-                            <div class="form-group">
-                                <label>用户角色：</label>
-                                <asp:CheckBoxList ID="cblRole" runat="server" CssClass="checkbox-inline"></asp:CheckBoxList>
-                            </div>
-                        </div>--%>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>用户角色：</label>
-                                <Cms:CheckBoxListExt runat="server" ID="cblRole" IsInline="True" Name="cblRole" ></Cms:CheckBoxListExt>
+                                <Cms:CheckBoxListExt runat="server" ID="cblRole" IsInline="True" Name="cblRole"></Cms:CheckBoxListExt>
                             </div>
                         </div>
                         <div class="col-lg-12" style="text-align: center;">
-                            <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnSave_OnClick"/>
+                            <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnSave_OnClick" />
                             <a class="btn btn-default" href="/SysManage/UserList.aspx" style="margin: 0 auto;">取消</a>
                         </div>
                     </div>
@@ -72,7 +66,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <script type="text/javascript">
         //表单验证
-        $(function() {
+        $(function () {
             $('#form').bootstrapValidator({
                 message: 'This value is not valid',
                 feedbackIcons: {
@@ -81,12 +75,12 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    <%= txtName.UniqueID %>: {
-                        validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    <%= txtUserAccount.UniqueID %>: {
+                    "<%= txtName.UniqueID %>": { validators: { notEmpty: {} } },
+                    "<%= ddlStatus.UniqueID %>": { validators: { notEmpty: {} } },
+                    "<%= ddlType.UniqueID %>": { validators: { notEmpty: {} } },
+                    "<%= txtPassword.UniqueID %>": { validators: { notEmpty: {} } },
+                    "cblRole": { validators: { notEmpty: {} } },
+                    "<%= txtUserAccount.UniqueID %>": {
                         validators: {
                             notEmpty: {},
                             remote: {
@@ -96,26 +90,6 @@
                                 message: '用户账户已存在',
                                 delay: 1000
                             }
-                        }
-                    },
-                    <%= ddlStatus.UniqueID %>: {
-                        validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    <%= ddlType.UniqueID %>: {
-                        validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    <%= txtPassword.UniqueID %>: {
-                        validators: {
-                            notEmpty: {}
-                        }
-                    },
-                    cblRole: {
-                        validators: {
-                            notEmpty: {}
                         }
                     }
                 }

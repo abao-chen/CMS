@@ -23,21 +23,21 @@ namespace CmsWeb.API
 {
     public partial class RoleApi : BaseApi
     {
-        public AjaxResultModel GetPagerList()
+        public override AjaxResultModel GetPagerList()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
             string sql = @"SELECT
-					            *
-				            FROM
-					            TB_Role 
-				            WHERE
-					            isdeleted = 0 ";
+	                            r.ID,r.RoleName,r.UpdateTime, CASE r.IsUsing WHEN 1 THEN '启用' ELSE '不启用' END AS IsUsing
+                            FROM
+	                            TB_Role r
+                            WHERE
+	                            r.isdeleted = 0 ";
             new RoleBal().GetPagerList(resultModel, searchModel, sql);
             return resultModel;
         }
 
-        public AjaxResultModel DeleteByIds()
+        public override AjaxResultModel DeleteByIds()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
@@ -67,6 +67,11 @@ namespace CmsWeb.API
             list.Insert(0, rootNode);
             resultModel.data = list;
             return resultModel;
+        }
+
+        public override AjaxResultModel Download()
+        {
+            throw new NotImplementedException();
         }
     }
 }

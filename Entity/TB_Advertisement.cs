@@ -1,7 +1,7 @@
 ﻿//------------------------------------------------------------------------------
 // 
 // 制作人：ChenSheng  
-// 制作日期：2017/12/22
+// 制作日期：2018/03/09
 // 文件说明：广告实体类
 // 
 // 
@@ -31,7 +31,7 @@ namespace CmsEntity
         /// <summary>
         /// 广告图片
         /// </summary>
-        public string AdDescription { get; set; }
+        public string AdImage { get; set; }
         /// <summary>
         /// 广告链接
         /// </summary>

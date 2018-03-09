@@ -48,7 +48,7 @@ namespace CmsBAL
             using (var ctx = new CmsEntities())
             {
                 BasicUserDal dal = new BasicUserDal(ctx);
-                string[] ids = searchModel.ParamsDic["Id"].Split(new string[] { "," }, StringSplitOptions.None);
+                string[] ids = searchModel.AndParamsDic["Id"].Split(new string[] { "," }, StringSplitOptions.None);
                 int userId = 0;
                 foreach (string id in ids)
                 {

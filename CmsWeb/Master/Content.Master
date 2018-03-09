@@ -60,10 +60,6 @@
     <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.js"></script>
     <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>
 
-    <!-- datetimepicker -->
-    <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript" src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
-
     <!-- bootstrapValidator -->
     <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/language/zh_CN.js"></script>

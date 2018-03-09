@@ -22,26 +22,33 @@ namespace CmsWeb.API
 {
     public partial class AdvertisementApi : BaseApi
     {
-        public AjaxResultModel GetPagerList()
+        public override AjaxResultModel GetPagerList()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
             string sql = @"SELECT
-					            *
+					          a.ID,a.AdTypeID,a.AdName,a.AdImage,a.AdUrl,a.ValidStartTime,a.ValidEndTime,Case a.IsUsing WHEN 1 THEN '启用' ELSE '不启用' END IsUsing,`at`.AdTypeName
 				            FROM
-					            TB_Advertisement 
+					            TB_Advertisement a
+										left JOIN TB_AdType at 
+										on `at`.IsDeleted=0 AND `at`.ID=a.AdTypeID
 				            WHERE
-					            isdeleted = 0 ";
+					            a.isdeleted = 0  ";
             new AdvertisementBal().GetPagerList(resultModel, searchModel, sql);
             return resultModel;
         }
 
-        public AjaxResultModel DeleteByIds()
+        public override AjaxResultModel DeleteByIds()
         {
             AjaxResultModel resultModel = new AjaxResultModel();
             AjaxModel searchModel = GetPostParams();
             new AdvertisementBal().DeleteByIds(resultModel, searchModel);
             return resultModel;
+        }
+
+        public override AjaxResultModel Download()
+        {
+            throw new NotImplementedException();
         }
     }
 }

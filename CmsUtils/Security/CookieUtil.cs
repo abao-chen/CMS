@@ -41,6 +41,7 @@ namespace CmsUtils
             var cookie = new HttpCookie(cookieKey)
             {
                 Value = cookieValue,
+                Path = "/",
                 Expires = expires
             };
             HttpContext.Current.Response.Cookies.Add(cookie);

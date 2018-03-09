@@ -31,7 +31,7 @@ namespace CmsBAL
         using (var ctx = new CmsEntities())
         {
             SysParamsDal dal = new SysParamsDal(ctx);
-            string[] ids = searchModel.ParamsDic["Id"].Split(new string[] { "," }, StringSplitOptions.None);
+            string[] ids = searchModel.AndParamsDic["Id"].Split(new string[] { "," }, StringSplitOptions.None);
             int id = 0;
             foreach (string i in ids)
             {

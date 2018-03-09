@@ -5,42 +5,29 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
         <div class="col-lg-12">
-            <div id="searchPanel" class="panel panel-default">
-                <div class="panel-heading">
-                    查询条件
-                    <div class="pull-right">
-                        <a data-toggle="collapse" data-parent="#searchPanel" href="#searchBody">
-                            <span class="glyphicon glyphicon-menu-up"></span>
-                        </a>
-                    </div>
-                </div>
-                <div id="searchBody" class="panel-body collapse in">
+            <div id="searchPanel" class="panel panel-default hide">
+                <div id="searchBody" class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtTypeName" searchattr="TypeName|LIKE|TypeName" CssClass="form-control" placeholder="类型名称"></asp:TextBox>
+                            <div class="col-lg-6 form-group">
+                                <label>类型名称</label>
+                                <asp:TextBox runat="server" ID="txtTypeName" searchattr="TypeName|=|TypeName" CssClass="form-control" placeholder="类型名称"></asp:TextBox>
                             </div>
-                            <div class="col-lg-4 form-group">
-                                <asp:TextBox runat="server" ID="txtTypeAlias" searchattr="TypeAlias|LIKE|TypeAlias" CssClass="form-control" placeholder="类型别名"></asp:TextBox>
+                            <div class="col-lg-6 form-group">
+                                <label>类型别名</label>
+                                <asp:TextBox runat="server" ID="txtTypeAlias" searchattr="TypeAlias|=|TypeAlias" CssClass="form-control" placeholder="类型别名"></asp:TextBox>
                             </div>
 
-                            <div class="col-lg-4 form-group pull-right">
-                                <div class="pull-right">
-                                    <input type="button" id="btnSearch" class="btn btn-default" value="查询" />
-                                    <input type="button" id="btnClear" class="btn btn-default" value="重置" />
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="panel-footer navbar-fixed-bottom">
+                    <div class="row" style="text-align: center;">
+                        <input type="button" id="btnSearch" class="btn btn-default" style="margin: 0 auto;" value="查询" />
+                        <input type="button" id="btnClear" class="btn btn-default" style="margin: 0 auto;" value="重置" />
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row" style="padding-bottom: 5px;">
-        <div class="col-lg-12">
-            <a id="btnAdd" class="btn btn-info" href="/ContentManage/ContentTypeInfo.aspx"><span class="glyphicon glyphicon-plus"></span>新增</a>
-            <a id="btnDelete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>删除</a>
-            <a runat="server" class="btn btn-primary" onserverclick="btnExport_OnClick" href="javascript:void(0);"><span class="glyphicon glyphicon-export"></span>导出</a>
         </div>
     </div>
     <!-- /.row -->
@@ -73,53 +60,21 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <script type="text/javascript">
-        var tableObj;
+        var curTable;
         //初始化表格
         $(function () {
-            tableObj = $('#dataTables').DataTable({
-                "serverSide": true,
-                "searching": false,
-                "ordering": true,
-                "orderMulti": false,
-                "select": true,
-                "scrollX": true,
-                "bLengthChange": false,   //去掉每页显示多少条数据方法
-                "aLengthMenu": [50, 100, 200],
-                "scrollY": getTableHeight(),
-				"scrollCollapse":false,
-                "renderer": "bootstrap",
-                "pagingType": "full_numbers",
-                "rowId": "ID",
-                "order": [0, "desc"],
-                "ajax": function (data, callback) {
-                    var param = getSearchParams(data);
-                    param["method"] = "GetPagerList";
-                    //ajax请求数据
-                    $.ajax({
-                        type: "POST",
-                        url: "/API/ContentTypeApi.aspx",
-                        cache: false,  //禁用缓存
-                        data: param,  //传入组装的参数
-                        dataType: "json",
-                        success: function (result) {
-                            if (result.result == 1) {//请求成功
-                                callback(setDataTablesPagerParas(result, data));
-                            } else if (result.result == 2) {//请求失败
-                                toastr.error(result.message);
-                            } else if (result.result == 3) {//登录超时
-                                bootAlert.alert(result.message).on(function () {
-                                    location.href = "/Login.aspx";
-                                });
-                            } else {//其他异常情况
-                                toastr.error(result.message);
-                            }
-                        }
-                    });
-                },
+            var options = {
+                "url": "/API/ContentTypeApi.aspx",
+                "editUrl": "/ContentManage/ContentTypeInfo.aspx",
+                "isExport": false,
+                "isComplexSearch":false,
+                "aLengthMenu":<%= CmsUtils.Configs.GetValue("LengthMenu")%>,
+                "searchColunms": "TypeName|TypeAlias",
                 "columns": [
                     {
                         "data": "ID",
-                        "width": "4%",
+                        "width": "20px",
+                        "class": "center",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
                             var result = "<input id=\"" + data + "\" name=\"tbCheckbox\" type=\"checkbox\" title=\"全选/取消\" />";
@@ -128,95 +83,26 @@
                     },
                     {
                         "data": "ID",
-                        "width": "8%",
+                        "width": "40px",
+                        "class": "center",
                         "orderable": false,
                         "render": function (data, type, row, meta) {
-                            var result = "<a href=\"/ContentManage/ContentTypeInfo.aspx?Id=" + data + "\" style='margin-left:10px;'><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:deleteRows('" + data + "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
+                            var result = "<a href=\"javascript:curTable.edit(" + row.ID +
+                                ")\"><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:curTable.delSingleRow(curTable.settings.delMethod,'" +
+                                row.ID +
+                                "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
                     },
                     { "data": "TypeName" },
                     { "data": "TypeAlias" },
-                    {
-                        "data": "IsUse",
-                        "orderable": false,
-                        "render": function (data, type, row, meta) {
-                            if (data == 1) {
-                                return "是";
-                            } else {
-                                return "否";
-                            }
-                        }
-                    },
-                    {
-                        "data": "UpdateTime",
-                        "render": function (data, type, row, meta) {
-                            return (new Date(data)).Format("yyyy/MM/dd hh:mm:ss");
-                        }
-                    }
+                    { "data": "IsUse" },
+                    { "data": "UpdateTime" },
+
                 ]
-            });
+            };
+            curTable = tableUtils.initTable(options);
         });
-
-        $(function () {
-            //检索
-            $("#btnSearch").click(function () {
-                reloadData();
-            });
-            //清除检索条件
-            $("#btnClear").click(function () {
-                clearSearchForm();
-            });
-            //删除选中
-            $("#btnDelete").click(function () {
-                var ids = getSelectedRowIds();
-                if (ids != "") {
-                    deleteRows(ids);
-                } else {
-                    toastr.warning("请选择你要删除的数据！");
-                }
-            });
-        });
-
-        //重新加载数据
-        function reloadData() {
-            tableObj.ajax.reload(null
-                , false);
-        };
-
-        //删除行数据
-        function deleteRows(data) {
-            bootAlert.confirm({
-                message: "确认要删除选中数据吗？"
-            }).on(function (result) {
-                if (result) {
-                    var param = {};
-                    param["method"] = "DeleteByIds";
-                    param["Id"] = data;
-                    $.ajax({
-                        type: "POST",
-                        url: "/API/ContentTypeApi.aspx",
-                        cache: false, //禁用缓存
-                        data: param, //传入组装的参数
-                        dataType: "json",
-                        success: function (data) {
-                            if (data.result == 1) { //请求成功
-                                toastr.success("删除成功！");
-                                reloadData();
-                            } else if (data.result == 2) { //请求失败
-                                toastr.error(data.message);
-                            } else if (data.result == 3) { //登录超时
-                                bootAlert.alert(data.message).on(function () {
-                                    location.href = "/Login.aspx";
-                                });
-                            } else { //其他异常情况
-                                toastr.error(data.message);
-                            }
-                        }
-                    });
-                }
-            });
-        }
     </script>
 </asp:Content>
 

@@ -26,7 +26,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>是否启用：</label>
-                                <asp:CheckBox ID="cbxIsUse" runat="server" />
+                                <asp:CheckBox ID="cbxIsUse" runat="server" CssClass="form-control" />
                             </div>
                         </div>
 
@@ -52,14 +52,15 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    <%=txtTypeName.UniqueID%>: {
-                        validators: {
-                            notEmpty: {},
-                        }
-                    },
-
+                                        <%=txtTypeName.UniqueID%>: {
+                    validators: {
+                        notEmpty: {},
+                    }
+                },
                 }
             });
+
+            
         });
     </script>
 </asp:Content>

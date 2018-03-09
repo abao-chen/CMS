@@ -589,7 +589,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AdTypeID" Type="Int32" />
           <Property Name="AdName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="AdDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AdImage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="AdUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="ValidStartTime" Type="DateTime" />
           <Property Name="ValidEndTime" Type="DateTime" />
@@ -911,7 +911,7 @@
                 <ScalarProperty Name="ValidEndTime" ColumnName="ValidEndTime" />
                 <ScalarProperty Name="ValidStartTime" ColumnName="ValidStartTime" />
                 <ScalarProperty Name="AdUrl" ColumnName="AdUrl" />
-                <ScalarProperty Name="AdDescription" ColumnName="AdDescription" />
+                <ScalarProperty Name="AdImage" ColumnName="AdDescription" />
                 <ScalarProperty Name="AdName" ColumnName="AdName" />
                 <ScalarProperty Name="AdTypeID" ColumnName="AdTypeID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
