@@ -53,12 +53,9 @@
                                 <th>权限类型</th>
                                 <th>权限名称</th>
                                 <th>权限标识</th>
-                                <th>父级权限ID</th>
-                                <th>权限全路径</th>
                                 <th>是否为菜单</th>
                                 <th>页面URL</th>
                                 <th>更新时间</th>
-
                             </tr>
                         </thead>
                     </table>
@@ -76,12 +73,12 @@
         //初始化表格
         $(function () {
             var options = {
-                "url": "/API/AuthorityApi.aspx",
+                "url": "/API/SysManage/AuthorityApi.aspx",
                 "editUrl": "/SysManage/AuthorityInfo.aspx",
                 "isExport": false,
                 "isComplexSearch": false,
                 "aLengthMenu":<%= CmsUtils.Configs.GetValue("LengthMenu")%>,
-                "searchColunms": "AuthorName|AuthorFlag",
+                "searchColunms": "AuthorName|AuthorFlag|AuthorTypeName",
                 "columns": [
                     {
                         "data": "ID",
@@ -106,11 +103,9 @@
                             return result;
                         }
                     },
-                    { "data": "AuthorType" },
+                    { "data": "AuthorTypeName" },
                     { "data": "AuthorName" },
                     { "data": "AuthorFlag" },
-                    { "data": "ParentID" },
-                    { "data": "FullID" },
                     { "data": "IsMenu" },
                     { "data": "PageUrl" },
                     { "data": "UpdateTime" },

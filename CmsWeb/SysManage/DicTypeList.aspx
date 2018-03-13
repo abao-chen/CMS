@@ -67,7 +67,7 @@
         //初始化表格
         $(function () {
             var options = {
-                "url": "/API/DicTypeApi.aspx",
+                "url": "/API/SysManage/DicTypeApi.aspx",
                 "editUrl": "/SysManage/DicTypeInfo.aspx",
                 "aLengthMenu":<%= CmsUtils.Configs.GetValue("LengthMenu")%>,
                 "searchColunms": "DicTypeName",

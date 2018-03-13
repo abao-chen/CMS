@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "Mail";
+}
+<div class="banner_inner_content_agile_w3l">
+
+</div>
+<!--//banner -->
+<!-- /inner_content -->
+<div class="banner-bottom">
+    <div class="container">
+        <div class="inner_sec_info_agileits_w3">
+            <h2 class="heading-agileinfo">Mail Us<span>We offer extensive medical procedures to outbound and inbound patients.</span></h2>
+            <div class="contact-form">
+                <form method="post" asp-controller="Mail" asp-action="SubmitUserInfo" id="form">
+                    <div class="left_form">
+                        <div>
+                            <span><label>Name</label></span>
+                            <span><input name="UserName" type="text" class="textbox" required=""></span>
+                        </div>
+                        <div>
+                            <span><label>E-mail</label></span>
+                            <span><input name="UserEmail" type="text" class="textbox" required=""></span>
+                        </div>
+                        <div>
+                            <span><label>Fax</label></span>
+                            <span><input name="UserFax" type="text" class="textbox" required=""></span>
+                        </div>
+                    </div>
+                    <div class="right_form">
+                        <div>
+                            <span><label>Message</label></span>
+                            <span><textarea name="Message" required=""> </textarea></span>
+                        </div>
+                        <div>
+                            <span><input type="button" value="Submit" class="myButton"></span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{ 
+    <script type="text/javascript">
+        $(function () {
+            $("input.myButton").click(function () {
+                $.ajax({
+                    "method": "POST",
+                    "url": "/Mail/SubmitUserInfo",
+                    "data": $("#form").serialize(),
+                    "cache": false,
+                    "dataType": "json",
+                    "success": function (data) {
+                        console.log(data);
+                        if (data && parseInt(data.id)>0) {
+                            alert("提交成功");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

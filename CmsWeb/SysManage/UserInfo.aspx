@@ -85,7 +85,7 @@
                             notEmpty: {},
                             remote: {
                                 type: 'POST',
-                                url: '/API/UserApi.aspx',
+                                url: '/API/SysManage/UserApi.aspx',
                                 data: { "method": "ValidateUserAccount", "ID": getUrlParams("ID") },
                                 message: '用户账户已存在',
                                 delay: 1000

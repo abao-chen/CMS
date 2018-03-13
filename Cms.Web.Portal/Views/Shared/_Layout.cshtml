@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="@ViewData["KeyWords"]" />
+    <meta name="description" content="@ViewData["Description"]" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="/Plugins/bootstrap/dist/css/bootstrap.css" media="all" />
+    <link href="/Css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/Css/appointment_style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/Css/font-awesome.css" rel="stylesheet">
+
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+</head>
+<body>
+    <!-- header -->
+    <div class="header" id="home">
+        <div class="top_menu_w3layouts">
+            <div class="container">
+                <div class="header_left">
+                    <ul>
+                        <li><i class="fa fa-map-marker" aria-hidden="true"></i> 1143 New York, USA</li>
+                        <li><i class="fa fa-phone" aria-hidden="true"></i> +(010) 221 918 811</li>
+                        <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">info@example.com</a></li>
+                    </ul>
+                </div>
+                <div class="header_right">
+                    <ul class="forms_right">
+                        <li><a href="/Appointment"> Make an Appointment</a> </li>
+                    </ul>
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+
+        <div class="content white">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">
+                            <h1><span class="fa fa-stethoscope" aria-hidden="true"></span>New Clinic </h1>
+                        </a>
+                    </div>
+                    <!--/.navbar-header-->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <nav>
+                            <ul class="nav navbar-nav">
+                                <li><a href="/" data-url="/Home">Home</a></li>
+                                <li><a href="/About" data-url="/About">About</a></li>
+
+                                <li><a href="/Departments" data-url="/Departments">Departments</a></li>
+                                <li><a href="/Gallery" data-url="/Gallery">Gallery</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-url="/Codes|/Icons">Pages <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/Codes">Codes</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="/Icons">Icons</a></li>
+                                        <li class="divider"></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Mail" data-url="/Mail">Mail Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!--/.navbar-collapse-->
+                    <!--/.navbar-->
+                </div>
+            </nav>
+        </div>
+    </div>
+    @RenderBody()
+    <!-- footer -->
+    <div class="footer_top_agile_w3ls">
+        <div class="container">
+            <div class="col-md-3 footer_grid">
+                <h3>About Us</h3>
+                <p>
+                    Nam libero tempore cum vulputate id est id, pretium semper enim. Morbi viverra congue eros.
+
+                </p>
+
+            </div>
+            <div class="col-md-3 footer_grid">
+                <h3>Latest News</h3>
+                <ul class="footer_grid_list">
+                    <li>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <a href="#" data-toggle="modal" data-target="#myModal">Lorem ipsum neque vulputate </a>
+                    </li>
+                    <li>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <a href="#" data-toggle="modal" data-target="#myModal">Dolor amet sed quam vitae</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <a href="#" data-toggle="modal" data-target="#myModal">Lorem ipsum neque, vulputate </a>
+                    </li>
+                    <li>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <a href="#" data-toggle="modal" data-target="#myModal">Dolor amet sed quam vitae</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <a href="#" data-toggle="modal" data-target="#myModal">Lorem ipsum neque, vulputate </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer_grid">
+                <h3>Contact Info</h3>
+                <ul class="address">
+                    <li><i class="fa fa-map-marker" aria-hidden="true"></i>8088 USA, Honey block, <span>New York City.</span></li>
+                    <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
+                    <li><i class="fa fa-phone" aria-hidden="true"></i>+09187 8088 9436</li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer_grid ">
+                <h3>Sign up for our Newsletter</h3>
+                <p>Get Started For Free</p>
+                <div class="footer_grid_right">
+
+                    <form action="#" method="post">
+                        <input type="email" name="Email" placeholder="Email Address..." required="">
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+
+        </div>
+    </div>
+    <div class="footer_wthree_agile">
+        <p>Copyright &copy; 2018.Company name All rights reserved.</p>
+    </div>
+    <script src="~/Plugins/jquery/dist/jquery.js"></script>
+    <script src="~/Plugins/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/Scripts/lightbox-plus-jquery.min.js"></script>
+    <script>
+        $(function () {
+            var localUrl = window.location.pathname;
+            if (localUrl != "/") {
+                if ($("a[data-url*='" + localUrl + "']").length > 0) {
+                    $("a[data-url*='" + localUrl + "']").parents(".navbar-nav").find("a").removeClass("active");
+                    $("a[data-url*='" + localUrl + "']").addClass("active");
+                } else {
+                    $("a[href='/Home']").addClass("active");
+                }
+            } else {
+                $("a[data-url='/Home']").addClass("active");
+            }            
+        });
+
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

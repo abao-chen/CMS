@@ -64,7 +64,7 @@
         //初始化表格
         $(function () {
             var options = {
-                "url": "/API/ContentTypeApi.aspx",
+                "url": "/API/ContentManage/ContentTypeApi.aspx",
                 "editUrl": "/ContentManage/ContentTypeInfo.aspx",
                 "isExport": false,
                 "isComplexSearch":false,

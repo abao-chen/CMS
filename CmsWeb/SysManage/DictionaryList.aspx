@@ -73,7 +73,7 @@
         //初始化表格
         $(function () {
             var options = {
-                "url": "/API/DictionaryApi.aspx",
+                "url": "/API/SysManage/DictionaryApi.aspx",
                 "editUrl": "/SysManage/DictionaryInfo.aspx",
                 "isExport": false,
                 "aLengthMenu":<%= CmsUtils.Configs.GetValue("LengthMenu")%>,

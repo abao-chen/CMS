@@ -111,25 +111,25 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="API\AdTypeApi.aspx" />
-    <Content Include="API\AdvertisementApi.aspx" />
-    <Content Include="API\AuthorityApi.aspx" />
-    <Content Include="API\BasicContentApi.aspx" />
+    <Content Include="API\ContentManage\AdTypeApi.aspx" />
+    <Content Include="API\ContentManage\AdvertisementApi.aspx" />
+    <Content Include="API\SysManage\AuthorityApi.aspx" />
+    <Content Include="API\ContentManage\BasicContentApi.aspx" />
     <Content Include="API\ContentApi.aspx" />
-    <Content Include="API\ContentTypeApi.aspx" />
-    <Content Include="API\DictionaryApi.aspx" />
-    <Content Include="API\DicTypeApi.aspx" />
-    <Content Include="API\OrganizationApi.aspx" />
-    <Content Include="API\PositionApi.aspx" />
-    <Content Include="API\PositionCityApi.aspx" />
-    <Content Include="API\PositionCountyApi.aspx" />
-    <Content Include="API\PositionProviceApi.aspx" />
-    <Content Include="API\PositionTownApi.aspx" />
-    <Content Include="API\PositionVillageApi.aspx" />
-    <Content Include="API\RoleApi.aspx" />
-    <Content Include="API\SysParamsApi.aspx" />
+    <Content Include="API\ContentManage\ContentTypeApi.aspx" />
+    <Content Include="API\SysManage\DictionaryApi.aspx" />
+    <Content Include="API\SysManage\DicTypeApi.aspx" />
+    <Content Include="API\SysManage\OrganizationApi.aspx" />
+    <Content Include="API\SysManage\PositionApi.aspx" />
+    <Content Include="API\SysManage\PositionCityApi.aspx" />
+    <Content Include="API\SysManage\PositionCountyApi.aspx" />
+    <Content Include="API\SysManage\PositionProviceApi.aspx" />
+    <Content Include="API\SysManage\PositionTownApi.aspx" />
+    <Content Include="API\SysManage\PositionVillageApi.aspx" />
+    <Content Include="API\SysManage\RoleApi.aspx" />
+    <Content Include="API\SysManage\SysParamsApi.aspx" />
     <Content Include="API\UploadApi.aspx" />
-    <Content Include="API\UserApi.aspx" />
+    <Content Include="API\SysManage\UserApi.aspx" />
     <Content Include="ControlExt\UploadExt.ascx" />
     <Content Include="Css\Image\file_ico.png" />
     <Content Include="Css\Image\upload-img.png" />
@@ -524,7 +524,7 @@
     <Content Include="ueditorconfig.json" />
     <Content Include="API\UEditorApi.ashx" />
     <Content Include="Config\DataBaseConfig.config" />
-    <Content Include="API\ValidateCodeApi.aspx" />
+    <Content Include="API\SysManage\ValidateCodeApi.aspx" />
     <Content Include="Config\log4net.config" />
     <Content Include="Config\SystemConfig.config" />
     <Content Include="ContentManage\AdTypeInfo.aspx" />
@@ -929,35 +929,35 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\AdTypeApi.aspx.cs">
+    <Compile Include="API\ContentManage\AdTypeApi.aspx.cs">
       <DependentUpon>AdTypeApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\AdTypeApi.aspx.designer.cs">
+    <Compile Include="API\ContentManage\AdTypeApi.aspx.designer.cs">
       <DependentUpon>AdTypeApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\AdvertisementApi.aspx.cs">
+    <Compile Include="API\ContentManage\AdvertisementApi.aspx.cs">
       <DependentUpon>AdvertisementApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\AdvertisementApi.aspx.designer.cs">
+    <Compile Include="API\ContentManage\AdvertisementApi.aspx.designer.cs">
       <DependentUpon>AdvertisementApi.aspx</DependentUpon>
     </Compile>
     <Compile Include="API\BaseApi.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\AuthorityApi.aspx.cs">
+    <Compile Include="API\SysManage\AuthorityApi.aspx.cs">
       <DependentUpon>AuthorityApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\AuthorityApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\AuthorityApi.aspx.designer.cs">
       <DependentUpon>AuthorityApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\BasicContentApi.aspx.cs">
+    <Compile Include="API\ContentManage\BasicContentApi.aspx.cs">
       <DependentUpon>BasicContentApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\BasicContentApi.aspx.designer.cs">
+    <Compile Include="API\ContentManage\BasicContentApi.aspx.designer.cs">
       <DependentUpon>BasicContentApi.aspx</DependentUpon>
     </Compile>
     <Compile Include="API\ContentApi.aspx.cs">
@@ -967,88 +967,88 @@
     <Compile Include="API\ContentApi.aspx.designer.cs">
       <DependentUpon>ContentApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\ContentTypeApi.aspx.cs">
+    <Compile Include="API\ContentManage\ContentTypeApi.aspx.cs">
       <DependentUpon>ContentTypeApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\ContentTypeApi.aspx.designer.cs">
+    <Compile Include="API\ContentManage\ContentTypeApi.aspx.designer.cs">
       <DependentUpon>ContentTypeApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\DictionaryApi.aspx.cs">
+    <Compile Include="API\SysManage\DictionaryApi.aspx.cs">
       <DependentUpon>DictionaryApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\DictionaryApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\DictionaryApi.aspx.designer.cs">
       <DependentUpon>DictionaryApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\DicTypeApi.aspx.cs">
+    <Compile Include="API\SysManage\DicTypeApi.aspx.cs">
       <DependentUpon>DicTypeApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\DicTypeApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\DicTypeApi.aspx.designer.cs">
       <DependentUpon>DicTypeApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\OrganizationApi.aspx.cs">
+    <Compile Include="API\SysManage\OrganizationApi.aspx.cs">
       <DependentUpon>OrganizationApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\OrganizationApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\OrganizationApi.aspx.designer.cs">
       <DependentUpon>OrganizationApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\PositionApi.aspx.cs">
+    <Compile Include="API\SysManage\PositionApi.aspx.cs">
       <DependentUpon>PositionApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\PositionApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\PositionApi.aspx.designer.cs">
       <DependentUpon>PositionApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\PositionCityApi.aspx.cs">
+    <Compile Include="API\SysManage\PositionCityApi.aspx.cs">
       <DependentUpon>PositionCityApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\PositionCityApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\PositionCityApi.aspx.designer.cs">
       <DependentUpon>PositionCityApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\PositionCountyApi.aspx.cs">
+    <Compile Include="API\SysManage\PositionCountyApi.aspx.cs">
       <DependentUpon>PositionCountyApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\PositionCountyApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\PositionCountyApi.aspx.designer.cs">
       <DependentUpon>PositionCountyApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\PositionProviceApi.aspx.cs">
+    <Compile Include="API\SysManage\PositionProviceApi.aspx.cs">
       <DependentUpon>PositionProviceApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\PositionProviceApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\PositionProviceApi.aspx.designer.cs">
       <DependentUpon>PositionProviceApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\PositionTownApi.aspx.cs">
+    <Compile Include="API\SysManage\PositionTownApi.aspx.cs">
       <DependentUpon>PositionTownApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\PositionTownApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\PositionTownApi.aspx.designer.cs">
       <DependentUpon>PositionTownApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\PositionVillageApi.aspx.cs">
+    <Compile Include="API\SysManage\PositionVillageApi.aspx.cs">
       <DependentUpon>PositionVillageApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\PositionVillageApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\PositionVillageApi.aspx.designer.cs">
       <DependentUpon>PositionVillageApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\RoleApi.aspx.cs">
+    <Compile Include="API\SysManage\RoleApi.aspx.cs">
       <DependentUpon>RoleApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\RoleApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\RoleApi.aspx.designer.cs">
       <DependentUpon>RoleApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\SysParamsApi.aspx.cs">
+    <Compile Include="API\SysManage\SysParamsApi.aspx.cs">
       <DependentUpon>SysParamsApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\SysParamsApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\SysParamsApi.aspx.designer.cs">
       <DependentUpon>SysParamsApi.aspx</DependentUpon>
     </Compile>
     <Compile Include="API\TicketsApi.ashx.cs">
@@ -1064,18 +1064,18 @@
     <Compile Include="API\UploadApi.aspx.designer.cs">
       <DependentUpon>UploadApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\UserApi.aspx.cs">
+    <Compile Include="API\SysManage\UserApi.aspx.cs">
       <DependentUpon>UserApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\UserApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\UserApi.aspx.designer.cs">
       <DependentUpon>UserApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="API\ValidateCodeApi.aspx.cs">
+    <Compile Include="API\SysManage\ValidateCodeApi.aspx.cs">
       <DependentUpon>ValidateCodeApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="API\ValidateCodeApi.aspx.designer.cs">
+    <Compile Include="API\SysManage\ValidateCodeApi.aspx.designer.cs">
       <DependentUpon>ValidateCodeApi.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\BasePage.cs">

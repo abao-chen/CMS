@@ -110,7 +110,7 @@
                     //ajax请求数据
                     $.ajax({
                         type: "POST",
-                        url: "/API/UserApi.aspx",
+                        url: "/API/SysManage/UserApi.aspx",
                         cache: false, //禁用缓存
                         data: param, //传入组装的参数
                         dataType: "json",
@@ -213,7 +213,7 @@
                     param["Id"] = data;
                     $.ajax({
                         type: "POST",
-                        url: "/API/UserApi.aspx",
+                        url: "/API/SysManage/UserApi.aspx",
                         cache: false, //禁用缓存
                         data: param, //传入组装的参数
                         dataType: "json",

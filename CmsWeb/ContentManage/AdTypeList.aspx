@@ -72,7 +72,7 @@
         //初始化表格
         $(function () {
             var options = {
-                "url": "/API/AdTypeApi.aspx",
+                "url": "/API/ContentManage/AdTypeApi.aspx",
                 "editUrl": "/ContentManage/AdTypeInfo.aspx",
                 "isExport": false,
                 "isComplexSearch": false,

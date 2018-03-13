@@ -63,7 +63,7 @@
         //初始化表格
         $(function () {
             var options = {
-                "url": "/API/RoleApi.aspx",
+                "url": "/API/SysManage/RoleApi.aspx",
                 "editUrl": "/SysManage/RoleInfo.aspx",
                 "isExport": false,
                 "isComplexSearch": false,

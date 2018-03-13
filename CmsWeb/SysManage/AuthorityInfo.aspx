@@ -137,7 +137,7 @@
             param["method"] = "GetTreeList";
             $.ajax({
                 type: "POST",
-                url: "/API/RoleApi.aspx",
+                url: "/API/SysManage/RoleApi.aspx",
                 cache: false, //禁用缓存
                 data: param, //传入组装的参数
                 dataType: "json",

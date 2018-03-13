@@ -87,7 +87,7 @@
         //初始化表格
         $(function () {
             var options = {
-                "url": "/API/BasicContentApi.aspx",
+                "url": "/API/ContentManage/BasicContentApi.aspx",
                 "editUrl": "/ContentManage/BasicContentInfo.aspx",
                 "aLengthMenu":<%= CmsUtils.Configs.GetValue("LengthMenu")%>,
                 "searchColunms": "ContentTitle|ContentSubTitle|CoverPictureUrl|Content",

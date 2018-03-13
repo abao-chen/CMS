@@ -74,7 +74,7 @@
         //初始化表格
         $(function () {
             var options = {
-                "url": "/API/AdvertisementApi.aspx",
+                "url": "/API/ContentManage/AdvertisementApi.aspx",
                 "editUrl": "/ContentManage/AdvertisementInfo.aspx",
                 "aLengthMenu":<%= CmsUtils.Configs.GetValue("LengthMenu")%>,
                 "searchColunms": "AdTypeName|AdName",

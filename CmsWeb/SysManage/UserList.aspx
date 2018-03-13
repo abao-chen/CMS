@@ -80,7 +80,7 @@
         //初始化表格
         $(function () {
             var options = {
-                "url": "/API/UserApi.aspx",
+                "url": "/API/SysManage/UserApi.aspx",
                 "editUrl": "/SysManage/UserInfo.aspx",
                 "aLengthMenu":<%= CmsUtils.Configs.GetValue("LengthMenu")%>,
                 "searchColunms":"UserAccount|UserName|RoleNames",

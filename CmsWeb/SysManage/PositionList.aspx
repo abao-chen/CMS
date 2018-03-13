@@ -73,8 +73,8 @@
         //初始化表格
         $(function () {
             var options = {
-                "url": "/API/PositionApi.aspx",
-                "editUrl": "//PositionInfo.aspx",
+                "url": "/API/SysManage/PositionApi.aspx",
+                "editUrl": "/SysManage/PositionInfo.aspx",
                 "aLengthMenu":<%= CmsUtils.Configs.GetValue("LengthMenu")%>,
                 "searchColunms":"ProvinceName|CityName|CountyName|TownName|VillageName",
                 "columns": [
