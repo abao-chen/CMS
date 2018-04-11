@@ -89,7 +89,7 @@
                         "orderable": false,
                         "render": function (data, type, row, meta) {
                             var result = "<a href=\"javascript:curTable.edit(" + row.ID +
-                                ")\"><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:curTable.delSingleRow(curTable.settings.delMethod,'" +
+                                ")\"><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:curTable.delSingleRow('" +
                                 row.ID +
                                 "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
@@ -101,7 +101,7 @@
 
                 ]
             };
-            curTable = tableUtils.initTable(options);
+            curTable = new TableUtils(options).initTable();
         });
     </script>
 </asp:Content>

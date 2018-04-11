@@ -14,6 +14,24 @@ namespace CmsWeb.Master
 {
     public partial class Master : System.Web.UI.MasterPage
     {
+        /// <summary>
+        /// 登录用户信息
+        /// </summary>
+        protected TB_BasicUser LoginUserInfo
+        {
+            get
+            {
+                if (SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO) != null)
+                {
+                    return (TB_BasicUser)SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

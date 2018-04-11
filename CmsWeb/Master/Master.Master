@@ -15,7 +15,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="~/Scripts/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Scripts/bootstrap/vendor/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />    <link href="~/Scripts/bootstrap/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap/vendor/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <%--<link href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />--%>
+    <link href="~/Scripts/bootstrap/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="~/Scripts/bootstrap/vendor/bootstrap-validator/css/bootstrapValidator.css" rel="stylesheet" />
     <link href="~/Scripts/bootstrap/vendor/toastr/css/toastr.min.css" rel="stylesheet" />
     <link href="~/Scripts/bootstrap/vendor/toastr/css/toastr.less" rel="stylesheet" />
@@ -24,7 +26,6 @@
     <link href="~/Scripts/bootstrap/vendor/uploadify/uploadify.css" rel="stylesheet" />
     <link href="~/Scripts/bootstrap/vendor/morrisjs/morris.css" rel="stylesheet" />
     <link href="~/Scripts/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Scripts/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet" />
     <link href="~/Css/common.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,7 +38,10 @@
     <script src="/Scripts/bootstrap/vendor/jquery/jquery-ui.min.js"></script>
     <script src="/Scripts/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="/Scripts/bootstrap/vendor/datatables/js/jquery.dataTables.js"></script>
-    <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>    <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
+
+    <%--<script src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>--%>
+    <script src="/Scripts/bootstrap/vendor/datatables/js/dataTables.bootstrap.js"></script>
+    <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script src="/Scripts/bootstrap/vendor/bootstrap-validator/js/language/zh_CN.js"></script>
     <script src="/Scripts/bootstrap/vendor/toastr/js/toastr.min.js"></script>
     <script src="/Scripts/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
@@ -60,12 +64,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/index.aspx">CMS Admin</a>
+                    <a class="navbar-brand" href="/Index.aspx">CMS Admin</a>
                 </div>
                 <!-- /.navbar-header -->
 
                 <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
+                    <%--<li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-envelope fa-fw"></i><i class="fa fa-caret-down"></i>
                         </a>
@@ -258,16 +262,16 @@
                             </li>
                         </ul>
                         <!-- /.dropdown-alerts -->
-                    </li>
+                    </li>--%>
                     <!-- /.dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
+                            <li><a href="/SysManage/EditSelfInfo.aspx?Id=<%=LoginUserInfo.ID %>"><i class="fa fa-user fa-fw"></i>编辑个人信息</a>
                             </li>
-                            <li><a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
+                            <li><a href="javascript:bootAlert.dialog({title: '修改密码',targetId: 'updateSelfPasswordPanel',width: 700,height: 550});"><i class="fa fa-gear fa-fw"></i>修改密码</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -298,10 +302,81 @@
             </div>
             <!-- /#wrapper -->
 
+            <!-- update Password -->
+            <div id="updateSelfPasswordPanel" class="panel panel-default hide">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 form-group">
+                            <label>原密码：</label>
+                            <input type="password" name="old_Password" value="" class="form-control" />
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <label>新密码：</label>
+                            <input type="password" name="new_Password" value="" class="form-control" />
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <label>确认密码：</label>
+                            <input type="password" name="confirm_Password" value="" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer navbar-fixed-bottom">
+                    <div class="row" style="text-align: center;">
+                        <input type="button" onclick="updateSelfPassword();" class="btn btn-default" style="margin: 0 auto;" value="保存" />
+                        <input type="button" onclick="closeModal();" class="btn btn-default" style="margin: 0 auto;" value="关闭" />
+                    </div>
+                </div>
+            </div>
+            <!-- /update Password -->
             <div id="loading" style="display: none;">
                 <div class="loading-shade"></div>
                 <div class="loading-content">数据加载中，请稍后…</div>
             </div>
+            <script>
+                /**
+                * 更新自己的密码
+                */
+                function updateSelfPassword() {
+                    var oldPwd = $("input[name='old_Password']").val();
+                    var newPwd = $("input[name='new_Password']").val();
+                    var confirmPwd = $("input[name='confirm_Password']").val();
+                    if (oldPwd == "") {
+                        toastr.error("原密码不能为空，请输入原密码！");
+                        return;
+                    }
+                    if (newPwd == "") {
+                        toastr.error("新密码不能为空，请输入新密码1！");
+                        return;
+                    }
+                    if (confirmPwd == "") {
+                        toastr.error("确认密码不能为空，请输入确认密码！");
+                        return;
+                    }
+                    if (confirmPwd != newPwd) {
+                        toastr.error("两次密码输入不一致，请重新输入！");
+                        return;
+                    }
+                    var param = {};
+                    param.newPwd = newPwd;
+                    param.oldPwd = oldPwd;
+                    param.confirmPwd = confirmPwd;
+                    param.method = "UpdateSelfPassword";
+                    $.ajax({
+                        type: "POST",
+                        url: "/API/SysManage/UserApi.aspx",
+                        cache: false, //禁用缓存
+                        data: param, //传入组装的参数
+                        dataType: "json",
+                        success: function (result) {
+                            ajaxSuccessDone(result, function () {
+                                bootAlert.alert("密码修改成功，请重新登录。").on(function () {
+                                    location.href = "/Login.aspx";
+                                });
+                            });
+                        }
+                    });
+                }
+            </script>
             <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder2">
             </asp:ContentPlaceHolder>
         </div>

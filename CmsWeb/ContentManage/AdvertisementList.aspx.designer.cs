@@ -37,7 +37,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.DataPickerExt txtValidStartTime;
+        protected global::CmsWeb.ControlExt.DatePickerExt txtValidStartTime;
         
         /// <summary>
         /// txtValidEndTime 控件。
@@ -46,6 +46,6 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.DataPickerExt txtValidEndTime;
+        protected global::CmsWeb.ControlExt.DatePickerExt txtValidEndTime;
     }
 }

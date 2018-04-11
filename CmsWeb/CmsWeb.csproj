@@ -519,6 +519,7 @@
     <Content Include="Scripts\tableUtils.js" />
     <Content Include="SysManage\DicTypeInfo.aspx" />
     <Content Include="SysManage\DicTypeList.aspx" />
+    <Content Include="SysManage\EditSelfInfo.aspx" />
     <Content Include="TestTab.aspx" />
     <Content Include="TicketsCharts.html" />
     <Content Include="ueditorconfig.json" />
@@ -536,7 +537,7 @@
     <Content Include="ContentManage\ContentTypeInfo.aspx" />
     <Content Include="ContentManage\ContentTypeList.aspx" />
     <Content Include="ControlExt\CheckBoxListExt.ascx" />
-    <Content Include="ControlExt\DataPickerExt.ascx" />
+    <Content Include="ControlExt\DatePickerExt.ascx" />
     <Content Include="ControlExt\EditorExt.ascx" />
     <Content Include="ControlExt\RadioBoxListExt.ascx" />
     <Content Include="Css\common.css" />
@@ -1152,12 +1153,12 @@
     <Compile Include="ControlExt\CheckBoxListExt.ascx.designer.cs">
       <DependentUpon>CheckBoxListExt.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ControlExt\DataPickerExt.ascx.cs">
-      <DependentUpon>DataPickerExt.ascx</DependentUpon>
+    <Compile Include="ControlExt\DatePickerExt.ascx.cs">
+      <DependentUpon>DatePickerExt.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ControlExt\DataPickerExt.ascx.designer.cs">
-      <DependentUpon>DataPickerExt.ascx</DependentUpon>
+    <Compile Include="ControlExt\DatePickerExt.ascx.designer.cs">
+      <DependentUpon>DatePickerExt.ascx</DependentUpon>
     </Compile>
     <Compile Include="ControlExt\EditorExt.ascx.cs">
       <DependentUpon>EditorExt.ascx</DependentUpon>
@@ -1306,6 +1307,13 @@
     </Compile>
     <Compile Include="SysManage\SysParamsList.aspx.designer.cs">
       <DependentUpon>SysParamsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SysManage\EditSelfInfo.aspx.cs">
+      <DependentUpon>EditSelfInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SysManage\EditSelfInfo.aspx.designer.cs">
+      <DependentUpon>EditSelfInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="SysManage\UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>

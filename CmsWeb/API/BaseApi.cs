@@ -17,6 +17,24 @@ namespace CmsWeb.API
     {
         private List<string> KeysWordList => new List<string>(new[] { "length", "limit", "start", "page", "orderColunm", "orderDir", "keywords", "searchColunms" });
 
+        /// <summary>
+        /// 登录用户信息
+        /// </summary>
+        protected TB_BasicUser LoginUserInfo
+        {
+            get
+            {
+                if (SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO) != null)
+                {
+                    return (TB_BasicUser)SessionUtil.GetSession(Constants.SESSION_LOGIN_USERINFO);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string method = HttpContext.Current.Request.Form["method"];
@@ -63,6 +81,33 @@ namespace CmsWeb.API
                 }
             }
             return paramsModel;
+        }
+
+        /// <summary>
+        /// 获取参数值
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        protected string GetRequestParam(string key) {
+            if (key.IsEmpty())
+            {
+                return string.Empty;
+            }
+            else
+            {
+                if (HttpContext.Current.Request.Form[key].IsNotEmpty())
+                {
+                    return HttpContext.Current.Request.Form[key];
+                }
+                else if (HttpContext.Current.Request.QueryString[key].IsNotEmpty())
+                {
+                    return HttpContext.Current.Request.QueryString[key];
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
         }
 
         protected override void OnInit(EventArgs e)

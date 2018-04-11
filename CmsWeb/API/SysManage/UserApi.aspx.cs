@@ -117,5 +117,88 @@ namespace CmsWeb.API
             }
             return result;
         }
+
+        /// <summary>
+        /// 修改用户密码
+        /// </summary>
+        /// <returns></returns>
+        public AjaxResultModel UpdatePassword()
+        {
+            AjaxResultModel resultModel = new AjaxResultModel();
+            string id = GetRequestParam("Id");
+            string newPwd = GetRequestParam("newPwd");
+            string confirmPwd = GetRequestParam("confirmPwd");
+            if (id.IsEmpty() || newPwd.IsEmpty() || confirmPwd.IsEmpty())
+            {
+                resultModel.result = 2;
+                resultModel.message = "缺少必要参数";
+            }
+            else
+            {
+                if (newPwd != confirmPwd)
+                {
+                    resultModel.result = 2;
+                    resultModel.message = "密码输入不一致，请重新输入！";
+                }
+                else
+                {
+                    int i_Id = id.ToInt();
+                    TB_BasicUser user = new BasicUserBal().SelectSingleById(u => u.ID == i_Id && u.IsDeleted == Constants.IS_NO);
+                    user.PasswordSalt = SecurityUtil.RandomCode(Constants.RANDOM_MODEL_MIXED, 10);
+                    user.UserPassword = SecurityUtil.Md5Encrypt64(newPwd + user.PasswordSalt);
+                    int i = new BasicUserBal().UpdateSingle(user);
+                    if (i == 0)
+                    {
+                        resultModel.result = 2;
+                        resultModel.message = "修改密码失败！";
+                    }
+                }
+            }
+            return resultModel;
+        }
+
+        /// <summary>
+        /// 修改自己的密码
+        /// </summary>
+        /// <returns></returns>
+        public AjaxResultModel UpdateSelfPassword()
+        {
+            AjaxResultModel resultModel = new AjaxResultModel();
+            string oldPwd = GetRequestParam("oldPwd");
+            string newPwd = GetRequestParam("newPwd");
+            string confirmPwd = GetRequestParam("confirmPwd");
+            if (newPwd.IsEmpty() || confirmPwd.IsEmpty())
+            {
+                resultModel.result = 2;
+                resultModel.message = "缺少必要参数";
+            }
+            else
+            {
+                if (newPwd != confirmPwd)
+                {
+                    resultModel.result = 2;
+                    resultModel.message = "密码输入不一致，请重新输入！";
+                }
+                else if (LoginUserInfo.UserPassword != SecurityUtil.Md5Encrypt64(oldPwd + LoginUserInfo.PasswordSalt))
+                {
+
+                    resultModel.result = 2;
+                    resultModel.message = "原密码输入不正确，请重新输入！";
+                }
+                else
+                {
+                    TB_BasicUser user = LoginUserInfo;
+                    user.PasswordSalt = SecurityUtil.RandomCode(Constants.RANDOM_MODEL_MIXED, 10);
+                    user.UserPassword = SecurityUtil.Md5Encrypt64(newPwd + user.PasswordSalt);
+                    int i = new BasicUserBal().UpdateSingle(user);
+                    if (i == 0)
+                    {
+                        resultModel.result = 2;
+                        resultModel.message = "修改密码失败！";
+                    }
+                }
+            }
+            return resultModel;
+        }
     }
 }

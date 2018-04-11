@@ -11,7 +11,7 @@ using CmsUtils;
 
 namespace CmsWeb
 {
-    public partial class UserInfo : BasePage
+    public partial class EditSelfInfo : BasePage
     {
         /// <summary>
         /// 用户ID
@@ -49,7 +49,6 @@ namespace CmsWeb
 
                 txtUserAccount.Text = userInfo.UserAccount;
                 txtName.Text = userInfo.UserName;
-                txtPassword.Attributes["value"] =userInfo.UserPassword;
                 lbLastLoginTime.Text = userInfo.LastLoginTime == null
                     ? string.Empty
                     : Convert.ToDateTime(userInfo.LastLoginTime).ToString("yyyy/MM/dd HH:mm:ss");
@@ -93,13 +92,7 @@ namespace CmsWeb
             {
                 userInfo = new BasicUserBal().SelectSingleById(u => u.ID.Equals(Id));
                 userInfo.UserAccount = txtUserAccount.Text;
-                //if (txtPassword.Text.IsNotEmpty() && txtPassword.Text != userInfo.UserPassword)
-                //{
-                //    userInfo.UserPassword = SecurityUtil.Md5Encrypt64(txtPassword.Text + userInfo.PasswordSalt);
-                //}
                 userInfo.UserName = txtName.Text;
-                userInfo.UserStatus = ddlStatus.SelectedValue;
-                userInfo.UserType = ddlType.SelectedValue;
                 new BasicUserBal().UpdateSingle(userInfo);
                 List<TB_UserRole> userRoleList = new List<TB_UserRole>();
                 if (cblRole.SelectedValueArray != null)
@@ -116,32 +109,8 @@ namespace CmsWeb
                 new UserRoleBal().DeleteListByUserId(userInfo.ID);
                 new UserRoleBal().InsertList(userRoleList);
             }
-            else
-            {
-                userInfo = new TB_BasicUser();
-                userInfo.UserAccount = txtUserAccount.Text;
-                userInfo.UserName = txtName.Text;
-                userInfo.PasswordSalt = SecurityUtil.RandomCode(Constants.RANDOM_MODEL_MIXED, 10);
-                userInfo.UserPassword = SecurityUtil.Md5Encrypt64(txtPassword.Text + userInfo.PasswordSalt);
-                userInfo.UserStatus = ddlStatus.SelectedValue;
-                userInfo.UserType = ddlType.SelectedValue;
-                new BasicUserBal().InsertSingle(userInfo);
-                List<TB_UserRole> userRoleList = new List<TB_UserRole>();
-                if (cblRole.SelectedValueArray != null)
-                {
-                    foreach (string selectedValue in cblRole.SelectedValueArray)
-                    {
-                        userRoleList.Add(new TB_UserRole
-                        {
-                            UserID = userInfo.ID,
-                            RoleID = Convert.ToInt32(selectedValue)
-                        });
-                    }
-                }
-                new UserRoleBal().InsertList(userRoleList);
-            }
 
-            Response.Redirect("~/SysManage/UserList.aspx");
+            Response.Redirect("~/Index.aspx");
         }
     }
 }

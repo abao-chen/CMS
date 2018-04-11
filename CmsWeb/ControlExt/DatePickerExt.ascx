@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DataPickerExt.ascx.cs" Inherits="CmsWeb.ControlExt.DataPickerExt" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DatePickerExt.ascx.cs" Inherits="CmsWeb.ControlExt.DatePickerExt" %>
 <!-- datetimepicker -->
 <script src="/Scripts/bootstrap/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/Scripts/bootstrap/vendor/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>

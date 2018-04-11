@@ -6,7 +6,7 @@
         <div class="checkbox">
             <%   }%>
             <label class='<%=IsInline?"checkbox-inline":"" %>'>
-                <input type="checkbox" id="<%=this.ID %>_<%#Eval(DataValueField) %>" name="<%= Name %>" value="<%#Eval(DataValueField) %>"><label style="font-weight: 400; padding-left: 0px;" for="<%=this.ID %>_<%#Eval(DataValueField) %>"><%#Eval(DataTextField) %></label>
+                <input type="checkbox" id="<%=this.ID %>_<%#Eval(DataValueField) %>" name="<%= Name %>" value="<%#Eval(DataValueField) %>" <%= Enabled ?"":"disabled" %>><label style="font-weight: 400; padding-left: 0px;" for="<%=this.ID %>_<%#Eval(DataValueField) %>"><%#Eval(DataTextField) %></label>
             </label>
             <% if (!IsInline)
                 {%>

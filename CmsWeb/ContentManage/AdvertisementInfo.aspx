@@ -38,13 +38,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>有效开始时间：</label>
-                                <Cms:DataPickerExt ID="txtValidStartTime" runat="server" Name="ValidStartTime" Format="yyyy/MM/dd"></Cms:DataPickerExt>
+                                <Cms:DatePickerExt ID="txtValidStartTime" runat="server" Name="ValidStartTime" Format="yyyy/MM/dd"></Cms:DatePickerExt>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>有效结束时间：</label>
-                                <Cms:DataPickerExt ID="txtValidEndTime" runat="server" Name="ValidEndTime" Format="yyyy/MM/dd"></Cms:DataPickerExt>
+                                <Cms:DatePickerExt ID="txtValidEndTime" runat="server" Name="ValidEndTime" Format="yyyy/MM/dd"></Cms:DatePickerExt>
                             </div>
                         </div>
                         <div class="col-lg-6">

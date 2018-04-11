@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="UserInfo.aspx.cs" Inherits="CmsWeb.UserInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="EditSelfInfo.aspx.cs" Inherits="CmsWeb.EditSelfInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -14,18 +14,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>用户账号：</label>
-                                <asp:TextBox ID="txtUserAccount" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>用户密码：</label>
-                                <div class="input-group">
-                                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
-                                    <span class="input-group-btn">
-                                        <a href="javascript:bootAlert.dialog({title: '修改密码',targetId: 'updatePasswordPanel',width: 700,height: 550});" class="btn btn-link">修改密码</a>
-                                    </span>
-                                </div>
+                                <asp:TextBox ID="txtUserAccount" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -37,13 +26,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>用户状态：</label>
-                                <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>用户类型：</label>
-                                <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -55,12 +44,12 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>用户角色：</label>
-                                <Cms:CheckBoxListExt runat="server" ID="cblRole" IsInline="True" Name="cblRole"></Cms:CheckBoxListExt>
+                                <Cms:CheckBoxListExt runat="server" ID="cblRole" IsInline="True" Name="cblRole" Enabled="false"></Cms:CheckBoxListExt>
                             </div>
                         </div>
                         <div class="col-lg-12" style="text-align: center;">
                             <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn btn-default" Style="margin: 0 auto;" OnClick="btnSave_OnClick" />
-                            <a class="btn btn-default" href="/SysManage/UserList.aspx" style="margin: 0 auto;">取消</a>
+                            <a class="btn btn-default" href="/Index.aspx" style="margin: 0 auto;">取消</a>
                         </div>
                     </div>
                 </div>
@@ -78,7 +67,7 @@
                         </div>
                         <div class="col-lg-12 form-group">
                             <label>确认密码：</label>
-                            <input type="password" name="confirmPassword" value="" class="form-control" />                            
+                            <input type="password" name="confirmPassword" value="" class="form-control" />
                         </div>
                     </div>
                 </div>
@@ -107,20 +96,7 @@
                     "<%= txtName.UniqueID %>": { validators: { notEmpty: {} } },
                     "<%= ddlStatus.UniqueID %>": { validators: { notEmpty: {} } },
                     "<%= ddlType.UniqueID %>": { validators: { notEmpty: {} } },
-                    "<%= txtPassword.UniqueID %>": { validators: { notEmpty: {} } },
-                    "cblRole": { validators: { notEmpty: {} } },
-                    "<%= txtUserAccount.UniqueID %>": {
-                        validators: {
-                            notEmpty: {},
-                            remote: {
-                                type: 'POST',
-                                url: '/API/SysManage/UserApi.aspx',
-                                data: { "method": "ValidateUserAccount", "ID": getUrlParams("ID") },
-                                message: '用户账户已存在',
-                                delay: 1000
-                            }
-                        }
-                    }
+                    "cblRole": { validators: { notEmpty: {} } }
                 }
             });
         });

@@ -6,7 +6,7 @@
         <div class="radio">
             <%   }%>
             <label class='<%=IsInline?"radio-inline":"" %>'>
-                <input type="radio" name="<%= Name %>" value="<%#Eval(DataValueField) %>"><%#Eval(DataTextField) %>
+                <input type="radio" name="<%= Name %>" value="<%#Eval(DataValueField) %>" <%= Enabled ?"":"disabled" %>><%#Eval(DataTextField) %>
             </label>
             <% if (!IsInline)
                 {%>

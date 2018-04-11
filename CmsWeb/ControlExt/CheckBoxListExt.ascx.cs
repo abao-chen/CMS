@@ -17,6 +17,8 @@ namespace CmsWeb.ControlExt
         public string DataTextField = "Text";
         public string DataValueField = "Value";
         public object DataSource = null;
+        //是否启用
+        public bool Enabled = true;
 
         public string SelectedValue
         {

@@ -19,11 +19,11 @@
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>有效开始时间</label>
-                                <Cms:DataPickerExt runat="server" ID="txtValidStartTime" searchattr="ValidStartTime|=|ValidStartTime" CssClass="form-control" placeholder="有效开始时间"></Cms:DataPickerExt>
+                                <Cms:DatePickerExt runat="server" ID="txtValidStartTime" searchattr="ValidStartTime|=|ValidStartTime" CssClass="form-control" placeholder="有效开始时间"></Cms:DatePickerExt>
                             </div>
                             <div class="col-lg-6 form-group">
                                 <label>有效结束时间</label>
-                                <Cms:DataPickerExt runat="server" ID="txtValidEndTime" searchattr="ValidEndTime|=|ValidEndTime" CssClass="form-control" placeholder="有效结束时间"></Cms:DataPickerExt>
+                                <Cms:DatePickerExt runat="server" ID="txtValidEndTime" searchattr="ValidEndTime|=|ValidEndTime" CssClass="form-control" placeholder="有效结束时间"></Cms:DatePickerExt>
                             </div>
 
                         </div>
@@ -96,7 +96,7 @@
                         "orderable": false,
                         "render": function (data, type, row, meta) {
                             var result = "<a href=\"javascript:curTable.edit(" + row.ID +
-                                ")\"><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:curTable.delSingleRow(curTable.settings.delMethod,'" +
+                                ")\"><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:curTable.delSingleRow('" +
                                 row.ID +
                                 "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
@@ -111,7 +111,7 @@
 
                 ]
             };
-            curTable = tableUtils.initTable(options);
+            curTable = new TableUtils(options).initTable();
         });
     </script>
 </asp:Content>

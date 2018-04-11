@@ -8,7 +8,7 @@ using CmsUtils;
 
 namespace CmsWeb.ControlExt
 {
-    public partial class DataPickerExt : System.Web.UI.UserControl
+    public partial class DatePickerExt : System.Web.UI.UserControl
     {
         public string Name = string.Empty;
         public string PlaceHolder = string.Empty;

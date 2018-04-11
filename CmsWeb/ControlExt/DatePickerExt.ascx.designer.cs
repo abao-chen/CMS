@@ -10,7 +10,7 @@
 namespace CmsWeb.ControlExt {
     
     
-    public partial class DataPickerExt {
+    public partial class DatePickerExt {
         
         /// <summary>
         /// hidDate 控件。

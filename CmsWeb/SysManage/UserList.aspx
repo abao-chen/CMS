@@ -3,46 +3,42 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
-        <div class="col-lg-12">
-            <div id="searchPanel" class="panel panel-default hide">
-                <div id="searchBody" class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-6 form-group">
-                            <label>用户账号</label>
-                            <asp:TextBox runat="server" ID="txtUserAccount" searchattr="UserAccount|=|UserAccount" CssClass="form-control" placeholder="用户账号"></asp:TextBox>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label>用户名称</label>
-                            <asp:TextBox runat="server" ID="txtUserName" searchattr="UserName|=|UserName" CssClass="form-control" placeholder="用户名称"></asp:TextBox>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label>用户状态</label>
-                            <asp:DropDownList runat="server" ID="ddlUserStatus" searchattr="UserStatus|=|UserStatus" CssClass="form-control" placeholder="用户状态"></asp:DropDownList>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label>用户类型</label>
-                            <asp:DropDownList runat="server" ID="ddlUserType" searchattr="UserType|=|UserType" CssClass="form-control" placeholder="用户类型"></asp:DropDownList>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label>创建开始日期</label>
-                            <Cms:DataPickerExt ID="txtCreateTimeBegin" runat="server" Name="CreateTimeBegin" Format="yyyy/MM/dd" PlaceHolder="创建开始日期" SearchAttr="CreateTime|>=|CreateTimeBegin"></Cms:DataPickerExt>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label>创建结束日期</label>
-                            <Cms:DataPickerExt ID="txtCreateTimeEnd" runat="server" Name="CreateTimeEnd" Format="yyyy/MM/dd" PlaceHolder="创建结束日期" SearchAttr="CreateTime|<=|CreateTimeEnd"></Cms:DataPickerExt>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer navbar-fixed-bottom">
-                    <div class="row" style="text-align: center;">
-                        <input type="button" id="btnSearch" class="btn btn-default" style="margin: 0 auto;" value="查询" />
-                        <input type="button" id="btnClear" class="btn btn-default" style="margin: 0 auto;" value="重置" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div id="searchPanel" class="panel panel-default hide">
+		<div id="searchBody" class="panel-body">
+			<div class="row">
+				<div class="col-lg-6 form-group">
+					<label>用户账号</label>
+					<asp:TextBox runat="server" ID="txtUserAccount" searchattr="UserAccount|=|UserAccount" CssClass="form-control" placeholder="用户账号"></asp:TextBox>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label>用户名称</label>
+					<asp:TextBox runat="server" ID="txtUserName" searchattr="UserName|=|UserName" CssClass="form-control" placeholder="用户名称"></asp:TextBox>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label>用户状态</label>
+					<asp:DropDownList runat="server" ID="ddlUserStatus" searchattr="UserStatus|=|UserStatus" CssClass="form-control" placeholder="用户状态"></asp:DropDownList>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label>用户类型</label>
+					<asp:DropDownList runat="server" ID="ddlUserType" searchattr="UserType|=|UserType" CssClass="form-control" placeholder="用户类型"></asp:DropDownList>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label>创建开始日期</label>
+					<Cms:DatePickerExt ID="txtCreateTimeBegin" runat="server" Name="CreateTimeBegin" Format="yyyy/MM/dd" PlaceHolder="创建开始日期" SearchAttr="CreateTime|>=|CreateTimeBegin"></Cms:DatePickerExt>
+				</div>
+				<div class="col-lg-6 form-group">
+					<label>创建结束日期</label>
+					<Cms:DatePickerExt ID="txtCreateTimeEnd" runat="server" Name="CreateTimeEnd" Format="yyyy/MM/dd" PlaceHolder="创建结束日期" SearchAttr="CreateTime|<=|CreateTimeEnd"></Cms:DatePickerExt>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer navbar-fixed-bottom">
+			<div class="row" style="text-align: center;">
+				<input type="button" id="btnSearch" class="btn btn-default" style="margin: 0 auto;" value="查询" />
+				<input type="button" id="btnClear" class="btn btn-default" style="margin: 0 auto;" value="重置" />
+			</div>
+		</div>
+	</div>
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
@@ -83,7 +79,7 @@
                 "url": "/API/SysManage/UserApi.aspx",
                 "editUrl": "/SysManage/UserInfo.aspx",
                 "aLengthMenu":<%= CmsUtils.Configs.GetValue("LengthMenu")%>,
-                "searchColunms":"UserAccount|UserName|RoleNames",
+                "searchColunms": "UserAccount|UserName|RoleNames",
                 "columns": [
                     {
                         "data": "ID",
@@ -104,8 +100,7 @@
                         "orderable": false,
                         "render": function (data, type, row, meta) {
                             var result = "<a href=\"javascript:curTable.edit(" + row.ID +
-                                ")\"><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:curTable.delSingleRow(curTable.settings.delMethod,'" +
-                                row.ID +
+                                ")\"><span class='glyphicon glyphicon-edit' title='编辑'></span></a>&nbsp;&nbsp;&nbsp;<a href=\"javascript:curTable.delSingleRow('" + row.ID +
                                 "');\"><span class='glyphicon glyphicon-trash' title='删除'></span></a>";
                             return result;
                         }
@@ -119,7 +114,7 @@
                     { "data": "CreateTime" }
                 ]
             };
-            curTable = tableUtils.initTable(options);
+            curTable = new TableUtils(options).initTable();
         });
     </script>
 </asp:Content>
