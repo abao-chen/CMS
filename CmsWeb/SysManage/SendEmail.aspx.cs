@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using CmsCommon;
 using CmsUtils;
 
-namespace CmsWeb.SysManage
+namespace Cms.Web.Admin.SysManage
 {
     public partial class SendEmail : BasePage
     {

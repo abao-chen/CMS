@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditorExt.ascx.cs" Inherits="CmsWeb.ControlExt.EditorExt" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditorExt.ascx.cs" Inherits="Cms.Web.Admin.ControlExt.EditorExt" %>
 <!-- 加载编辑器的容器 -->
 <script id="container_<%=this.ID %>" type="text/plain"><%=this.Text %></script>
 <asp:HiddenField ID="EditorValue" runat="server" />

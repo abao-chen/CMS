@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" ValidateRequest="false" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="SendEmail.aspx.cs" Inherits="CmsWeb.SysManage.SendEmail" %>
+﻿<%@ Page Title="" Language="C#" ValidateRequest="false" MasterPageFile="~/Master/Master.Master" AutoEventWireup="true" CodeBehind="SendEmail.aspx.cs" Inherits="Cms.Web.Admin.SysManage.SendEmail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

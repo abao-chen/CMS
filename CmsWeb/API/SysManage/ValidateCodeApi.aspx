@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ValidateCodeApi.aspx.cs" Inherits="CmsWeb.API.ValidateCodeApi" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ValidateCodeApi.aspx.cs" Inherits="Cms.Web.Admin.API.ValidateCodeApi" %>
 
 <!DOCTYPE html>
 

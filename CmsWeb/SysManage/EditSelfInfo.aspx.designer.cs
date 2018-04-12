@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb {
+namespace Cms.Web.Admin {
     
     
     public partial class EditSelfInfo {
@@ -64,7 +64,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.CheckBoxListExt cblRole;
+        protected global::Cms.Web.Admin.ControlExt.CheckBoxListExt cblRole;
         
         /// <summary>
         /// btnSave 控件。

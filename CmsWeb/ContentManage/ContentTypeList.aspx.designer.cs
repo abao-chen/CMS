@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb {
+namespace Cms.Web.Admin {
     
     
     public partial class ContentTypeList {

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CheckBoxListExt.ascx.cs" Inherits="CmsWeb.ControlExt.CheckBoxListExt" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CheckBoxListExt.ascx.cs" Inherits="Cms.Web.Admin.ControlExt.CheckBoxListExt" %>
 <asp:Repeater ID="rpList" runat="server">
     <ItemTemplate>
         <% if (!IsInline)

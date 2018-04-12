@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CmsWeb
+namespace Cms.Web.Admin
 {
     public partial class Index : BasePage
     {

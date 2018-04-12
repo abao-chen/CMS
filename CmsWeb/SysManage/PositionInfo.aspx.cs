@@ -9,7 +9,7 @@ using CmsCommon;
 using CmsEntity;
 using CmsUtils;
 
-namespace CmsWeb
+namespace Cms.Web.Admin
 {
     public partial class PositionInfo : BasePage
     {

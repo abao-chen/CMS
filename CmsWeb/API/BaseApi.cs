@@ -11,7 +11,7 @@ using CmsEntity;
 using CmsUtils;
 using Newtonsoft.Json;
 
-namespace CmsWeb.API
+namespace Cms.Web.Admin.API
 {
     public abstract class BaseApi : Page, IRequiresSessionState
     {

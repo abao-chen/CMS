@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CmsUtils;
 
-namespace CmsWeb.ControlExt
+namespace Cms.Web.Admin.ControlExt
 {
     public partial class UploadExt : System.Web.UI.UserControl
     {

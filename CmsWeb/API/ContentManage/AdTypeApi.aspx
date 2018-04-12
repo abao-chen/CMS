@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdTypeApi.aspx.cs" Inherits="CmsWeb.API.AdTypeApi" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdTypeApi.aspx.cs" Inherits="Cms.Web.Admin.API.AdTypeApi" %>
 
 <!DOCTYPE html>
 

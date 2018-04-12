@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PositionVillageApi.aspx.cs" Inherits="CmsWeb.API.PositionVillageApi" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PositionVillageApi.aspx.cs" Inherits="Cms.Web.Admin.API.PositionVillageApi" %>
 
 <!DOCTYPE html>
 

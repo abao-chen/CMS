@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.SysManage {
+namespace Cms.Web.Admin.SysManage {
     
     
     public partial class ChoiceAuthor {

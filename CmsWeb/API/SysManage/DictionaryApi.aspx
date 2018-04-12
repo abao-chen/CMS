@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DictionaryApi.aspx.cs" Inherits="CmsWeb.API.DictionaryApi" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DictionaryApi.aspx.cs" Inherits="Cms.Web.Admin.API.DictionaryApi" %>
 
 <!DOCTYPE html>
 

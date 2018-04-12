@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb {
+namespace Cms.Web.Admin {
     
     
     public partial class UserList {
@@ -55,7 +55,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.DatePickerExt txtCreateTimeBegin;
+        protected global::Cms.Web.Admin.ControlExt.DatePickerExt txtCreateTimeBegin;
         
         /// <summary>
         /// txtCreateTimeEnd 控件。
@@ -64,6 +64,6 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.DatePickerExt txtCreateTimeEnd;
+        protected global::Cms.Web.Admin.ControlExt.DatePickerExt txtCreateTimeEnd;
     }
 }

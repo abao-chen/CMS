@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CmsWeb.SysManage
+namespace Cms.Web.Admin.SysManage
 {
     public partial class ChoiceAuthor : System.Web.UI.Page
     {

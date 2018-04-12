@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RadioBoxListExt.ascx.cs" Inherits="CmsWeb.ControlExt.RadioBoxListExt" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RadioBoxListExt.ascx.cs" Inherits="Cms.Web.Admin.ControlExt.RadioBoxListExt" %>
 <asp:Repeater ID="rpList" runat="server">
     <ItemTemplate>
         <% if (!IsInline)

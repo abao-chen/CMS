@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Content.Master.cs" Inherits="CmsWeb.Master.Content" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Content.Master.cs" Inherits="Cms.Web.Admin.Master.Content" %>
 
 <!DOCTYPE html>
 

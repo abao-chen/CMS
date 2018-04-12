@@ -18,7 +18,7 @@ using CmsBAL;
 using CmsCommon;
 using CmsEntity;
 
-namespace CmsWeb.API
+namespace Cms.Web.Admin.API
 {
     public partial class PositionCountyApi : BaseApi
     {

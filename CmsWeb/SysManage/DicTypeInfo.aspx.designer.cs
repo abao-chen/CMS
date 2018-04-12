@@ -7,19 +7,54 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb
-{
-
-
-    public partial class DicTypeInfo
-    {
-
+namespace Cms.Web.Admin {
+    
+    
+    public partial class DicTypeInfo {
+        
+        /// <summary>
+        /// ddlDicTypeCode 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDicTypeCode;
+        
+        /// <summary>
+        /// txtDicTypeName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDicTypeName;
+        
+        /// <summary>
+        /// txtDescription 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        
+        /// <summary>
+        /// cbIsUsing 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbIsUsing;
-
+        
+        /// <summary>
+        /// btnSave 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }
-

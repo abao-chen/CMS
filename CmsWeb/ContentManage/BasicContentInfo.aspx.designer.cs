@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb {
+namespace Cms.Web.Admin {
     
     
     public partial class BasicContentInfo {
@@ -55,7 +55,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.UploadExt uplCoverPictureUrl;
+        protected global::Cms.Web.Admin.ControlExt.UploadExt uplCoverPictureUrl;
         
         /// <summary>
         /// txtValidStartTime 控件。
@@ -64,7 +64,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.DatePickerExt txtValidStartTime;
+        protected global::Cms.Web.Admin.ControlExt.DatePickerExt txtValidStartTime;
         
         /// <summary>
         /// txtValidEndTime 控件。
@@ -73,7 +73,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.DatePickerExt txtValidEndTime;
+        protected global::Cms.Web.Admin.ControlExt.DatePickerExt txtValidEndTime;
         
         /// <summary>
         /// txtOrderNO 控件。
@@ -127,7 +127,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.UploadExt uplAttachmentUrl;
+        protected global::Cms.Web.Admin.ControlExt.UploadExt uplAttachmentUrl;
         
         /// <summary>
         /// edtContent 控件。
@@ -136,7 +136,7 @@ namespace CmsWeb {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.EditorExt edtContent;
+        protected global::Cms.Web.Admin.ControlExt.EditorExt edtContent;
         
         /// <summary>
         /// btnSave 控件。

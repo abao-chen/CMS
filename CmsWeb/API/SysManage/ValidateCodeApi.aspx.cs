@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CmsUtils;
 
-namespace CmsWeb.API
+namespace Cms.Web.Admin.API
 {
     public partial class ValidateCodeApi : Page
     {

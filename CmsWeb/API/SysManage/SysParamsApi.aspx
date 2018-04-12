@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SysParamsApi.aspx.cs" Inherits="CmsWeb.API.SysParamsApi" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SysParamsApi.aspx.cs" Inherits="Cms.Web.Admin.API.SysParamsApi" %>
 
 <!DOCTYPE html>
 

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UploadExt.ascx.cs" Inherits="CmsWeb.ControlExt.UploadExt" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UploadExt.ascx.cs" Inherits="Cms.Web.Admin.ControlExt.UploadExt" %>
 <script src="/Scripts/bootstrap/vendor/plupload-2.3.1/plupload.full.min.js"></script>
 <style type="text/css">
     .selectFile {

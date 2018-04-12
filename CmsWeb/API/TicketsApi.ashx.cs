@@ -6,7 +6,7 @@ using System.Web;
 using MySql.Data.MySqlClient;
 using CmsUtils;
 
-namespace CmsWeb.API
+namespace Cms.Web.Admin.API
 {
     /// <summary>
     /// TicketsApi 的摘要说明

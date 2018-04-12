@@ -10,7 +10,7 @@ using CmsCommon;
 using CmsEntity;
 using Newtonsoft.Json;
 
-namespace CmsWeb.API
+namespace Cms.Web.Admin.API
 {
     public partial class ContentApi : BaseApi
     {

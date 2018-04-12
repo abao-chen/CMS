@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CmsWeb.API
+namespace Cms.Web.Admin.API
 {
     /// <summary>
     /// UEditorApi 的摘要说明

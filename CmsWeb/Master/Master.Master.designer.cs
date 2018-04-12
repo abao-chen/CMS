@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.Master {
+namespace Cms.Web.Admin.Master {
     
     
     public partial class Master {

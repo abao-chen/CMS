@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.SysManage {
+namespace Cms.Web.Admin.SysManage {
     
     
     public partial class SendEmail {
@@ -46,7 +46,7 @@ namespace CmsWeb.SysManage {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::CmsWeb.ControlExt.EditorExt txtBody;
+        protected global::Cms.Web.Admin.ControlExt.EditorExt txtBody;
         
         /// <summary>
         /// btnSend 控件。

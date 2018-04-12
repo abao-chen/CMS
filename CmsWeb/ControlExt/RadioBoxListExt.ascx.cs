@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CmsWeb.ControlExt
+namespace Cms.Web.Admin.ControlExt
 {
     public partial class RadioBoxListExt : System.Web.UI.UserControl
     {

@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.API {
+namespace Cms.Web.Admin.API {
     
     
     public partial class PositionVillageApi {

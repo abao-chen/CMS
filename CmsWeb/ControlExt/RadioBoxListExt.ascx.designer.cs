@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace CmsWeb.ControlExt {
+namespace Cms.Web.Admin.ControlExt {
     
     
     public partial class RadioBoxListExt {

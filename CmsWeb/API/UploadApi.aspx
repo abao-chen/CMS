@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UploadApi.aspx.cs" Inherits="CmsWeb.API.UploadApi" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UploadApi.aspx.cs" Inherits="Cms.Web.Admin.API.UploadApi" %>
 
 <!DOCTYPE html>
 

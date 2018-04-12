@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoleApi.aspx.cs" Inherits="CmsWeb.API.RoleApi" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RoleApi.aspx.cs" Inherits="Cms.Web.Admin.API.RoleApi" %>
 
 <!DOCTYPE html>
 
