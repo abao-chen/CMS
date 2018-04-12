@@ -520,7 +520,7 @@
     <Content Include="SysManage\DicTypeInfo.aspx" />
     <Content Include="SysManage\DicTypeList.aspx" />
     <Content Include="SysManage\EditSelfInfo.aspx" />
-    <Content Include="TestTab.aspx" />
+    <Content Include="TableSample.html" />
     <Content Include="TicketsCharts.html" />
     <Content Include="ueditorconfig.json" />
     <Content Include="API\UEditorApi.ashx" />
@@ -1328,13 +1328,6 @@
     </Compile>
     <Compile Include="SysManage\UserList.aspx.designer.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TestTab.aspx.cs">
-      <DependentUpon>TestTab.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestTab.aspx.designer.cs">
-      <DependentUpon>TestTab.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

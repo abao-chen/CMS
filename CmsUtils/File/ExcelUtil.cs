@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 
 namespace CmsUtils
 {
@@ -19,7 +20,17 @@ namespace CmsUtils
 
             //根据路径通过已存在的excel来创建HSSFWorkbook，即整个excel文档
             var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            IWorkbook workbook = new HSSFWorkbook(fs);
+            IWorkbook workbook;
+            if (filePath.EndsWith(".xls"))
+            {
+                workbook = new HSSFWorkbook(fs);
+            }
+            else
+            {
+                workbook = new XSSFWorkbook(fs);
+            }
+
+
             try
             {
                 //获取excel的第一个sheet
@@ -42,8 +53,11 @@ namespace CmsUtils
                 for (var i = sheet.FirstRowNum + 1; i <= sheet.LastRowNum; i++)
                 {
                     var row = sheet.GetRow(i);
+                    if (row == null)
+                    {
+                        break;
+                    }
                     var dataRow = table.NewRow();
-
                     for (int j = row.FirstCellNum; j < cellCount; j++)
                         if (row.GetCell(j) != null)
                             dataRow[j] = row.GetCell(j).ToString();
@@ -85,7 +99,16 @@ namespace CmsUtils
                 if (!Directory.Exists(filePath))
                     Directory.CreateDirectory(filePath);
                 var fullPath = filePath + "/" + fileName;
-                var workbook = new HSSFWorkbook();
+                IWorkbook workbook;
+                if (fileName.EndsWith(".xls"))
+                {
+                    workbook = new HSSFWorkbook();
+                }
+                else
+                {
+                    workbook = new XSSFWorkbook();
+                }
+
                 var filestream = new FileStream(fullPath, FileMode.Create);
                 try
                 {
@@ -173,7 +196,15 @@ namespace CmsUtils
             if (!Directory.Exists(filePath))
                 Directory.CreateDirectory(filePath);
             var fullPath = filePath + "/" + fileName;
-            var workbook = new HSSFWorkbook();
+            IWorkbook workbook;
+            if (fileName.EndsWith(".xls"))
+            {
+                workbook = new HSSFWorkbook();
+            }
+            else
+            {
+                workbook = new XSSFWorkbook();
+            }
             var filestream = new FileStream(fullPath, FileMode.Create);
             var sheet = workbook.CreateSheet(fileName);
 
@@ -273,7 +304,15 @@ namespace CmsUtils
                 Directory.CreateDirectory(filePath);
 
             var filestream = new FileStream(templateFilePath, FileMode.Open, FileAccess.Read);
-            var workbook = new HSSFWorkbook(filestream);
+            IWorkbook workbook;
+            if (fileName.EndsWith(".xls"))
+            {
+                workbook = new HSSFWorkbook(filestream);
+            }
+            else
+            {
+                workbook = new XSSFWorkbook(filestream);
+            }
             var fullPath = filePath + fileName;
             var newFilesStream = new FileStream(fullPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             var sheet = workbook.GetSheetAt(0);

@@ -503,7 +503,7 @@ namespace CmsGenerator
                             break;
                         case 3://日期
                             controlAlisa = "txt";
-                            controlType = "DataPickerExt";
+                            controlType = "DatePickerExt";
                             initDataBuilder.AppendLine("            if(entity.#ColName# != null )");
                             initDataBuilder.AppendLine("            {");
                             initDataBuilder.AppendLine("                #ControlAlisa##ColName#.DateValue = entity.#ColName#;");
@@ -515,8 +515,8 @@ namespace CmsGenerator
                             editCols = "                        <div class=\"col-lg-6\">\r\n";
                             editCols += "                            <div class=\"form-group\">\r\n";
                             editCols += "                                <label>#ColCnName#：</label>\r\n";
-                            editCols += "                                <Cms:DataPickerExt ID=\"#ControlAlisa##ColName#\" runat=\"server\" Name=\"#ColName#\" Format=\"yyyy/MM/dd\"></Cms:DataPickerExt>";
-                            designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.DataPickerExt #ControlAlisa##ColName#;");
+                            editCols += "                                <Cms:DatePickerExt ID=\"#ControlAlisa##ColName#\" runat=\"server\" Name=\"#ColName#\" Format=\"yyyy/MM/dd\"></Cms:DatePickerExt>";
+                            designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.DatePickerExt #ControlAlisa##ColName#;");
                             break;
                         case 4://多选框 checkboxlist
                             controlAlisa = "cbl";
@@ -712,8 +712,8 @@ namespace CmsGenerator
                             designerBuilder = designerBuilder.AppendLine("        protected global::System.Web.UI.WebControls.DropDownList ddl#ColName#;");
                             break;
                         case 3:
-                            searchCols = searchCols.Replace("#ControlType#", "Cms:DataPickerExt").Replace("#ControlAlisa#", "txt");
-                            designerBuilder = designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.DataPickerExt txt#ColName#;");
+                            searchCols = searchCols.Replace("#ControlType#", "Cms:DatePickerExt").Replace("#ControlAlisa#", "txt");
+                            designerBuilder = designerBuilder.AppendLine("        protected global::CmsWeb.ControlExt.DatePickerExt txt#ColName#;");
                             break;
                         case 6:
                             searchCols = searchCols.Replace("#ControlType#", "asp:CheckBox").Replace("#ControlAlisa#", "cbx");
